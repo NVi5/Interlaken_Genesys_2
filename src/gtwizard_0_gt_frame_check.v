@@ -66,7 +66,7 @@
 
 //***********************************Entity Declaration************************
 (* DowngradeIPIdentifiedWarnings="yes" *)
-module gtwizard_0_GT_FRAME_CHECK #
+module gt_frame_check #
 (
     // parameter to set the number of words in the BRAM
     parameter   RX_DATA_WIDTH            =  64,

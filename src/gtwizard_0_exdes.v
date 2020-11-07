@@ -504,7 +504,7 @@ always @(posedge  gt0_txusrclk2_i or negedge gt0_txfsmresetdone_i)
     // of your control and alignment characters.
 
 
-    gtwizard_0_GT_FRAME_GEN #
+    gt_frame_gen #
     (
         .WORDS_IN_BRAM(EXAMPLE_WORDS_IN_BRAM)
     )
@@ -544,12 +544,12 @@ always @(posedge  gt0_txusrclk2_i or negedge gt0_txfsmresetdone_i)
     // and this lane starts off the data checking on all the other lanes. The INC_IN port is tied off
     assign gt0_inc_in_i = 1'b0;
 
-    gtwizard_0_GT_FRAME_CHECK #
+    gt_frame_check #
     (
-.RX_DATA_WIDTH ( 80 ),
-.RXCTRL_WIDTH ( 10 ),
+        .RX_DATA_WIDTH ( 80 ),
+        .RXCTRL_WIDTH ( 10 ),
         .WORDS_IN_BRAM(EXAMPLE_WORDS_IN_BRAM),
-.START_OF_PACKET_CHAR ( 80'h0e0d0c0b0a090800007c )
+        .START_OF_PACKET_CHAR ( 80'h0e0d0c0b0a090800007c )
     )
     gt0_frame_check
     (
