@@ -73,7 +73,7 @@ module gt_frame_check #
     parameter   RXCTRL_WIDTH             =  2,
     parameter   WORDS_IN_BRAM            =  512,
     parameter   CHANBOND_SEQ_LEN         =  1,
-    parameter   START_OF_PACKET_CHAR     =  64'h00000000000000fb
+    parameter   START_OF_PACKET_CHAR     =  80'h0e0d0c0b0a090800007c
 )                            
 (
     // User Interface

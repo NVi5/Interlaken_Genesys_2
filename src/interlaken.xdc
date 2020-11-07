@@ -69,7 +69,7 @@
 ####################### GT reference clock constraints #########################
  
 create_clock -period 8.0 [get_ports Q3_CLK0_GTREFCLK_PAD_P_IN]
-create_clock -name drpclk_in_i -period 10.0 [get_ports DRP_CLK_IN_P]
+create_clock -period 5.0 [get_ports DRP_CLK_IN_P]
 
 # User Clock Constraints
 set_false_path -to [get_pins -hierarchical -filter {NAME =~ *_txfsmresetdone_r*/CLR}]
@@ -85,11 +85,3 @@ set_property -dict { PACKAGE_PIN AD12  IOSTANDARD LVDS     } [get_ports { DRP_CL
 ## LEDs
 set_property -dict { PACKAGE_PIN T28   IOSTANDARD LVCMOS33 } [get_ports { TRACK_DATA_OUT }]; #IO_L11N_T1_SRCC_14 Sch=led[0]
 
-################################# mgt wrapper constraints #####################
-
-##---------- Set placement for gt0_gtx_wrapper_i/GTXE2_CHANNEL ------
-set_property LOC GTXE2_CHANNEL_X0Y12 [get_cells gtwizard_0_support_i/inst/gtwizard_0_init_i/gtwizard_0_i/gt0_gtwizard_0_i/gtxe2_i]
-
-##---------- Set False Path from one clock to other ----------
-
-connect_debug_port dbg_hub/clk [get_pins -hier -filter {name=~*DRP_CLK_BUFG*O}]

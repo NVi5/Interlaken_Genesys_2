@@ -1,10 +1,49 @@
 {
    ExpandedHierarchyInLayout: "",
-   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 non-TLS-threadsafe
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 non-TLS
 #  -string -flagsOSRD
-preplace inst gt_frame_gen_0 -pg 1 -lvl 1 -y -110 -defaultsOSRD
-preplace inst gt_frame_check_0 -pg 1 -lvl 2 -y -120 -defaultsOSRD
-levelinfo -pg 1 -190 -10 550 750 -top -260 -bot 140
+preplace port Q3_CLK0_GTREFCLK_PAD_P_IN -pg 1 -y 280 -defaultsOSRD
+preplace port DRP_CLK_IN_N -pg 1 -y 360 -defaultsOSRD
+preplace port Q3_CLK0_GTREFCLK_PAD_N_IN -pg 1 -y 260 -defaultsOSRD
+preplace port DRP_CLK_IN_P -pg 1 -y 380 -defaultsOSRD
+preplace port TXP_OUT -pg 1 -y 40 -defaultsOSRD
+preplace port TRACK_DATA_OUT -pg 1 -y 260 -defaultsOSRD
+preplace port RXN_IN -pg 1 -y 460 -defaultsOSRD
+preplace port TXN_OUT -pg 1 -y 20 -defaultsOSRD
+preplace port RXP_IN -pg 1 -y 480 -defaultsOSRD
+preplace inst vio_0 -pg 1 -lvl 2 -y 380 -defaultsOSRD
+preplace inst gt_core_0 -pg 1 -lvl 3 -y 330 -defaultsOSRD
+preplace inst gt_frame_gen_0 -pg 1 -lvl 2 -y 590 -defaultsOSRD
+preplace inst gt_frame_check_0 -pg 1 -lvl 4 -y 170 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 5 -y 150 -defaultsOSRD
+preplace inst ila_1 -pg 1 -lvl 5 -y 340 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -y 360 -defaultsOSRD
+preplace netloc DRP_CLK_IN_N_1 1 0 1 NJ
+preplace netloc Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 3 NJ 280 NJ 280 NJ
+preplace netloc gt_core_0_RX_SYSTEM_RESET 1 3 1 1140
+preplace netloc gt_core_0_TX_SYSTEM_RESET 1 1 3 270 520 NJ 520 1050
+preplace netloc gt_core_0_TXN_OUT 1 3 3 1070J 20 NJ 20 NJ
+preplace netloc gt_frame_check_0_TRACK_DATA_OUT 1 2 4 610 50 NJ 50 1540 260 NJ
+preplace netloc gt_frame_check_0_ERROR_COUNT_OUT 1 4 1 N
+preplace netloc gt_frame_gen_0_TX_DATA_OUT 1 2 1 630
+preplace netloc gt_core_0_TX_USR_CLK 1 3 2 1100J 320 N
+preplace netloc vio_0_probe_out0 1 2 1 N
+preplace netloc gt_core_0_TXP_OUT 1 3 3 1080J 40 NJ 40 NJ
+preplace netloc gt_core_0_TX_USR_CLK2 1 1 3 260 140 NJ 140 1050
+preplace netloc gt_core_0_RX_RESET_DONE_ILA 1 3 2 1130J 310 1550
+preplace netloc gt_core_0_RX_MMCM_LOCK_ILA 1 3 2 1110J 70 1520
+preplace netloc gt_core_0_TX_RESET_DONE_ILA 1 3 2 NJ 360 N
+preplace netloc RXP_IN_1 1 0 3 NJ 480 NJ 480 620J
+preplace netloc gt_core_0_RX_USR_CLK2 1 3 1 1130
+preplace netloc gt_core_0_RX_USR_CLK 1 3 2 1090J 80 1530
+preplace netloc DRP_CLK_IN 1 1 2 240 300 NJ
+preplace netloc Net 1 3 2 1120 60 1550
+preplace netloc gt_core_0_TX_MMCM_LOCK_ILA 1 3 2 NJ 340 N
+preplace netloc DRP_CLK_IN_P_1 1 0 1 NJ
+preplace netloc Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 3 NJ 260 NJ 260 NJ
+preplace netloc gt_core_0_RX_RESET_DONE_VIO 1 1 3 250 130 NJ 130 1060
+preplace netloc RXN_IN_1 1 0 3 NJ 460 NJ 460 610J
+levelinfo -pg 1 0 130 440 840 1330 1640 1750 -top 0 -bot 670
 ",
 }
-
+0
