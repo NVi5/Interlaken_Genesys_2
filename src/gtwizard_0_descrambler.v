@@ -77,8 +77,9 @@ module gtwizard_0_DESCRAMBLER #
     output reg  [(RX_DATA_WIDTH-1):0] UNSCRAMBLED_DATA_OUT,
 
       // System Interface
-input  wire         USER_CLK,
-input  wire         SYSTEM_RESET
+    input  wire         USER_CLK,
+    input  wire         SYSTEM_RESET,
+    input  wire         PASSTHROUGH
 );
 
 
@@ -108,7 +109,12 @@ input  wire         SYSTEM_RESET
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET)
+        if (PASSTHROUGH)
+        begin
+            UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
+            descrambler          <= `DLY  58'h155_5555_5555_5555;
+        end
+        else if (SYSTEM_RESET)
         begin
             UNSCRAMBLED_DATA_OUT <= `DLY  'h0;
             descrambler          <= `DLY  58'h155_5555_5555_5555;

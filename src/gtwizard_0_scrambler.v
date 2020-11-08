@@ -78,7 +78,8 @@ module gtwizard_0_SCRAMBLER #
 
     // System Interface
     input  wire          USER_CLK,
-    input  wire          SYSTEM_RESET
+    input  wire          SYSTEM_RESET,
+    input  wire          PASSTHROUGH
 );
 
 
@@ -108,7 +109,12 @@ module gtwizard_0_SCRAMBLER #
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET)
+        if (PASSTHROUGH)
+        begin
+            SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
+            scrambler          <= `DLY  58'h155_5555_5555_5555;
+        end
+        else if (SYSTEM_RESET)
         begin
             SCRAMBLED_DATA_OUT <= `DLY  'h0;
             scrambler          <= `DLY  58'h155_5555_5555_5555;
