@@ -177,17 +177,15 @@ proc create_root_design { parentCell } {
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
   set_property -dict [ list \
    CONFIG.CLKIN1_JITTER_PS {50.0} \
-   CONFIG.CLKIN2_JITTER_PS {83.33} \
    CONFIG.CLKOUT1_JITTER {112.316} \
    CONFIG.CLKOUT1_PHASE_ERROR {89.971} \
+   CONFIG.CLK_OUT1_PORT {DRP_CLK_IN} \
    CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} \
    CONFIG.MMCM_CLKIN1_PERIOD {5.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.PRIM_IN_FREQ {200.000} \
    CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} \
-   CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} \
-   CONFIG.USE_INCLK_SWITCHOVER {false} \
    CONFIG.USE_LOCKED {false} \
    CONFIG.USE_RESET {false} \
  ] $clk_wiz_0
@@ -229,7 +227,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_MONITOR_TYPE {Native} \
    CONFIG.C_NUM_OF_PROBES {5} \
    CONFIG.C_PROBE0_WIDTH {80} \
-   CONFIG.C_PROBE1_WIDTH {8} \
+   CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {8} \
    CONFIG.C_PROBE4_WIDTH {1} \
  ] $ila_0
@@ -246,7 +244,7 @@ proc create_root_design { parentCell } {
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
 
   # Create port connections
-  connect_bd_net -net DRP_CLK_IN [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
+  connect_bd_net -net DRP_CLK_IN [get_bd_pins clk_wiz_0/DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
   connect_bd_net -net DRP_CLK_IN_N_1 [get_bd_ports DRP_CLK_IN_N] [get_bd_pins clk_wiz_0/clk_in1_n]
   connect_bd_net -net DRP_CLK_IN_P_1 [get_bd_ports DRP_CLK_IN_P] [get_bd_pins clk_wiz_0/clk_in1_p]
   connect_bd_net -net Net [get_bd_pins gt_core_0/RX_DATA] [get_bd_pins gt_frame_check_0/RX_DATA_IN] [get_bd_pins ila_0/probe0]

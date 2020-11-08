@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov  7 21:20:46 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov  8 01:17:19 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -83,7 +83,7 @@
         <PARAMETER NAME="C_USE_CLKOUT2_BAR" VALUE="0"/>
         <PARAMETER NAME="C_USE_CLKOUT3_BAR" VALUE="0"/>
         <PARAMETER NAME="C_USE_CLKOUT4_BAR" VALUE="0"/>
-        <PARAMETER NAME="c_component_name" VALUE="main_clk_wiz_0_0"/>
+        <PARAMETER NAME="c_component_name" VALUE="main_clk_wiz_0_1"/>
         <PARAMETER NAME="C_PLATFORM" VALUE="UNKNOWN"/>
         <PARAMETER NAME="C_USE_FREQ_SYNTH" VALUE="1"/>
         <PARAMETER NAME="C_USE_PHASE_ALIGNMENT" VALUE="1"/>
@@ -131,7 +131,7 @@
         <PARAMETER NAME="C_INCLK_SUM_ROW2" VALUE="no_secondary_input_clock"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0A" VALUE="Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0B" VALUE="Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)"/>
-        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="clk_out1___100.000______0.000______50.0______112.316_____89.971"/>
+        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="DRP_CLK_IN___100.000______0.000______50.0______112.316_____89.971"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW2" VALUE="no_CLK_OUT2_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW3" VALUE="no_CLK_OUT3_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW4" VALUE="no_CLK_OUT4_output"/>
@@ -263,7 +263,7 @@
         <PARAMETER NAME="C_OVERRIDE_PLL" VALUE="0"/>
         <PARAMETER NAME="C_PRIMARY_PORT" VALUE="clk_in1"/>
         <PARAMETER NAME="C_SECONDARY_PORT" VALUE="clk_in2"/>
-        <PARAMETER NAME="C_CLK_OUT1_PORT" VALUE="clk_out1"/>
+        <PARAMETER NAME="C_CLK_OUT1_PORT" VALUE="DRP_CLK_IN"/>
         <PARAMETER NAME="C_CLK_OUT2_PORT" VALUE="clk_out2"/>
         <PARAMETER NAME="C_CLK_OUT3_PORT" VALUE="clk_out3"/>
         <PARAMETER NAME="C_CLK_OUT4_PORT" VALUE="clk_out4"/>
@@ -296,7 +296,7 @@
         <PARAMETER NAME="C_INPUT_CLK_STOPPED_PORT" VALUE="input_clk_stopped"/>
         <PARAMETER NAME="C_CLKFB_STOPPED_PORT" VALUE="clkfb_stopped"/>
         <PARAMETER NAME="C_CLKIN1_JITTER_PS" VALUE="50.0"/>
-        <PARAMETER NAME="C_CLKIN2_JITTER_PS" VALUE="83.33"/>
+        <PARAMETER NAME="C_CLKIN2_JITTER_PS" VALUE="100.0"/>
         <PARAMETER NAME="C_PRIMITIVE" VALUE="MMCM"/>
         <PARAMETER NAME="C_SS_MODE" VALUE="CENTER_HIGH"/>
         <PARAMETER NAME="C_SS_MOD_PERIOD" VALUE="4000"/>
@@ -366,7 +366,7 @@
         <PARAMETER NAME="C_CLKOUT4_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT5_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT6_ACTUAL_FREQ" VALUE="100.000"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_clk_wiz_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_clk_wiz_0_1"/>
         <PARAMETER NAME="USER_CLK_FREQ0" VALUE="100.0"/>
         <PARAMETER NAME="USER_CLK_FREQ1" VALUE="100.0"/>
         <PARAMETER NAME="USER_CLK_FREQ2" VALUE="100.0"/>
@@ -407,7 +407,7 @@
         <PARAMETER NAME="PRIM_IN_JITTER" VALUE="0.010"/>
         <PARAMETER NAME="SECONDARY_IN_JITTER" VALUE="0.010"/>
         <PARAMETER NAME="CLKIN1_JITTER_PS" VALUE="50.0"/>
-        <PARAMETER NAME="CLKIN2_JITTER_PS" VALUE="83.33"/>
+        <PARAMETER NAME="CLKIN2_JITTER_PS" VALUE="100.0"/>
         <PARAMETER NAME="CLKOUT1_USED" VALUE="true"/>
         <PARAMETER NAME="CLKOUT2_USED" VALUE="false"/>
         <PARAMETER NAME="CLKOUT3_USED" VALUE="false"/>
@@ -424,7 +424,7 @@
         <PARAMETER NAME="CLK_OUT6_USE_FINE_PS_GUI" VALUE="false"/>
         <PARAMETER NAME="CLK_OUT7_USE_FINE_PS_GUI" VALUE="false"/>
         <PARAMETER NAME="PRIMARY_PORT" VALUE="clk_in1"/>
-        <PARAMETER NAME="CLK_OUT1_PORT" VALUE="clk_out1"/>
+        <PARAMETER NAME="CLK_OUT1_PORT" VALUE="DRP_CLK_IN"/>
         <PARAMETER NAME="CLK_OUT2_PORT" VALUE="clk_out2"/>
         <PARAMETER NAME="CLK_OUT3_PORT" VALUE="clk_out3"/>
         <PARAMETER NAME="CLK_OUT4_PORT" VALUE="clk_out4"/>
@@ -634,7 +634,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="DRP_CLK_IN_N"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="DRP_CLK_IN" SIGIS="clk" SIGNAME="clk_wiz_0_DRP_CLK_IN">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vio_0" PORT="clk"/>
             <CONNECTION INSTANCE="gt_core_0" PORT="DRP_CLK_IN"/>
@@ -671,9 +671,9 @@
             <CONNECTION INSTANCE="External_Ports" PORT="Q3_CLK0_GTREFCLK_PAD_P_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="DRP_CLK_IN" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="DRP_CLK_IN" SIGIS="clk" SIGNAME="clk_wiz_0_DRP_CLK_IN">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
+            <CONNECTION INSTANCE="clk_wiz_0" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="DATA_VALID" SIGIS="undef" SIGNAME="gt_frame_check_0_TRACK_DATA_OUT">
@@ -891,7 +891,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_WUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_BUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="80"/>
-        <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="8"/>
+        <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="8"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
@@ -3996,7 +3996,7 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_MMCM_LOCK_ILA">
+        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_MMCM_LOCK_ILA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_MMCM_LOCK_ILA"/>
           </CONNECTIONS>
@@ -7976,9 +7976,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_0_DRP_CLK_IN">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="clk_wiz_0" PORT="clk_out1"/>
+            <CONNECTION INSTANCE="clk_wiz_0" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe_in0" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">

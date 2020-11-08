@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov  7 21:20:38 2020
+//Date        : Sun Nov  8 01:17:17 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -65,10 +65,10 @@ module main
   assign TRACK_DATA_OUT = gt_frame_check_0_TRACK_DATA_OUT;
   assign TXN_OUT = gt_core_0_TXN_OUT;
   assign TXP_OUT = gt_core_0_TXP_OUT;
-  main_clk_wiz_0_0 clk_wiz_0
-       (.clk_in1_n(DRP_CLK_IN_N_1),
-        .clk_in1_p(DRP_CLK_IN_P_1),
-        .clk_out1(DRP_CLK_IN));
+  main_clk_wiz_0_1 clk_wiz_0
+       (.DRP_CLK_IN(DRP_CLK_IN),
+        .clk_in1_n(DRP_CLK_IN_N_1),
+        .clk_in1_p(DRP_CLK_IN_P_1));
   main_gt_core_0_0 gt_core_0
        (.DATA_VALID(gt_frame_check_0_TRACK_DATA_OUT),
         .DRP_CLK_IN(DRP_CLK_IN),
@@ -105,7 +105,7 @@ module main
   main_ila_0_0 ila_0
        (.clk(gt_core_0_RX_USR_CLK),
         .probe0(Net),
-        .probe1({gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA,gt_core_0_RX_MMCM_LOCK_ILA}),
+        .probe1(gt_core_0_RX_MMCM_LOCK_ILA),
         .probe2(gt_frame_check_0_TRACK_DATA_OUT),
         .probe3(gt_frame_check_0_ERROR_COUNT_OUT),
         .probe4(gt_core_0_RX_RESET_DONE_ILA));
