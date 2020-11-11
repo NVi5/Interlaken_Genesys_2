@@ -72,14 +72,16 @@ module gtwizard_0_SCRAMBLER #
 )
 (
     // User Interface
-    input  wire  [(TX_DATA_WIDTH-1):0] UNSCRAMBLED_DATA_IN,
-    input  wire                        DATA_VALID_IN,
-    output reg   [(TX_DATA_WIDTH-1):0] SCRAMBLED_DATA_OUT,
+    input  wire  [(TX_DATA_WIDTH-1):0]  UNSCRAMBLED_DATA_IN,
+    output reg   [(TX_DATA_WIDTH-1):0]  SCRAMBLED_DATA_OUT,
+    input  wire                         TO_BE_SCRAMBLED,
+    input  wire                         SYNCHRONIZATION,
+    input  wire                         SCRAMBLER_STATE,
 
     // System Interface
-    input  wire          USER_CLK,
-    input  wire          SYSTEM_RESET,
-    input  wire          PASSTHROUGH
+    input  wire                         USER_CLK,
+    input  wire                         SYSTEM_RESET,
+    input  wire                         PASSTHROUGH
 );
 
 
@@ -112,17 +114,25 @@ module gtwizard_0_SCRAMBLER #
         if (PASSTHROUGH)
         begin
             SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
-            scrambler          <= `DLY  58'h155_5555_5555_5555;
+            scrambler          <= `DLY  {58{1'b1}};
         end
         else if (SYSTEM_RESET)
         begin
             SCRAMBLED_DATA_OUT <= `DLY  'h0;
-            scrambler          <= `DLY  58'h155_5555_5555_5555;
+            scrambler          <= `DLY  {58{1'b1}};
         end
-        else if (DATA_VALID_IN)
+        else if (TO_BE_SCRAMBLED)
         begin
             SCRAMBLED_DATA_OUT <= `DLY  tempData;
             scrambler          <= `DLY  poly;
+        end 
+        else if(SYNCHRONIZATION) 
+        begin
+            SCRAMBLED_DATA_OUT <= `DLY  64'h78f678f678f678f6;
+        end 
+        else if(SCRAMBLER_STATE) 
+        begin
+            SCRAMBLED_DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
         end
     end
          

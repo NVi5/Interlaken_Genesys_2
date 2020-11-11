@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sun Nov  8 16:53:02 2020
+//Date        : Wed Nov 11 19:16:59 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -116,10 +116,12 @@ module main
         .UNSCRAMBLED_DATA_OUT(gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_gtwizard_0_SCRAMBLER_0_0 gtwizard_0_SCRAMBLER_0
-       (.DATA_VALID_IN(xlconstant_0_dout),
-        .PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
+       (.PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
         .SCRAMBLED_DATA_OUT(gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT),
+        .SCRAMBLER_STATE(xlconstant_0_dout),
+        .SYNCHRONIZATION(xlconstant_0_dout),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
+        .TO_BE_SCRAMBLED(xlconstant_0_dout),
         .UNSCRAMBLED_DATA_IN(gt_frame_gen_0_TX_DATA_OUT),
         .USER_CLK(Net1));
   main_ila_0_0 ila_0

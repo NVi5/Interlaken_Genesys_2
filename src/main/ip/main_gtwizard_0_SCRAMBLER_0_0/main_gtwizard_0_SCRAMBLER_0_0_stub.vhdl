@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov  8 16:18:38 2020
+-- Date        : Wed Nov 11 19:17:37 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gtwizard_0_SCRAMBLER_0_0/main_gtwizard_0_SCRAMBLER_0_0_stub.vhdl
@@ -15,8 +15,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity main_gtwizard_0_SCRAMBLER_0_0 is
   Port ( 
     UNSCRAMBLED_DATA_IN : in STD_LOGIC_VECTOR ( 79 downto 0 );
-    DATA_VALID_IN : in STD_LOGIC;
     SCRAMBLED_DATA_OUT : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    TO_BE_SCRAMBLED : in STD_LOGIC;
+    SYNCHRONIZATION : in STD_LOGIC;
+    SCRAMBLER_STATE : in STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC
@@ -28,7 +30,7 @@ architecture stub of main_gtwizard_0_SCRAMBLER_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "UNSCRAMBLED_DATA_IN[79:0],DATA_VALID_IN,SCRAMBLED_DATA_OUT[79:0],USER_CLK,SYSTEM_RESET,PASSTHROUGH";
+attribute black_box_pad_pin of stub : architecture is "UNSCRAMBLED_DATA_IN[79:0],SCRAMBLED_DATA_OUT[79:0],TO_BE_SCRAMBLED,SYNCHRONIZATION,SCRAMBLER_STATE,USER_CLK,SYSTEM_RESET,PASSTHROUGH";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "gtwizard_0_SCRAMBLER,Vivado 2018.2";
 begin
