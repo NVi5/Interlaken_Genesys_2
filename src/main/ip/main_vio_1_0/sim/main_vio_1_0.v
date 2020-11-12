@@ -49,12 +49,14 @@
 module main_vio_1_0 (
 clk,
 
-probe_out0
+probe_out0,
+probe_out1
 );
 
 input clk;
 
 output reg [0 : 0] probe_out0 = 'h1 ;
+output reg [0 : 0] probe_out1 = 'h0 ;
 
 
 endmodule
