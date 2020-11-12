@@ -107,7 +107,7 @@ module gtwizard_0_SCRAMBLER #
         end
     end  
 
-    //________________ Scrambled Data assignment to output port _______________    
+//________________ Scrambled Data assignment to output port _______________    
 
     always @(posedge USER_CLK)
     begin

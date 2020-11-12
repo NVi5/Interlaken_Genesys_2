@@ -24,38 +24,38 @@ preplace inst gtwizard_0_DESCRAMBL_0 -pg 1 -lvl 5 -y 520 -defaultsOSRD
 preplace inst ila_0 -pg 1 -lvl 7 -y 650 -defaultsOSRD
 preplace inst ila_1 -pg 1 -lvl 5 -y 900 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -y 480 -defaultsOSRD
-preplace netloc gt_core_0_RX_DATA 1 3 2 1390J 400 1690
-preplace netloc xlconstant_1_dout 1 4 1 1680J
+preplace netloc gt_core_0_RX_DATA 1 3 2 1380J 400 1710
+preplace netloc xlconstant_1_dout 1 4 1 1700J
 preplace netloc gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT 1 2 1 880
 preplace netloc DRP_CLK_IN_N_1 1 0 1 NJ
 preplace netloc Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 3 NJ 400 NJ 400 890J
-preplace netloc gt_core_0_RX_SYSTEM_RESET 1 3 3 1440J 750 1690 690 NJ
+preplace netloc gt_core_0_RX_SYSTEM_RESET 1 3 3 1420J 750 1700 690 NJ
 preplace netloc gt_core_0_TX_SYSTEM_RESET 1 0 4 20 250 360 330 NJ 330 1350
-preplace netloc gt_core_0_TXN_OUT 1 3 5 1400J 680 NJ 680 2200J 520 NJ 520 NJ
-preplace netloc gt_frame_check_0_TRACK_DATA_OUT 1 2 6 900 940 1450J 770 NJ 770 NJ 770 2600 760 NJ
+preplace netloc gt_core_0_TXN_OUT 1 3 5 NJ 620 1690J 630 2190J 520 NJ 520 NJ
+preplace netloc gt_frame_check_0_TRACK_DATA_OUT 1 2 6 900 940 1430J 770 NJ 770 NJ 770 2630 760 NJ
 preplace netloc gt_frame_check_0_ERROR_COUNT_OUT 1 6 1 N
 preplace netloc gt_frame_gen_0_TX_DATA_OUT 1 1 1 370
-preplace netloc gt_core_0_TX_USR_CLK 1 0 5 20 560 NJ 560 NJ 560 1360 660 1670
-preplace netloc gt_core_0_TXP_OUT 1 3 5 1370J 650 NJ 650 2180J 540 NJ 540 NJ
+preplace netloc gt_core_0_TX_USR_CLK 1 0 5 20 560 NJ 560 NJ 560 1360 630 1670
+preplace netloc gt_core_0_TXP_OUT 1 3 5 1390J 660 NJ 660 2220J 540 NJ 540 NJ
 preplace netloc PASSTHROUGH_SCRAMBLER 1 1 1 370J
-preplace netloc gt_core_0_RX_RESET_DONE_ILA 1 3 4 1430J 630 NJ 630 2170J 560 2610
+preplace netloc gt_core_0_RX_RESET_DONE_ILA 1 3 4 1400J 640 NJ 640 2210J 560 2640
 preplace netloc xlconstant_0_dout 1 1 1 370J
-preplace netloc gt_core_0_RX_MMCM_LOCK_ILA 1 3 4 1410J 620 NJ 620 2210J 580 2600
+preplace netloc gt_core_0_RX_MMCM_LOCK_ILA 1 3 4 1410J 670 NJ 670 2240J 580 2630
 preplace netloc gt_core_0_TX_RESET_DONE_ILA 1 3 2 NJ 780 1650
 preplace netloc SOFT_RESET 1 2 1 860
 preplace netloc RXP_IN_1 1 0 3 NJ 780 NJ 780 NJ
 preplace netloc DRP_CLK_IN 1 1 2 360 410 870
-preplace netloc gt_core_0_RX_USR_CLK2 1 3 3 1420J 670 1680 670 NJ
-preplace netloc gt_core_0_RX_USR_CLK 1 3 4 1380 640 NJ 640 2220J 570 2620J
+preplace netloc gt_core_0_RX_USR_CLK2 1 3 3 NJ 720 1680 680 2250J
+preplace netloc gt_core_0_RX_USR_CLK 1 3 4 1370 650 NJ 650 2200J 570 2650J
 preplace netloc Net1 1 0 4 20 10 360 90 NJ 90 1340
 preplace netloc DRP_CLK_IN_P_1 1 0 1 NJ
 preplace netloc gt_core_0_TX_MMCM_LOCK_ILA 1 3 2 NJ 760 1660
 preplace netloc Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 3 NJ 380 NJ 380 900J
-preplace netloc PASSTHROUGH_DESCRAMBLER 1 4 1 NJ
-preplace netloc gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT 1 5 2 2190 550 2630J
+preplace netloc PASSTHROUGH_DESCRAMBLER 1 4 1 1710J
+preplace netloc gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT 1 5 2 2230 550 2660J
 preplace netloc RX_RESET_DONE_VIO 1 1 3 370 550 NJ 550 1330
 preplace netloc RXN_IN_1 1 0 3 NJ 760 NJ 760 NJ
-levelinfo -pg 1 0 190 620 1120 1550 1930 2410 2720 2830 -top 0 -bot 980
+levelinfo -pg 1 0 190 620 1120 1550 1950 2440 2750 2860 -top 0 -bot 980
 ",
 }
 0

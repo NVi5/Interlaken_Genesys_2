@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov 11 19:17:00 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Nov 11 20:49:39 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -864,17 +864,23 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="DATA_VALID_IN" SIGIS="undef" SIGNAME="xlconstant_1_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="79" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
             <CONNECTION INSTANCE="gt_frame_check_0" PORT="RX_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="TO_BE_DESCRAMBLED" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYNCHRONIZE" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="STATE_MISMATCH" SIGIS="undef"/>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
@@ -9746,7 +9752,8 @@
       <PORTS>
         <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="DATA_VALID_IN"/>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="TO_BE_DESCRAMBLED"/>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYNCHRONIZE"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

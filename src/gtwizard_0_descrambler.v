@@ -73,8 +73,10 @@ module gtwizard_0_DESCRAMBLER #
 (
    // User Interface
     input  wire [(RX_DATA_WIDTH-1):0] SCRAMBLED_DATA_IN,
-    input  wire                       DATA_VALID_IN,
     output reg  [(RX_DATA_WIDTH-1):0] UNSCRAMBLED_DATA_OUT,
+    input  wire                       TO_BE_DESCRAMBLED,
+    input  wire                       SYNCHRONIZE,
+    output reg                        STATE_MISMATCH,
 
       // System Interface
     input  wire         USER_CLK,
@@ -105,25 +107,32 @@ module gtwizard_0_DESCRAMBLER #
         end
     end
 
-    //________________ Scrambled Data assignment to output port _______________    
+//________________ Descrambled Data assignment to output port _______________    
 
     always @(posedge USER_CLK)
     begin
+        STATE_MISMATCH       <= `DLY  0;    // Default
         if (PASSTHROUGH)
         begin
             UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
-            descrambler          <= `DLY  58'h155_5555_5555_5555;
+            descrambler          <= `DLY  {58{1'b1}};
         end
         else if (SYSTEM_RESET)
         begin
             UNSCRAMBLED_DATA_OUT <= `DLY  'h0;
-            descrambler          <= `DLY  58'h155_5555_5555_5555;
+            descrambler          <= `DLY  {58{1'b1}};
         end
-        else if (DATA_VALID_IN)
+        else if (TO_BE_DESCRAMBLED)
         begin
             UNSCRAMBLED_DATA_OUT <= `DLY  tempData;
             descrambler          <= `DLY  poly;
         end
+        else if (SYNCHRONIZE)
+        begin
+            UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
+            descrambler          <= `DLY  SCRAMBLED_DATA_IN[57:0];
+            STATE_MISMATCH       <= `DLY  SCRAMBLED_DATA_IN[57:0] != descrambler;
+        end
     end
-         
+
 endmodule

@@ -281,18 +281,6 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>gtwizard_0_DESCRAMBL_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="gtwizard_0_DESCRAMBLER" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gtwizard_0_DESCRAMBL_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="RX_DATA_WIDTH">80</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gtwizard_0_DESCRAMBLER</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>vio_1</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
         <spirit:configurableElementValues>
@@ -317,6 +305,18 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gtwizard_0_SCRAMBLER_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="TX_DATA_WIDTH">80</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gtwizard_0_SCRAMBLER</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>gtwizard_0_DESCRAMBL_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="gtwizard_0_DESCRAMBLER" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gtwizard_0_DESCRAMBL_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="RX_DATA_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gtwizard_0_DESCRAMBLER</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -457,7 +457,8 @@
       <spirit:adHocConnection>
         <spirit:name>xlconstant_1_dout</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xlconstant_1" spirit:portRef="dout"/>
-        <spirit:internalPortReference spirit:componentRef="gtwizard_0_DESCRAMBL_0" spirit:portRef="DATA_VALID_IN"/>
+        <spirit:internalPortReference spirit:componentRef="gtwizard_0_DESCRAMBL_0" spirit:portRef="TO_BE_DESCRAMBLED"/>
+        <spirit:internalPortReference spirit:componentRef="gtwizard_0_DESCRAMBL_0" spirit:portRef="SYNCHRONIZE"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_DATA</spirit:name>
