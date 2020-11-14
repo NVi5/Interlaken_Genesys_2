@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="gtwizard_0_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="gtwizard_0_TB" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="247296401609fs"></ZoomStartTime>
+      <ZoomEndTime time="248544401610fs"></ZoomEndTime>
+      <Cursor1Time time="245432427000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="178"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="30" />
+   <wvobject fp_name="/gtwizard_0_TB/tx_refclk_n_r" type="logic">
+      <obj_property name="ElementShortName">tx_refclk_n_r</obj_property>
+      <obj_property name="ObjectShortName">tx_refclk_n_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/drp_clk_r" type="logic">
+      <obj_property name="ElementShortName">drp_clk_r</obj_property>
+      <obj_property name="ObjectShortName">drp_clk_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/track_data_high_r" type="logic">
+      <obj_property name="ElementShortName">track_data_high_r</obj_property>
+      <obj_property name="ObjectShortName">track_data_high_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/track_data_low_r" type="logic">
+      <obj_property name="ElementShortName">track_data_low_r</obj_property>
+      <obj_property name="ObjectShortName">track_data_low_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/track_data_i" type="logic">
+      <obj_property name="ElementShortName">track_data_i</obj_property>
+      <obj_property name="ObjectShortName">track_data_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/rxn_in_i" type="logic">
+      <obj_property name="ElementShortName">rxn_in_i</obj_property>
+      <obj_property name="ObjectShortName">rxn_in_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/rxp_in_i" type="logic">
+      <obj_property name="ElementShortName">rxp_in_i</obj_property>
+      <obj_property name="ObjectShortName">rxp_in_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/txn_out_i" type="logic">
+      <obj_property name="ElementShortName">txn_out_i</obj_property>
+      <obj_property name="ObjectShortName">txn_out_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/txp_out_i" type="logic">
+      <obj_property name="ElementShortName">txp_out_i</obj_property>
+      <obj_property name="ObjectShortName">txp_out_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/RX_DATA" type="array">
+      <obj_property name="ElementShortName">RX_DATA[79:0]</obj_property>
+      <obj_property name="ObjectShortName">RX_DATA[79:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/TX_DATA" type="array">
+      <obj_property name="ElementShortName">TX_DATA[79:0]</obj_property>
+      <obj_property name="ObjectShortName">TX_DATA[79:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/DATA_VALID" type="logic">
+      <obj_property name="ElementShortName">DATA_VALID</obj_property>
+      <obj_property name="ObjectShortName">DATA_VALID</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/vio_0/probe_out0[0]" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">[0]</obj_property>
+      <obj_property name="ObjectShortName">[0]</obj_property>
+      <obj_property name="label">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/encode_64B_67B_0/inst/disparity" type="array">
+      <obj_property name="ElementShortName">disparity[15:0]</obj_property>
+      <obj_property name="ObjectShortName">disparity[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/encode_64B_67B_0/inst/word_disparity" type="array">
+      <obj_property name="ElementShortName">word_disparity[7:0]</obj_property>
+      <obj_property name="ObjectShortName">word_disparity[7:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/encode_64B_67B_0/inst/DATA_OUT[66]" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">[66]</obj_property>
+      <obj_property name="ObjectShortName">[66]</obj_property>
+      <obj_property name="label">NEG</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/RX_MMCM_LOCK_ILA" type="logic">
+      <obj_property name="ElementShortName">RX_MMCM_LOCK_ILA</obj_property>
+      <obj_property name="ObjectShortName">RX_MMCM_LOCK_ILA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/RX_RESET_DONE_ILA" type="logic">
+      <obj_property name="ElementShortName">RX_RESET_DONE_ILA</obj_property>
+      <obj_property name="ObjectShortName">RX_RESET_DONE_ILA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/TX_MMCM_LOCK_ILA" type="logic">
+      <obj_property name="ElementShortName">TX_MMCM_LOCK_ILA</obj_property>
+      <obj_property name="ObjectShortName">TX_MMCM_LOCK_ILA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/TX_RESET_DONE_ILA" type="logic">
+      <obj_property name="ElementShortName">TX_RESET_DONE_ILA</obj_property>
+      <obj_property name="ObjectShortName">TX_RESET_DONE_ILA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_core_0/SOFT_RESET_VIO" type="logic">
+      <obj_property name="ElementShortName">SOFT_RESET_VIO</obj_property>
+      <obj_property name="ObjectShortName">SOFT_RESET_VIO</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/candidate" type="array">
+      <obj_property name="ElementShortName">candidate[2:0]</obj_property>
+      <obj_property name="ObjectShortName">candidate[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/good_sync_ctr" type="array">
+      <obj_property name="ElementShortName">good_sync_ctr[6:0]</obj_property>
+      <obj_property name="ObjectShortName">good_sync_ctr[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/error_sync_ctr" type="array">
+      <obj_property name="ElementShortName">error_sync_ctr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">error_sync_ctr[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/LOCKED" type="logic">
+      <obj_property name="ElementShortName">LOCKED</obj_property>
+      <obj_property name="ObjectShortName">LOCKED</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_frame_check_0/inst/rx_data_r_track" type="array">
+      <obj_property name="ElementShortName">rx_data_r_track[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_r_track[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_frame_check_0/inst/bram_data_r" type="array">
+      <obj_property name="ElementShortName">bram_data_r[63:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_data_r[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_frame_check_0/inst/start_of_packet_detected_r" type="logic">
+      <obj_property name="ElementShortName">start_of_packet_detected_r</obj_property>
+      <obj_property name="ObjectShortName">start_of_packet_detected_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/aligned_rx[65]" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">[65]</obj_property>
+      <obj_property name="ObjectShortName">[65]</obj_property>
+      <obj_property name="label">aligned_65</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/aligned_rx[64]" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">[64]</obj_property>
+      <obj_property name="ObjectShortName">[64]</obj_property>
+      <obj_property name="label">aligned_64</obj_property>
+   </wvobject>
+</wave_config>

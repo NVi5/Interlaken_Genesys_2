@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 17:26:20 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 22:16:42 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -624,12 +624,12 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="clk_in1_p" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_P">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_in1_p" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_P">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DRP_CLK_IN_P"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="clk_in1_n" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_N">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_in1_n" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_N">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DRP_CLK_IN_N"/>
           </CONNECTIONS>
@@ -845,6 +845,7 @@
         <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_IN"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
@@ -1071,7 +1072,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="6"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="7"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2018"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -1101,7 +1102,7 @@
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="8"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="80"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="1"/>
@@ -4224,6 +4225,11 @@
         <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_LOCKED">
           <CONNECTIONS>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="LOCKED"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="79" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

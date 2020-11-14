@@ -67,10 +67,8 @@ module gtwizard_0_TB;
 
 //*************************Parameter Declarations******************************
 
-    parameter   TX_REFCLK_PERIOD   =   6.4;
-    parameter   RX_REFCLK_PERIOD   =   6.4;
-    parameter   SYSCLK_PERIOD      =   10.0;
-    parameter   DCLK_PERIOD        =   10.0;
+    parameter   GTREFCLK_PERIOD   =   6.4;
+    parameter   DCLK_PERIOD       =   5.0;
 
 //************************Internal Register Declarations***********************
 
@@ -108,7 +106,7 @@ module gtwizard_0_TB;
         begin
             gts_r = 1'b0;
             gsr_r = 1'b1;
-            #(16*TX_REFCLK_PERIOD);
+            #(16*GTREFCLK_PERIOD);
             gsr_r = 1'b0;
     end
 
@@ -119,7 +117,7 @@ module gtwizard_0_TB;
     end
 
     always
-        #(TX_REFCLK_PERIOD/2) tx_refclk_n_r = !tx_refclk_n_r;
+        #(GTREFCLK_PERIOD/2) tx_refclk_n_r = !tx_refclk_n_r;
 
     //------------------------ Generate DRP Clock ----------------------------
 

@@ -273,11 +273,12 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {6} \
+   CONFIG.C_NUM_OF_PROBES {7} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {8} \
    CONFIG.C_PROBE4_WIDTH {1} \
+   CONFIG.C_PROBE6_WIDTH {80} \
  ] $ila_0
 
   # Create instance: ila_1, and set properties
@@ -347,7 +348,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net decode_64B_67B_0_HEADER_OUT [get_bd_pins decode_64B_67B_0/HEADER_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/HEADER_IN]
   connect_bd_net -net decode_64B_67B_0_LOCKED [get_bd_pins decode_64B_67B_0/LOCKED] [get_bd_pins ila_0/probe5]
   connect_bd_net -net encode_64B_67B_0_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA]
-  connect_bd_net -net gt_core_0_RX_DATA [get_bd_pins decode_64B_67B_0/DATA_IN] [get_bd_pins gt_core_0/RX_DATA]
+  connect_bd_net -net gt_core_0_RX_DATA [get_bd_pins decode_64B_67B_0/DATA_IN] [get_bd_pins gt_core_0/RX_DATA] [get_bd_pins ila_0/probe6]
   connect_bd_net -net gt_core_0_RX_MMCM_LOCK_ILA [get_bd_pins gt_core_0/RX_MMCM_LOCK_ILA] [get_bd_pins ila_0/probe1]
   connect_bd_net -net gt_core_0_RX_RESET_DONE_ILA [get_bd_pins gt_core_0/RX_RESET_DONE_ILA] [get_bd_pins ila_0/probe4]
   connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins decode_64B_67B_0/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_SYSTEM_RESET] [get_bd_pins gt_frame_check_0/SYSTEM_RESET] [get_bd_pins gtwizard_0_DESCRAMBL_0/SYSTEM_RESET]

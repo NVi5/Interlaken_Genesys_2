@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov 14 17:26:07 2020
+//Date        : Sat Nov 14 22:16:40 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -160,7 +160,8 @@ module main
         .probe2(gt_frame_check_0_TRACK_DATA_OUT),
         .probe3(gt_frame_check_0_ERROR_COUNT_OUT),
         .probe4(gt_core_0_RX_RESET_DONE_ILA),
-        .probe5(decode_64B_67B_0_LOCKED));
+        .probe5(decode_64B_67B_0_LOCKED),
+        .probe6(gt_core_0_RX_DATA));
   main_ila_1_0 ila_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe0(gt_core_0_TX_MMCM_LOCK_ILA),

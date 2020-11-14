@@ -64,7 +64,7 @@ module decode_64B_67B(
         else
         case(state)
             STATE_SYNCING:
-                if (aligned_rx[65] !=  aligned_rx[64])
+                if (aligned_rx[65] != aligned_rx[64])
                 begin
                     if (good_sync_ctr <= 7'd64)
                     begin
@@ -76,8 +76,8 @@ module decode_64B_67B(
                     end
                 end
                 else begin
-                    good_sync_ctr <= 7'd0;
-                    candidate <= `DLY candidate + 1;
+                    good_sync_ctr <= `DLY  7'd0;
+                    candidate <= `DLY  candidate + 3'd1;
                 end
             STATE_LOCKED:
                 if (aligned_rx[65] !=  aligned_rx[64])
