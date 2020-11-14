@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov 14 22:16:40 2020
+//Date        : Sat Nov 14 22:31:18 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main

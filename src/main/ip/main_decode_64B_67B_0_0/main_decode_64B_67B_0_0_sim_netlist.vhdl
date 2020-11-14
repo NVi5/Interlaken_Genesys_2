@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 14 22:11:36 2020
+-- Date        : Sat Nov 14 22:31:56 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_sim_netlist.vhdl
@@ -19,10 +19,10 @@ entity main_decode_64B_67B_0_0_decode_64B_67B is
     LOCKED : out STD_LOGIC;
     DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    PASSTHROUGH : in STD_LOGIC;
-    SYSTEM_RESET : in STD_LOGIC;
     DATA_IN : in STD_LOGIC_VECTOR ( 79 downto 0 );
-    USER_CLK : in STD_LOGIC
+    USER_CLK : in STD_LOGIC;
+    SYSTEM_RESET : in STD_LOGIC;
+    PASSTHROUGH : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_decode_64B_67B_0_0_decode_64B_67B : entity is "decode_64B_67B";
@@ -199,10 +199,9 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   signal \DATA_OUT[8]_i_2_n_0\ : STD_LOGIC;
   signal \DATA_OUT[9]_i_1_n_0\ : STD_LOGIC;
   signal \DATA_OUT[9]_i_2_n_0\ : STD_LOGIC;
-  signal \HEADER_OUT[0]_i_1_n_0\ : STD_LOGIC;
   signal \HEADER_OUT[0]_i_2_n_0\ : STD_LOGIC;
   signal \HEADER_OUT[1]_i_1_n_0\ : STD_LOGIC;
-  signal \HEADER_OUT[1]_i_2_n_0\ : STD_LOGIC;
+  signal \HEADER_OUT[1]_i_3_n_0\ : STD_LOGIC;
   signal \^locked\ : STD_LOGIC;
   signal candidate : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal \candidate1__0\ : STD_LOGIC;
@@ -219,7 +218,9 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   signal \good_sync_ctr[6]_i_1_n_0\ : STD_LOGIC;
   signal \good_sync_ctr[6]_i_3_n_0\ : STD_LOGIC;
   signal \good_sync_ctr__2\ : STD_LOGIC_VECTOR ( 6 downto 0 );
-  signal p_0_in : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal p_0_in : STD_LOGIC;
+  signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 4 downto 0 );
+  signal p_1_in : STD_LOGIC;
   signal rx_data_r : STD_LOGIC_VECTOR ( 79 downto 0 );
   signal \rx_data_r2_reg_n_0_[0]\ : STD_LOGIC;
   signal \rx_data_r2_reg_n_0_[1]\ : STD_LOGIC;
@@ -236,24 +237,26 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   signal \state[0]_i_4_n_0\ : STD_LOGIC;
   signal \state[0]_i_5_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \HEADER_OUT[0]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \candidate[0]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \candidate[1]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \candidate[2]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \error_sync_ctr[0]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \error_sync_ctr[1]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \error_sync_ctr[2]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \error_sync_ctr[3]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \error_sync_ctr[4]_i_3\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \good_sync_ctr[0]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \good_sync_ctr[1]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \good_sync_ctr[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \good_sync_ctr[4]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \good_sync_ctr[4]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \good_sync_ctr[5]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_2\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_3\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \error_sync_ctr[0]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \error_sync_ctr[1]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \error_sync_ctr[2]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \error_sync_ctr[3]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \error_sync_ctr[4]_i_3\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \good_sync_ctr[0]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \good_sync_ctr[1]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \good_sync_ctr[2]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \good_sync_ctr[4]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \good_sync_ctr[4]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \good_sync_ctr[5]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_3\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \state[0]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \state[0]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \state[0]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \state[0]_i_3\ : label is "soft_lutpair0";
 begin
   LOCKED <= \^locked\;
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT6
@@ -262,7 +265,7 @@ begin
     )
         port map (
       I0 => DATA_IN(0),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[0]_i_2_n_0\,
       I4 => candidate(2),
@@ -288,7 +291,7 @@ begin
     )
         port map (
       I0 => DATA_IN(10),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[10]_i_2_n_0\,
       I4 => candidate(2),
@@ -314,7 +317,7 @@ begin
     )
         port map (
       I0 => DATA_IN(11),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[11]_i_2_n_0\,
       I4 => candidate(2),
@@ -340,7 +343,7 @@ begin
     )
         port map (
       I0 => DATA_IN(12),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[12]_i_2_n_0\,
       I4 => candidate(2),
@@ -366,7 +369,7 @@ begin
     )
         port map (
       I0 => DATA_IN(13),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[13]_i_2_n_0\,
       I4 => candidate(2),
@@ -392,7 +395,7 @@ begin
     )
         port map (
       I0 => DATA_IN(14),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[14]_i_2_n_0\,
       I4 => candidate(2),
@@ -418,7 +421,7 @@ begin
     )
         port map (
       I0 => DATA_IN(15),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[15]_i_2_n_0\,
       I4 => candidate(2),
@@ -444,7 +447,7 @@ begin
     )
         port map (
       I0 => DATA_IN(16),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[16]_i_2_n_0\,
       I4 => candidate(2),
@@ -470,7 +473,7 @@ begin
     )
         port map (
       I0 => DATA_IN(17),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[17]_i_2_n_0\,
       I4 => candidate(2),
@@ -496,7 +499,7 @@ begin
     )
         port map (
       I0 => DATA_IN(18),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[18]_i_2_n_0\,
       I4 => candidate(2),
@@ -522,7 +525,7 @@ begin
     )
         port map (
       I0 => DATA_IN(19),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[19]_i_2_n_0\,
       I4 => candidate(2),
@@ -548,7 +551,7 @@ begin
     )
         port map (
       I0 => DATA_IN(1),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[1]_i_2_n_0\,
       I4 => candidate(2),
@@ -574,7 +577,7 @@ begin
     )
         port map (
       I0 => DATA_IN(20),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[20]_i_2_n_0\,
       I4 => candidate(2),
@@ -600,7 +603,7 @@ begin
     )
         port map (
       I0 => DATA_IN(21),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[21]_i_2_n_0\,
       I4 => candidate(2),
@@ -626,7 +629,7 @@ begin
     )
         port map (
       I0 => DATA_IN(22),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[22]_i_2_n_0\,
       I4 => candidate(2),
@@ -652,7 +655,7 @@ begin
     )
         port map (
       I0 => DATA_IN(23),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[23]_i_2_n_0\,
       I4 => candidate(2),
@@ -678,7 +681,7 @@ begin
     )
         port map (
       I0 => DATA_IN(24),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[24]_i_2_n_0\,
       I4 => candidate(2),
@@ -717,7 +720,7 @@ begin
     )
         port map (
       I0 => DATA_IN(25),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[25]_i_2_n_0\,
       I4 => candidate(2),
@@ -756,7 +759,7 @@ begin
     )
         port map (
       I0 => DATA_IN(26),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[26]_i_2_n_0\,
       I4 => candidate(2),
@@ -795,7 +798,7 @@ begin
     )
         port map (
       I0 => DATA_IN(27),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[27]_i_2_n_0\,
       I4 => candidate(2),
@@ -834,7 +837,7 @@ begin
     )
         port map (
       I0 => DATA_IN(28),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[28]_i_2_n_0\,
       I4 => candidate(2),
@@ -873,7 +876,7 @@ begin
     )
         port map (
       I0 => DATA_IN(29),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[29]_i_2_n_0\,
       I4 => candidate(2),
@@ -912,7 +915,7 @@ begin
     )
         port map (
       I0 => DATA_IN(2),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[2]_i_2_n_0\,
       I4 => candidate(2),
@@ -938,7 +941,7 @@ begin
     )
         port map (
       I0 => DATA_IN(30),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[30]_i_2_n_0\,
       I4 => candidate(2),
@@ -977,7 +980,7 @@ begin
     )
         port map (
       I0 => DATA_IN(31),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[31]_i_2_n_0\,
       I4 => candidate(2),
@@ -1016,7 +1019,7 @@ begin
     )
         port map (
       I0 => DATA_IN(32),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[32]_i_2_n_0\,
       I4 => candidate(2),
@@ -1055,7 +1058,7 @@ begin
     )
         port map (
       I0 => DATA_IN(33),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[33]_i_2_n_0\,
       I4 => candidate(2),
@@ -1094,7 +1097,7 @@ begin
     )
         port map (
       I0 => DATA_IN(34),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[34]_i_2_n_0\,
       I4 => candidate(2),
@@ -1133,7 +1136,7 @@ begin
     )
         port map (
       I0 => DATA_IN(35),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[35]_i_2_n_0\,
       I4 => candidate(2),
@@ -1172,7 +1175,7 @@ begin
     )
         port map (
       I0 => DATA_IN(36),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[36]_i_2_n_0\,
       I4 => candidate(2),
@@ -1211,7 +1214,7 @@ begin
     )
         port map (
       I0 => DATA_IN(37),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[37]_i_2_n_0\,
       I4 => candidate(2),
@@ -1250,7 +1253,7 @@ begin
     )
         port map (
       I0 => DATA_IN(38),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[38]_i_2_n_0\,
       I4 => candidate(2),
@@ -1289,7 +1292,7 @@ begin
     )
         port map (
       I0 => DATA_IN(39),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[39]_i_2_n_0\,
       I4 => candidate(2),
@@ -1328,7 +1331,7 @@ begin
     )
         port map (
       I0 => DATA_IN(3),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[3]_i_2_n_0\,
       I4 => candidate(2),
@@ -1354,7 +1357,7 @@ begin
     )
         port map (
       I0 => DATA_IN(40),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[40]_i_2_n_0\,
       I4 => candidate(2),
@@ -1393,7 +1396,7 @@ begin
     )
         port map (
       I0 => DATA_IN(41),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[41]_i_2_n_0\,
       I4 => candidate(2),
@@ -1432,7 +1435,7 @@ begin
     )
         port map (
       I0 => DATA_IN(42),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[42]_i_2_n_0\,
       I4 => candidate(2),
@@ -1471,7 +1474,7 @@ begin
     )
         port map (
       I0 => DATA_IN(43),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[43]_i_2_n_0\,
       I4 => candidate(2),
@@ -1510,7 +1513,7 @@ begin
     )
         port map (
       I0 => DATA_IN(44),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[44]_i_2_n_0\,
       I4 => candidate(2),
@@ -1549,7 +1552,7 @@ begin
     )
         port map (
       I0 => DATA_IN(45),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[45]_i_2_n_0\,
       I4 => candidate(2),
@@ -1588,7 +1591,7 @@ begin
     )
         port map (
       I0 => DATA_IN(46),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[46]_i_2_n_0\,
       I4 => candidate(2),
@@ -1627,7 +1630,7 @@ begin
     )
         port map (
       I0 => DATA_IN(47),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[47]_i_2_n_0\,
       I4 => candidate(2),
@@ -1666,7 +1669,7 @@ begin
     )
         port map (
       I0 => DATA_IN(48),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[48]_i_2_n_0\,
       I4 => candidate(2),
@@ -1705,7 +1708,7 @@ begin
     )
         port map (
       I0 => DATA_IN(49),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[49]_i_2_n_0\,
       I4 => candidate(2),
@@ -1744,7 +1747,7 @@ begin
     )
         port map (
       I0 => DATA_IN(4),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[4]_i_2_n_0\,
       I4 => candidate(2),
@@ -1770,7 +1773,7 @@ begin
     )
         port map (
       I0 => DATA_IN(50),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[50]_i_2_n_0\,
       I4 => candidate(2),
@@ -1809,7 +1812,7 @@ begin
     )
         port map (
       I0 => DATA_IN(51),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[51]_i_2_n_0\,
       I4 => candidate(2),
@@ -1848,7 +1851,7 @@ begin
     )
         port map (
       I0 => DATA_IN(52),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[52]_i_2_n_0\,
       I4 => candidate(2),
@@ -1887,7 +1890,7 @@ begin
     )
         port map (
       I0 => DATA_IN(53),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[53]_i_2_n_0\,
       I4 => candidate(2),
@@ -1926,7 +1929,7 @@ begin
     )
         port map (
       I0 => DATA_IN(54),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[54]_i_2_n_0\,
       I4 => candidate(2),
@@ -1965,7 +1968,7 @@ begin
     )
         port map (
       I0 => DATA_IN(55),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[55]_i_2_n_0\,
       I4 => candidate(2),
@@ -2004,7 +2007,7 @@ begin
     )
         port map (
       I0 => DATA_IN(56),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[56]_i_2_n_0\,
       I4 => candidate(2),
@@ -2043,7 +2046,7 @@ begin
     )
         port map (
       I0 => DATA_IN(57),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[57]_i_2_n_0\,
       I4 => candidate(2),
@@ -2082,7 +2085,7 @@ begin
     )
         port map (
       I0 => DATA_IN(58),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[58]_i_2_n_0\,
       I4 => candidate(2),
@@ -2121,7 +2124,7 @@ begin
     )
         port map (
       I0 => DATA_IN(59),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[59]_i_2_n_0\,
       I4 => candidate(2),
@@ -2160,7 +2163,7 @@ begin
     )
         port map (
       I0 => DATA_IN(5),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[5]_i_2_n_0\,
       I4 => candidate(2),
@@ -2186,7 +2189,7 @@ begin
     )
         port map (
       I0 => DATA_IN(60),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[60]_i_2_n_0\,
       I4 => candidate(2),
@@ -2225,7 +2228,7 @@ begin
     )
         port map (
       I0 => DATA_IN(61),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[61]_i_2_n_0\,
       I4 => candidate(2),
@@ -2264,7 +2267,7 @@ begin
     )
         port map (
       I0 => DATA_IN(62),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[62]_i_2_n_0\,
       I4 => candidate(2),
@@ -2303,7 +2306,7 @@ begin
     )
         port map (
       I0 => DATA_IN(63),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_3_n_0\,
       I4 => candidate(2),
@@ -2365,7 +2368,7 @@ begin
     )
         port map (
       I0 => DATA_IN(6),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[6]_i_2_n_0\,
       I4 => candidate(2),
@@ -2391,7 +2394,7 @@ begin
     )
         port map (
       I0 => DATA_IN(7),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[7]_i_2_n_0\,
       I4 => candidate(2),
@@ -2417,7 +2420,7 @@ begin
     )
         port map (
       I0 => DATA_IN(8),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[8]_i_2_n_0\,
       I4 => candidate(2),
@@ -2443,7 +2446,7 @@ begin
     )
         port map (
       I0 => DATA_IN(9),
-      I1 => PASSTHROUGH,
+      I1 => \HEADER_OUT[1]_i_1_n_0\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => \DATA_OUT[9]_i_2_n_0\,
       I4 => candidate(2),
@@ -2975,16 +2978,15 @@ begin
       Q => DATA_OUT(9),
       R => '0'
     );
-\HEADER_OUT[0]_i_1\: unisim.vcomponents.LUT4
+\HEADER_OUT[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"00B8"
+      INIT => X"B8"
     )
         port map (
       I0 => \HEADER_OUT[0]_i_2_n_0\,
       I1 => candidate(2),
       I2 => \DATA_OUT[24]_i_3_n_0\,
-      I3 => PASSTHROUGH,
-      O => \HEADER_OUT[0]_i_1_n_0\
+      O => p_0_in
     );
 \HEADER_OUT[0]_i_2\: unisim.vcomponents.LUT6
     generic map(
@@ -2999,18 +3001,26 @@ begin
       I5 => rx_data_r(24),
       O => \HEADER_OUT[0]_i_2_n_0\
     );
-\HEADER_OUT[1]_i_1\: unisim.vcomponents.LUT4
+\HEADER_OUT[1]_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"00B8"
+      INIT => X"E"
     )
         port map (
-      I0 => \HEADER_OUT[1]_i_2_n_0\,
-      I1 => candidate(2),
-      I2 => \DATA_OUT[25]_i_3_n_0\,
-      I3 => PASSTHROUGH,
+      I0 => SYSTEM_RESET,
+      I1 => PASSTHROUGH,
       O => \HEADER_OUT[1]_i_1_n_0\
     );
-\HEADER_OUT[1]_i_2\: unisim.vcomponents.LUT6
+\HEADER_OUT[1]_i_2\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"B8"
+    )
+        port map (
+      I0 => \HEADER_OUT[1]_i_3_n_0\,
+      I1 => candidate(2),
+      I2 => \DATA_OUT[25]_i_3_n_0\,
+      O => p_1_in
+    );
+\HEADER_OUT[1]_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AFA0CFCFAFA0C0C0"
     )
@@ -3021,23 +3031,23 @@ begin
       I3 => rx_data_r(35),
       I4 => candidate(0),
       I5 => rx_data_r(25),
-      O => \HEADER_OUT[1]_i_2_n_0\
+      O => \HEADER_OUT[1]_i_3_n_0\
     );
 \HEADER_OUT_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \HEADER_OUT[0]_i_1_n_0\,
+      D => p_0_in,
       Q => HEADER_OUT(0),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \HEADER_OUT_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \HEADER_OUT[1]_i_1_n_0\,
+      D => p_1_in,
       Q => HEADER_OUT(1),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \candidate[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -3078,7 +3088,7 @@ begin
       CE => '1',
       D => \candidate[0]_i_1_n_0\,
       Q => candidate(0),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \candidate_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -3086,7 +3096,7 @@ begin
       CE => '1',
       D => \candidate[1]_i_1_n_0\,
       Q => candidate(1),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \candidate_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -3094,7 +3104,7 @@ begin
       CE => '1',
       D => \candidate[2]_i_1_n_0\,
       Q => candidate(2),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \error_sync_ctr[0]_i_1\: unisim.vcomponents.LUT1
     generic map(
@@ -3102,7 +3112,7 @@ begin
     )
         port map (
       I0 => \error_sync_ctr_reg__0\(0),
-      O => p_0_in(0)
+      O => \p_0_in__0\(0)
     );
 \error_sync_ctr[1]_i_1\: unisim.vcomponents.LUT2
     generic map(
@@ -3111,7 +3121,7 @@ begin
         port map (
       I0 => \error_sync_ctr_reg__0\(0),
       I1 => \error_sync_ctr_reg__0\(1),
-      O => p_0_in(1)
+      O => \p_0_in__0\(1)
     );
 \error_sync_ctr[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -3121,7 +3131,7 @@ begin
       I0 => \error_sync_ctr_reg__0\(0),
       I1 => \error_sync_ctr_reg__0\(1),
       I2 => \error_sync_ctr_reg__0\(2),
-      O => p_0_in(2)
+      O => \p_0_in__0\(2)
     );
 \error_sync_ctr[3]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -3132,14 +3142,14 @@ begin
       I1 => \error_sync_ctr_reg__0\(0),
       I2 => \error_sync_ctr_reg__0\(2),
       I3 => \error_sync_ctr_reg__0\(3),
-      O => p_0_in(3)
+      O => \p_0_in__0\(3)
     );
 \error_sync_ctr[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"BFBAAAAA"
     )
         port map (
-      I0 => SYSTEM_RESET,
+      I0 => \HEADER_OUT[1]_i_1_n_0\,
       I1 => \state[0]_i_4_n_0\,
       I2 => \candidate1__0\,
       I3 => \state1_in__0\,
@@ -3165,13 +3175,13 @@ begin
       I2 => \error_sync_ctr_reg__0\(1),
       I3 => \error_sync_ctr_reg__0\(3),
       I4 => \error_sync_ctr_reg__0\(4),
-      O => p_0_in(4)
+      O => \p_0_in__0\(4)
     );
 \error_sync_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \error_sync_ctr[4]_i_2_n_0\,
-      D => p_0_in(0),
+      D => \p_0_in__0\(0),
       Q => \error_sync_ctr_reg__0\(0),
       R => \error_sync_ctr[4]_i_1_n_0\
     );
@@ -3179,7 +3189,7 @@ begin
      port map (
       C => USER_CLK,
       CE => \error_sync_ctr[4]_i_2_n_0\,
-      D => p_0_in(1),
+      D => \p_0_in__0\(1),
       Q => \error_sync_ctr_reg__0\(1),
       R => \error_sync_ctr[4]_i_1_n_0\
     );
@@ -3187,7 +3197,7 @@ begin
      port map (
       C => USER_CLK,
       CE => \error_sync_ctr[4]_i_2_n_0\,
-      D => p_0_in(2),
+      D => \p_0_in__0\(2),
       Q => \error_sync_ctr_reg__0\(2),
       R => \error_sync_ctr[4]_i_1_n_0\
     );
@@ -3195,7 +3205,7 @@ begin
      port map (
       C => USER_CLK,
       CE => \error_sync_ctr[4]_i_2_n_0\,
-      D => p_0_in(3),
+      D => \p_0_in__0\(3),
       Q => \error_sync_ctr_reg__0\(3),
       R => \error_sync_ctr[4]_i_1_n_0\
     );
@@ -3203,7 +3213,7 @@ begin
      port map (
       C => USER_CLK,
       CE => \error_sync_ctr[4]_i_2_n_0\,
-      D => p_0_in(4),
+      D => \p_0_in__0\(4),
       Q => \error_sync_ctr_reg__0\(4),
       R => \error_sync_ctr[4]_i_1_n_0\
     );
@@ -3326,7 +3336,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(0),
       Q => good_sync_ctr(0),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -3334,7 +3344,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(1),
       Q => good_sync_ctr(1),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -3342,7 +3352,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(2),
       Q => good_sync_ctr(2),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -3350,7 +3360,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(3),
       Q => good_sync_ctr(3),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[4]\: unisim.vcomponents.FDRE
      port map (
@@ -3358,7 +3368,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(4),
       Q => good_sync_ctr(4),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -3366,7 +3376,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(5),
       Q => good_sync_ctr(5),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \good_sync_ctr_reg[6]\: unisim.vcomponents.FDRE
      port map (
@@ -3374,7 +3384,7 @@ begin
       CE => \good_sync_ctr[6]_i_1_n_0\,
       D => \good_sync_ctr__2\(6),
       Q => good_sync_ctr(6),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -3382,7 +3392,7 @@ begin
       CE => '1',
       D => rx_data_r(0),
       Q => \rx_data_r2_reg_n_0_[0]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[10]\: unisim.vcomponents.FDRE
      port map (
@@ -3390,7 +3400,7 @@ begin
       CE => '1',
       D => rx_data_r(10),
       Q => data6(0),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[11]\: unisim.vcomponents.FDRE
      port map (
@@ -3398,7 +3408,7 @@ begin
       CE => '1',
       D => rx_data_r(11),
       Q => data6(1),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[12]\: unisim.vcomponents.FDRE
      port map (
@@ -3406,7 +3416,7 @@ begin
       CE => '1',
       D => rx_data_r(12),
       Q => data6(2),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[13]\: unisim.vcomponents.FDRE
      port map (
@@ -3414,7 +3424,7 @@ begin
       CE => '1',
       D => rx_data_r(13),
       Q => data6(3),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[14]\: unisim.vcomponents.FDRE
      port map (
@@ -3422,7 +3432,7 @@ begin
       CE => '1',
       D => rx_data_r(14),
       Q => data6(4),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[15]\: unisim.vcomponents.FDRE
      port map (
@@ -3430,7 +3440,7 @@ begin
       CE => '1',
       D => rx_data_r(15),
       Q => data6(5),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[16]\: unisim.vcomponents.FDRE
      port map (
@@ -3438,7 +3448,7 @@ begin
       CE => '1',
       D => rx_data_r(16),
       Q => data6(6),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[17]\: unisim.vcomponents.FDRE
      port map (
@@ -3446,7 +3456,7 @@ begin
       CE => '1',
       D => rx_data_r(17),
       Q => data6(7),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[18]\: unisim.vcomponents.FDRE
      port map (
@@ -3454,7 +3464,7 @@ begin
       CE => '1',
       D => rx_data_r(18),
       Q => data6(8),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[19]\: unisim.vcomponents.FDRE
      port map (
@@ -3462,7 +3472,7 @@ begin
       CE => '1',
       D => rx_data_r(19),
       Q => data6(9),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -3470,7 +3480,7 @@ begin
       CE => '1',
       D => rx_data_r(1),
       Q => \rx_data_r2_reg_n_0_[1]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[20]\: unisim.vcomponents.FDRE
      port map (
@@ -3478,7 +3488,7 @@ begin
       CE => '1',
       D => rx_data_r(20),
       Q => data6(10),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[21]\: unisim.vcomponents.FDRE
      port map (
@@ -3486,7 +3496,7 @@ begin
       CE => '1',
       D => rx_data_r(21),
       Q => data6(11),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[22]\: unisim.vcomponents.FDRE
      port map (
@@ -3494,7 +3504,7 @@ begin
       CE => '1',
       D => rx_data_r(22),
       Q => data6(12),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[23]\: unisim.vcomponents.FDRE
      port map (
@@ -3502,7 +3512,7 @@ begin
       CE => '1',
       D => rx_data_r(23),
       Q => data6(13),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[24]\: unisim.vcomponents.FDRE
      port map (
@@ -3510,7 +3520,7 @@ begin
       CE => '1',
       D => rx_data_r(24),
       Q => data6(14),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[25]\: unisim.vcomponents.FDRE
      port map (
@@ -3518,7 +3528,7 @@ begin
       CE => '1',
       D => rx_data_r(25),
       Q => data6(15),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[26]\: unisim.vcomponents.FDRE
      port map (
@@ -3526,7 +3536,7 @@ begin
       CE => '1',
       D => rx_data_r(26),
       Q => data6(16),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[27]\: unisim.vcomponents.FDRE
      port map (
@@ -3534,7 +3544,7 @@ begin
       CE => '1',
       D => rx_data_r(27),
       Q => data6(17),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[28]\: unisim.vcomponents.FDRE
      port map (
@@ -3542,7 +3552,7 @@ begin
       CE => '1',
       D => rx_data_r(28),
       Q => data6(18),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[29]\: unisim.vcomponents.FDRE
      port map (
@@ -3550,7 +3560,7 @@ begin
       CE => '1',
       D => rx_data_r(29),
       Q => data6(19),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -3558,7 +3568,7 @@ begin
       CE => '1',
       D => rx_data_r(2),
       Q => \rx_data_r2_reg_n_0_[2]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[30]\: unisim.vcomponents.FDRE
      port map (
@@ -3566,7 +3576,7 @@ begin
       CE => '1',
       D => rx_data_r(30),
       Q => data6(20),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[31]\: unisim.vcomponents.FDRE
      port map (
@@ -3574,7 +3584,7 @@ begin
       CE => '1',
       D => rx_data_r(31),
       Q => data6(21),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[32]\: unisim.vcomponents.FDRE
      port map (
@@ -3582,7 +3592,7 @@ begin
       CE => '1',
       D => rx_data_r(32),
       Q => data6(22),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[33]\: unisim.vcomponents.FDRE
      port map (
@@ -3590,7 +3600,7 @@ begin
       CE => '1',
       D => rx_data_r(33),
       Q => data6(23),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[34]\: unisim.vcomponents.FDRE
      port map (
@@ -3598,7 +3608,7 @@ begin
       CE => '1',
       D => rx_data_r(34),
       Q => data6(24),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[35]\: unisim.vcomponents.FDRE
      port map (
@@ -3606,7 +3616,7 @@ begin
       CE => '1',
       D => rx_data_r(35),
       Q => data6(25),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[36]\: unisim.vcomponents.FDRE
      port map (
@@ -3614,7 +3624,7 @@ begin
       CE => '1',
       D => rx_data_r(36),
       Q => data6(26),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[37]\: unisim.vcomponents.FDRE
      port map (
@@ -3622,7 +3632,7 @@ begin
       CE => '1',
       D => rx_data_r(37),
       Q => data6(27),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[38]\: unisim.vcomponents.FDRE
      port map (
@@ -3630,7 +3640,7 @@ begin
       CE => '1',
       D => rx_data_r(38),
       Q => data6(28),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[39]\: unisim.vcomponents.FDRE
      port map (
@@ -3638,7 +3648,7 @@ begin
       CE => '1',
       D => rx_data_r(39),
       Q => data6(29),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -3646,7 +3656,7 @@ begin
       CE => '1',
       D => rx_data_r(3),
       Q => \rx_data_r2_reg_n_0_[3]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[40]\: unisim.vcomponents.FDRE
      port map (
@@ -3654,7 +3664,7 @@ begin
       CE => '1',
       D => rx_data_r(40),
       Q => data6(30),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[41]\: unisim.vcomponents.FDRE
      port map (
@@ -3662,7 +3672,7 @@ begin
       CE => '1',
       D => rx_data_r(41),
       Q => data6(31),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[42]\: unisim.vcomponents.FDRE
      port map (
@@ -3670,7 +3680,7 @@ begin
       CE => '1',
       D => rx_data_r(42),
       Q => data6(32),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[43]\: unisim.vcomponents.FDRE
      port map (
@@ -3678,7 +3688,7 @@ begin
       CE => '1',
       D => rx_data_r(43),
       Q => data6(33),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[44]\: unisim.vcomponents.FDRE
      port map (
@@ -3686,7 +3696,7 @@ begin
       CE => '1',
       D => rx_data_r(44),
       Q => data6(34),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[45]\: unisim.vcomponents.FDRE
      port map (
@@ -3694,7 +3704,7 @@ begin
       CE => '1',
       D => rx_data_r(45),
       Q => data6(35),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[46]\: unisim.vcomponents.FDRE
      port map (
@@ -3702,7 +3712,7 @@ begin
       CE => '1',
       D => rx_data_r(46),
       Q => data6(36),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[47]\: unisim.vcomponents.FDRE
      port map (
@@ -3710,7 +3720,7 @@ begin
       CE => '1',
       D => rx_data_r(47),
       Q => data6(37),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[48]\: unisim.vcomponents.FDRE
      port map (
@@ -3718,7 +3728,7 @@ begin
       CE => '1',
       D => rx_data_r(48),
       Q => data6(38),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[49]\: unisim.vcomponents.FDRE
      port map (
@@ -3726,7 +3736,7 @@ begin
       CE => '1',
       D => rx_data_r(49),
       Q => data6(39),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[4]\: unisim.vcomponents.FDRE
      port map (
@@ -3734,7 +3744,7 @@ begin
       CE => '1',
       D => rx_data_r(4),
       Q => \rx_data_r2_reg_n_0_[4]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[50]\: unisim.vcomponents.FDRE
      port map (
@@ -3742,7 +3752,7 @@ begin
       CE => '1',
       D => rx_data_r(50),
       Q => data6(40),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[51]\: unisim.vcomponents.FDRE
      port map (
@@ -3750,7 +3760,7 @@ begin
       CE => '1',
       D => rx_data_r(51),
       Q => data6(41),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[52]\: unisim.vcomponents.FDRE
      port map (
@@ -3758,7 +3768,7 @@ begin
       CE => '1',
       D => rx_data_r(52),
       Q => data6(42),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[53]\: unisim.vcomponents.FDRE
      port map (
@@ -3766,7 +3776,7 @@ begin
       CE => '1',
       D => rx_data_r(53),
       Q => data6(43),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[54]\: unisim.vcomponents.FDRE
      port map (
@@ -3774,7 +3784,7 @@ begin
       CE => '1',
       D => rx_data_r(54),
       Q => data6(44),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[55]\: unisim.vcomponents.FDRE
      port map (
@@ -3782,7 +3792,7 @@ begin
       CE => '1',
       D => rx_data_r(55),
       Q => data6(45),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[56]\: unisim.vcomponents.FDRE
      port map (
@@ -3790,7 +3800,7 @@ begin
       CE => '1',
       D => rx_data_r(56),
       Q => data6(46),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[57]\: unisim.vcomponents.FDRE
      port map (
@@ -3798,7 +3808,7 @@ begin
       CE => '1',
       D => rx_data_r(57),
       Q => data6(47),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[58]\: unisim.vcomponents.FDRE
      port map (
@@ -3806,7 +3816,7 @@ begin
       CE => '1',
       D => rx_data_r(58),
       Q => data6(48),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[59]\: unisim.vcomponents.FDRE
      port map (
@@ -3814,7 +3824,7 @@ begin
       CE => '1',
       D => rx_data_r(59),
       Q => data6(49),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -3822,7 +3832,7 @@ begin
       CE => '1',
       D => rx_data_r(5),
       Q => \rx_data_r2_reg_n_0_[5]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[60]\: unisim.vcomponents.FDRE
      port map (
@@ -3830,7 +3840,7 @@ begin
       CE => '1',
       D => rx_data_r(60),
       Q => data6(50),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[61]\: unisim.vcomponents.FDRE
      port map (
@@ -3838,7 +3848,7 @@ begin
       CE => '1',
       D => rx_data_r(61),
       Q => data6(51),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[62]\: unisim.vcomponents.FDRE
      port map (
@@ -3846,7 +3856,7 @@ begin
       CE => '1',
       D => rx_data_r(62),
       Q => data6(52),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[63]\: unisim.vcomponents.FDRE
      port map (
@@ -3854,7 +3864,7 @@ begin
       CE => '1',
       D => rx_data_r(63),
       Q => data6(53),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[64]\: unisim.vcomponents.FDRE
      port map (
@@ -3862,7 +3872,7 @@ begin
       CE => '1',
       D => rx_data_r(64),
       Q => data6(54),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[65]\: unisim.vcomponents.FDRE
      port map (
@@ -3870,7 +3880,7 @@ begin
       CE => '1',
       D => rx_data_r(65),
       Q => data6(55),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[66]\: unisim.vcomponents.FDRE
      port map (
@@ -3878,7 +3888,7 @@ begin
       CE => '1',
       D => rx_data_r(66),
       Q => data6(56),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[67]\: unisim.vcomponents.FDRE
      port map (
@@ -3886,7 +3896,7 @@ begin
       CE => '1',
       D => rx_data_r(67),
       Q => data6(57),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[68]\: unisim.vcomponents.FDRE
      port map (
@@ -3894,7 +3904,7 @@ begin
       CE => '1',
       D => rx_data_r(68),
       Q => data6(58),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[69]\: unisim.vcomponents.FDRE
      port map (
@@ -3902,7 +3912,7 @@ begin
       CE => '1',
       D => rx_data_r(69),
       Q => data6(59),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[6]\: unisim.vcomponents.FDRE
      port map (
@@ -3910,7 +3920,7 @@ begin
       CE => '1',
       D => rx_data_r(6),
       Q => \rx_data_r2_reg_n_0_[6]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[70]\: unisim.vcomponents.FDRE
      port map (
@@ -3918,7 +3928,7 @@ begin
       CE => '1',
       D => rx_data_r(70),
       Q => data6(60),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[71]\: unisim.vcomponents.FDRE
      port map (
@@ -3926,7 +3936,7 @@ begin
       CE => '1',
       D => rx_data_r(71),
       Q => data6(61),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[72]\: unisim.vcomponents.FDRE
      port map (
@@ -3934,7 +3944,7 @@ begin
       CE => '1',
       D => rx_data_r(72),
       Q => data6(62),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[73]\: unisim.vcomponents.FDRE
      port map (
@@ -3942,7 +3952,7 @@ begin
       CE => '1',
       D => rx_data_r(73),
       Q => data6(63),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[74]\: unisim.vcomponents.FDRE
      port map (
@@ -3950,7 +3960,7 @@ begin
       CE => '1',
       D => rx_data_r(74),
       Q => data6(64),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[75]\: unisim.vcomponents.FDRE
      port map (
@@ -3958,7 +3968,7 @@ begin
       CE => '1',
       D => rx_data_r(75),
       Q => data6(65),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[76]\: unisim.vcomponents.FDRE
      port map (
@@ -3966,7 +3976,7 @@ begin
       CE => '1',
       D => rx_data_r(76),
       Q => data6(66),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[77]\: unisim.vcomponents.FDRE
      port map (
@@ -3974,7 +3984,7 @@ begin
       CE => '1',
       D => rx_data_r(77),
       Q => data0(7),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[78]\: unisim.vcomponents.FDRE
      port map (
@@ -3982,7 +3992,7 @@ begin
       CE => '1',
       D => rx_data_r(78),
       Q => data0(8),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[79]\: unisim.vcomponents.FDRE
      port map (
@@ -3990,7 +4000,7 @@ begin
       CE => '1',
       D => rx_data_r(79),
       Q => data0(9),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[7]\: unisim.vcomponents.FDRE
      port map (
@@ -3998,7 +4008,7 @@ begin
       CE => '1',
       D => rx_data_r(7),
       Q => \rx_data_r2_reg_n_0_[7]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[8]\: unisim.vcomponents.FDRE
      port map (
@@ -4006,7 +4016,7 @@ begin
       CE => '1',
       D => rx_data_r(8),
       Q => \rx_data_r2_reg_n_0_[8]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r2_reg[9]\: unisim.vcomponents.FDRE
      port map (
@@ -4014,7 +4024,7 @@ begin
       CE => '1',
       D => rx_data_r(9),
       Q => \rx_data_r2_reg_n_0_[9]\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -4022,7 +4032,7 @@ begin
       CE => '1',
       D => DATA_IN(0),
       Q => rx_data_r(0),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[10]\: unisim.vcomponents.FDRE
      port map (
@@ -4030,7 +4040,7 @@ begin
       CE => '1',
       D => DATA_IN(10),
       Q => rx_data_r(10),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[11]\: unisim.vcomponents.FDRE
      port map (
@@ -4038,7 +4048,7 @@ begin
       CE => '1',
       D => DATA_IN(11),
       Q => rx_data_r(11),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[12]\: unisim.vcomponents.FDRE
      port map (
@@ -4046,7 +4056,7 @@ begin
       CE => '1',
       D => DATA_IN(12),
       Q => rx_data_r(12),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[13]\: unisim.vcomponents.FDRE
      port map (
@@ -4054,7 +4064,7 @@ begin
       CE => '1',
       D => DATA_IN(13),
       Q => rx_data_r(13),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[14]\: unisim.vcomponents.FDRE
      port map (
@@ -4062,7 +4072,7 @@ begin
       CE => '1',
       D => DATA_IN(14),
       Q => rx_data_r(14),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[15]\: unisim.vcomponents.FDRE
      port map (
@@ -4070,7 +4080,7 @@ begin
       CE => '1',
       D => DATA_IN(15),
       Q => rx_data_r(15),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[16]\: unisim.vcomponents.FDRE
      port map (
@@ -4078,7 +4088,7 @@ begin
       CE => '1',
       D => DATA_IN(16),
       Q => rx_data_r(16),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[17]\: unisim.vcomponents.FDRE
      port map (
@@ -4086,7 +4096,7 @@ begin
       CE => '1',
       D => DATA_IN(17),
       Q => rx_data_r(17),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[18]\: unisim.vcomponents.FDRE
      port map (
@@ -4094,7 +4104,7 @@ begin
       CE => '1',
       D => DATA_IN(18),
       Q => rx_data_r(18),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[19]\: unisim.vcomponents.FDRE
      port map (
@@ -4102,7 +4112,7 @@ begin
       CE => '1',
       D => DATA_IN(19),
       Q => rx_data_r(19),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -4110,7 +4120,7 @@ begin
       CE => '1',
       D => DATA_IN(1),
       Q => rx_data_r(1),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[20]\: unisim.vcomponents.FDRE
      port map (
@@ -4118,7 +4128,7 @@ begin
       CE => '1',
       D => DATA_IN(20),
       Q => rx_data_r(20),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[21]\: unisim.vcomponents.FDRE
      port map (
@@ -4126,7 +4136,7 @@ begin
       CE => '1',
       D => DATA_IN(21),
       Q => rx_data_r(21),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[22]\: unisim.vcomponents.FDRE
      port map (
@@ -4134,7 +4144,7 @@ begin
       CE => '1',
       D => DATA_IN(22),
       Q => rx_data_r(22),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[23]\: unisim.vcomponents.FDRE
      port map (
@@ -4142,7 +4152,7 @@ begin
       CE => '1',
       D => DATA_IN(23),
       Q => rx_data_r(23),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[24]\: unisim.vcomponents.FDRE
      port map (
@@ -4150,7 +4160,7 @@ begin
       CE => '1',
       D => DATA_IN(24),
       Q => rx_data_r(24),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[25]\: unisim.vcomponents.FDRE
      port map (
@@ -4158,7 +4168,7 @@ begin
       CE => '1',
       D => DATA_IN(25),
       Q => rx_data_r(25),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[26]\: unisim.vcomponents.FDRE
      port map (
@@ -4166,7 +4176,7 @@ begin
       CE => '1',
       D => DATA_IN(26),
       Q => rx_data_r(26),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[27]\: unisim.vcomponents.FDRE
      port map (
@@ -4174,7 +4184,7 @@ begin
       CE => '1',
       D => DATA_IN(27),
       Q => rx_data_r(27),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[28]\: unisim.vcomponents.FDRE
      port map (
@@ -4182,7 +4192,7 @@ begin
       CE => '1',
       D => DATA_IN(28),
       Q => rx_data_r(28),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[29]\: unisim.vcomponents.FDRE
      port map (
@@ -4190,7 +4200,7 @@ begin
       CE => '1',
       D => DATA_IN(29),
       Q => rx_data_r(29),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -4198,7 +4208,7 @@ begin
       CE => '1',
       D => DATA_IN(2),
       Q => rx_data_r(2),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[30]\: unisim.vcomponents.FDRE
      port map (
@@ -4206,7 +4216,7 @@ begin
       CE => '1',
       D => DATA_IN(30),
       Q => rx_data_r(30),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[31]\: unisim.vcomponents.FDRE
      port map (
@@ -4214,7 +4224,7 @@ begin
       CE => '1',
       D => DATA_IN(31),
       Q => rx_data_r(31),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[32]\: unisim.vcomponents.FDRE
      port map (
@@ -4222,7 +4232,7 @@ begin
       CE => '1',
       D => DATA_IN(32),
       Q => rx_data_r(32),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[33]\: unisim.vcomponents.FDRE
      port map (
@@ -4230,7 +4240,7 @@ begin
       CE => '1',
       D => DATA_IN(33),
       Q => rx_data_r(33),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[34]\: unisim.vcomponents.FDRE
      port map (
@@ -4238,7 +4248,7 @@ begin
       CE => '1',
       D => DATA_IN(34),
       Q => rx_data_r(34),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[35]\: unisim.vcomponents.FDRE
      port map (
@@ -4246,7 +4256,7 @@ begin
       CE => '1',
       D => DATA_IN(35),
       Q => rx_data_r(35),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[36]\: unisim.vcomponents.FDRE
      port map (
@@ -4254,7 +4264,7 @@ begin
       CE => '1',
       D => DATA_IN(36),
       Q => rx_data_r(36),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[37]\: unisim.vcomponents.FDRE
      port map (
@@ -4262,7 +4272,7 @@ begin
       CE => '1',
       D => DATA_IN(37),
       Q => rx_data_r(37),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[38]\: unisim.vcomponents.FDRE
      port map (
@@ -4270,7 +4280,7 @@ begin
       CE => '1',
       D => DATA_IN(38),
       Q => rx_data_r(38),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[39]\: unisim.vcomponents.FDRE
      port map (
@@ -4278,7 +4288,7 @@ begin
       CE => '1',
       D => DATA_IN(39),
       Q => rx_data_r(39),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -4286,7 +4296,7 @@ begin
       CE => '1',
       D => DATA_IN(3),
       Q => rx_data_r(3),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[40]\: unisim.vcomponents.FDRE
      port map (
@@ -4294,7 +4304,7 @@ begin
       CE => '1',
       D => DATA_IN(40),
       Q => rx_data_r(40),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[41]\: unisim.vcomponents.FDRE
      port map (
@@ -4302,7 +4312,7 @@ begin
       CE => '1',
       D => DATA_IN(41),
       Q => rx_data_r(41),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[42]\: unisim.vcomponents.FDRE
      port map (
@@ -4310,7 +4320,7 @@ begin
       CE => '1',
       D => DATA_IN(42),
       Q => rx_data_r(42),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[43]\: unisim.vcomponents.FDRE
      port map (
@@ -4318,7 +4328,7 @@ begin
       CE => '1',
       D => DATA_IN(43),
       Q => rx_data_r(43),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[44]\: unisim.vcomponents.FDRE
      port map (
@@ -4326,7 +4336,7 @@ begin
       CE => '1',
       D => DATA_IN(44),
       Q => rx_data_r(44),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[45]\: unisim.vcomponents.FDRE
      port map (
@@ -4334,7 +4344,7 @@ begin
       CE => '1',
       D => DATA_IN(45),
       Q => rx_data_r(45),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[46]\: unisim.vcomponents.FDRE
      port map (
@@ -4342,7 +4352,7 @@ begin
       CE => '1',
       D => DATA_IN(46),
       Q => rx_data_r(46),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[47]\: unisim.vcomponents.FDRE
      port map (
@@ -4350,7 +4360,7 @@ begin
       CE => '1',
       D => DATA_IN(47),
       Q => rx_data_r(47),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[48]\: unisim.vcomponents.FDRE
      port map (
@@ -4358,7 +4368,7 @@ begin
       CE => '1',
       D => DATA_IN(48),
       Q => rx_data_r(48),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[49]\: unisim.vcomponents.FDRE
      port map (
@@ -4366,7 +4376,7 @@ begin
       CE => '1',
       D => DATA_IN(49),
       Q => rx_data_r(49),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[4]\: unisim.vcomponents.FDRE
      port map (
@@ -4374,7 +4384,7 @@ begin
       CE => '1',
       D => DATA_IN(4),
       Q => rx_data_r(4),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[50]\: unisim.vcomponents.FDRE
      port map (
@@ -4382,7 +4392,7 @@ begin
       CE => '1',
       D => DATA_IN(50),
       Q => rx_data_r(50),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[51]\: unisim.vcomponents.FDRE
      port map (
@@ -4390,7 +4400,7 @@ begin
       CE => '1',
       D => DATA_IN(51),
       Q => rx_data_r(51),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[52]\: unisim.vcomponents.FDRE
      port map (
@@ -4398,7 +4408,7 @@ begin
       CE => '1',
       D => DATA_IN(52),
       Q => rx_data_r(52),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[53]\: unisim.vcomponents.FDRE
      port map (
@@ -4406,7 +4416,7 @@ begin
       CE => '1',
       D => DATA_IN(53),
       Q => rx_data_r(53),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[54]\: unisim.vcomponents.FDRE
      port map (
@@ -4414,7 +4424,7 @@ begin
       CE => '1',
       D => DATA_IN(54),
       Q => rx_data_r(54),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[55]\: unisim.vcomponents.FDRE
      port map (
@@ -4422,7 +4432,7 @@ begin
       CE => '1',
       D => DATA_IN(55),
       Q => rx_data_r(55),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[56]\: unisim.vcomponents.FDRE
      port map (
@@ -4430,7 +4440,7 @@ begin
       CE => '1',
       D => DATA_IN(56),
       Q => rx_data_r(56),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[57]\: unisim.vcomponents.FDRE
      port map (
@@ -4438,7 +4448,7 @@ begin
       CE => '1',
       D => DATA_IN(57),
       Q => rx_data_r(57),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[58]\: unisim.vcomponents.FDRE
      port map (
@@ -4446,7 +4456,7 @@ begin
       CE => '1',
       D => DATA_IN(58),
       Q => rx_data_r(58),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[59]\: unisim.vcomponents.FDRE
      port map (
@@ -4454,7 +4464,7 @@ begin
       CE => '1',
       D => DATA_IN(59),
       Q => rx_data_r(59),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -4462,7 +4472,7 @@ begin
       CE => '1',
       D => DATA_IN(5),
       Q => rx_data_r(5),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[60]\: unisim.vcomponents.FDRE
      port map (
@@ -4470,7 +4480,7 @@ begin
       CE => '1',
       D => DATA_IN(60),
       Q => rx_data_r(60),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[61]\: unisim.vcomponents.FDRE
      port map (
@@ -4478,7 +4488,7 @@ begin
       CE => '1',
       D => DATA_IN(61),
       Q => rx_data_r(61),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[62]\: unisim.vcomponents.FDRE
      port map (
@@ -4486,7 +4496,7 @@ begin
       CE => '1',
       D => DATA_IN(62),
       Q => rx_data_r(62),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[63]\: unisim.vcomponents.FDRE
      port map (
@@ -4494,7 +4504,7 @@ begin
       CE => '1',
       D => DATA_IN(63),
       Q => rx_data_r(63),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[64]\: unisim.vcomponents.FDRE
      port map (
@@ -4502,7 +4512,7 @@ begin
       CE => '1',
       D => DATA_IN(64),
       Q => rx_data_r(64),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[65]\: unisim.vcomponents.FDRE
      port map (
@@ -4510,7 +4520,7 @@ begin
       CE => '1',
       D => DATA_IN(65),
       Q => rx_data_r(65),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[66]\: unisim.vcomponents.FDRE
      port map (
@@ -4518,7 +4528,7 @@ begin
       CE => '1',
       D => DATA_IN(66),
       Q => rx_data_r(66),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[67]\: unisim.vcomponents.FDRE
      port map (
@@ -4526,7 +4536,7 @@ begin
       CE => '1',
       D => DATA_IN(67),
       Q => rx_data_r(67),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[68]\: unisim.vcomponents.FDRE
      port map (
@@ -4534,7 +4544,7 @@ begin
       CE => '1',
       D => DATA_IN(68),
       Q => rx_data_r(68),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[69]\: unisim.vcomponents.FDRE
      port map (
@@ -4542,7 +4552,7 @@ begin
       CE => '1',
       D => DATA_IN(69),
       Q => rx_data_r(69),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[6]\: unisim.vcomponents.FDRE
      port map (
@@ -4550,7 +4560,7 @@ begin
       CE => '1',
       D => DATA_IN(6),
       Q => rx_data_r(6),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[70]\: unisim.vcomponents.FDRE
      port map (
@@ -4558,7 +4568,7 @@ begin
       CE => '1',
       D => DATA_IN(70),
       Q => rx_data_r(70),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[71]\: unisim.vcomponents.FDRE
      port map (
@@ -4566,7 +4576,7 @@ begin
       CE => '1',
       D => DATA_IN(71),
       Q => rx_data_r(71),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[72]\: unisim.vcomponents.FDRE
      port map (
@@ -4574,7 +4584,7 @@ begin
       CE => '1',
       D => DATA_IN(72),
       Q => rx_data_r(72),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[73]\: unisim.vcomponents.FDRE
      port map (
@@ -4582,7 +4592,7 @@ begin
       CE => '1',
       D => DATA_IN(73),
       Q => rx_data_r(73),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[74]\: unisim.vcomponents.FDRE
      port map (
@@ -4590,7 +4600,7 @@ begin
       CE => '1',
       D => DATA_IN(74),
       Q => rx_data_r(74),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[75]\: unisim.vcomponents.FDRE
      port map (
@@ -4598,7 +4608,7 @@ begin
       CE => '1',
       D => DATA_IN(75),
       Q => rx_data_r(75),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[76]\: unisim.vcomponents.FDRE
      port map (
@@ -4606,7 +4616,7 @@ begin
       CE => '1',
       D => DATA_IN(76),
       Q => rx_data_r(76),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[77]\: unisim.vcomponents.FDRE
      port map (
@@ -4614,7 +4624,7 @@ begin
       CE => '1',
       D => DATA_IN(77),
       Q => rx_data_r(77),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[78]\: unisim.vcomponents.FDRE
      port map (
@@ -4622,7 +4632,7 @@ begin
       CE => '1',
       D => DATA_IN(78),
       Q => rx_data_r(78),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[79]\: unisim.vcomponents.FDRE
      port map (
@@ -4630,7 +4640,7 @@ begin
       CE => '1',
       D => DATA_IN(79),
       Q => rx_data_r(79),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[7]\: unisim.vcomponents.FDRE
      port map (
@@ -4638,7 +4648,7 @@ begin
       CE => '1',
       D => DATA_IN(7),
       Q => rx_data_r(7),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[8]\: unisim.vcomponents.FDRE
      port map (
@@ -4646,7 +4656,7 @@ begin
       CE => '1',
       D => DATA_IN(8),
       Q => rx_data_r(8),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \rx_data_r_reg[9]\: unisim.vcomponents.FDRE
      port map (
@@ -4654,7 +4664,7 @@ begin
       CE => '1',
       D => DATA_IN(9),
       Q => rx_data_r(9),
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \state[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -4688,7 +4698,7 @@ begin
       I1 => \HEADER_OUT[0]_i_2_n_0\,
       I2 => \DATA_OUT[25]_i_3_n_0\,
       I3 => candidate(2),
-      I4 => \HEADER_OUT[1]_i_2_n_0\,
+      I4 => \HEADER_OUT[1]_i_3_n_0\,
       O => \candidate1__0\
     );
 \state[0]_i_4\: unisim.vcomponents.LUT2
@@ -4719,7 +4729,7 @@ begin
       CE => '1',
       D => \state[0]_i_1_n_0\,
       Q => \^locked\,
-      R => SYSTEM_RESET
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 end STRUCTURE;
 library IEEE;

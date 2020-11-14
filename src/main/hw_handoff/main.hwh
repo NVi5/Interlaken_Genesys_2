@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 22:16:42 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 22:31:19 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -844,8 +844,8 @@
         </PORT>
         <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_IN"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe6"/>
+            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">

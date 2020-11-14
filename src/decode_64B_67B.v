@@ -54,7 +54,7 @@ module decode_64B_67B(
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET)
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             candidate       <= `DLY     3'd0;
             state           <= `DLY     STATE_SYNCING;
@@ -107,7 +107,7 @@ module decode_64B_67B(
 
     always @(posedge USER_CLK)
     begin
-        if (PASSTHROUGH)
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             HEADER_OUT    <= `DLY     2'd0;
             DATA_OUT      <= `DLY     DATA_IN;
@@ -127,7 +127,7 @@ module decode_64B_67B(
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET)
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             rx_data_r       <= `DLY     0;
             rx_data_r2      <= `DLY     0;
@@ -147,8 +147,7 @@ module decode_64B_67B(
         3'b011: aligned_rx   =  `DLY    {rx_data_r[29:0],rx_data_r2[79:30]};
         3'b010: aligned_rx   =  `DLY    {rx_data_r[19:0],rx_data_r2[79:20]};
         3'b001: aligned_rx   =  `DLY    {rx_data_r[9:0],rx_data_r2[79:10]};
-        3'b000: aligned_rx   =  `DLY     rx_data_r2;
-        default:aligned_rx   =  `DLY     rx_data_r2;
+        3'b000: aligned_rx   =  `DLY    {rx_data_r2[79:0]};
     endcase
 
     assign  LOCKED = state;

@@ -509,8 +509,8 @@
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_DATA</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_DATA"/>
-        <spirit:internalPortReference spirit:componentRef="decode_64B_67B_0" spirit:portRef="DATA_IN"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe6"/>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B_0" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>decode_64B_67B_0_DATA_OUT</spirit:name>
