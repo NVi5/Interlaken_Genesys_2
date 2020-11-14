@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
 -- Date        : Sun Nov  8 00:45:56 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_clk_wiz_0_1/main_clk_wiz_0_1_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top main_clk_wiz_0_1 -prefix
+--               main_clk_wiz_0_1_ main_clk_wiz_0_1_stub.vhdl
 -- Design      : main_clk_wiz_0_1
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7k325tffg900-2

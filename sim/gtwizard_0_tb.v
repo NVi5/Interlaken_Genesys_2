@@ -163,11 +163,11 @@ module gtwizard_0_TB;
 
     //----------------- Instantiate an gtwizard_0_exdes module  -----------------
 
-    gtwizard_0_exdes
-    gtwizard_0_exdes_i
+    main_wrapper
+    main_wrapper_i
     (
-        .Q3_CLK1_GTREFCLK_PAD_P_IN           (~tx_refclk_n_r),
-        .Q3_CLK1_GTREFCLK_PAD_N_IN           (tx_refclk_n_r),
+        .Q3_CLK0_GTREFCLK_PAD_P_IN           (~tx_refclk_n_r),
+        .Q3_CLK0_GTREFCLK_PAD_N_IN           (tx_refclk_n_r),
         .DRP_CLK_IN_P                        (drp_clk_r),
         .DRP_CLK_IN_N                        (~drp_clk_r),
         .TRACK_DATA_OUT                      (track_data_i),

@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
 // Date        : Sun Nov  8 00:45:56 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_clk_wiz_0_1/main_clk_wiz_0_1_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top main_clk_wiz_0_1 -prefix
+//               main_clk_wiz_0_1_ main_clk_wiz_0_1_sim_netlist.v
 // Design      : main_clk_wiz_0_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,7 +31,6 @@ module main_clk_wiz_0_1
         .clk_in1_p(clk_in1_p));
 endmodule
 
-(* ORIG_REF_NAME = "main_clk_wiz_0_1_clk_wiz" *) 
 module main_clk_wiz_0_1_main_clk_wiz_0_1_clk_wiz
    (DRP_CLK_IN,
     clk_in1_p,

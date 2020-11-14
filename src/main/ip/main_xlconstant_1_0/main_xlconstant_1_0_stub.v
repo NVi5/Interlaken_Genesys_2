@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
 // Date        : Sun Nov  8 16:18:36 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_xlconstant_1_0/main_xlconstant_1_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top main_xlconstant_1_0 -prefix
+//               main_xlconstant_1_0_ main_xlconstant_1_0_stub.v
 // Design      : main_xlconstant_1_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7k325tffg900-2

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 16:43:51 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 14 17:26:20 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -624,12 +624,12 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_in1_p" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_P">
+        <PORT DIR="I" NAME="clk_in1_p" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_P">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DRP_CLK_IN_P"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_in1_n" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_N">
+        <PORT DIR="I" NAME="clk_in1_n" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_N">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="DRP_CLK_IN_N"/>
           </CONNECTIONS>

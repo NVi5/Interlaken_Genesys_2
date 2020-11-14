@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 14 16:25:17 2020
+-- Date        : Sat Nov 14 16:25:15 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_ila_0_0/main_ila_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top main_ila_0_0 -prefix
+--               main_ila_0_0_ main_ila_0_0_sim_netlist.vhdl
 -- Design      : main_ila_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -26,8 +26,6 @@ entity main_ila_0_0_blk_mem_gen_prim_wrapper is
     DIADI : in STD_LOGIC_VECTOR ( 15 downto 0 );
     DIPADIP : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end main_ila_0_0_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_prim_wrapper is
@@ -722,8 +720,6 @@ entity main_ila_0_0_ltlib_v1_0_0_all_typeA_slice is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_all_typeA_slice : entity is "ltlib_v1_0_0_all_typeA_slice";
 end main_ila_0_0_ltlib_v1_0_0_all_typeA_slice;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_all_typeA_slice is
@@ -3161,8 +3157,6 @@ entity main_ila_0_0_ltlib_v1_0_0_async_edge_xfer is
     arm_ctrl : in STD_LOGIC;
     last_din : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_async_edge_xfer : entity is "ltlib_v1_0_0_async_edge_xfer";
 end main_ila_0_0_ltlib_v1_0_0_async_edge_xfer;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_async_edge_xfer is
@@ -3635,8 +3629,6 @@ entity main_ila_0_0_ltlib_v1_0_0_cfglut4 is
     A : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_dclk_o : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_cfglut4 : entity is "ltlib_v1_0_0_cfglut4";
 end main_ila_0_0_ltlib_v1_0_0_cfglut4;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_cfglut4 is
@@ -3711,8 +3703,6 @@ entity main_ila_0_0_ltlib_v1_0_0_cfglut5 is
     A : in STD_LOGIC_VECTOR ( 4 downto 0 );
     s_dclk_o : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_cfglut5 : entity is "ltlib_v1_0_0_cfglut5";
 end main_ila_0_0_ltlib_v1_0_0_cfglut5;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_cfglut5 is
@@ -3823,8 +3813,6 @@ entity main_ila_0_0_ltlib_v1_0_0_cfglut6 is
     s_dclk_o : in STD_LOGIC;
     u_scnt_cmp_q : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_cfglut6 : entity is "ltlib_v1_0_0_cfglut6";
 end main_ila_0_0_ltlib_v1_0_0_cfglut6;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_cfglut6 is
@@ -4076,8 +4064,6 @@ entity main_ila_0_0_ltlib_v1_0_0_cfglut7 is
     wcnt_hcmp : in STD_LOGIC;
     u_wcnt_lcmp_q : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_cfglut7 : entity is "ltlib_v1_0_0_cfglut7";
 end main_ila_0_0_ltlib_v1_0_0_cfglut7;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_cfglut7 is
@@ -4325,8 +4311,6 @@ entity main_ila_0_0_ltlib_v1_0_0_generic_memrd is
     \DEVICE_7SERIES.NO_BMM_INFO.SDP.SIMPLE_PRIM36.ram_0\ : in STD_LOGIC_VECTOR ( 76 downto 0 );
     SR : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_generic_memrd : entity is "ltlib_v1_0_0_generic_memrd";
 end main_ila_0_0_ltlib_v1_0_0_generic_memrd;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_generic_memrd is
@@ -6342,8 +6326,6 @@ entity main_ila_0_0_ltlib_v1_0_0_rising_edge_detection is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     dout_reg1_reg : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_rising_edge_detection : entity is "ltlib_v1_0_0_rising_edge_detection";
 end main_ila_0_0_ltlib_v1_0_0_rising_edge_detection;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_rising_edge_detection is
@@ -6531,8 +6513,6 @@ entity main_ila_0_0_xsdbs_v1_0_2_reg_ctl is
     s_di_o : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_dclk_o : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_xsdbs_v1_0_2_reg_ctl : entity is "xsdbs_v1_0_2_reg_ctl";
 end main_ila_0_0_xsdbs_v1_0_2_reg_ctl;
 
 architecture STRUCTURE of main_ila_0_0_xsdbs_v1_0_2_reg_ctl is
@@ -11824,8 +11804,6 @@ entity main_ila_0_0_xsdbs_v1_0_2_reg_p2s is
     \G_1PIPE_IFACE.s_di_r_reg[15]\ : in STD_LOGIC;
     mu_config_cs_serial_input : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_xsdbs_v1_0_2_reg_p2s : entity is "xsdbs_v1_0_2_reg_p2s";
 end main_ila_0_0_xsdbs_v1_0_2_reg_p2s;
 
 architecture STRUCTURE of main_ila_0_0_xsdbs_v1_0_2_reg_p2s is
@@ -19349,8 +19327,6 @@ entity main_ila_0_0_xsdbs_v1_0_2_reg_stat is
     \curr_read_block_reg[2]\ : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_dclk_o : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_xsdbs_v1_0_2_reg_stat : entity is "xsdbs_v1_0_2_reg_stat";
 end main_ila_0_0_xsdbs_v1_0_2_reg_stat;
 
 architecture STRUCTURE of main_ila_0_0_xsdbs_v1_0_2_reg_stat is
@@ -20181,8 +20157,6 @@ entity main_ila_0_0_xsdbs_v1_0_2_xsdbs is
   attribute C_XDEVICEFAMILY of main_ila_0_0_xsdbs_v1_0_2_xsdbs : entity is "kintex7";
   attribute C_XSDB_SLAVE_TYPE : integer;
   attribute C_XSDB_SLAVE_TYPE of main_ila_0_0_xsdbs_v1_0_2_xsdbs : entity is 17;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_xsdbs_v1_0_2_xsdbs : entity is "xsdbs_v1_0_2_xsdbs";
   attribute dont_touch : string;
   attribute dont_touch of main_ila_0_0_xsdbs_v1_0_2_xsdbs : entity is "true";
 end main_ila_0_0_xsdbs_v1_0_2_xsdbs;
@@ -23722,8 +23696,6 @@ entity main_ila_0_0_blk_mem_gen_prim_width is
     DIADI : in STD_LOGIC_VECTOR ( 15 downto 0 );
     DIPADIP : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end main_ila_0_0_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_prim_width is
@@ -23824,8 +23796,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_reset_ctrl is
     halt_ctrl : in STD_LOGIC;
     arm_ctrl : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_reset_ctrl : entity is "ila_v6_2_7_ila_reset_ctrl";
 end main_ila_0_0_ila_v6_2_7_ila_reset_ctrl;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_reset_ctrl is
@@ -24011,8 +23981,6 @@ entity main_ila_0_0_ltlib_v1_0_0_all_typeA is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_all_typeA : entity is "ltlib_v1_0_0_all_typeA";
 end main_ila_0_0_ltlib_v1_0_0_all_typeA;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_all_typeA is
@@ -26074,8 +26042,6 @@ entity main_ila_0_0_xsdbs_v1_0_2_reg_stream is
     s_di_o : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_dclk_o : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_xsdbs_v1_0_2_reg_stream : entity is "xsdbs_v1_0_2_reg_stream";
 end main_ila_0_0_xsdbs_v1_0_2_reg_stream;
 
 architecture STRUCTURE of main_ila_0_0_xsdbs_v1_0_2_reg_stream is
@@ -26167,8 +26133,6 @@ entity main_ila_0_0_blk_mem_gen_generic_cstr is
     \shifted_data_in_reg[8][53]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     CAP_TRIGGER_O_reg : in STD_LOGIC_VECTOR ( 22 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end main_ila_0_0_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_generic_cstr is
@@ -26251,8 +26215,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_register is
     \captured_samples_reg[9]\ : in STD_LOGIC_VECTOR ( 9 downto 0 );
     \I_YESLUT6.I_YES_OREG.O_reg_reg\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_register : entity is "ila_v6_2_7_ila_register";
 end main_ila_0_0_ila_v6_2_7_ila_register;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_register is
@@ -30779,8 +30741,6 @@ entity main_ila_0_0_ltlib_v1_0_0_allx_typeA is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_allx_typeA : entity is "ltlib_v1_0_0_allx_typeA";
 end main_ila_0_0_ltlib_v1_0_0_allx_typeA;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_allx_typeA is
@@ -32297,8 +32257,6 @@ entity main_ila_0_0_ltlib_v1_0_0_allx_typeA_nodelay is
     SRL_D_I : in STD_LOGIC;
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_allx_typeA_nodelay : entity is "ltlib_v1_0_0_allx_typeA_nodelay";
 end main_ila_0_0_ltlib_v1_0_0_allx_typeA_nodelay;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_allx_typeA_nodelay is
@@ -32594,8 +32552,6 @@ entity main_ila_0_0_blk_mem_gen_top is
     \shifted_data_in_reg[8][53]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     CAP_TRIGGER_O_reg : in STD_LOGIC_VECTOR ( 22 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end main_ila_0_0_blk_mem_gen_top;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_top is
@@ -32631,8 +32587,6 @@ entity main_ila_0_0_ltlib_v1_0_0_match is
     Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_match : entity is "ltlib_v1_0_0_match";
 end main_ila_0_0_ltlib_v1_0_0_match;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_match is
@@ -33001,8 +32955,6 @@ entity main_ila_0_0_ltlib_v1_0_0_match_nodelay is
     PROBES_I : in STD_LOGIC_VECTOR ( 19 downto 0 );
     SRL_D_I : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ltlib_v1_0_0_match_nodelay : entity is "ltlib_v1_0_0_match_nodelay";
 end main_ila_0_0_ltlib_v1_0_0_match_nodelay;
 
 architecture STRUCTURE of main_ila_0_0_ltlib_v1_0_0_match_nodelay is
@@ -33102,8 +33054,6 @@ entity main_ila_0_0_blk_mem_gen_v8_3_6_synth is
     \shifted_data_in_reg[8][53]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     CAP_TRIGGER_O_reg : in STD_LOGIC_VECTOR ( 22 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_v8_3_6_synth : entity is "blk_mem_gen_v8_3_6_synth";
 end main_ila_0_0_blk_mem_gen_v8_3_6_synth;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_v8_3_6_synth is
@@ -33148,8 +33098,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_cap_sample_counter is
     \out\ : in STD_LOGIC_VECTOR ( 9 downto 0 );
     Q : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_cap_sample_counter : entity is "ila_v6_2_7_ila_cap_sample_counter";
 end main_ila_0_0_ila_v6_2_7_ila_cap_sample_counter;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_cap_sample_counter is
@@ -33563,8 +33511,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_cap_window_counter is
     wcnt_hcmp_temp : in STD_LOGIC;
     \reset_out_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_cap_window_counter : entity is "ila_v6_2_7_ila_cap_window_counter";
 end main_ila_0_0_ila_v6_2_7_ila_cap_window_counter;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_cap_window_counter is
@@ -33914,8 +33860,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_trig_match is
     probe0 : in STD_LOGIC_VECTOR ( 47 downto 0 );
     probe3 : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_trig_match : entity is "ila_v6_2_7_ila_trig_match";
 end main_ila_0_0_ila_v6_2_7_ila_trig_match;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_trig_match is
@@ -34013,8 +33957,6 @@ entity main_ila_0_0_blk_mem_gen_v8_3_6 is
     \shifted_data_in_reg[8][53]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     CAP_TRIGGER_O_reg : in STD_LOGIC_VECTOR ( 22 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_blk_mem_gen_v8_3_6 : entity is "blk_mem_gen_v8_3_6";
 end main_ila_0_0_blk_mem_gen_v8_3_6;
 
 architecture STRUCTURE of main_ila_0_0_blk_mem_gen_v8_3_6 is
@@ -34064,8 +34006,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_cap_addrgen is
     arm_ctrl : in STD_LOGIC;
     \reset_out_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_cap_addrgen : entity is "ila_v6_2_7_ila_cap_addrgen";
 end main_ila_0_0_ila_v6_2_7_ila_cap_addrgen;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_cap_addrgen is
@@ -35468,8 +35408,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_trigger is
     probe0 : in STD_LOGIC_VECTOR ( 47 downto 0 );
     probe3 : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_trigger : entity is "ila_v6_2_7_ila_trigger";
 end main_ila_0_0_ila_v6_2_7_ila_trigger;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_trigger is
@@ -35541,8 +35479,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_cap_ctrl_legacy is
     arm_ctrl : in STD_LOGIC;
     \reset_out_reg[0]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_cap_ctrl_legacy : entity is "ila_v6_2_7_ila_cap_ctrl_legacy";
 end main_ila_0_0_ila_v6_2_7_ila_cap_ctrl_legacy;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_cap_ctrl_legacy is
@@ -35716,8 +35652,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_trace_memory is
     \shifted_data_in_reg[8][53]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     CAP_TRIGGER_O_reg : in STD_LOGIC_VECTOR ( 22 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_trace_memory : entity is "ila_v6_2_7_ila_trace_memory";
 end main_ila_0_0_ila_v6_2_7_ila_trace_memory;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_trace_memory is
@@ -35755,8 +35689,6 @@ entity main_ila_0_0_ila_v6_2_7_ila_core is
     probe3 : in STD_LOGIC_VECTOR ( 7 downto 0 );
     probe0 : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila_core : entity is "ila_v6_2_7_ila_core";
 end main_ila_0_0_ila_v6_2_7_ila_core;
 
 architecture STRUCTURE of main_ila_0_0_ila_v6_2_7_ila_core is
@@ -57994,8 +57926,6 @@ entity main_ila_0_0_ila_v6_2_7_ila is
   attribute LC_TIME_TAG_WIDTH of main_ila_0_0_ila_v6_2_7_ila : entity is 1;
   attribute LC_TRIG_WIDTH : integer;
   attribute LC_TRIG_WIDTH of main_ila_0_0_ila_v6_2_7_ila : entity is 76;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_ila_0_0_ila_v6_2_7_ila : entity is "ila_v6_2_7_ila";
   attribute dont_touch : string;
   attribute dont_touch of main_ila_0_0_ila_v6_2_7_ila : entity is "true";
 end main_ila_0_0_ila_v6_2_7_ila;
