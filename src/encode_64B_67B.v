@@ -46,11 +46,11 @@ module encode_64B_67B(
     always @*
     begin
         temp = 0;
-        for (i=0;i<=(TX_DATA_WIDTH-1);i=i+1)
+        for (i=0;i<=(64-1);i=i+1)
         begin
             temp = temp + DATA_IN[i];
         end
-        word_disparity = temp - TX_DATA_WIDTH;
+        word_disparity = temp - 64;
     end
 
 //________________ Data assignment to output port _______________
@@ -66,11 +66,11 @@ module encode_64B_67B(
             if ((disparity >= 0 && word_disparity >= 0) || ((disparity < 0 && word_disparity < 0)))     // Same sign
             begin
                 disparity = disparity - word_disparity;
-                DATA_OUT <= `DLY  {{13{1'b0}}, HEADER_IN[2:0], ~DATA_IN[63:0]};
+                DATA_OUT <= `DLY  {{13{1'b0}}, 1'b1, HEADER_IN[1:0], ~DATA_IN[63:0]};
             end
             else begin
                 disparity = disparity + word_disparity;
-                DATA_OUT <= `DLY  {{13{1'b0}}, HEADER_IN[2:0], DATA_IN[63:0]};
+                DATA_OUT <= `DLY  {{13{1'b0}}, 1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
             end
         end
     end

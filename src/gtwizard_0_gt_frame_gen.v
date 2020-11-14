@@ -118,7 +118,7 @@ reg     [79:0]  tx_data_ram_r;
 
     initial
         begin
-            $readmemh("gt_rom_init_tx.dat",rom,0,511);
+            $readmemh("gt_rom_data.dat",rom,0,511);
         end
 
     always @(posedge USER_CLK)

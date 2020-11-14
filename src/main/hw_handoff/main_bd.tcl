@@ -226,9 +226,7 @@ proc create_root_design { parentCell } {
      return 1
    }
     set_property -dict [ list \
-   CONFIG.RXCTRL_WIDTH {10} \
-   CONFIG.RX_DATA_WIDTH {80} \
-   CONFIG.START_OF_PACKET_CHAR {0x00000E0D0C0B0A090800} \
+   CONFIG.START_OF_PACKET_CHAR {0x0E0D0C0B0A090800} \
  ] $gt_frame_check_0
 
   # Create instance: gt_frame_gen_0, and set properties
@@ -275,7 +273,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {5} \
+   CONFIG.C_NUM_OF_PROBES {6} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {8} \
@@ -301,8 +299,10 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
    CONFIG.C_NUM_PROBE_IN {0} \
-   CONFIG.C_NUM_PROBE_OUT {2} \
+   CONFIG.C_NUM_PROBE_OUT {3} \
    CONFIG.C_PROBE_OUT0_INIT_VAL {0x1} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT2_INIT_VAL {0x1} \
  ] $vio_1
 
   # Create instance: vio_2, and set properties
@@ -312,6 +312,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {2} \
    CONFIG.C_PROBE_OUT0_INIT_VAL {0x1} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
  ] $vio_2
 
   # Create instance: xlconstant_0, and set properties
@@ -327,9 +328,12 @@ proc create_root_design { parentCell } {
  ] $xlconstant_1
 
   # Create port connections
+  connect_bd_net -net DECODER_PASSTHROUGH [get_bd_pins decode_64B_67B_0/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
   connect_bd_net -net DRP_CLK_IN [get_bd_pins clk_wiz_0/DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
   connect_bd_net -net DRP_CLK_IN_N_1 [get_bd_ports DRP_CLK_IN_N] [get_bd_pins clk_wiz_0/clk_in1_n]
   connect_bd_net -net DRP_CLK_IN_P_1 [get_bd_ports DRP_CLK_IN_P] [get_bd_pins clk_wiz_0/clk_in1_p]
+  connect_bd_net -net ENCODER_PASSTHROUGH [get_bd_pins encode_64B_67B_0/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
+  connect_bd_net -net GT_DATA_VALID [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins vio_1/probe_out2]
   connect_bd_net -net Net1 [get_bd_pins encode_64B_67B_0/USER_CLK] [get_bd_pins gt_core_0/TX_USR_CLK2] [get_bd_pins gt_frame_gen_0/USER_CLK] [get_bd_pins gtwizard_0_SCRAMBLER_0/USER_CLK]
   connect_bd_net -net PASSTHROUGH_DESCRAMBLER [get_bd_pins gtwizard_0_DESCRAMBL_0/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
   connect_bd_net -net PASSTHROUGH_SCRAMBLER [get_bd_pins gtwizard_0_SCRAMBLER_0/PASSTHROUGH] [get_bd_pins vio_1/probe_out0]
@@ -341,11 +345,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET_VIO] [get_bd_pins vio_0/probe_out0]
   connect_bd_net -net decode_64B_67B_0_DATA_OUT [get_bd_pins decode_64B_67B_0/DATA_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/SCRAMBLED_DATA_IN]
   connect_bd_net -net decode_64B_67B_0_HEADER_OUT [get_bd_pins decode_64B_67B_0/HEADER_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/HEADER_IN]
+  connect_bd_net -net decode_64B_67B_0_LOCKED [get_bd_pins decode_64B_67B_0/LOCKED] [get_bd_pins ila_0/probe5]
   connect_bd_net -net encode_64B_67B_0_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA]
   connect_bd_net -net gt_core_0_RX_DATA [get_bd_pins decode_64B_67B_0/DATA_IN] [get_bd_pins gt_core_0/RX_DATA]
   connect_bd_net -net gt_core_0_RX_MMCM_LOCK_ILA [get_bd_pins gt_core_0/RX_MMCM_LOCK_ILA] [get_bd_pins ila_0/probe1]
   connect_bd_net -net gt_core_0_RX_RESET_DONE_ILA [get_bd_pins gt_core_0/RX_RESET_DONE_ILA] [get_bd_pins ila_0/probe4]
-  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins gt_core_0/RX_SYSTEM_RESET] [get_bd_pins gt_frame_check_0/SYSTEM_RESET] [get_bd_pins gtwizard_0_DESCRAMBL_0/SYSTEM_RESET]
+  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins decode_64B_67B_0/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_SYSTEM_RESET] [get_bd_pins gt_frame_check_0/SYSTEM_RESET] [get_bd_pins gtwizard_0_DESCRAMBL_0/SYSTEM_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
   connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins decode_64B_67B_0/USER_CLK] [get_bd_pins gt_core_0/RX_USR_CLK2] [get_bd_pins gt_frame_check_0/USER_CLK] [get_bd_pins gtwizard_0_DESCRAMBL_0/USER_CLK]
   connect_bd_net -net gt_core_0_TXN_OUT [get_bd_ports TXN_OUT] [get_bd_pins gt_core_0/TXN_OUT]
@@ -355,14 +360,13 @@ proc create_root_design { parentCell } {
   connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins encode_64B_67B_0/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_SYSTEM_RESET] [get_bd_pins gt_frame_gen_0/SYSTEM_RESET] [get_bd_pins gtwizard_0_SCRAMBLER_0/SYSTEM_RESET]
   connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins gt_core_0/TX_USR_CLK] [get_bd_pins ila_1/clk] [get_bd_pins vio_1/clk]
   connect_bd_net -net gt_frame_check_0_ERROR_COUNT_OUT [get_bd_pins gt_frame_check_0/ERROR_COUNT_OUT] [get_bd_pins ila_0/probe3]
-  connect_bd_net -net gt_frame_check_0_TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins gt_frame_check_0/TRACK_DATA_OUT] [get_bd_pins ila_0/probe2]
+  connect_bd_net -net gt_frame_check_0_TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins gt_frame_check_0/TRACK_DATA_OUT] [get_bd_pins ila_0/probe2]
   connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins gt_frame_gen_0/TX_DATA_OUT] [get_bd_pins gtwizard_0_SCRAMBLER_0/UNSCRAMBLED_DATA_IN]
+  connect_bd_net -net gt_frame_gen_0_TX_HEADER_OUT [get_bd_pins gt_frame_gen_0/TX_HEADER_OUT] [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_IN]
   connect_bd_net -net gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT [get_bd_pins gt_frame_check_0/RX_DATA_IN] [get_bd_pins gtwizard_0_DESCRAMBL_0/UNSCRAMBLED_DATA_OUT] [get_bd_pins ila_0/probe0]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_HEADER_OUT [get_bd_pins encode_64B_67B_0/HEADER_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_OUT]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLED_DATA_OUT]
-  connect_bd_net -net vio_1_probe_out1 [get_bd_pins encode_64B_67B_0/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
-  connect_bd_net -net vio_2_probe_out1 [get_bd_pins decode_64B_67B_0/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLER_STATE] [get_bd_pins gtwizard_0_SCRAMBLER_0/SYNCHRONIZATION] [get_bd_pins gtwizard_0_SCRAMBLER_0/TO_BE_SCRAMBLED] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLER_STATE] [get_bd_pins gtwizard_0_SCRAMBLER_0/SYNCHRONIZATION] [get_bd_pins gtwizard_0_SCRAMBLER_0/TO_BE_SCRAMBLED] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins gtwizard_0_DESCRAMBL_0/SYNCHRONIZE] [get_bd_pins gtwizard_0_DESCRAMBL_0/TO_BE_DESCRAMBLED] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments

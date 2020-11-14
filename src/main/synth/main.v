@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Thu Nov 12 14:04:37 2020
+//Date        : Sat Nov 14 16:43:51 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -30,9 +30,12 @@ module main
   output TXN_OUT;
   output TXP_OUT;
 
+  wire [0:0]DECODER_PASSTHROUGH;
   wire DRP_CLK_IN;
   wire DRP_CLK_IN_N_1;
   wire DRP_CLK_IN_P_1;
+  wire [0:0]ENCODER_PASSTHROUGH;
+  wire [0:0]GT_DATA_VALID;
   wire Net1;
   wire [0:0]PASSTHROUGH_DESCRAMBLER;
   wire [0:0]PASSTHROUGH_SCRAMBLER;
@@ -44,6 +47,7 @@ module main
   wire [0:0]SOFT_RESET;
   wire [63:0]decode_64B_67B_0_DATA_OUT;
   wire [1:0]decode_64B_67B_0_HEADER_OUT;
+  wire decode_64B_67B_0_LOCKED;
   wire [79:0]encode_64B_67B_0_DATA_OUT;
   wire [79:0]gt_core_0_RX_DATA;
   wire gt_core_0_RX_MMCM_LOCK_ILA;
@@ -59,12 +63,11 @@ module main
   wire gt_core_0_TX_USR_CLK;
   wire [7:0]gt_frame_check_0_ERROR_COUNT_OUT;
   wire gt_frame_check_0_TRACK_DATA_OUT;
-  wire [79:0]gt_frame_gen_0_TX_DATA_OUT;
+  wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
+  wire [1:0]gt_frame_gen_0_TX_HEADER_OUT;
   wire [63:0]gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT;
   wire [1:0]gtwizard_0_SCRAMBLER_0_HEADER_OUT;
   wire [63:0]gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT;
-  wire [0:0]vio_1_probe_out1;
-  wire [0:0]vio_2_probe_out1;
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
 
@@ -85,17 +88,19 @@ module main
        (.DATA_IN(gt_core_0_RX_DATA),
         .DATA_OUT(decode_64B_67B_0_DATA_OUT),
         .HEADER_OUT(decode_64B_67B_0_HEADER_OUT),
-        .PASSTHROUGH(vio_2_probe_out1),
+        .LOCKED(decode_64B_67B_0_LOCKED),
+        .PASSTHROUGH(DECODER_PASSTHROUGH),
+        .SYSTEM_RESET(gt_core_0_RX_SYSTEM_RESET),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_encode_64B_67B_0_0 encode_64B_67B_0
        (.DATA_IN(gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT),
         .DATA_OUT(encode_64B_67B_0_DATA_OUT),
         .HEADER_IN(gtwizard_0_SCRAMBLER_0_HEADER_OUT),
-        .PASSTHROUGH(vio_1_probe_out1),
+        .PASSTHROUGH(ENCODER_PASSTHROUGH),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));
   main_gt_core_0_0 gt_core_0
-       (.DATA_VALID(gt_frame_check_0_TRACK_DATA_OUT),
+       (.DATA_VALID(GT_DATA_VALID),
         .DRP_CLK_IN(DRP_CLK_IN),
         .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN_1),
         .Q3_CLK0_GTREFCLK_PAD_P_IN(Q3_CLK0_GTREFCLK_PAD_P_IN_1),
@@ -126,6 +131,7 @@ module main
   main_gt_frame_gen_0_0 gt_frame_gen_0
        (.SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .TX_DATA_OUT(gt_frame_gen_0_TX_DATA_OUT),
+        .TX_HEADER_OUT(gt_frame_gen_0_TX_HEADER_OUT),
         .USER_CLK(Net1));
   main_gtwizard_0_DESCRAMBL_0_0 gtwizard_0_DESCRAMBL_0
        (.HEADER_IN(decode_64B_67B_0_HEADER_OUT),
@@ -137,7 +143,7 @@ module main
         .UNSCRAMBLED_DATA_OUT(gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_gtwizard_0_SCRAMBLER_0_0 gtwizard_0_SCRAMBLER_0
-       (.HEADER_IN(xlconstant_0_dout),
+       (.HEADER_IN(gt_frame_gen_0_TX_HEADER_OUT),
         .HEADER_OUT(gtwizard_0_SCRAMBLER_0_HEADER_OUT),
         .PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
         .SCRAMBLED_DATA_OUT(gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT),
@@ -145,7 +151,7 @@ module main
         .SYNCHRONIZATION(xlconstant_0_dout),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .TO_BE_SCRAMBLED(xlconstant_0_dout),
-        .UNSCRAMBLED_DATA_IN(gt_frame_gen_0_TX_DATA_OUT[63:0]),
+        .UNSCRAMBLED_DATA_IN(gt_frame_gen_0_TX_DATA_OUT),
         .USER_CLK(Net1));
   main_ila_0_0 ila_0
        (.clk(gt_core_0_RX_USR_CLK),
@@ -153,7 +159,8 @@ module main
         .probe1(gt_core_0_RX_MMCM_LOCK_ILA),
         .probe2(gt_frame_check_0_TRACK_DATA_OUT),
         .probe3(gt_frame_check_0_ERROR_COUNT_OUT),
-        .probe4(gt_core_0_RX_RESET_DONE_ILA));
+        .probe4(gt_core_0_RX_RESET_DONE_ILA),
+        .probe5(decode_64B_67B_0_LOCKED));
   main_ila_1_0 ila_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe0(gt_core_0_TX_MMCM_LOCK_ILA),
@@ -165,11 +172,12 @@ module main
   main_vio_1_0 vio_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe_out0(PASSTHROUGH_SCRAMBLER),
-        .probe_out1(vio_1_probe_out1));
+        .probe_out1(ENCODER_PASSTHROUGH),
+        .probe_out2(GT_DATA_VALID));
   main_vio_2_0 vio_2
        (.clk(gt_core_0_RX_USR_CLK),
         .probe_out0(PASSTHROUGH_DESCRAMBLER),
-        .probe_out1(vio_2_probe_out1));
+        .probe_out1(DECODER_PASSTHROUGH));
   main_xlconstant_0_0 xlconstant_0
        (.dout(xlconstant_0_dout));
   main_xlconstant_1_0 xlconstant_1
