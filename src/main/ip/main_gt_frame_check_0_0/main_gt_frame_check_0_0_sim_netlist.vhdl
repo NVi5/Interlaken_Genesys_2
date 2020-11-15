@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 14 17:27:20 2020
+-- Date        : Sun Nov 15 21:44:04 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_frame_check_0_0/main_gt_frame_check_0_0_sim_netlist.vhdl
@@ -30,7 +30,7 @@ architecture STRUCTURE of main_gt_frame_check_0_0_gt_frame_check is
   signal \^error_count_out\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \^track_data_out\ : STD_LOGIC;
   signal begin_r : STD_LOGIC;
-  signal bram_data_r : STD_LOGIC_VECTOR ( 62 downto 2 );
+  signal bram_data_r : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal data_error_detected_r : STD_LOGIC;
   signal \error_count_r[7]_i_2_n_0\ : STD_LOGIC;
   signal error_detected_c0 : STD_LOGIC;
@@ -67,6 +67,7 @@ architecture STRUCTURE of main_gt_frame_check_0_0_gt_frame_check is
   signal \error_detected_c0_carry__3_n_2\ : STD_LOGIC;
   signal \error_detected_c0_carry__3_n_3\ : STD_LOGIC;
   signal \error_detected_c0_carry__4_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__4_i_2_n_0\ : STD_LOGIC;
   signal \error_detected_c0_carry__4_n_3\ : STD_LOGIC;
   signal error_detected_c0_carry_i_1_n_0 : STD_LOGIC;
   signal error_detected_c0_carry_i_2_n_0 : STD_LOGIC;
@@ -288,15 +289,29 @@ architecture STRUCTURE of main_gt_frame_check_0_0_gt_frame_check is
   signal \rx_data_r6_reg_gate__9_n_0\ : STD_LOGIC;
   signal rx_data_r6_reg_gate_n_0 : STD_LOGIC;
   signal rx_data_r6_reg_r_n_0 : STD_LOGIC;
-  signal rx_data_r_track : STD_LOGIC_VECTOR ( 62 downto 0 );
-  signal \rx_data_r_track_reg[63]_inv_n_0\ : STD_LOGIC;
+  signal rx_data_r_track : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal \rx_data_ram_r[16]_i_1_n_0\ : STD_LOGIC;
   signal \rx_data_ram_r[18]_i_1_n_0\ : STD_LOGIC;
-  signal \rx_data_ram_r[19]_i_1_n_0\ : STD_LOGIC;
   signal \rx_data_ram_r[20]_i_1_n_0\ : STD_LOGIC;
   signal \rx_data_ram_r[21]_i_1_n_0\ : STD_LOGIC;
-  signal \rx_data_ram_r[22]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[29]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[30]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[31]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[49]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[59]_i_1_n_0\ : STD_LOGIC;
   signal \rx_data_ram_r[64]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[65]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[66]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[67]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[69]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[71]_i_1_n_0\ : STD_LOGIC;
   signal \rx_data_ram_r[72]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[74]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[75]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[76]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[77]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[78]_i_1_n_0\ : STD_LOGIC;
+  signal \rx_data_ram_r[79]_i_1_n_0\ : STD_LOGIC;
   signal start_of_packet_detected_r : STD_LOGIC;
   signal start_of_packet_detected_r_i_11_n_0 : STD_LOGIC;
   signal start_of_packet_detected_r_i_12_n_0 : STD_LOGIC;
@@ -366,20 +381,20 @@ architecture STRUCTURE of main_gt_frame_check_0_0_gt_frame_check is
   signal NLW_start_of_packet_detected_r_reg_i_20_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_start_of_packet_detected_r_reg_i_5_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of data_error_detected_r_i_1 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \error_count_r[1]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \error_count_r[2]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of data_error_detected_r_i_1 : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \error_count_r[1]_i_1\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \error_count_r[2]_i_1\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \error_count_r[3]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \error_count_r[4]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \error_count_r[6]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \error_count_r[7]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \error_count_r[6]_i_1\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \error_count_r[7]_i_1\ : label is "soft_lutpair14";
   attribute equivalent_register_removal : string;
   attribute equivalent_register_removal of \read_counter_i_reg_rep[0]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg_rep[1]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg_rep[2]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg_rep[3]\ : label is "no";
-  attribute SOFT_HLUTNM of \read_counter_i_rep[0]_i_1\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \read_counter_i_rep[1]_i_1\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \read_counter_i_rep[0]_i_1\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \read_counter_i_rep[1]_i_1\ : label is "soft_lutpair47";
   attribute SOFT_HLUTNM of \read_counter_i_rep[2]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \read_counter_i_rep[3]_i_2\ : label is "soft_lutpair1";
   attribute srl_bus_name : string;
@@ -512,81 +527,97 @@ architecture STRUCTURE of main_gt_frame_check_0_0_gt_frame_check is
   attribute srl_name of \rx_data_r5_reg[8]_srl2___inst_rx_data_r5_reg_r\ : label is "\inst/rx_data_r5_reg[8]_srl2___inst_rx_data_r5_reg_r ";
   attribute srl_bus_name of \rx_data_r5_reg[9]_srl2___inst_rx_data_r5_reg_r\ : label is "\inst/rx_data_r5_reg ";
   attribute srl_name of \rx_data_r5_reg[9]_srl2___inst_rx_data_r5_reg_r\ : label is "\inst/rx_data_r5_reg[9]_srl2___inst_rx_data_r5_reg_r ";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__10\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__11\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__12\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__13\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__14\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__15\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__16\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__17\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__18\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__19\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__2\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__20\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__21\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__22\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__23\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__24\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__25\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__26\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__27\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__28\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__29\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__30\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__31\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__32\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__33\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__34\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__35\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__36\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__37\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__38\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__39\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__4\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__40\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__41\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__42\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__43\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__44\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__45\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of rx_data_r6_reg_gate : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__10\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__11\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__12\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__13\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__14\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__15\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__16\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__17\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__18\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__19\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__2\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__20\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__21\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__22\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__23\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__24\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__25\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__26\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__27\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__28\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__29\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__3\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__30\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__31\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__32\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__33\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__34\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__35\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__36\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__37\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__38\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__39\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__4\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__40\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__41\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__42\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__43\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__44\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__45\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__46\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__47\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__48\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__49\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__5\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__50\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__51\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__52\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__53\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__54\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__55\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__56\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__57\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__58\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__59\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__6\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__60\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__61\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__7\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__8\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__9\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \rx_data_ram_r[19]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__47\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__48\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__49\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__5\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__50\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__51\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__52\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__53\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__54\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__55\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__56\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__57\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__58\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__59\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__6\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__60\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__61\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__62\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__7\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__8\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \rx_data_r6_reg_gate__9\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[16]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[18]_i_1\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \rx_data_ram_r[20]_i_1\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \rx_data_ram_r[21]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \rx_data_ram_r[22]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \rx_data_ram_r[64]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \rx_data_ram_r[72]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[29]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[30]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[31]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[49]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[59]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[64]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[65]_i_1\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[66]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[67]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[69]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[71]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[75]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[76]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[77]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[78]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \rx_data_ram_r[79]_i_1\ : label is "soft_lutpair12";
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of system_reset_r2_reg : label is std.standard.true;
   attribute KEEP : string;
   attribute KEEP of system_reset_r2_reg : label is "yes";
   attribute ASYNC_REG_boolean of system_reset_r_reg : label is std.standard.true;
   attribute KEEP of system_reset_r_reg : label is "yes";
-  attribute SOFT_HLUTNM of track_data_r_i_1 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of track_data_r_i_1 : label is "soft_lutpair9";
 begin
   ERROR_COUNT_OUT(7 downto 0) <= \^error_count_out\(7 downto 0);
   TRACK_DATA_OUT <= \^track_data_out\;
@@ -814,40 +845,43 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       S(1) => \error_detected_c0_carry__0_i_3_n_0\,
       S(0) => \error_detected_c0_carry__0_i_4_n_0\
     );
-\error_detected_c0_carry__0_i_1\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__0_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"09000009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(21),
-      I1 => bram_data_r(61),
-      I2 => rx_data_r_track(23),
-      I3 => bram_data_r(62),
-      I4 => rx_data_r_track(22),
+      I1 => bram_data_r(53),
+      I2 => bram_data_r(55),
+      I3 => rx_data_r_track(23),
+      I4 => bram_data_r(62),
+      I5 => rx_data_r_track(22),
       O => \error_detected_c0_carry__0_i_1_n_0\
     );
-\error_detected_c0_carry__0_i_2\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__0_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00009009"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => bram_data_r(60),
-      I1 => rx_data_r_track(20),
-      I2 => bram_data_r(59),
-      I3 => rx_data_r_track(19),
-      I4 => rx_data_r_track(18),
+      I0 => rx_data_r_track(18),
+      I1 => bram_data_r(55),
+      I2 => bram_data_r(60),
+      I3 => rx_data_r_track(20),
+      I4 => bram_data_r(51),
+      I5 => rx_data_r_track(19),
       O => \error_detected_c0_carry__0_i_2_n_0\
     );
-\error_detected_c0_carry__0_i_3\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__0_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00009009"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => bram_data_r(56),
-      I1 => rx_data_r_track(17),
-      I2 => bram_data_r(48),
-      I3 => rx_data_r_track(16),
-      I4 => rx_data_r_track(15),
+      I0 => rx_data_r_track(15),
+      I1 => bram_data_r(15),
+      I2 => bram_data_r(49),
+      I3 => rx_data_r_track(17),
+      I4 => bram_data_r(48),
+      I5 => rx_data_r_track(16),
       O => \error_detected_c0_carry__0_i_3_n_0\
     );
 \error_detected_c0_carry__0_i_4\: unisim.vcomponents.LUT6
@@ -857,9 +891,9 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
         port map (
       I0 => rx_data_r_track(12),
       I1 => bram_data_r(60),
-      I2 => bram_data_r(62),
+      I2 => bram_data_r(14),
       I3 => rx_data_r_track(14),
-      I4 => bram_data_r(61),
+      I4 => bram_data_r(13),
       I5 => rx_data_r_track(13),
       O => \error_detected_c0_carry__0_i_4_n_0\
     );
@@ -884,23 +918,24 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => rx_data_r_track(33),
-      I1 => bram_data_r(48),
-      I2 => bram_data_r(59),
+      I1 => bram_data_r(33),
+      I2 => bram_data_r(51),
       I3 => rx_data_r_track(35),
-      I4 => bram_data_r(56),
+      I4 => bram_data_r(49),
       I5 => rx_data_r_track(34),
       O => \error_detected_c0_carry__1_i_1_n_0\
     );
-\error_detected_c0_carry__1_i_2\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__1_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"09000009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(30),
       I1 => bram_data_r(62),
-      I2 => rx_data_r_track(31),
-      I3 => bram_data_r(48),
-      I4 => rx_data_r_track(32),
+      I2 => bram_data_r(48),
+      I3 => rx_data_r_track(32),
+      I4 => bram_data_r(63),
+      I5 => rx_data_r_track(31),
       O => \error_detected_c0_carry__1_i_2_n_0\
     );
 \error_detected_c0_carry__1_i_3\: unisim.vcomponents.LUT6
@@ -909,22 +944,24 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => rx_data_r_track(27),
-      I1 => bram_data_r(59),
-      I2 => bram_data_r(61),
+      I1 => bram_data_r(43),
+      I2 => bram_data_r(53),
       I3 => rx_data_r_track(29),
       I4 => bram_data_r(60),
       I5 => rx_data_r_track(28),
       O => \error_detected_c0_carry__1_i_3_n_0\
     );
-\error_detected_c0_carry__1_i_4\: unisim.vcomponents.LUT4
+\error_detected_c0_carry__1_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0900"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(24),
       I1 => bram_data_r(56),
-      I2 => rx_data_r_track(26),
-      I3 => rx_data_r_track(25),
+      I2 => bram_data_r(63),
+      I3 => rx_data_r_track(26),
+      I4 => bram_data_r(58),
+      I5 => rx_data_r_track(25),
       O => \error_detected_c0_carry__1_i_4_n_0\
     );
 \error_detected_c0_carry__2\: unisim.vcomponents.CARRY4
@@ -942,39 +979,43 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       S(1) => \error_detected_c0_carry__2_i_3_n_0\,
       S(0) => \error_detected_c0_carry__2_i_4_n_0\
     );
-\error_detected_c0_carry__2_i_1\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__2_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"09000009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(45),
-      I1 => bram_data_r(61),
-      I2 => rx_data_r_track(47),
-      I3 => bram_data_r(62),
-      I4 => rx_data_r_track(46),
+      I1 => bram_data_r(53),
+      I2 => bram_data_r(63),
+      I3 => rx_data_r_track(47),
+      I4 => bram_data_r(62),
+      I5 => rx_data_r_track(46),
       O => \error_detected_c0_carry__2_i_1_n_0\
     );
-\error_detected_c0_carry__2_i_2\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__2_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"82000082"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(42),
-      I1 => bram_data_r(60),
-      I2 => rx_data_r_track(44),
-      I3 => bram_data_r(59),
-      I4 => rx_data_r_track(43),
+      I1 => bram_data_r(58),
+      I2 => bram_data_r(60),
+      I3 => rx_data_r_track(44),
+      I4 => bram_data_r(43),
+      I5 => rx_data_r_track(43),
       O => \error_detected_c0_carry__2_i_2_n_0\
     );
-\error_detected_c0_carry__2_i_3\: unisim.vcomponents.LUT4
+\error_detected_c0_carry__2_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0041"
+      INIT => X"9009000000009009"
     )
         port map (
-      I0 => rx_data_r_track(41),
-      I1 => bram_data_r(56),
-      I2 => rx_data_r_track(40),
-      I3 => rx_data_r_track(39),
+      I0 => rx_data_r_track(39),
+      I1 => bram_data_r(55),
+      I2 => bram_data_r(63),
+      I3 => rx_data_r_track(41),
+      I4 => bram_data_r(56),
+      I5 => rx_data_r_track(40),
       O => \error_detected_c0_carry__2_i_3_n_0\
     );
 \error_detected_c0_carry__2_i_4\: unisim.vcomponents.LUT6
@@ -986,7 +1027,7 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       I1 => bram_data_r(60),
       I2 => bram_data_r(62),
       I3 => rx_data_r_track(38),
-      I4 => bram_data_r(61),
+      I4 => bram_data_r(53),
       I5 => rx_data_r_track(37),
       O => \error_detected_c0_carry__2_i_4_n_0\
     );
@@ -1005,27 +1046,29 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       S(1) => \error_detected_c0_carry__3_i_3_n_0\,
       S(0) => \error_detected_c0_carry__3_i_4_n_0\
     );
-\error_detected_c0_carry__3_i_1\: unisim.vcomponents.LUT4
+\error_detected_c0_carry__3_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8200"
+      INIT => X"82000041"
     )
         port map (
       I0 => rx_data_r_track(57),
       I1 => bram_data_r(59),
       I2 => rx_data_r_track(59),
-      I3 => rx_data_r_track(58),
+      I3 => bram_data_r(58),
+      I4 => rx_data_r_track(58),
       O => \error_detected_c0_carry__3_i_1_n_0\
     );
-\error_detected_c0_carry__3_i_2\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__3_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"09000009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(54),
       I1 => bram_data_r(62),
-      I2 => rx_data_r_track(55),
-      I3 => bram_data_r(56),
-      I4 => rx_data_r_track(56),
+      I2 => bram_data_r(56),
+      I3 => rx_data_r_track(56),
+      I4 => bram_data_r(55),
+      I5 => rx_data_r_track(55),
       O => \error_detected_c0_carry__3_i_2_n_0\
     );
 \error_detected_c0_carry__3_i_3\: unisim.vcomponents.LUT6
@@ -1034,23 +1077,24 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => rx_data_r_track(51),
-      I1 => bram_data_r(59),
-      I2 => bram_data_r(61),
+      I1 => bram_data_r(51),
+      I2 => bram_data_r(53),
       I3 => rx_data_r_track(53),
       I4 => bram_data_r(60),
       I5 => rx_data_r_track(52),
       O => \error_detected_c0_carry__3_i_3_n_0\
     );
-\error_detected_c0_carry__3_i_4\: unisim.vcomponents.LUT5
+\error_detected_c0_carry__3_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"90000090"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(48),
       I1 => bram_data_r(48),
-      I2 => rx_data_r_track(50),
-      I3 => bram_data_r(56),
-      I4 => rx_data_r_track(49),
+      I2 => bram_data_r(50),
+      I3 => rx_data_r_track(50),
+      I4 => bram_data_r(49),
+      I5 => rx_data_r_track(49),
       O => \error_detected_c0_carry__3_i_4_n_0\
     );
 \error_detected_c0_carry__4\: unisim.vcomponents.CARRY4
@@ -1063,10 +1107,19 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       DI(3 downto 0) => B"0011",
       O(3 downto 0) => \NLW_error_detected_c0_carry__4_O_UNCONNECTED\(3 downto 0),
       S(3 downto 2) => B"00",
-      S(1) => \rx_data_r_track_reg[63]_inv_n_0\,
-      S(0) => \error_detected_c0_carry__4_i_1_n_0\
+      S(1) => \error_detected_c0_carry__4_i_1_n_0\,
+      S(0) => \error_detected_c0_carry__4_i_2_n_0\
     );
-\error_detected_c0_carry__4_i_1\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__4_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"9"
+    )
+        port map (
+      I0 => bram_data_r(63),
+      I1 => rx_data_r_track(63),
+      O => \error_detected_c0_carry__4_i_1_n_0\
+    );
+\error_detected_c0_carry__4_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -1077,29 +1130,31 @@ error_detected_c0_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(62),
       I4 => bram_data_r(61),
       I5 => rx_data_r_track(61),
-      O => \error_detected_c0_carry__4_i_1_n_0\
+      O => \error_detected_c0_carry__4_i_2_n_0\
     );
-error_detected_c0_carry_i_1: unisim.vcomponents.LUT4
+error_detected_c0_carry_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0041"
+      INIT => X"82000041"
     )
         port map (
-      I0 => rx_data_r_track(10),
-      I1 => bram_data_r(59),
+      I0 => rx_data_r_track(9),
+      I1 => bram_data_r(43),
       I2 => rx_data_r_track(11),
-      I3 => rx_data_r_track(9),
+      I3 => bram_data_r(63),
+      I4 => rx_data_r_track(10),
       O => error_detected_c0_carry_i_1_n_0
     );
-error_detected_c0_carry_i_2: unisim.vcomponents.LUT5
+error_detected_c0_carry_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"09000009"
+      INIT => X"9009000000009009"
     )
         port map (
       I0 => rx_data_r_track(6),
-      I1 => bram_data_r(6),
-      I2 => rx_data_r_track(7),
-      I3 => bram_data_r(56),
-      I4 => rx_data_r_track(8),
+      I1 => bram_data_r(62),
+      I2 => bram_data_r(56),
+      I3 => rx_data_r_track(8),
+      I4 => bram_data_r(55),
+      I5 => rx_data_r_track(7),
       O => error_detected_c0_carry_i_2_n_0
     );
 error_detected_c0_carry_i_3: unisim.vcomponents.LUT6
@@ -1115,15 +1170,16 @@ error_detected_c0_carry_i_3: unisim.vcomponents.LUT6
       I5 => rx_data_r_track(4),
       O => error_detected_c0_carry_i_3_n_0
     );
-error_detected_c0_carry_i_4: unisim.vcomponents.LUT4
+error_detected_c0_carry_i_4: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8001"
+      INIT => X"90000009"
     )
         port map (
       I0 => rx_data_r_track(0),
-      I1 => bram_data_r(2),
-      I2 => rx_data_r_track(2),
-      I3 => rx_data_r_track(1),
+      I1 => bram_data_r(0),
+      I2 => bram_data_r(2),
+      I3 => rx_data_r_track(2),
+      I4 => rx_data_r_track(1),
       O => error_detected_c0_carry_i_4_n_0
     );
 error_detected_r_i_1: unisim.vcomponents.LUT3
@@ -3514,7 +3570,7 @@ rx_data_r5_reg_r: unisim.vcomponents.FDRE
     );
 rx_data_r6_reg_gate: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"7"
+      INIT => X"8"
     )
         port map (
       I0 => \rx_data_r6_reg[63]_inst_rx_data_r6_reg_r_n_0\,
@@ -5080,13 +5136,13 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
       Q => rx_data_r_track(62),
       R => system_reset_r2
     );
-\rx_data_r_track_reg[63]_inv\: unisim.vcomponents.FDSE
+\rx_data_r_track_reg[63]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
       D => rx_data_r6_reg_gate_n_0,
-      Q => \rx_data_r_track_reg[63]_inv_n_0\,
-      S => system_reset_r2
+      Q => rx_data_r_track(63),
+      R => system_reset_r2
     );
 \rx_data_r_track_reg[6]\: unisim.vcomponents.FDRE
      port map (
@@ -5120,81 +5176,243 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
       Q => rx_data_r_track(9),
       R => system_reset_r2
     );
-\rx_data_ram_r[18]_i_1\: unisim.vcomponents.LUT3
+\rx_data_ram_r[16]_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"FE"
+      INIT => X"E"
+    )
+        port map (
+      I0 => read_counter_i(1),
+      I1 => read_counter_i(2),
+      O => \rx_data_ram_r[16]_i_1_n_0\
+    );
+\rx_data_ram_r[18]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFAE"
     )
         port map (
       I0 => read_counter_i(2),
       I1 => read_counter_i(3),
-      I2 => read_counter_i(1),
+      I2 => read_counter_i(0),
+      I3 => read_counter_i(1),
       O => \rx_data_ram_r[18]_i_1_n_0\
-    );
-\rx_data_ram_r[19]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"00FE"
-    )
-        port map (
-      I0 => read_counter_i(1),
-      I1 => read_counter_i(3),
-      I2 => read_counter_i(2),
-      I3 => read_counter_i(0),
-      O => \rx_data_ram_r[19]_i_1_n_0\
     );
 \rx_data_ram_r[20]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"AA54"
+      INIT => X"CCB2"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(1),
+      I2 => read_counter_i(2),
+      I3 => read_counter_i(0),
+      O => \rx_data_ram_r[20]_i_1_n_0\
+    );
+\rx_data_ram_r[21]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EE10"
+    )
+        port map (
+      I0 => read_counter_i(1),
+      I1 => read_counter_i(0),
+      I2 => read_counter_i(3),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[21]_i_1_n_0\
+    );
+\rx_data_ram_r[29]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"06"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(1),
+      I2 => read_counter_i(0),
+      O => \rx_data_ram_r[29]_i_1_n_0\
+    );
+\rx_data_ram_r[30]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"AA8E"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(1),
+      I2 => read_counter_i(0),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[30]_i_1_n_0\
+    );
+\rx_data_ram_r[31]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4004"
+    )
+        port map (
+      I0 => read_counter_i(0),
+      I1 => read_counter_i(1),
+      I2 => read_counter_i(3),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[31]_i_1_n_0\
+    );
+\rx_data_ram_r[49]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFF6"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(0),
+      I2 => read_counter_i(1),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[49]_i_1_n_0\
+    );
+\rx_data_ram_r[59]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EA9A"
     )
         port map (
       I0 => read_counter_i(0),
       I1 => read_counter_i(2),
       I2 => read_counter_i(3),
       I3 => read_counter_i(1),
-      O => \rx_data_ram_r[20]_i_1_n_0\
+      O => \rx_data_ram_r[59]_i_1_n_0\
     );
-\rx_data_ram_r[21]_i_1\: unisim.vcomponents.LUT4
+\rx_data_ram_r[64]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FC02"
+      INIT => X"FFF4"
     )
         port map (
       I0 => read_counter_i(3),
       I1 => read_counter_i(0),
-      I2 => read_counter_i(1),
-      I3 => read_counter_i(2),
-      O => \rx_data_ram_r[21]_i_1_n_0\
+      I2 => read_counter_i(2),
+      I3 => read_counter_i(1),
+      O => \rx_data_ram_r[64]_i_1_n_0\
     );
-\rx_data_ram_r[22]_i_1\: unisim.vcomponents.LUT4
+\rx_data_ram_r[65]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"AAA8"
-    )
-        port map (
-      I0 => read_counter_i(3),
-      I1 => read_counter_i(1),
-      I2 => read_counter_i(0),
-      I3 => read_counter_i(2),
-      O => \rx_data_ram_r[22]_i_1_n_0\
-    );
-\rx_data_ram_r[64]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
+      INIT => X"91"
     )
         port map (
       I0 => read_counter_i(2),
       I1 => read_counter_i(1),
-      I2 => read_counter_i(0),
-      I3 => read_counter_i(3),
-      O => \rx_data_ram_r[64]_i_1_n_0\
+      I2 => read_counter_i(3),
+      O => \rx_data_ram_r[65]_i_1_n_0\
     );
-\rx_data_ram_r[72]_i_1\: unisim.vcomponents.LUT4
+\rx_data_ram_r[66]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0001"
+      INIT => X"F7"
     )
         port map (
       I0 => read_counter_i(3),
       I1 => read_counter_i(0),
       I2 => read_counter_i(1),
-      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[66]_i_1_n_0\
+    );
+\rx_data_ram_r[67]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FB80"
+    )
+        port map (
+      I0 => read_counter_i(2),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(1),
+      I3 => read_counter_i(0),
+      O => \rx_data_ram_r[67]_i_1_n_0\
+    );
+\rx_data_ram_r[69]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"04"
+    )
+        port map (
+      I0 => read_counter_i(0),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(1),
+      O => \rx_data_ram_r[69]_i_1_n_0\
+    );
+\rx_data_ram_r[71]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4004"
+    )
+        port map (
+      I0 => read_counter_i(0),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(2),
+      I3 => read_counter_i(1),
+      O => \rx_data_ram_r[71]_i_1_n_0\
+    );
+\rx_data_ram_r[72]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"81"
+    )
+        port map (
+      I0 => read_counter_i(1),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(2),
       O => \rx_data_ram_r[72]_i_1_n_0\
+    );
+\rx_data_ram_r[74]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"B"
+    )
+        port map (
+      I0 => read_counter_i(1),
+      I1 => read_counter_i(3),
+      O => \rx_data_ram_r[74]_i_1_n_0\
+    );
+\rx_data_ram_r[75]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"EAAE"
+    )
+        port map (
+      I0 => read_counter_i(0),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(1),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[75]_i_1_n_0\
+    );
+\rx_data_ram_r[76]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF04"
+    )
+        port map (
+      I0 => read_counter_i(2),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(0),
+      I3 => read_counter_i(1),
+      O => \rx_data_ram_r[76]_i_1_n_0\
+    );
+\rx_data_ram_r[77]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(1),
+      O => \rx_data_ram_r[77]_i_1_n_0\
+    );
+\rx_data_ram_r[78]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"AA8A"
+    )
+        port map (
+      I0 => read_counter_i(3),
+      I1 => read_counter_i(1),
+      I2 => read_counter_i(0),
+      I3 => read_counter_i(2),
+      O => \rx_data_ram_r[78]_i_1_n_0\
+    );
+\rx_data_ram_r[79]_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"80"
+    )
+        port map (
+      I0 => read_counter_i(2),
+      I1 => read_counter_i(3),
+      I2 => read_counter_i(1),
+      O => \rx_data_ram_r[79]_i_1_n_0\
+    );
+\rx_data_ram_r_reg[16]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[16]_i_1_n_0\,
+      Q => bram_data_r(0),
+      R => '0'
     );
 \rx_data_ram_r_reg[18]\: unisim.vcomponents.FDRE
      port map (
@@ -5208,9 +5426,9 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \rx_data_ram_r[19]_i_1_n_0\,
+      D => \rx_data_ram_r[16]_i_1_n_0\,
       Q => bram_data_r(3),
-      R => '0'
+      R => read_counter_i(0)
     );
 \rx_data_ram_r_reg[20]\: unisim.vcomponents.FDRE
      port map (
@@ -5228,12 +5446,44 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
       Q => bram_data_r(5),
       R => '0'
     );
-\rx_data_ram_r_reg[22]\: unisim.vcomponents.FDRE
+\rx_data_ram_r_reg[29]\: unisim.vcomponents.FDSE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \rx_data_ram_r[22]_i_1_n_0\,
-      Q => bram_data_r(6),
+      D => \rx_data_ram_r[29]_i_1_n_0\,
+      Q => bram_data_r(13),
+      S => read_counter_i(2)
+    );
+\rx_data_ram_r_reg[30]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[30]_i_1_n_0\,
+      Q => bram_data_r(14),
+      R => '0'
+    );
+\rx_data_ram_r_reg[31]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[31]_i_1_n_0\,
+      Q => bram_data_r(15),
+      R => '0'
+    );
+\rx_data_ram_r_reg[49]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[49]_i_1_n_0\,
+      Q => bram_data_r(33),
+      R => '0'
+    );
+\rx_data_ram_r_reg[59]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[59]_i_1_n_0\,
+      Q => bram_data_r(43),
       R => '0'
     );
 \rx_data_ram_r_reg[64]\: unisim.vcomponents.FDRE
@@ -5244,19 +5494,67 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
       Q => bram_data_r(48),
       R => '0'
     );
+\rx_data_ram_r_reg[65]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[65]_i_1_n_0\,
+      Q => bram_data_r(49),
+      R => read_counter_i(0)
+    );
+\rx_data_ram_r_reg[66]\: unisim.vcomponents.FDSE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[66]_i_1_n_0\,
+      Q => bram_data_r(50),
+      S => read_counter_i(2)
+    );
+\rx_data_ram_r_reg[67]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[67]_i_1_n_0\,
+      Q => bram_data_r(51),
+      R => '0'
+    );
+\rx_data_ram_r_reg[69]\: unisim.vcomponents.FDSE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[69]_i_1_n_0\,
+      Q => bram_data_r(53),
+      S => read_counter_i(2)
+    );
+\rx_data_ram_r_reg[71]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[71]_i_1_n_0\,
+      Q => bram_data_r(55),
+      R => '0'
+    );
 \rx_data_ram_r_reg[72]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
       D => \rx_data_ram_r[72]_i_1_n_0\,
       Q => bram_data_r(56),
-      R => '0'
+      R => read_counter_i(0)
+    );
+\rx_data_ram_r_reg[74]\: unisim.vcomponents.FDSE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[74]_i_1_n_0\,
+      Q => bram_data_r(58),
+      S => read_counter_i(2)
     );
 \rx_data_ram_r_reg[75]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => read_counter_i(0),
+      D => \rx_data_ram_r[75]_i_1_n_0\,
       Q => bram_data_r(59),
       R => '0'
     );
@@ -5264,25 +5562,33 @@ rx_data_r6_reg_r: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => read_counter_i(1),
+      D => \rx_data_ram_r[76]_i_1_n_0\,
       Q => bram_data_r(60),
       R => '0'
     );
-\rx_data_ram_r_reg[77]\: unisim.vcomponents.FDRE
+\rx_data_ram_r_reg[77]\: unisim.vcomponents.FDSE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => read_counter_i(2),
+      D => \rx_data_ram_r[77]_i_1_n_0\,
       Q => bram_data_r(61),
-      R => '0'
+      S => read_counter_i(2)
     );
 \rx_data_ram_r_reg[78]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => read_counter_i(3),
+      D => \rx_data_ram_r[78]_i_1_n_0\,
       Q => bram_data_r(62),
       R => '0'
+    );
+\rx_data_ram_r_reg[79]\: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => \rx_data_ram_r[79]_i_1_n_0\,
+      Q => bram_data_r(63),
+      R => read_counter_i(0)
     );
 start_of_packet_detected_r_i_11: unisim.vcomponents.LUT3
     generic map(

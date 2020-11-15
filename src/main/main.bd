@@ -186,13 +186,15 @@
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE9_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE7_WIDTH">2</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE6_WIDTH">80</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">8</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">9</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">10</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -210,7 +212,10 @@
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_1_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">64</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">64</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">5</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -446,9 +451,10 @@
         <spirit:internalPortReference spirit:componentRef="clk_wiz_0" spirit:portRef="clk_in1_p"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT</spirit:name>
+        <spirit:name>UNSCRAMBLED_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gtwizard_0_DESCRAMBL_0" spirit:portRef="UNSCRAMBLED_DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="gt_frame_check_0" spirit:portRef="RX_DATA_IN"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe9"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_RESET_DONE_ILA</spirit:name>
@@ -494,11 +500,13 @@
         <spirit:name>encode_64B_67B_0_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B_0" spirit:portRef="DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_DATA"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe4"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT</spirit:name>
+        <spirit:name>SCRAMBLED_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gtwizard_0_SCRAMBLER_0" spirit:portRef="SCRAMBLED_DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B_0" spirit:portRef="DATA_IN"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe2"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DECODER_PASSTHROUGH</spirit:name>
@@ -534,6 +542,7 @@
         <spirit:name>gt_frame_gen_0_TX_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_frame_gen_0" spirit:portRef="TX_DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="gtwizard_0_SCRAMBLER_0" spirit:portRef="UNSCRAMBLED_DATA_IN"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe3"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_frame_gen_0_TX_HEADER_OUT</spirit:name>

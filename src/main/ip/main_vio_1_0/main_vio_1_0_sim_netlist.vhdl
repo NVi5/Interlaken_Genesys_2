@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 15 20:40:12 2020
+-- Date        : Sun Nov 15 20:40:10 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_vio_1_0/main_vio_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top main_vio_1_0 -prefix
+--               main_vio_1_0_ main_vio_1_0_sim_netlist.vhdl
 -- Design      : main_vio_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -33,8 +33,6 @@ entity main_vio_1_0_vio_v3_0_19_decoder is
     Q : in STD_LOGIC_VECTOR ( 15 downto 0 );
     Probe_out_reg : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_vio_1_0_vio_v3_0_19_decoder : entity is "vio_v3_0_19_decoder";
 end main_vio_1_0_vio_v3_0_19_decoder;
 
 architecture STRUCTURE of main_vio_1_0_vio_v3_0_19_decoder is
@@ -797,8 +795,6 @@ entity main_vio_1_0_vio_v3_0_19_probe_out_one is
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     \G_PROBE_OUT[0].wr_probe_out_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_vio_1_0_vio_v3_0_19_probe_out_one : entity is "vio_v3_0_19_probe_out_one";
 end main_vio_1_0_vio_v3_0_19_probe_out_one;
 
 architecture STRUCTURE of main_vio_1_0_vio_v3_0_19_probe_out_one is
@@ -992,8 +988,6 @@ entity main_vio_1_0_xsdbs_v1_0_2_xsdbs is
   attribute C_XDEVICEFAMILY of main_vio_1_0_xsdbs_v1_0_2_xsdbs : entity is "kintex7";
   attribute C_XSDB_SLAVE_TYPE : integer;
   attribute C_XSDB_SLAVE_TYPE of main_vio_1_0_xsdbs_v1_0_2_xsdbs : entity is 33;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_vio_1_0_xsdbs_v1_0_2_xsdbs : entity is "xsdbs_v1_0_2_xsdbs";
   attribute dont_touch : string;
   attribute dont_touch of main_vio_1_0_xsdbs_v1_0_2_xsdbs : entity is "true";
 end main_vio_1_0_xsdbs_v1_0_2_xsdbs;
@@ -3963,8 +3957,6 @@ entity main_vio_1_0_vio_v3_0_19_probe_out_all is
     \G_PROBE_OUT[2].wr_probe_out[2]_i_5\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_vio_1_0_vio_v3_0_19_probe_out_all : entity is "vio_v3_0_19_probe_out_all";
 end main_vio_1_0_vio_v3_0_19_probe_out_all;
 
 architecture STRUCTURE of main_vio_1_0_vio_v3_0_19_probe_out_all is
@@ -7278,8 +7270,6 @@ entity main_vio_1_0_vio_v3_0_19_vio is
   attribute LC_TOTAL_PROBE_IN_WIDTH of main_vio_1_0_vio_v3_0_19_vio : entity is 0;
   attribute LC_TOTAL_PROBE_OUT_WIDTH : integer;
   attribute LC_TOTAL_PROBE_OUT_WIDTH of main_vio_1_0_vio_v3_0_19_vio : entity is 3;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_vio_1_0_vio_v3_0_19_vio : entity is "vio_v3_0_19_vio";
   attribute dont_touch : string;
   attribute dont_touch of main_vio_1_0_vio_v3_0_19_vio : entity is "true";
 end main_vio_1_0_vio_v3_0_19_vio;

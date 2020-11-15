@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="154272627000fs"></ZoomStartTime>
-      <ZoomEndTime time="166922627001fs"></ZoomEndTime>
-      <Cursor1Time time="105772627000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="12382477343fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="158"></ValueColumnWidth>
+      <ValueColumnWidth column_width="154"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="41" />
+   <WVObjectSize size="39" />
    <wvobject fp_name="/gtwizard_0_TB/tx_refclk_n_r" type="logic">
       <obj_property name="ElementShortName">tx_refclk_n_r</obj_property>
       <obj_property name="ObjectShortName">tx_refclk_n_r</obj_property>
@@ -139,18 +139,6 @@
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/rx_data_common" type="array">
       <obj_property name="ElementShortName">rx_data_common[159:0]</obj_property>
       <obj_property name="ObjectShortName">rx_data_common[159:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_SCRAMBLER_0/PASSTHROUGH" type="logic">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">PASSTHROUGH</obj_property>
-      <obj_property name="ObjectShortName">PASSTHROUGH</obj_property>
-      <obj_property name="label">Scrambler_pass</obj_property>
-   </wvobject>
-   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/PASSTHROUGH" type="logic">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">PASSTHROUGH</obj_property>
-      <obj_property name="ObjectShortName">PASSTHROUGH</obj_property>
-      <obj_property name="label">Descrambler_pass</obj_property>
    </wvobject>
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_SCRAMBLER_0/SCRAMBLED_DATA_OUT" type="array">
       <obj_property name="ElementShortName">SCRAMBLED_DATA_OUT[63:0]</obj_property>
