@@ -56,7 +56,7 @@ probe_out2
 
 input clk;
 
-output reg [0 : 0] probe_out0 = 'h1 ;
+output reg [0 : 0] probe_out0 = 'h0 ;
 output reg [0 : 0] probe_out1 = 'h0 ;
 output reg [0 : 0] probe_out2 = 'h1 ;
 

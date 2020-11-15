@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 15 16:09:49 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 15 20:39:21 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -666,8 +666,8 @@
         </PORT>
         <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SCRAMBLED_DATA_IN"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SCRAMBLED_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_HEADER_OUT">
@@ -795,9 +795,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="gt_frame_gen_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="encode_64B_67B_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
@@ -808,9 +808,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="gt_frame_check_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_RESET_DONE_VIO" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">
@@ -851,9 +851,9 @@
         </PORT>
         <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="gt_frame_check_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_0_DATA_OUT">
@@ -863,9 +863,9 @@
         </PORT>
         <PORT DIR="O" NAME="TX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="gt_frame_gen_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="encode_64B_67B_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -942,6 +942,8 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="RX_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
+        <PARAMETER NAME="META_FRAME_LEN" VALUE="16"/>
         <PARAMETER NAME="Component_Name" VALUE="main_gtwizard_0_DESCRAMBL_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -956,17 +958,11 @@
             <CONNECTION INSTANCE="gt_frame_check_0" PORT="RX_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="TO_BE_DESCRAMBLED" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_LOCKED">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe8"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="SYNCHRONIZE" SIGIS="undef" SIGNAME="xlconstant_1_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="STATE_MISMATCH" SIGIS="undef"/>
         <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_HEADER_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="HEADER_OUT"/>
@@ -999,6 +995,7 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="TX_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="SYNC_WORD" VALUE="0x78f678f678f678f6"/>
         <PARAMETER NAME="Component_Name" VALUE="main_gtwizard_0_SCRAMBLER_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -1011,21 +1008,6 @@
         <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="TO_BE_SCRAMBLED" SIGIS="undef" SIGNAME="xlconstant_0_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYNCHRONIZATION" SIGIS="undef" SIGNAME="xlconstant_0_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SCRAMBLER_STATE" SIGIS="undef" SIGNAME="xlconstant_0_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_HEADER_OUT">
@@ -1076,7 +1058,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="8"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="9"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2018"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -4239,6 +4221,11 @@
         <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_HEADER_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="LOCKED"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -8758,7 +8745,7 @@
         <PARAMETER NAME="C_PROBE_OUT253_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT254_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT255_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT2_INIT_VAL" VALUE="0x1"/>
         <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x0"/>
@@ -9580,7 +9567,7 @@
         <PARAMETER NAME="C_PROBE_OUT253_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT254_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT255_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT2_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x0"/>
@@ -9853,43 +9840,6 @@
         <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="vio_2_probe_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="decode_64B_67B_0" PORT="PASSTHROUGH"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="CONST_VAL" VALUE="0x0"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_xlconstant_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="TO_BE_SCRAMBLED"/>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SYNCHRONIZATION"/>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SCRAMBLER_STATE"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/xlconstant_1" HWVERSION="1.1" INSTANCE="xlconstant_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="CONST_VAL" VALUE="0x0"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_xlconstant_1_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="TO_BE_DESCRAMBLED"/>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYNCHRONIZE"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

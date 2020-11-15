@@ -265,6 +265,7 @@ proc create_root_design { parentCell } {
      return 1
    }
     set_property -dict [ list \
+   CONFIG.SYNC_WORD {0x78f678f678f678f6} \
    CONFIG.TX_DATA_WIDTH {64} \
  ] $gtwizard_0_SCRAMBLER_0
 
@@ -273,7 +274,7 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {8} \
+   CONFIG.C_NUM_OF_PROBES {9} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {8} \
@@ -302,7 +303,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
    CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {3} \
-   CONFIG.C_PROBE_OUT0_INIT_VAL {0x1} \
+   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT2_INIT_VAL {0x1} \
  ] $vio_1
@@ -313,24 +314,13 @@ proc create_root_design { parentCell } {
    CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
    CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {2} \
-   CONFIG.C_PROBE_OUT0_INIT_VAL {0x1} \
+   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
  ] $vio_2
 
-  # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {0} \
- ] $xlconstant_0
-
-  # Create instance: xlconstant_1, and set properties
-  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {0} \
- ] $xlconstant_1
-
   # Create port connections
   connect_bd_net -net DECODER_PASSTHROUGH [get_bd_pins decode_64B_67B_0/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
+  connect_bd_net -net DESCRAMBL_LOCKED [get_bd_pins gtwizard_0_DESCRAMBL_0/LOCKED] [get_bd_pins ila_0/probe8]
   connect_bd_net -net DRP_CLK_IN [get_bd_pins clk_wiz_0/DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
   connect_bd_net -net DRP_CLK_IN_N_1 [get_bd_ports DRP_CLK_IN_N] [get_bd_pins clk_wiz_0/clk_in1_n]
   connect_bd_net -net DRP_CLK_IN_P_1 [get_bd_ports DRP_CLK_IN_P] [get_bd_pins clk_wiz_0/clk_in1_p]
@@ -369,8 +359,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT [get_bd_pins gt_frame_check_0/RX_DATA_IN] [get_bd_pins gtwizard_0_DESCRAMBL_0/UNSCRAMBLED_DATA_OUT]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_HEADER_OUT [get_bd_pins encode_64B_67B_0/HEADER_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_OUT]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLED_DATA_OUT]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLER_STATE] [get_bd_pins gtwizard_0_SCRAMBLER_0/SYNCHRONIZATION] [get_bd_pins gtwizard_0_SCRAMBLER_0/TO_BE_SCRAMBLED] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins gtwizard_0_DESCRAMBL_0/SYNCHRONIZE] [get_bd_pins gtwizard_0_DESCRAMBL_0/TO_BE_DESCRAMBLED] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
 

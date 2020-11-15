@@ -68,15 +68,13 @@
 
 module gtwizard_0_SCRAMBLER #
 (
-    parameter TX_DATA_WIDTH = 64
+    parameter TX_DATA_WIDTH = 64,
+    parameter SYNC_WORD     = 64'h78f678f678f678f6
 )
 (
     // User Interface
     input  wire  [(TX_DATA_WIDTH-1):0]  UNSCRAMBLED_DATA_IN,
     output reg   [(TX_DATA_WIDTH-1):0]  SCRAMBLED_DATA_OUT,
-    input  wire                         TO_BE_SCRAMBLED,
-    input  wire                         SYNCHRONIZATION,
-    input  wire                         SCRAMBLER_STATE,
 
     input  wire  [1:0]                  HEADER_IN,
     output reg   [1:0]                  HEADER_OUT,
@@ -88,7 +86,11 @@ module gtwizard_0_SCRAMBLER #
 );
 
 
+
 //***************************Internal Register Declarations********************
+    localparam
+    STATE_IDLE   = 1'b0,
+    STATE_SYNC   = 1'b1;
 
     integer                        i;
     reg     [57:0]                 poly;
@@ -96,6 +98,7 @@ module gtwizard_0_SCRAMBLER #
     reg     [57:0]                 scrambler;
     reg     [(TX_DATA_WIDTH-1):0]  tempData;
     reg                            xorBit;
+    reg     [0:0]                  state;
 
 //*********************************Main Body of Code***************************
 
@@ -114,28 +117,26 @@ module gtwizard_0_SCRAMBLER #
 
     always @(posedge USER_CLK)
     begin
-        if (PASSTHROUGH)
+        if (PASSTHROUGH || SYSTEM_RESET)
         begin
             SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
             scrambler          <= `DLY  {58{1'b1}};
+            state              <= `DLY  STATE_IDLE;
         end
-        else if (SYSTEM_RESET)
+        else if(state == STATE_SYNC)
         begin
-            SCRAMBLED_DATA_OUT <= `DLY  'h0;
-            scrambler          <= `DLY  {58{1'b1}};
+            SCRAMBLED_DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
+            state              <= `DLY  STATE_IDLE;
         end
-        else if (TO_BE_SCRAMBLED)
+        else if(UNSCRAMBLED_DATA_IN == SYNC_WORD && HEADER_IN == 2'b10)
+        begin
+            SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
+            state              <= `DLY  STATE_SYNC;
+        end
+        else
         begin
             SCRAMBLED_DATA_OUT <= `DLY  tempData;
             scrambler          <= `DLY  poly;
-        end
-        else if(SYNCHRONIZATION)
-        begin
-            SCRAMBLED_DATA_OUT <= `DLY  64'h78f678f678f678f6;
-        end
-        else if(SCRAMBLER_STATE)
-        begin
-            SCRAMBLED_DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
         end
     end
 

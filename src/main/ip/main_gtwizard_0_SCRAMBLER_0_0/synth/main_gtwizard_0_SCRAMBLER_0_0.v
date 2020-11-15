@@ -52,15 +52,12 @@
 
 (* X_CORE_INFO = "gtwizard_0_SCRAMBLER,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "main_gtwizard_0_SCRAMBLER_0_0,gtwizard_0_SCRAMBLER,{}" *)
-(* CORE_GENERATION_INFO = "main_gtwizard_0_SCRAMBLER_0_0,gtwizard_0_SCRAMBLER,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=gtwizard_0_SCRAMBLER,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,TX_DATA_WIDTH=64}" *)
+(* CORE_GENERATION_INFO = "main_gtwizard_0_SCRAMBLER_0_0,gtwizard_0_SCRAMBLER,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=gtwizard_0_SCRAMBLER,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,TX_DATA_WIDTH=64,SYNC_WORD=0x78f678f678f678f6}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_gtwizard_0_SCRAMBLER_0_0 (
   UNSCRAMBLED_DATA_IN,
   SCRAMBLED_DATA_OUT,
-  TO_BE_SCRAMBLED,
-  SYNCHRONIZATION,
-  SCRAMBLER_STATE,
   HEADER_IN,
   HEADER_OUT,
   USER_CLK,
@@ -70,9 +67,6 @@ module main_gtwizard_0_SCRAMBLER_0_0 (
 
 input wire [63 : 0] UNSCRAMBLED_DATA_IN;
 output wire [63 : 0] SCRAMBLED_DATA_OUT;
-input wire TO_BE_SCRAMBLED;
-input wire SYNCHRONIZATION;
-input wire SCRAMBLER_STATE;
 input wire [1 : 0] HEADER_IN;
 output wire [1 : 0] HEADER_OUT;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
@@ -84,13 +78,11 @@ input wire SYSTEM_RESET;
 input wire PASSTHROUGH;
 
   gtwizard_0_SCRAMBLER #(
-    .TX_DATA_WIDTH(64)
+    .TX_DATA_WIDTH(64),
+    .SYNC_WORD(64'H78f678f678f678f6)
   ) inst (
     .UNSCRAMBLED_DATA_IN(UNSCRAMBLED_DATA_IN),
     .SCRAMBLED_DATA_OUT(SCRAMBLED_DATA_OUT),
-    .TO_BE_SCRAMBLED(TO_BE_SCRAMBLED),
-    .SYNCHRONIZATION(SYNCHRONIZATION),
-    .SCRAMBLER_STATE(SCRAMBLER_STATE),
     .HEADER_IN(HEADER_IN),
     .HEADER_OUT(HEADER_OUT),
     .USER_CLK(USER_CLK),

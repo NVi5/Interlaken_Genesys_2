@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="247296401609fs"></ZoomStartTime>
-      <ZoomEndTime time="248544401610fs"></ZoomEndTime>
-      <Cursor1Time time="245432427000fs"></Cursor1Time>
+      <ZoomStartTime time="154272627000fs"></ZoomStartTime>
+      <ZoomEndTime time="166922627001fs"></ZoomEndTime>
+      <Cursor1Time time="105772627000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="178"></ValueColumnWidth>
+      <ValueColumnWidth column_width="158"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="30" />
+   <WVObjectSize size="41" />
    <wvobject fp_name="/gtwizard_0_TB/tx_refclk_n_r" type="logic">
       <obj_property name="ElementShortName">tx_refclk_n_r</obj_property>
       <obj_property name="ObjectShortName">tx_refclk_n_r</obj_property>
@@ -111,20 +111,18 @@
       <obj_property name="ObjectShortName">SOFT_RESET_VIO</obj_property>
    </wvobject>
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/candidate" type="array">
-      <obj_property name="ElementShortName">candidate[2:0]</obj_property>
-      <obj_property name="ObjectShortName">candidate[2:0]</obj_property>
+      <obj_property name="ElementShortName">candidate[6:0]</obj_property>
+      <obj_property name="ObjectShortName">candidate[6:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/good_sync_ctr" type="array">
       <obj_property name="ElementShortName">good_sync_ctr[6:0]</obj_property>
       <obj_property name="ObjectShortName">good_sync_ctr[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/error_sync_ctr" type="array">
       <obj_property name="ElementShortName">error_sync_ctr[4:0]</obj_property>
       <obj_property name="ObjectShortName">error_sync_ctr[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/LOCKED" type="logic">
-      <obj_property name="ElementShortName">LOCKED</obj_property>
-      <obj_property name="ObjectShortName">LOCKED</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gt_frame_check_0/inst/rx_data_r_track" type="array">
       <obj_property name="ElementShortName">rx_data_r_track[63:0]</obj_property>
@@ -138,16 +136,69 @@
       <obj_property name="ElementShortName">start_of_packet_detected_r</obj_property>
       <obj_property name="ObjectShortName">start_of_packet_detected_r</obj_property>
    </wvobject>
-   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/aligned_rx[65]" type="logic">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">[65]</obj_property>
-      <obj_property name="ObjectShortName">[65]</obj_property>
-      <obj_property name="label">aligned_65</obj_property>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/rx_data_common" type="array">
+      <obj_property name="ElementShortName">rx_data_common[159:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data_common[159:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/aligned_rx[64]" type="logic">
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_SCRAMBLER_0/PASSTHROUGH" type="logic">
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">[64]</obj_property>
-      <obj_property name="ObjectShortName">[64]</obj_property>
-      <obj_property name="label">aligned_64</obj_property>
+      <obj_property name="ElementShortName">PASSTHROUGH</obj_property>
+      <obj_property name="ObjectShortName">PASSTHROUGH</obj_property>
+      <obj_property name="label">Scrambler_pass</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/PASSTHROUGH" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">PASSTHROUGH</obj_property>
+      <obj_property name="ObjectShortName">PASSTHROUGH</obj_property>
+      <obj_property name="label">Descrambler_pass</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_SCRAMBLER_0/SCRAMBLED_DATA_OUT" type="array">
+      <obj_property name="ElementShortName">SCRAMBLED_DATA_OUT[63:0]</obj_property>
+      <obj_property name="ObjectShortName">SCRAMBLED_DATA_OUT[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_SCRAMBLER_0/inst/scrambler" type="array">
+      <obj_property name="ElementShortName">scrambler[57:0]</obj_property>
+      <obj_property name="ObjectShortName">scrambler[57:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/descrambler" type="array">
+      <obj_property name="ElementShortName">descrambler[57:0]</obj_property>
+      <obj_property name="ObjectShortName">descrambler[57:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/good_sync_ctr" type="array">
+      <obj_property name="ElementShortName">good_sync_ctr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">good_sync_ctr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/bad_sync_ctr" type="array">
+      <obj_property name="ElementShortName">bad_sync_ctr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">bad_sync_ctr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/mismatch_ctr" type="array">
+      <obj_property name="ElementShortName">mismatch_ctr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">mismatch_ctr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/frame_ctr" type="array">
+      <obj_property name="ElementShortName">frame_ctr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">frame_ctr[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/inst/state" type="array">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/SCRAMBLED_DATA_IN" type="array">
+      <obj_property name="ElementShortName">SCRAMBLED_DATA_IN[63:0]</obj_property>
+      <obj_property name="ObjectShortName">SCRAMBLED_DATA_IN[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/decode_64B_67B_0/inst/LOCKED" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">LOCKED</obj_property>
+      <obj_property name="ObjectShortName">LOCKED</obj_property>
+      <obj_property name="label">64_67_LOCKED</obj_property>
+   </wvobject>
+   <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/gtwizard_0_DESCRAMBL_0/LOCKED" type="logic">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">LOCKED</obj_property>
+      <obj_property name="ObjectShortName">LOCKED</obj_property>
+      <obj_property name="label">Descrambler_LOCKED</obj_property>
    </wvobject>
 </wave_config>

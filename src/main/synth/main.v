@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sun Nov 15 16:09:48 2020
+//Date        : Sun Nov 15 20:39:19 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=15,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=6,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DRP_CLK_IN_N,
     DRP_CLK_IN_P,
@@ -31,6 +31,7 @@ module main
   output TXP_OUT;
 
   wire [0:0]DECODER_PASSTHROUGH;
+  wire DESCRAMBL_LOCKED;
   wire DRP_CLK_IN;
   wire DRP_CLK_IN_N_1;
   wire DRP_CLK_IN_P_1;
@@ -69,8 +70,6 @@ module main
   wire [63:0]gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT;
   wire [1:0]gtwizard_0_SCRAMBLER_0_HEADER_OUT;
   wire [63:0]gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT;
-  wire [0:0]xlconstant_0_dout;
-  wire [0:0]xlconstant_1_dout;
 
   assign DRP_CLK_IN_N_1 = DRP_CLK_IN_N;
   assign DRP_CLK_IN_P_1 = DRP_CLK_IN_P;
@@ -137,11 +136,10 @@ module main
   main_gtwizard_0_DESCRAMBL_0_0 gtwizard_0_DESCRAMBL_0
        (.HEADER_IN(decode_64B_67B_0_HEADER_OUT),
         .HEADER_OUT(gtwizard_0_DESCRAMBL_0_HEADER_OUT),
+        .LOCKED(DESCRAMBL_LOCKED),
         .PASSTHROUGH(PASSTHROUGH_DESCRAMBLER),
         .SCRAMBLED_DATA_IN(decode_64B_67B_0_DATA_OUT),
-        .SYNCHRONIZE(xlconstant_1_dout),
         .SYSTEM_RESET(gt_core_0_RX_SYSTEM_RESET),
-        .TO_BE_DESCRAMBLED(xlconstant_1_dout),
         .UNSCRAMBLED_DATA_OUT(gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_gtwizard_0_SCRAMBLER_0_0 gtwizard_0_SCRAMBLER_0
@@ -149,10 +147,7 @@ module main
         .HEADER_OUT(gtwizard_0_SCRAMBLER_0_HEADER_OUT),
         .PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
         .SCRAMBLED_DATA_OUT(gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT),
-        .SCRAMBLER_STATE(xlconstant_0_dout),
-        .SYNCHRONIZATION(xlconstant_0_dout),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
-        .TO_BE_SCRAMBLED(xlconstant_0_dout),
         .UNSCRAMBLED_DATA_IN(gt_frame_gen_0_TX_DATA_OUT),
         .USER_CLK(Net1));
   main_ila_0_0 ila_0
@@ -164,7 +159,8 @@ module main
         .probe4(gt_core_0_RX_RESET_DONE_ILA),
         .probe5(decode_64B_67B_0_LOCKED),
         .probe6(gt_core_0_RX_DATA),
-        .probe7(gtwizard_0_DESCRAMBL_0_HEADER_OUT));
+        .probe7(gtwizard_0_DESCRAMBL_0_HEADER_OUT),
+        .probe8(DESCRAMBL_LOCKED));
   main_ila_1_0 ila_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe0(gt_core_0_TX_MMCM_LOCK_ILA),
@@ -182,8 +178,4 @@ module main
        (.clk(gt_core_0_RX_USR_CLK),
         .probe_out0(PASSTHROUGH_DESCRAMBLER),
         .probe_out1(DECODER_PASSTHROUGH));
-  main_xlconstant_0_0 xlconstant_0
-       (.dout(xlconstant_0_dout));
-  main_xlconstant_1_0 xlconstant_1
-       (.dout(xlconstant_1_dout));
 endmodule
