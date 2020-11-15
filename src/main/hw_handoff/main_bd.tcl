@@ -273,12 +273,13 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {7} \
+   CONFIG.C_NUM_OF_PROBES {8} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE3_WIDTH {8} \
    CONFIG.C_PROBE4_WIDTH {1} \
    CONFIG.C_PROBE6_WIDTH {80} \
+   CONFIG.C_PROBE7_WIDTH {2} \
  ] $ila_0
 
   # Create instance: ila_1, and set properties
@@ -344,7 +345,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net RXP_IN_1 [get_bd_ports RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
   connect_bd_net -net RX_RESET_DONE_VIO [get_bd_pins gt_core_0/RX_RESET_DONE_VIO] [get_bd_pins vio_0/probe_in0]
   connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET_VIO] [get_bd_pins vio_0/probe_out0]
-  connect_bd_net -net decode_64B_67B_0_DATA_OUT [get_bd_pins decode_64B_67B_0/DATA_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/SCRAMBLED_DATA_IN]
+  connect_bd_net -net decode_64B_67B_0_DATA_OUT [get_bd_pins decode_64B_67B_0/DATA_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/SCRAMBLED_DATA_IN] [get_bd_pins ila_0/probe0]
   connect_bd_net -net decode_64B_67B_0_HEADER_OUT [get_bd_pins decode_64B_67B_0/HEADER_OUT] [get_bd_pins gtwizard_0_DESCRAMBL_0/HEADER_IN]
   connect_bd_net -net decode_64B_67B_0_LOCKED [get_bd_pins decode_64B_67B_0/LOCKED] [get_bd_pins ila_0/probe5]
   connect_bd_net -net encode_64B_67B_0_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA]
@@ -364,7 +365,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net gt_frame_check_0_TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins gt_frame_check_0/TRACK_DATA_OUT] [get_bd_pins ila_0/probe2]
   connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins gt_frame_gen_0/TX_DATA_OUT] [get_bd_pins gtwizard_0_SCRAMBLER_0/UNSCRAMBLED_DATA_IN]
   connect_bd_net -net gt_frame_gen_0_TX_HEADER_OUT [get_bd_pins gt_frame_gen_0/TX_HEADER_OUT] [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_IN]
-  connect_bd_net -net gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT [get_bd_pins gt_frame_check_0/RX_DATA_IN] [get_bd_pins gtwizard_0_DESCRAMBL_0/UNSCRAMBLED_DATA_OUT] [get_bd_pins ila_0/probe0]
+  connect_bd_net -net gtwizard_0_DESCRAMBL_0_HEADER_OUT [get_bd_pins gtwizard_0_DESCRAMBL_0/HEADER_OUT] [get_bd_pins ila_0/probe7]
+  connect_bd_net -net gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT [get_bd_pins gt_frame_check_0/RX_DATA_IN] [get_bd_pins gtwizard_0_DESCRAMBL_0/UNSCRAMBLED_DATA_OUT]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_HEADER_OUT [get_bd_pins encode_64B_67B_0/HEADER_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/HEADER_OUT]
   connect_bd_net -net gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B_0/DATA_IN] [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLED_DATA_OUT]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins gtwizard_0_SCRAMBLER_0/SCRAMBLER_STATE] [get_bd_pins gtwizard_0_SCRAMBLER_0/SYNCHRONIZATION] [get_bd_pins gtwizard_0_SCRAMBLER_0/TO_BE_SCRAMBLED] [get_bd_pins xlconstant_0/dout]

@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov 14 22:31:18 2020
+//Date        : Sun Nov 15 16:09:48 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -65,6 +65,7 @@ module main
   wire gt_frame_check_0_TRACK_DATA_OUT;
   wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
   wire [1:0]gt_frame_gen_0_TX_HEADER_OUT;
+  wire [1:0]gtwizard_0_DESCRAMBL_0_HEADER_OUT;
   wire [63:0]gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT;
   wire [1:0]gtwizard_0_SCRAMBLER_0_HEADER_OUT;
   wire [63:0]gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT;
@@ -135,6 +136,7 @@ module main
         .USER_CLK(Net1));
   main_gtwizard_0_DESCRAMBL_0_0 gtwizard_0_DESCRAMBL_0
        (.HEADER_IN(decode_64B_67B_0_HEADER_OUT),
+        .HEADER_OUT(gtwizard_0_DESCRAMBL_0_HEADER_OUT),
         .PASSTHROUGH(PASSTHROUGH_DESCRAMBLER),
         .SCRAMBLED_DATA_IN(decode_64B_67B_0_DATA_OUT),
         .SYNCHRONIZE(xlconstant_1_dout),
@@ -155,13 +157,14 @@ module main
         .USER_CLK(Net1));
   main_ila_0_0 ila_0
        (.clk(gt_core_0_RX_USR_CLK),
-        .probe0(gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT),
+        .probe0(decode_64B_67B_0_DATA_OUT),
         .probe1(gt_core_0_RX_MMCM_LOCK_ILA),
         .probe2(gt_frame_check_0_TRACK_DATA_OUT),
         .probe3(gt_frame_check_0_ERROR_COUNT_OUT),
         .probe4(gt_core_0_RX_RESET_DONE_ILA),
         .probe5(decode_64B_67B_0_LOCKED),
-        .probe6(gt_core_0_RX_DATA));
+        .probe6(gt_core_0_RX_DATA),
+        .probe7(gtwizard_0_DESCRAMBL_0_HEADER_OUT));
   main_ila_1_0 ila_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe0(gt_core_0_TX_MMCM_LOCK_ILA),
