@@ -13,9 +13,9 @@ preplace port TXN_OUT -pg 1 -y 430 -defaultsOSRD
 preplace port RXP_IN -pg 1 -y 650 -defaultsOSRD
 preplace inst vio_0 -pg 1 -lvl 3 -y 160 -defaultsOSRD
 preplace inst vio_1 -pg 1 -lvl 1 -y 510 -defaultsOSRD
+preplace inst gt_core_0 -pg 1 -lvl 4 -y 450 -defaultsOSRD
 preplace inst decode_64B_67B_0 -pg 1 -lvl 6 -y 270 -defaultsOSRD
 preplace inst vio_2 -pg 1 -lvl 5 -y 160 -defaultsOSRD
-preplace inst gt_core_0 -pg 1 -lvl 4 -y 450 -defaultsOSRD
 preplace inst gt_frame_gen_0 -pg 1 -lvl 1 -y 360 -defaultsOSRD
 preplace inst encode_64B_67B_0 -pg 1 -lvl 3 -y 520 -defaultsOSRD
 preplace inst gtwizard_0_SCRAMBLER_0 -pg 1 -lvl 2 -y 450 -defaultsOSRD

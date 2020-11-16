@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:user:gt_core:1.0
-// IP Revision: 10
+// IP Revision: 11
 
 (* X_CORE_INFO = "gtwizard_0_exdes,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "main_gt_core_0_0,gtwizard_0_exdes,{}" *)
-(* CORE_GENERATION_INFO = "main_gt_core_0_0,gtwizard_0_exdes,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=gt_core,x_ipVersion=1.0,x_ipCoreRevision=10,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,EXAMPLE_USE_CHIPSCOPE=1,LOOPBACK=000}" *)
+(* CORE_GENERATION_INFO = "main_gt_core_0_0,gtwizard_0_exdes,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=gt_core,x_ipVersion=1.0,x_ipCoreRevision=11,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,EXAMPLE_USE_CHIPSCOPE=1,LOOPBACK=000}" *)
 (* IP_DEFINITION_SOURCE = "package_project" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_gt_core_0_0 (
