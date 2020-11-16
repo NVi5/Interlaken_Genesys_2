@@ -65,7 +65,7 @@
 `define DLY #1
 
 //***********************************Entity Declaration************************
-(* DowngradeIPIdentifiedWarnings="yes" *)
+
 module gt_frame_check #
 (
     parameter   START_OF_PACKET_CHAR     =  64'h0e0d0c0b0a090800
@@ -85,68 +85,41 @@ module gt_frame_check #
     input  wire         SYSTEM_RESET
 );
 
-//***************************Parameters********************
+//***************************Declarations********************
 
-parameter   RX_DATA_WIDTH            =  64;
-parameter   WORDS_IN_BRAM            =  512;
-
-//***************************Internal Register Declarations********************
-
-(* ASYNC_REG = "TRUE" *) (* keep = "true" *)reg             system_reset_r;
-(* ASYNC_REG = "TRUE" *) (* keep = "true" *)reg             system_reset_r2;
+localparam   WORDS_IN_BRAM            =  512;
 
 reg             begin_r;
 reg             start_of_packet_detected_r;
 reg             data_error_detected_r;
-reg     [8:0]   error_count_r;
+reg     [$clog2(WORDS_IN_BRAM):0]   error_count_r;
 reg             error_detected_r;
 
-reg     [8:0]   read_counter_i;
-reg     [79:0]  rom [0:511];
+reg     [$clog2(WORDS_IN_BRAM):0]   read_counter_i;
+reg     [79:0]  rom [0:(WORDS_IN_BRAM - 1)];
 reg     [79:0]  rx_data_ram_r;
 
 reg             track_data_r;
 reg             track_data_r2;
 reg             track_data_r3;
 
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r2;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r3;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r4;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r5;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r6;
-reg     [(RX_DATA_WIDTH-1):0] rx_data_r_track;
-
-//*********************************Wire Declarations***************************
+reg     [63:0]  rx_data_r;
+reg     [63:0]  rx_data_r2;
+reg     [63:0]  rx_data_r3;
+reg     [63:0]  rx_data_r_track;
 
 wire            error_detected_c;
 wire            next_begin_c;
 wire            next_data_error_detected_c;
 wire            next_track_data_c;
-wire    [(RX_DATA_WIDTH-1):0] bram_data_r;
-wire    [(RX_DATA_WIDTH-1):0] rx_data_aligned;
+wire    [63:0] bram_data_r;
 
 //*********************************Main Body of Code***************************
 
-    //___________ synchronizing the async reset for ease of timing simulation ________
-    always@(posedge USER_CLK)
-      begin
-       system_reset_r <= `DLY SYSTEM_RESET;
-       system_reset_r2 <= `DLY system_reset_r;
-     end
-
-    //______________________ Register RXDATA once to ease timing ______________
+//________________________________ State machine __________________________
 
     always @(posedge USER_CLK)
-    begin
-        rx_data_r  <= `DLY    RX_DATA_IN;
-        rx_data_r2 <= `DLY    rx_data_r;
-    end
-    //________________________________ State machine __________________________
-
-    // State registers
-    always @(posedge USER_CLK)
-        if(system_reset_r2)
+        if(SYSTEM_RESET)
             {begin_r,track_data_r,data_error_detected_r}  <=  `DLY    3'b100;
         else
         begin
@@ -155,14 +128,12 @@ wire    [(RX_DATA_WIDTH-1):0] rx_data_aligned;
             data_error_detected_r  <=  `DLY    next_data_error_detected_c;
         end
 
-    // Next state logic
     assign  next_begin_c                =   (begin_r && !start_of_packet_detected_r) || data_error_detected_r;
     assign  next_track_data_c           =   (begin_r && start_of_packet_detected_r) || (track_data_r && !error_detected_r);
     assign  next_data_error_detected_c  =   (track_data_r && error_detected_r);
 
-
     always @(posedge USER_CLK)
-        start_of_packet_detected_r    <=   `DLY  (rx_data_aligned == START_OF_PACKET_CHAR);
+        start_of_packet_detected_r    <=   `DLY  (RX_DATA_IN == START_OF_PACKET_CHAR);
 
     // Registering for timing
     always @(posedge USER_CLK)
@@ -171,31 +142,27 @@ wire    [(RX_DATA_WIDTH-1):0] rx_data_aligned;
             track_data_r3    <=   `DLY  track_data_r2;
         end
 
-    //______________________________ Capture incoming data ____________________
+//______________________________ Capture incoming data ____________________
 
     always @(posedge USER_CLK)
     begin
-        if(system_reset_r2)
+        if(SYSTEM_RESET)
         begin
+            rx_data_r       <=  `DLY   'h0;
+            rx_data_r2      <=  `DLY   'h0;
             rx_data_r3      <=  `DLY   'h0;
-            rx_data_r4      <=  `DLY   'h0;
-            rx_data_r5      <=  `DLY   'h0;
-            rx_data_r6      <=  `DLY   'h0;
             rx_data_r_track <=  `DLY   'h0;
         end
         else
         begin
+            rx_data_r       <=  `DLY    RX_DATA_IN;
+            rx_data_r2      <=  `DLY    rx_data_r;
             rx_data_r3      <=  `DLY    rx_data_r2;
-            rx_data_r4      <=  `DLY    rx_data_r3;
-            rx_data_r5      <=  `DLY    rx_data_r4;
-            rx_data_r6      <=  `DLY    rx_data_r5;
-            rx_data_r_track <=  `DLY    rx_data_r6;
+            rx_data_r_track <=  `DLY    rx_data_r3;
         end
     end
 
-    assign rx_data_aligned = rx_data_r3;
-
-    //___________________________ Check incoming data for errors ______________
+//___________________________ Check incoming data for errors ______________
 
     //An error is detected when data read for the BRAM does not match the incoming data
     assign  error_detected_c    =  track_data_r3 && (rx_data_r_track != bram_data_r);
@@ -210,8 +177,8 @@ wire    [(RX_DATA_WIDTH-1):0] rx_data_aligned;
     //We count the total number of errors we detect. By keeping a count we make it less likely that we will miss
     //errors we did not directly observe.
     always @(posedge USER_CLK)
-        if(system_reset_r2)
-            error_count_r       <=  `DLY    9'd0;
+        if(SYSTEM_RESET)
+            error_count_r       <=  `DLY    'h0;
         else if(error_detected_r)
             error_count_r       <=  `DLY    error_count_r + 1;
 
@@ -221,24 +188,24 @@ wire    [(RX_DATA_WIDTH-1):0] rx_data_aligned;
 
     assign  TRACK_DATA_OUT  =   track_data_r;
 
-    //____________________________ Counter to read from BRAM __________________________
+//____________________________ Counter to read from BRAM __________________________
+
     always @(posedge USER_CLK)
-        if(system_reset_r2 || (read_counter_i == "111111111") || (start_of_packet_detected_r && !track_data_r))
+        if(SYSTEM_RESET || (read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r))
         begin
-            read_counter_i   <=  `DLY    9'd0;
+            read_counter_i  <=  `DLY    'h0;
         end
-        else
-        begin
-            read_counter_i  <=  `DLY    read_counter_i + 9'd1;
+        else begin
+            read_counter_i  <=  `DLY    read_counter_i + 1'b1;
         end
 
-    //________________________________ BRAM Inference Logic _____________________________
+//*********************************BRAM Inference Logic**********************************
 
     assign bram_data_r = rx_data_ram_r[79:16];
 
     initial
     begin
-           $readmemh("gt_rom_data.dat",rom,0,511);
+           $readmemh("gt_rom_data.dat",rom,0,(WORDS_IN_BRAM - 1));
     end
 
     always @(posedge USER_CLK)

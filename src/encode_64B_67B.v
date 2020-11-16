@@ -2,7 +2,7 @@
 // Company:
 // Engineer:
 //
-// Create Date: 12.11.2020 12:23:36
+// Create Date:
 // Design Name:
 // Module Name: encode_64B_67B
 // Project Name:
@@ -35,14 +35,15 @@ module encode_64B_67B(
     input  wire          PASSTHROUGH
     );
 
-//***************************Internal Register Declarations********************
+//***************************Declarations********************
 
     integer                           i;
     reg signed [15:0]                 disparity;
     reg signed [7:0]                  word_disparity;
     reg        [7:0]                  temp;
 
-//________________ Calculate disparity _______________
+//*********************************Disparity calculation**********************************
+
     always @*
     begin
         temp = 0;
@@ -53,7 +54,7 @@ module encode_64B_67B(
         word_disparity = temp - 64;
     end
 
-//________________ Data assignment to output port _______________
+//*********************************Main Body of Code**********************************
 
     always @(posedge USER_CLK)
     begin

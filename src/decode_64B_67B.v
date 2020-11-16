@@ -2,7 +2,7 @@
 // Company:
 // Engineer:
 //
-// Create Date: 12.11.2020 12:23:36
+// Create Date:
 // Design Name:
 // Module Name: decode_64B_67B
 // Project Name:
@@ -36,7 +36,7 @@ module decode_64B_67B(
     input  wire          PASSTHROUGH
     );
 
-//***************************Internal Register Declarations********************
+//***************************Declarations********************
 
     localparam
     STATE_SYNCING   = 1'b0,
@@ -50,7 +50,7 @@ module decode_64B_67B(
     reg     [66:0]  rx_aligned;
     reg     [159:0] rx_data_common;
 
-//________________ Data assignment to output port _______________
+//*********************************Main Body of Code**********************************
 
     always @(posedge USER_CLK)
     begin

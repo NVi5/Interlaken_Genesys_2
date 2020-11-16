@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Nov 16 20:18:47 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Nov 17 00:38:36 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -797,8 +797,8 @@
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gt_frame_gen_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
@@ -809,9 +809,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="gt_frame_check_0" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_RESET_DONE_VIO" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">
@@ -852,9 +852,9 @@
         </PORT>
         <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="gt_frame_check_0" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_0_DATA_OUT">
@@ -865,8 +865,8 @@
         <PORT DIR="O" NAME="TX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gt_frame_gen_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -918,8 +918,8 @@
       <PORTS>
         <PORT DIR="O" LEFT="63" NAME="TX_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="UNSCRAMBLED_DATA_IN"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe3"/>
+            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="UNSCRAMBLED_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="TX_HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_HEADER_OUT">
@@ -957,8 +957,8 @@
         </PORT>
         <PORT DIR="O" LEFT="63" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="RX_DATA_IN"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe9"/>
+            <CONNECTION INSTANCE="gt_frame_check_0" PORT="RX_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_LOCKED">
@@ -1010,8 +1010,8 @@
         </PORT>
         <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_IN"/>
             <CONNECTION INSTANCE="ila_1" PORT="probe2"/>
+            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_HEADER_OUT">
