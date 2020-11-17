@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Nov 17 00:38:36 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Nov 17 01:06:18 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -34,9 +34,9 @@
         <CONNECTION INSTANCE="gt_core_0" PORT="TXP_OUT"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="gt_frame_check_0_TRACK_DATA_OUT">
+    <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_frame_check_0" PORT="TRACK_DATA_OUT"/>
+        <CONNECTION INSTANCE="frame_check" PORT="TRACK_DATA_OUT"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="DRP_CLK_IN_N" SIGIS="clk" SIGNAME="External_Ports_DRP_CLK_IN_N">
@@ -652,7 +652,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/decode_64B_67B_0" HWVERSION="1.0" INSTANCE="decode_64B_67B_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="decode_64B_67B" VLNV="xilinx.com:module_ref:decode_64B_67B:1.0">
+    <MODULE FULLNAME="/decode_64B_67B" HWVERSION="1.0" INSTANCE="decode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="decode_64B_67B" VLNV="xilinx.com:module_ref:decode_64B_67B:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="main_decode_64B_67B_0_0"/>
@@ -664,18 +664,18 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_DATA_OUT">
+        <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SCRAMBLED_DATA_IN"/>
+            <CONNECTION INSTANCE="descrambler" PORT="SCRAMBLED_DATA_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_HEADER_OUT">
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="HEADER_IN"/>
+            <CONNECTION INSTANCE="descrambler" PORT="HEADER_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="decode_64B_67B_0_LOCKED">
+        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="decode_64B_67B_LOCKED">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ila_0" PORT="probe5"/>
           </CONNECTIONS>
@@ -698,27 +698,81 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/encode_64B_67B_0" HWVERSION="1.0" INSTANCE="encode_64B_67B_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="encode_64B_67B" VLNV="xilinx.com:module_ref:encode_64B_67B:1.0">
+    <MODULE FULLNAME="/descrambler" HWVERSION="1.0" INSTANCE="descrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="descrambler" VLNV="xilinx.com:module_ref:descrambler:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="RX_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
+        <PARAMETER NAME="META_FRAME_LEN" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_descrambler_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="SCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_0" PORT="probe9"/>
+            <CONNECTION INSTANCE="frame_check" PORT="RX_DATA_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="descrambler_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_0" PORT="probe8"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_0" PORT="probe7"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_2_probe_out0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="vio_2" PORT="probe_out0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/encode_64B_67B" HWVERSION="1.0" INSTANCE="encode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="encode_64B_67B" VLNV="xilinx.com:module_ref:encode_64B_67B:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="main_encode_64B_67B_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="scrambler" PORT="SCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_0_DATA_OUT">
+        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ila_1" PORT="probe4"/>
             <CONNECTION INSTANCE="gt_core_0" PORT="TX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_HEADER_OUT">
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="HEADER_OUT"/>
+            <CONNECTION INSTANCE="scrambler" PORT="HEADER_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
@@ -734,6 +788,76 @@
         <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_1_probe_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vio_1" PORT="probe_out1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/frame_check" HWVERSION="1.0" INSTANCE="frame_check" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="frame_check" VLNV="xilinx.com:module_ref:frame_check:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="START_OF_PACKET_CHAR" VALUE="0x0E0D0C0B0A090800"/>
+        <PARAMETER NAME="WORDS_IN_BRAM" VALUE="512"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_frame_check_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="RX_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="7" NAME="ERROR_COUNT_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_ERROR_COUNT_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="TRACK_DATA_OUT"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/frame_gen" HWVERSION="1.0" INSTANCE="frame_gen" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="frame_gen" VLNV="xilinx.com:module_ref:frame_gen:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WORDS_IN_BRAM" VALUE="512"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_frame_gen_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="63" NAME="TX_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_1" PORT="probe3"/>
+            <CONNECTION INSTANCE="scrambler" PORT="UNSCRAMBLED_DATA_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="TX_HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="scrambler" PORT="HEADER_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -796,9 +920,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_gen_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="scrambler" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="frame_gen" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
@@ -809,9 +933,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="descrambler" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="frame_check" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_RESET_DONE_VIO" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">
@@ -847,196 +971,26 @@
         <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="ila_0" PORT="probe6"/>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_IN"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="descrambler" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="frame_check" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_0_DATA_OUT">
+        <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="TX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_gen_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/gt_frame_check_0" HWVERSION="1.0" INSTANCE="gt_frame_check_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gt_frame_check" VLNV="xilinx.com:module_ref:gt_frame_check:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="START_OF_PACKET_CHAR" VALUE="0x0E0D0C0B0A090800"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_gt_frame_check_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="RX_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="UNSCRAMBLED_DATA_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="7" NAME="ERROR_COUNT_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_check_0_ERROR_COUNT_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="gt_frame_check_0_TRACK_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="TRACK_DATA_OUT"/>
-            <CONNECTION INSTANCE="ila_0" PORT="probe2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/gt_frame_gen_0" HWVERSION="1.0" INSTANCE="gt_frame_gen_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gt_frame_gen" VLNV="xilinx.com:module_ref:gt_frame_gen:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="main_gt_frame_gen_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="63" NAME="TX_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe3"/>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="UNSCRAMBLED_DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="TX_HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="HEADER_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/gtwizard_0_DESCRAMBL_0" HWVERSION="1.0" INSTANCE="gtwizard_0_DESCRAMBL_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gtwizard_0_DESCRAMBLER" VLNV="xilinx.com:module_ref:gtwizard_0_DESCRAMBLER:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="RX_DATA_WIDTH" VALUE="64"/>
-        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
-        <PARAMETER NAME="META_FRAME_LEN" VALUE="16"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_gtwizard_0_DESCRAMBL_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="SCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="63" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe9"/>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="RX_DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_LOCKED">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe8"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="HEADER_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe7"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_2_probe_out0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_2" PORT="probe_out0"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/gtwizard_0_SCRAMBLER_0" HWVERSION="1.0" INSTANCE="gtwizard_0_SCRAMBLER_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gtwizard_0_SCRAMBLER" VLNV="xilinx.com:module_ref:gtwizard_0_SCRAMBLER:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="TX_DATA_WIDTH" VALUE="64"/>
-        <PARAMETER NAME="SYNC_WORD" VALUE="0x78f678f678f678f6"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_gtwizard_0_SCRAMBLER_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="UNSCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_gen_0" PORT="TX_DATA_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe2"/>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_gen_0" PORT="TX_HEADER_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="HEADER_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_1_probe_out0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_1" PORT="probe_out0"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="scrambler" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="frame_gen" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -4187,9 +4141,9 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_MMCM_LOCK_ILA">
@@ -4197,14 +4151,14 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_MMCM_LOCK_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_check_0_TRACK_DATA_OUT">
+        <PORT DIR="I" LEFT="0" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="TRACK_DATA_OUT"/>
+            <CONNECTION INSTANCE="frame_check" PORT="TRACK_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_check_0_ERROR_COUNT_OUT">
+        <PORT DIR="I" LEFT="7" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_ERROR_COUNT_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_check_0" PORT="ERROR_COUNT_OUT"/>
+            <CONNECTION INSTANCE="frame_check" PORT="ERROR_COUNT_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_ILA">
@@ -4212,9 +4166,9 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_RESET_DONE_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_0_LOCKED">
+        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_LOCKED">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="LOCKED"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="LOCKED"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="79" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
@@ -4222,19 +4176,19 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_HEADER_OUT">
+        <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="HEADER_OUT"/>
+            <CONNECTION INSTANCE="descrambler" PORT="HEADER_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_LOCKED">
+        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_LOCKED">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="LOCKED"/>
+            <CONNECTION INSTANCE="descrambler" PORT="LOCKED"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_DESCRAMBL_0_UNSCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="UNSCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -7395,19 +7349,67 @@
             <CONNECTION INSTANCE="gt_core_0" PORT="TX_RESET_DONE_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="gtwizard_0_SCRAMBLER_0_SCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="SCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="scrambler" PORT="SCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="gt_frame_gen_0_TX_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_frame_gen_0" PORT="TX_DATA_OUT"/>
+            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_0_DATA_OUT">
+        <PORT DIR="I" LEFT="79" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/scrambler" HWVERSION="1.0" INSTANCE="scrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="scrambler" VLNV="xilinx.com:module_ref:scrambler:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="TX_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_scrambler_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="UNSCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="ila_1" PORT="probe2"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_gen" PORT="TX_HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="HEADER_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_1_probe_out0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="vio_1" PORT="probe_out0"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -9036,12 +9038,12 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_SCRAMBLER_0" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="scrambler" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B_0" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="encode_64B_67B" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out2" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out2">
@@ -9858,12 +9860,12 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_2_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gtwizard_0_DESCRAMBL_0" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="descrambler" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="vio_2_probe_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B_0" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="decode_64B_67B" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

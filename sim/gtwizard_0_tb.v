@@ -159,7 +159,7 @@ module gtwizard_0_TB;
         end
     end
 
-    //----------------- Instantiate an gtwizard_0_exdes module  -----------------
+    //----------------- Instantiate an main_wrapper module  -----------------
 
     main_wrapper
     main_wrapper_i
