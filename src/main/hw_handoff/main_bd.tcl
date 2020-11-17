@@ -247,6 +247,9 @@ proc create_root_design { parentCell } {
   
   # Create instance: gt_core_0, and set properties
   set gt_core_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gt_core:1.0 gt_core_0 ]
+  set_property -dict [ list \
+   CONFIG.LOOPBACK {"000"} \
+ ] $gt_core_0
 
   # Create instance: ila_0, and set properties
   set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]

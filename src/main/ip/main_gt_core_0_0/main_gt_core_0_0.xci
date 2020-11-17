@@ -81,6 +81,7 @@
             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RX_USR_CLK2.CLK_DOMAIN" xilinx:valuePermission="bd_and_user"/>
             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.TX_USR_CLK.CLK_DOMAIN" xilinx:valuePermission="bd_and_user"/>
             <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.TX_USR_CLK2.CLK_DOMAIN" xilinx:valuePermission="bd_and_user"/>
+            <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.LOOPBACK" xilinx:valueSource="user"/>
           </xilinx:configElementInfos>
         </xilinx:componentInstanceExtensions>
       </spirit:vendorExtensions>
