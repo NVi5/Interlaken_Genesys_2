@@ -33,20 +33,20 @@
     <Option Name="DSAVendor" Val="xilinx"/>
     <Option Name="DSABoardId" Val="genesys2"/>
     <Option Name="DSANumComputeUnits" Val="60"/>
-    <Option Name="WTXSimLaunchSim" Val="45"/>
+    <Option Name="WTXSimLaunchSim" Val="47"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="25"/>
-    <Option Name="WTModelSimExportSim" Val="25"/>
-    <Option Name="WTQuestaExportSim" Val="25"/>
-    <Option Name="WTIesExportSim" Val="25"/>
-    <Option Name="WTVcsExportSim" Val="25"/>
-    <Option Name="WTRivieraExportSim" Val="25"/>
-    <Option Name="WTActivehdlExportSim" Val="25"/>
+    <Option Name="WTXSimExportSim" Val="27"/>
+    <Option Name="WTModelSimExportSim" Val="27"/>
+    <Option Name="WTQuestaExportSim" Val="27"/>
+    <Option Name="WTIesExportSim" Val="27"/>
+    <Option Name="WTVcsExportSim" Val="27"/>
+    <Option Name="WTRivieraExportSim" Val="27"/>
+    <Option Name="WTActivehdlExportSim" Val="27"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -137,8 +137,8 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_gearbox_tx_0_0/main_gearbox_tx_0_0.xci">
-          <Proxy FileSetName="main_gearbox_tx_0_0"/>
+        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_gearbox_rx_0_0/main_gearbox_rx_0_0.xci">
+          <Proxy FileSetName="main_gearbox_rx_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_scrambler_0_0/main_scrambler_0_0.xci">
           <Proxy FileSetName="main_scrambler_0_0"/>
@@ -146,23 +146,14 @@
         <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_encode_64B_67B_0_0/main_encode_64B_67B_0_0.xci">
           <Proxy FileSetName="main_encode_64B_67B_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_gearbox_rx_0_0/main_gearbox_rx_0_0.xci">
-          <Proxy FileSetName="main_gearbox_rx_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0.xci">
-          <Proxy FileSetName="main_decode_64B_67B_0_0"/>
+        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_gearbox_tx_0_0/main_gearbox_tx_0_0.xci">
+          <Proxy FileSetName="main_gearbox_tx_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_frame_check_0_0/main_frame_check_0_0.xci">
           <Proxy FileSetName="main_frame_check_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_stream_manipulator_0_0/main_stream_manipulator_0_0.xci">
           <Proxy FileSetName="main_stream_manipulator_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_tx_interface_0_0/main_tx_interface_0_0.xci">
-          <Proxy FileSetName="main_tx_interface_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_descrambler_0_0/main_descrambler_0_0.xci">
-          <Proxy FileSetName="main_descrambler_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="main.bd" FileRelPathName="ip/main_frame_gen_1_0/main_frame_gen_1_0.xci">
           <Proxy FileSetName="main_frame_gen_1_0"/>
@@ -230,12 +221,6 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="main_decode_64B_67B_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/main_decode_64B_67B_0_0">
-      <Config>
-        <Option Name="TopModule" Val="main_decode_64B_67B_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="main_gearbox_rx_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/main_gearbox_rx_0_0">
       <Config>
         <Option Name="TopModule" Val="main_gearbox_rx_0_0"/>
@@ -257,18 +242,6 @@
     <FileSet Name="main_frame_gen_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/main_frame_gen_1_0">
       <Config>
         <Option Name="TopModule" Val="main_frame_gen_1_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="main_descrambler_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/main_descrambler_0_0">
-      <Config>
-        <Option Name="TopModule" Val="main_descrambler_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="main_tx_interface_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/main_tx_interface_0_0">
-      <Config>
-        <Option Name="TopModule" Val="main_tx_interface_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -322,15 +295,6 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="main_decode_64B_67B_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_decode_64B_67B_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_decode_64B_67B_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_decode_64B_67B_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="main_gearbox_rx_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_gearbox_rx_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_gearbox_rx_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_gearbox_rx_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
@@ -367,24 +331,6 @@
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="main_descrambler_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_descrambler_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_descrambler_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_descrambler_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="main_tx_interface_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_tx_interface_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_tx_interface_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_tx_interface_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="main_scrambler_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_scrambler_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_scrambler_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_scrambler_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
@@ -396,9 +342,7 @@
     </Run>
     <Run Id="main_frame_check_0_0_synth_1" Type="Ft3:Synth" SrcSet="main_frame_check_0_0" Part="xc7k325tffg900-2" ConstrsSet="main_frame_check_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/main_frame_check_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -423,22 +367,6 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="main_encode_64B_67B_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_encode_64B_67B_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_encode_64B_67B_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="main_decode_64B_67B_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_decode_64B_67B_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_decode_64B_67B_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
         <Step Id="init_design"/>
@@ -518,38 +446,6 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="main_descrambler_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_descrambler_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_descrambler_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="main_tx_interface_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_tx_interface_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_tx_interface_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2018"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
     <Run Id="main_scrambler_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_scrambler_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_scrambler_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
@@ -568,9 +464,7 @@
     </Run>
     <Run Id="main_frame_check_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="main_frame_check_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="main_frame_check_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

@@ -45,8 +45,8 @@ module decode_64B_67B(
 
     reg     [6:0]   candidate;
     reg     [0:0]   state;
-    reg     [6:0]   good_sync_ctr;
-    reg     [4:0]   error_sync_ctr;
+    reg     [5:0]   good_sync_ctr;
+    reg     [3:0]   error_sync_ctr;
     reg     [79:0]  rx_data_r;
     reg     [66:0]  rx_aligned;
     reg     [159:0] rx_data_common;
@@ -59,54 +59,54 @@ module decode_64B_67B(
         begin
             candidate       <= `DLY     7'd0;
             state           <= `DLY     STATE_SYNCING;
-            good_sync_ctr   <= `DLY     7'd0;
-            error_sync_ctr  <= `DLY     7'd0;
+            good_sync_ctr   <= `DLY     6'd0;
+            error_sync_ctr  <= `DLY     4'd0;
         end
         else
         case(state)
             STATE_SYNCING:
                 if (rx_aligned[65] != rx_aligned[64])
                 begin
-                    if (good_sync_ctr <= 7'd64)
+                    if (good_sync_ctr == 6'd63)
                     begin
-                        good_sync_ctr <= `DLY good_sync_ctr + 7'd1;
+                        good_sync_ctr <= `DLY 6'd0;
+                        state <= `DLY STATE_LOCKED;
                     end
                     else begin
-                        good_sync_ctr <= `DLY 7'd0;
-                        state <= `DLY STATE_LOCKED;
+                        good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
                     end
                 end
                 else begin
-                    good_sync_ctr <= `DLY  7'd0;
-                    if (candidate < 7'd80)
+                    good_sync_ctr <= `DLY  6'd0;
+                    if (candidate == 7'd79)
                     begin
-                        candidate <= `DLY candidate + 7'd1;
+                        candidate <= `DLY 7'd0;
                     end
                     else begin
-                        candidate <= `DLY 7'd0;
+                        candidate <= `DLY candidate + 7'd1;
                     end
                 end
             STATE_LOCKED:
                 if (rx_aligned[65] !=  rx_aligned[64])
                 begin
-                    if (good_sync_ctr <= 7'd64)
+                    if (good_sync_ctr == 6'd63)
                     begin
-                        good_sync_ctr <= `DLY good_sync_ctr + 7'd1;
+                        good_sync_ctr <= `DLY  6'd0;
+                        error_sync_ctr <= `DLY  4'd0;
                     end
                     else begin
-                        good_sync_ctr <= `DLY  7'd0;
-                        error_sync_ctr <= `DLY  7'd0;
+                        good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
                     end
                 end
                 else begin
-                    if (error_sync_ctr <= 7'd16)
+                    if (error_sync_ctr == 4'd15)
                     begin
-                        error_sync_ctr <= `DLY error_sync_ctr + 7'd1;
+                        good_sync_ctr <= `DLY  6'd0;
+                        error_sync_ctr <= `DLY  4'd0;
+                        state <= `DLY STATE_SYNCING;
                     end
                     else begin
-                        good_sync_ctr <= `DLY  7'd0;
-                        error_sync_ctr <= `DLY  7'd0;
-                        state <= `DLY STATE_SYNCING;
+                        error_sync_ctr <= `DLY error_sync_ctr + 4'd1;
                     end
                 end
         endcase

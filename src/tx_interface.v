@@ -24,7 +24,11 @@
 
 //***********************************Entity Declaration*******************************
 
-module tx_interface(
+module tx_interface #
+(
+    parameter META_FRAME_LEN = 16
+)
+(
     // User Interface
     input  wire  [63:0]  DATA_IN,
     input  wire  [1:0]   HEADER_IN,
@@ -37,9 +41,22 @@ module tx_interface(
     input  wire          SYSTEM_RESET
     );
 
+//***************************Declarations********************
+
+    reg     [$clog2(META_FRAME_LEN)-1:0]      frame_ctr;
+
 //*********************************Main Body of Code**********************************
 
-    always @(posedge USER_CLK)
+always @(posedge USER_CLK)
+    if (frame_ctr == (META_FRAME_LEN - 1) || SYSTEM_RESET)
+    begin
+        frame_ctr       <= `DLY     'h0;
+    end
+    else begin
+        frame_ctr       <= `DLY     frame_ctr + 1'b1;
+    end
+
+always @(posedge USER_CLK)
     if(SYSTEM_RESET || (DATA_TO_SEND == 0))
     begin
         DATA_OUT <= `DLY 64'd0;

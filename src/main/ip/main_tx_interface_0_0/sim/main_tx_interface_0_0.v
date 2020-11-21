@@ -76,7 +76,9 @@ input wire USER_CLK;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
 
-  tx_interface inst (
+  tx_interface #(
+    .META_FRAME_LEN(16)
+  ) inst (
     .DATA_IN(DATA_IN),
     .HEADER_IN(HEADER_IN),
     .DATA_OUT(DATA_OUT),

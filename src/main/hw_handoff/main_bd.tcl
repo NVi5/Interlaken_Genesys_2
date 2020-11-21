@@ -205,7 +205,10 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-  
+    set_property -dict [ list \
+   CONFIG.META_FRAME_LEN {16} \
+ ] $descrambler
+
   # Create instance: encode_64B_67B, and set properties
   set block_name encode_64B_67B
   set block_cell_name encode_64B_67B

@@ -103,25 +103,25 @@ module descrambler #
                     frame_ctr       <= `DLY     'h0;
                 end
             STATE_WAIT_FOR_WORD:
-                if (frame_ctr < (META_FRAME_LEN - 2))
+                if (frame_ctr == (META_FRAME_LEN - 2))
                 begin
-                    frame_ctr       <= `DLY     frame_ctr + 1'b1;
-                end
-                else begin
                     frame_ctr       <= `DLY     'h0;
                     state           <= `DLY     STATE_SYNC_WORD;
+                end
+                else begin
+                    frame_ctr       <= `DLY     frame_ctr + 1'b1;
                 end
             STATE_SYNC_WORD:
                 if (SCRAMBLED_DATA_IN == SYNC_WORD)
                 begin
-                    if (good_sync_ctr < 2'd3)
+                    if (good_sync_ctr == 2'd3)
                     begin
-                        good_sync_ctr   <= `DLY     good_sync_ctr + 3'b1;
-                        state           <= `DLY     STATE_WAIT_FOR_WORD;
-                    end
-                    else begin
                         good_sync_ctr   <= `DLY     3'd0;
                         state           <= `DLY     STATE_ADVANCE;
+                    end
+                    else begin
+                        good_sync_ctr   <= `DLY     good_sync_ctr + 3'b1;
+                        state           <= `DLY     STATE_WAIT_FOR_WORD;
                     end
                 end
                 else begin
@@ -140,13 +140,13 @@ module descrambler #
                 begin
                     UNSCRAMBLED_DATA_OUT <= `DLY  tempData;
                     descrambler          <= `DLY  poly;
-                    if (frame_ctr < (META_FRAME_LEN - 3))
+                    if (frame_ctr == (META_FRAME_LEN - 3))
                     begin
-                        frame_ctr       <= `DLY     frame_ctr + 1'b1;
-                    end
-                    else begin
                         frame_ctr       <= `DLY     'h0;
                         state           <= `DLY     STATE_LOCKED_SYNC_WORD;
+                    end
+                    else begin
+                        frame_ctr       <= `DLY     frame_ctr + 1'b1;
                     end
                 end
             STATE_LOCKED_SYNC_WORD:
@@ -158,13 +158,13 @@ module descrambler #
                         state           <= `DLY     STATE_LOCKED_SYNC_STATE;
                     end
                     else begin
-                        if (bad_sync_ctr < 3'd4)
+                        if (bad_sync_ctr == 3'd4)
                         begin
-                            bad_sync_ctr    <= `DLY     bad_sync_ctr + 3'b1;
-                            state           <= `DLY     STATE_LOCKED_SYNC_STATE;
+                            state           <= `DLY     STATE_RESET;
                         end
                         else begin
-                            state           <= `DLY     STATE_RESET;
+                            bad_sync_ctr    <= `DLY     bad_sync_ctr + 3'b1;
+                            state           <= `DLY     STATE_LOCKED_SYNC_STATE;
                         end
                     end
                 end
@@ -177,14 +177,14 @@ module descrambler #
                         state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
                     end
                     else begin
-                        if (mismatch_ctr < 2'd3)
+                        if (mismatch_ctr == 2'd3)
                         begin
+                            state           <= `DLY     STATE_RESET;
+                        end
+                        else begin
                             descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
                             mismatch_ctr    <= `DLY     mismatch_ctr + 3'b1;
                             state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
-                        end
-                        else begin
-                            state           <= `DLY     STATE_RESET;
                         end
                     end
                 end
