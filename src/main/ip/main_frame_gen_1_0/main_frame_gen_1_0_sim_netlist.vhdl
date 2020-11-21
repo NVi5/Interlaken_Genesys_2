@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Tue Nov 17 01:06:56 2020
+-- Date        : Sat Nov 21 16:22:03 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.vhdl
+--               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.vhdl
 -- Design      : main_frame_gen_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -973,6 +973,7 @@ entity main_frame_gen_1_0 is
   port (
     TX_DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     TX_HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    TX_DATA_TO_SEND : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC
   );
@@ -989,6 +990,7 @@ entity main_frame_gen_1_0 is
 end main_frame_gen_1_0;
 
 architecture STRUCTURE of main_frame_gen_1_0 is
+  signal \<const1>\ : STD_LOGIC;
   signal \^tx_data_out\ : STD_LOGIC_VECTOR ( 61 downto 0 );
   signal \^tx_header_out\ : STD_LOGIC_VECTOR ( 1 to 1 );
   attribute X_INTERFACE_INFO : string;
@@ -1050,8 +1052,13 @@ begin
   TX_DATA_OUT(5 downto 3) <= \^tx_data_out\(5 downto 3);
   TX_DATA_OUT(2) <= \^tx_data_out\(1);
   TX_DATA_OUT(1 downto 0) <= \^tx_data_out\(1 downto 0);
+  TX_DATA_TO_SEND <= \<const1>\;
   TX_HEADER_OUT(1) <= \^tx_header_out\(1);
   TX_HEADER_OUT(0) <= \^tx_data_out\(57);
+VCC: unisim.vcomponents.VCC
+     port map (
+      P => \<const1>\
+    );
 inst: entity work.main_frame_gen_1_0_frame_gen
      port map (
       SYSTEM_RESET => SYSTEM_RESET,

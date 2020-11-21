@@ -31,6 +31,7 @@ module frame_gen #
     // User Interface
     output reg  [63:0]  TX_DATA_OUT,
     output reg  [1:0]   TX_HEADER_OUT,
+    output wire         TX_DATA_TO_SEND,
 
     // System Interface
     input  wire         USER_CLK,
@@ -75,5 +76,6 @@ reg     [79:0]  tx_data_ram_r;
     always @(posedge USER_CLK)
         tx_data_ram_r <= `DLY rom[read_counter_i];
 
+    assign TX_DATA_TO_SEND = 1;
 endmodule
 

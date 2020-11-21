@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Nov 19 01:19:02 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 21 16:23:03 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
   <EXTERNALPORTS>
     <PORT DIR="I" NAME="Q3_CLK0_GTREFCLK_PAD_N_IN" SIGIS="undef" SIGNAME="External_Ports_Q3_CLK0_GTREFCLK_PAD_N_IN">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="Q3_CLK0_GTREFCLK_PAD_N_IN"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="Q3_CLK0_GTREFCLK_PAD_N_IN"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="Q3_CLK0_GTREFCLK_PAD_P_IN" SIGIS="undef" SIGNAME="External_Ports_Q3_CLK0_GTREFCLK_PAD_P_IN">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="Q3_CLK0_GTREFCLK_PAD_P_IN"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="Q3_CLK0_GTREFCLK_PAD_P_IN"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="RXN_IN" SIGIS="undef" SIGNAME="External_Ports_RXN_IN">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="RXN_IN"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RXN_IN"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="RXP_IN" SIGIS="undef" SIGNAME="External_Ports_RXP_IN">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="RXP_IN"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RXP_IN"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="TXN_OUT" SIGIS="undef" SIGNAME="gt_core_0_TXN_OUT">
+    <PORT DIR="O" NAME="TXN_OUT" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TXN_OUT">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="TXN_OUT"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TXN_OUT"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="TXP_OUT" SIGIS="undef" SIGNAME="gt_core_0_TXP_OUT">
+    <PORT DIR="O" NAME="TXP_OUT" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TXP_OUT">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="gt_core_0" PORT="TXP_OUT"/>
+        <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TXP_OUT"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
@@ -636,8 +636,8 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="DRP_CLK_IN" SIGIS="clk" SIGNAME="clk_wiz_0_DRP_CLK_IN">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_0" PORT="clk"/>
-            <CONNECTION INSTANCE="gt_core_0" PORT="DRP_CLK_IN"/>
+            <CONNECTION INSTANCE="interlaken_vio_0" PORT="clk"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -652,147 +652,6 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/decode_64B_67B" HWVERSION="1.0" INSTANCE="decode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="decode_64B_67B" VLNV="xilinx.com:module_ref:decode_64B_67B:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="main_decode_64B_67B_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="79" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
-            <CONNECTION INSTANCE="descrambler" PORT="SCRAMBLED_DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="HEADER_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="decode_64B_67B_LOCKED">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe5"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_2_probe_out1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_2" PORT="probe_out1"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/descrambler" HWVERSION="1.0" INSTANCE="descrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="descrambler" VLNV="xilinx.com:module_ref:descrambler:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="RX_DATA_WIDTH" VALUE="64"/>
-        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
-        <PARAMETER NAME="META_FRAME_LEN" VALUE="16"/>
-        <PARAMETER NAME="Component_Name" VALUE="main_descrambler_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="SCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="63" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe9"/>
-            <CONNECTION INSTANCE="frame_check" PORT="RX_DATA_IN"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="descrambler_LOCKED">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe8"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="HEADER_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe7"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_2_probe_out0">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_2" PORT="probe_out0"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE FULLNAME="/encode_64B_67B" HWVERSION="1.0" INSTANCE="encode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="encode_64B_67B" VLNV="xilinx.com:module_ref:encode_64B_67B:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="main_encode_64B_67B_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="scrambler" PORT="SCRAMBLED_DATA_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe4"/>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_DATA"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="scrambler" PORT="HEADER_OUT"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_1_probe_out1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_1" PORT="probe_out1"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE FULLNAME="/frame_check" HWVERSION="1.0" INSTANCE="frame_check" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="frame_check" VLNV="xilinx.com:module_ref:frame_check:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
@@ -802,30 +661,30 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="RX_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="RX_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_UNSCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="7" NAME="ERROR_COUNT_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_ERROR_COUNT_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="TRACK_DATA_OUT" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TRACK_DATA_OUT"/>
-            <CONNECTION INSTANCE="ila_0" PORT="probe2"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK2"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_RX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -841,29 +700,174 @@
       <PORTS>
         <PORT DIR="O" LEFT="63" NAME="TX_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe3"/>
-            <CONNECTION INSTANCE="scrambler" PORT="UNSCRAMBLED_DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="TX_HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="scrambler" PORT="HEADER_IN"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="HEADER_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
+        <PORT DIR="O" NAME="TX_DATA_TO_SEND" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_TO_SEND">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_TO_SEND"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/gt_core_0" HWVERSION="1.0" INSTANCE="gt_core_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gt_core" VLNV="xilinx.com:user:gt_core:1.0">
+    <MODULE FULLNAME="/interlaken/decode_64B_67B" HWVERSION="1.0" INSTANCE="interlaken_decode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="decode_64B_67B" VLNV="xilinx.com:module_ref:decode_64B_67B:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="main_decode_64B_67B_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="79" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_DATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe0"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="SCRAMBLED_DATA_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="HEADER_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe5"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_RX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/interlaken/descrambler" HWVERSION="1.0" INSTANCE="interlaken_descrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="descrambler" VLNV="xilinx.com:module_ref:descrambler:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="RX_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="SYNC_WORD" VALUE="0x78F678F678F678F6"/>
+        <PARAMETER NAME="META_FRAME_LEN" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_descrambler_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="SCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="63" NAME="UNSCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_UNSCRAMBLED_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_check" PORT="RX_DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe9"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="LOCKED" SIGIS="undef" SIGNAME="interlaken_descrambler_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe8"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe7"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_RX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/interlaken/encode_64B_67B" HWVERSION="1.0" INSTANCE="interlaken_encode_64B_67B" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="encode_64B_67B" VLNV="xilinx.com:module_ref:encode_64B_67B:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="main_encode_64B_67B_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_scrambler_SCRAMBLED_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="SCRAMBLED_DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_encode_64B_67B_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe4"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_DATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_scrambler_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_1" PORT="probe_out1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/interlaken/gt_core_0" HWVERSION="1.0" INSTANCE="interlaken_gt_core_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="gt_core" VLNV="xilinx.com:user:gt_core:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="EXAMPLE_USE_CHIPSCOPE" VALUE="1"/>
@@ -887,9 +891,9 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="DATA_VALID" SIGIS="undef" SIGNAME="vio_1_probe_out2">
+        <PORT DIR="I" NAME="DATA_VALID" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_1" PORT="probe_out2"/>
+            <CONNECTION INSTANCE="interlaken_vio_1" PORT="probe_out2"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="RXN_IN" SIGIS="undef" SIGNAME="External_Ports_RXN_IN">
@@ -902,101 +906,103 @@
             <CONNECTION INSTANCE="External_Ports" PORT="RXP_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TXN_OUT" SIGIS="undef" SIGNAME="gt_core_0_TXN_OUT">
+        <PORT DIR="O" NAME="TXN_OUT" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TXN_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TXN_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TXP_OUT" SIGIS="undef" SIGNAME="gt_core_0_TXP_OUT">
+        <PORT DIR="O" NAME="TXP_OUT" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TXP_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TXP_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="clk"/>
-            <CONNECTION INSTANCE="vio_1" PORT="clk"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="clk"/>
+            <CONNECTION INSTANCE="interlaken_vio_1" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="scrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="frame_gen" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="clk"/>
-            <CONNECTION INSTANCE="vio_2" PORT="clk"/>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="clk"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK2">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="descrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="frame_check" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="RX_RESET_DONE_VIO" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">
+        <PORT DIR="O" NAME="RX_RESET_DONE_VIO" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE_VIO">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_0" PORT="probe_in0"/>
+            <CONNECTION INSTANCE="interlaken_vio_0" PORT="probe_in0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="SOFT_RESET_VIO" SIGIS="undef" SIGNAME="vio_0_probe_out0">
+        <PORT DIR="I" NAME="SOFT_RESET_VIO" SIGIS="undef" SIGNAME="interlaken_vio_0_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_0" PORT="probe_out0"/>
+            <CONNECTION INSTANCE="interlaken_vio_0" PORT="probe_out0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TX_MMCM_LOCK_ILA" SIGIS="undef" SIGNAME="gt_core_0_TX_MMCM_LOCK_ILA">
+        <PORT DIR="O" NAME="TX_MMCM_LOCK_ILA" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_MMCM_LOCK_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe0"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TX_RESET_DONE_ILA" SIGIS="undef" SIGNAME="gt_core_0_TX_RESET_DONE_ILA">
+        <PORT DIR="O" NAME="TX_RESET_DONE_ILA" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_RESET_DONE_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe1"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="RX_MMCM_LOCK_ILA" SIGIS="undef" SIGNAME="gt_core_0_RX_MMCM_LOCK_ILA">
+        <PORT DIR="O" NAME="RX_MMCM_LOCK_ILA" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_MMCM_LOCK_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe1"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="RX_RESET_DONE_ILA" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_ILA">
+        <PORT DIR="O" NAME="RX_RESET_DONE_ILA" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe4"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe4"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
+        <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_0" PORT="probe6"/>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe6"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_RX_SYSTEM_RESET">
+        <PORT DIR="O" NAME="RX_SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_RX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="descrambler" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="frame_check" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
+        <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_encode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TX_SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
+        <PORT DIR="O" NAME="TX_SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_SYSTEM_RESET">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="scrambler" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="frame_gen" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/ila_0" HWVERSION="6.2" INSTANCE="ila_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ila" VLNV="xilinx.com:ip:ila:6.2">
+    <MODULE FULLNAME="/interlaken/ila_0" HWVERSION="6.2" INSTANCE="interlaken_ila_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ila" VLNV="xilinx.com:ip:ila:6.2">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=ila;v=v6_2;d=pg172-ila.pdf"/>
       </DOCUMENTS>
@@ -4136,19 +4142,19 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_MMCM_LOCK_ILA">
+        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_MMCM_LOCK_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_MMCM_LOCK_ILA"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_MMCM_LOCK_ILA"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
@@ -4161,40 +4167,40 @@
             <CONNECTION INSTANCE="frame_check" PORT="ERROR_COUNT_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_ILA">
+        <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_RESET_DONE_ILA"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_RESET_DONE_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="decode_64B_67B_LOCKED">
+        <PORT DIR="I" LEFT="0" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_LOCKED">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="LOCKED"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="LOCKED"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_DATA">
+        <PORT DIR="I" LEFT="79" NAME="probe6" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_DATA"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_HEADER_OUT">
+        <PORT DIR="I" LEFT="1" NAME="probe7" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="HEADER_OUT"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="HEADER_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_LOCKED">
+        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_LOCKED">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="LOCKED"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="LOCKED"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="descrambler_UNSCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_UNSCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/ila_1" HWVERSION="6.2" INSTANCE="ila_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ila" VLNV="xilinx.com:ip:ila:6.2">
+    <MODULE FULLNAME="/interlaken/ila_1" HWVERSION="6.2" INSTANCE="interlaken_ila_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="ila" VLNV="xilinx.com:ip:ila:6.2">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=ila;v=v6_2;d=pg172-ila.pdf"/>
       </DOCUMENTS>
@@ -7334,40 +7340,40 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_TX_MMCM_LOCK_ILA">
+        <PORT DIR="I" LEFT="0" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_MMCM_LOCK_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_MMCM_LOCK_ILA"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_MMCM_LOCK_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_TX_RESET_DONE_ILA">
+        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_RESET_DONE_ILA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_RESET_DONE_ILA"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_RESET_DONE_ILA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_scrambler_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="scrambler" PORT="SCRAMBLED_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="SCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="63" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="encode_64B_67B_DATA_OUT">
+        <PORT DIR="I" LEFT="79" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_encode_64B_67B_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/scrambler" HWVERSION="1.0" INSTANCE="scrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="scrambler" VLNV="xilinx.com:module_ref:scrambler:1.0">
+    <MODULE FULLNAME="/interlaken/scrambler" HWVERSION="1.0" INSTANCE="interlaken_scrambler" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="scrambler" VLNV="xilinx.com:module_ref:scrambler:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="TX_DATA_WIDTH" VALUE="64"/>
@@ -7376,15 +7382,55 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="63" NAME="UNSCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
+        <PORT DIR="I" LEFT="63" NAME="UNSCRAMBLED_DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_SCRAMBLED_DATA_OUT">
+        <PORT DIR="O" LEFT="63" NAME="SCRAMBLED_DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_scrambler_SCRAMBLED_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="ila_1" PORT="probe2"/>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe2"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="DATA_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="HEADER_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_scrambler_HEADER_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="HEADER_IN"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_SYSTEM_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_1" PORT="probe_out0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/interlaken/tx_interface_0" HWVERSION="1.0" INSTANCE="interlaken_tx_interface_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="tx_interface" VLNV="xilinx.com:module_ref:tx_interface:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="main_tx_interface_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="63" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
@@ -7392,30 +7438,36 @@
             <CONNECTION INSTANCE="frame_gen" PORT="TX_HEADER_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="scrambler_HEADER_OUT">
+        <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="HEADER_IN"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="UNSCRAMBLED_DATA_IN"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK2">
+        <PORT DIR="O" LEFT="1" NAME="HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_HEADER_OUT">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK2"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="HEADER_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="gt_core_0_TX_SYSTEM_RESET">
+        <PORT DIR="I" NAME="DATA_TO_SEND" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_TO_SEND">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_TO_SEND"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="PASSTHROUGH" SIGIS="undef" SIGNAME="vio_1_probe_out0">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="vio_1" PORT="probe_out0"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_SYSTEM_RESET">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/vio_0" HWVERSION="3.0" INSTANCE="vio_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
+    <MODULE FULLNAME="/interlaken/vio_0" HWVERSION="3.0" INSTANCE="interlaken_vio_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=vio;v=v3_0;d=pg159-vio.pdf"/>
       </DOCUMENTS>
@@ -8219,20 +8271,20 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe_in0" RIGHT="0" SIGIS="undef" SIGNAME="gt_core_0_RX_RESET_DONE_VIO">
+        <PORT DIR="I" LEFT="0" NAME="probe_in0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE_VIO">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_RESET_DONE_VIO"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_RESET_DONE_VIO"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_0_probe_out0">
+        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_0_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="SOFT_RESET_VIO"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="SOFT_RESET_VIO"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/vio_1" HWVERSION="3.0" INSTANCE="vio_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
+    <MODULE FULLNAME="/interlaken/vio_1" HWVERSION="3.0" INSTANCE="interlaken_vio_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=vio;v=v3_0;d=pg159-vio.pdf"/>
       </DOCUMENTS>
@@ -9031,30 +9083,30 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="gt_core_0_TX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="TX_USR_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out0">
+        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="scrambler" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="interlaken_scrambler" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out1">
+        <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="encode_64B_67B" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out2" RIGHT="0" SIGIS="undef" SIGNAME="vio_1_probe_out2">
+        <PORT DIR="O" LEFT="0" NAME="probe_out2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_1_probe_out2">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="DATA_VALID"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="DATA_VALID"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/vio_2" HWVERSION="3.0" INSTANCE="vio_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
+    <MODULE FULLNAME="/interlaken/vio_2" HWVERSION="3.0" INSTANCE="interlaken_vio_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="vio" VLNV="xilinx.com:ip:vio:3.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=vio;v=v3_0;d=pg159-vio.pdf"/>
       </DOCUMENTS>
@@ -9853,19 +9905,19 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="gt_core_0_RX_USR_CLK">
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gt_core_0" PORT="RX_USR_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="vio_2_probe_out0">
+        <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out0">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="descrambler" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="vio_2_probe_out1">
+        <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="decode_64B_67B" PORT="PASSTHROUGH"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="PASSTHROUGH"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

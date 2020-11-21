@@ -57,12 +57,14 @@
 module main_frame_gen_1_0 (
   TX_DATA_OUT,
   TX_HEADER_OUT,
+  TX_DATA_TO_SEND,
   USER_CLK,
   SYSTEM_RESET
 );
 
 output wire [63 : 0] TX_DATA_OUT;
 output wire [1 : 0] TX_HEADER_OUT;
+output wire TX_DATA_TO_SEND;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
@@ -75,6 +77,7 @@ input wire SYSTEM_RESET;
   ) inst (
     .TX_DATA_OUT(TX_DATA_OUT),
     .TX_HEADER_OUT(TX_HEADER_OUT),
+    .TX_DATA_TO_SEND(TX_DATA_TO_SEND),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET)
   );

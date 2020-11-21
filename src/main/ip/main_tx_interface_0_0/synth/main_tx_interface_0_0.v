@@ -47,25 +47,29 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:frame_gen:1.0
+// IP VLNV: xilinx.com:module_ref:tx_interface:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "frame_gen,Vivado 2018.2" *)
-(* CHECK_LICENSE_TYPE = "main_frame_gen_1_0,frame_gen,{}" *)
-(* CORE_GENERATION_INFO = "main_frame_gen_1_0,frame_gen,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=frame_gen,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,WORDS_IN_BRAM=512}" *)
+(* X_CORE_INFO = "tx_interface,Vivado 2018.2" *)
+(* CHECK_LICENSE_TYPE = "main_tx_interface_0_0,tx_interface,{}" *)
+(* CORE_GENERATION_INFO = "main_tx_interface_0_0,tx_interface,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=tx_interface,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module main_frame_gen_1_0 (
-  TX_DATA_OUT,
-  TX_HEADER_OUT,
-  TX_DATA_TO_SEND,
+module main_tx_interface_0_0 (
+  DATA_IN,
+  HEADER_IN,
+  DATA_OUT,
+  HEADER_OUT,
+  DATA_TO_SEND,
   USER_CLK,
   SYSTEM_RESET
 );
 
-output wire [63 : 0] TX_DATA_OUT;
-output wire [1 : 0] TX_HEADER_OUT;
-output wire TX_DATA_TO_SEND;
+input wire [63 : 0] DATA_IN;
+input wire [1 : 0] HEADER_IN;
+output wire [63 : 0] DATA_OUT;
+output wire [1 : 0] HEADER_OUT;
+input wire DATA_TO_SEND;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
@@ -73,12 +77,12 @@ input wire USER_CLK;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
 
-  frame_gen #(
-    .WORDS_IN_BRAM(512)
-  ) inst (
-    .TX_DATA_OUT(TX_DATA_OUT),
-    .TX_HEADER_OUT(TX_HEADER_OUT),
-    .TX_DATA_TO_SEND(TX_DATA_TO_SEND),
+  tx_interface inst (
+    .DATA_IN(DATA_IN),
+    .HEADER_IN(HEADER_IN),
+    .DATA_OUT(DATA_OUT),
+    .HEADER_OUT(HEADER_OUT),
+    .DATA_TO_SEND(DATA_TO_SEND),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET)
   );

@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Tue Nov 17 01:06:56 2020
+// Date        : Sat Nov 21 16:22:03 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.v
+//               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.v
 // Design      : main_frame_gen_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,13 +18,16 @@
 module main_frame_gen_1_0
    (TX_DATA_OUT,
     TX_HEADER_OUT,
+    TX_DATA_TO_SEND,
     USER_CLK,
     SYSTEM_RESET);
   output [63:0]TX_DATA_OUT;
   output [1:0]TX_HEADER_OUT;
+  output TX_DATA_TO_SEND;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *) input USER_CLK;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *) input SYSTEM_RESET;
 
+  wire \<const1> ;
   wire SYSTEM_RESET;
   wire [61:0]\^TX_DATA_OUT ;
   wire [1:1]\^TX_HEADER_OUT ;
@@ -82,8 +85,11 @@ module main_frame_gen_1_0
   assign TX_DATA_OUT[5:3] = \^TX_DATA_OUT [5:3];
   assign TX_DATA_OUT[2] = \^TX_DATA_OUT [1];
   assign TX_DATA_OUT[1:0] = \^TX_DATA_OUT [1:0];
+  assign TX_DATA_TO_SEND = \<const1> ;
   assign TX_HEADER_OUT[1] = \^TX_HEADER_OUT [1];
   assign TX_HEADER_OUT[0] = \^TX_DATA_OUT [57];
+  VCC VCC
+       (.P(\<const1> ));
   main_frame_gen_1_0_frame_gen inst
        (.SYSTEM_RESET(SYSTEM_RESET),
         .TX_DATA_OUT({\^TX_DATA_OUT [47],\^TX_DATA_OUT [54],\^TX_DATA_OUT [61],\^TX_DATA_OUT [52],\^TX_DATA_OUT [59],\^TX_DATA_OUT [57],\^TX_DATA_OUT [40:39],\^TX_DATA_OUT [45],\^TX_DATA_OUT [35],\^TX_DATA_OUT [50],\^TX_DATA_OUT [34],\^TX_DATA_OUT [32],\^TX_DATA_OUT [27],\^TX_DATA_OUT [33],\^TX_DATA_OUT [15:13],\^TX_DATA_OUT [5:3],\^TX_DATA_OUT [1:0]}),
