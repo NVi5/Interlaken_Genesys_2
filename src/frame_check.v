@@ -126,7 +126,7 @@ wire    [1:0]   bram_header_r;
 //________________________________ State machine __________________________
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET)
+        if(SYSTEM_RESET || (DATA_VALID == 0))
             {begin_r,track_data_r,data_error_detected_r}  <=  `DLY    3'b100;
         else
         begin
@@ -153,7 +153,7 @@ wire    [1:0]   bram_header_r;
 
     always @(posedge USER_CLK)
     begin
-        if(SYSTEM_RESET)
+        if(SYSTEM_RESET || (DATA_VALID == 0))
         begin
             rx_data_r           <=  `DLY   'h0;
             rx_data_r2          <=  `DLY   'h0;
@@ -206,7 +206,7 @@ wire    [1:0]   bram_header_r;
 //____________________________ Counter to read from BRAM __________________________
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET || (read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r))
+        if(SYSTEM_RESET || (read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r) || (DATA_VALID == 0))
         begin
             read_counter_i  <=  `DLY    'h0;
         end
