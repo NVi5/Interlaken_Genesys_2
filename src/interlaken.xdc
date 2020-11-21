@@ -62,13 +62,6 @@
 ## THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 ## PART OF THIS FILE AT ALL TIMES.
 
-# Set false paths
-set_false_path -to [get_pins -hierarchical -filter {NAME =~ *_txfsmresetdone_r*/CLR}];
-set_false_path -to [get_pins -hierarchical -filter {NAME =~ *_txfsmresetdone_r*/D}];
-
-set_false_path -to [get_pins -hierarchical -filter {NAME =~ *_rxresetdone_vio*/CLR}];
-set_false_path -to [get_pins -hierarchical -filter {NAME =~ *_rxresetdone_vio*/D}];
-
 ## Clock Constraints
 create_clock -period 8.0 [get_ports Q3_CLK0_GTREFCLK_PAD_P_IN];
 set_property LOC C7 [get_ports  Q3_CLK0_GTREFCLK_PAD_N_IN ];

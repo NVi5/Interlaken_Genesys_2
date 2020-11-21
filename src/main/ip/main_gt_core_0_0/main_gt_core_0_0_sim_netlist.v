@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Mon Nov 16 20:19:45 2020
+// Date        : Sat Nov 21 19:01:58 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top main_gt_core_0_0 -prefix
-//               main_gt_core_0_0_ main_gt_core_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_core_0_0/main_gt_core_0_0_sim_netlist.v
 // Design      : main_gt_core_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,109 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}" *) 
+(* CHECK_LICENSE_TYPE = "main_gt_core_0_0,gtwizard_0_exdes,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "package_project" *) 
+(* X_CORE_INFO = "gtwizard_0_exdes,Vivado 2018.2" *) 
+(* NotValidForBitStream *)
+module main_gt_core_0_0
+   (Q3_CLK0_GTREFCLK_PAD_N_IN,
+    Q3_CLK0_GTREFCLK_PAD_P_IN,
+    DRP_CLK_IN,
+    DATA_VALID,
+    RXN_IN,
+    RXP_IN,
+    TXN_OUT,
+    TXP_OUT,
+    TX_USR_CLK,
+    TX_USR_CLK2,
+    RX_USR_CLK,
+    RX_USR_CLK2,
+    SOFT_RESET,
+    TX_RESET,
+    RX_RESET,
+    TX_MMCM_LOCK,
+    TX_RESET_DONE,
+    TX_FSM_RESET_DONE,
+    RX_MMCM_LOCK,
+    RX_RESET_DONE,
+    RX_FSM_RESET_DONE,
+    RX_DATA,
+    TX_DATA);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Q3_CLK0_GTREFCLK_PAD_N_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Q3_CLK0_GTREFCLK_PAD_N_IN, FREQ_HZ 100000000, PHASE 0.000" *) input Q3_CLK0_GTREFCLK_PAD_N_IN;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Q3_CLK0_GTREFCLK_PAD_P_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Q3_CLK0_GTREFCLK_PAD_P_IN, FREQ_HZ 100000000, PHASE 0.000" *) input Q3_CLK0_GTREFCLK_PAD_P_IN;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 DRP_CLK_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DRP_CLK_IN, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN main_clk_wiz_0_1_DRP_CLK_IN" *) input DRP_CLK_IN;
+  input DATA_VALID;
+  input RXN_IN;
+  input RXP_IN;
+  output TXN_OUT;
+  output TXP_OUT;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TX_USR_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_USR_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK" *) output TX_USR_CLK;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TX_USR_CLK2 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_USR_CLK2, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *) output TX_USR_CLK2;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 RX_USR_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_USR_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK" *) output RX_USR_CLK;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 RX_USR_CLK2 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_USR_CLK2, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *) output RX_USR_CLK2;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SOFT_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SOFT_RESET, POLARITY ACTIVE_LOW" *) input SOFT_RESET;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 TX_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_RESET, POLARITY ACTIVE_LOW" *) output TX_RESET;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RX_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_RESET, POLARITY ACTIVE_LOW" *) output RX_RESET;
+  output TX_MMCM_LOCK;
+  output TX_RESET_DONE;
+  output TX_FSM_RESET_DONE;
+  output RX_MMCM_LOCK;
+  output RX_RESET_DONE;
+  output RX_FSM_RESET_DONE;
+  output [79:0]RX_DATA;
+  input [79:0]TX_DATA;
+
+  wire DATA_VALID;
+  wire DRP_CLK_IN;
+  wire Q3_CLK0_GTREFCLK_PAD_N_IN;
+  wire Q3_CLK0_GTREFCLK_PAD_P_IN;
+  wire RXN_IN;
+  wire RXP_IN;
+  wire [79:0]RX_DATA;
+  wire RX_FSM_RESET_DONE;
+  wire RX_MMCM_LOCK;
+  wire RX_RESET;
+  wire RX_RESET_DONE;
+  wire RX_USR_CLK;
+  wire RX_USR_CLK2;
+  wire SOFT_RESET;
+  wire TXN_OUT;
+  wire TXP_OUT;
+  wire [79:0]TX_DATA;
+  wire TX_FSM_RESET_DONE;
+  wire TX_MMCM_LOCK;
+  wire TX_RESET;
+  wire TX_RESET_DONE;
+  wire TX_USR_CLK;
+  wire TX_USR_CLK2;
+
+  (* LOOPBACK = "0" *) 
+  main_gt_core_0_0_gtwizard_0_exdes inst
+       (.DATA_VALID(DATA_VALID),
+        .DRP_CLK_IN(DRP_CLK_IN),
+        .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN),
+        .Q3_CLK0_GTREFCLK_PAD_P_IN(Q3_CLK0_GTREFCLK_PAD_P_IN),
+        .RXN_IN(RXN_IN),
+        .RXP_IN(RXP_IN),
+        .RX_DATA(RX_DATA),
+        .RX_FSM_RESET_DONE(RX_FSM_RESET_DONE),
+        .RX_MMCM_LOCK(RX_MMCM_LOCK),
+        .RX_RESET(RX_RESET),
+        .RX_RESET_DONE(RX_RESET_DONE),
+        .RX_USR_CLK(RX_USR_CLK),
+        .RX_USR_CLK2(RX_USR_CLK2),
+        .SOFT_RESET(SOFT_RESET),
+        .TXN_OUT(TXN_OUT),
+        .TXP_OUT(TXP_OUT),
+        .TX_DATA(TX_DATA),
+        .TX_FSM_RESET_DONE(TX_FSM_RESET_DONE),
+        .TX_MMCM_LOCK(TX_MMCM_LOCK),
+        .TX_RESET(TX_RESET),
+        .TX_RESET_DONE(TX_RESET_DONE),
+        .TX_USR_CLK(TX_USR_CLK),
+        .TX_USR_CLK2(TX_USR_CLK2));
+endmodule
+
+(* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "gtwizard_0" *) (* X_CORE_INFO = "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}" *) 
 module main_gt_core_0_0_gtwizard_0
    (soft_reset_tx_in,
     soft_reset_rx_in,
@@ -254,6 +356,7 @@ module main_gt_core_0_0_gtwizard_0
         .sysclk_in(sysclk_in));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_CLOCK_MODULE" *) 
 module main_gt_core_0_0_gtwizard_0_CLOCK_MODULE
    (gt0_rx_mmcm_lock_out,
     gt0_rxusrclk2_out,
@@ -525,6 +628,7 @@ module main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9
         .RST(GT0_TX_MMCM_RESET_IN));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_GT" *) 
 module main_gt_core_0_0_gtwizard_0_GT
    (gt0_drprdy_out,
     gt0_eyescandataerror_out,
@@ -1162,6 +1266,7 @@ module main_gt_core_0_0_gtwizard_0_GT
         .TXUSRCLK2(gt0_txusrclk2_out));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_GT_USRCLK_SOURCE" *) 
 module main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE
    (gt0_tx_mmcm_lock_out,
     gt0_txusrclk2_out,
@@ -1232,6 +1337,7 @@ module main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE
         .gt0_txusrclk_out(gt0_txusrclk_out));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_RX_STARTUP_FSM" *) 
 module main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM
    (SR,
     GT0_RX_MMCM_RESET_IN,
@@ -3535,6 +3641,7 @@ module main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM
         .S(\wait_time_cnt[0]_i_1_n_0 ));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_TX_STARTUP_FSM" *) 
 module main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM
    (gt0_gttxreset_i,
     GT0_TX_MMCM_RESET_IN,
@@ -4929,6 +5036,7 @@ module main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM
         .S(\wait_time_cnt[0]_i_1__0_n_0 ));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_common" *) 
 module main_gt_core_0_0_gtwizard_0_common
    (gt0_qplllock_out,
     gt0_qplloutclk_out,
@@ -5020,6 +5128,7 @@ module main_gt_core_0_0_gtwizard_0_common
         .REFCLKOUTMONITOR(NLW_gtxe2_common_i_REFCLKOUTMONITOR_UNCONNECTED));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_common_reset" *) 
 module main_gt_core_0_0_gtwizard_0_common_reset
    (gt0_qpllreset_t,
     sysclk_in,
@@ -5277,7 +5386,7 @@ module main_gt_core_0_0_gtwizard_0_common_reset
         .R(soft_reset_tx_in));
 endmodule
 
-(* DowngradeIPIdentifiedWarnings = "yes" *) (* EXAMPLE_USE_CHIPSCOPE = "1" *) (* LOOPBACK = "0" *) 
+(* LOOPBACK = "0" *) (* ORIG_REF_NAME = "gtwizard_0_exdes" *) 
 module main_gt_core_0_0_gtwizard_0_exdes
    (Q3_CLK0_GTREFCLK_PAD_N_IN,
     Q3_CLK0_GTREFCLK_PAD_P_IN,
@@ -5291,16 +5400,17 @@ module main_gt_core_0_0_gtwizard_0_exdes
     TX_USR_CLK2,
     RX_USR_CLK,
     RX_USR_CLK2,
-    RX_RESET_DONE_VIO,
-    SOFT_RESET_VIO,
-    TX_MMCM_LOCK_ILA,
-    TX_RESET_DONE_ILA,
-    RX_MMCM_LOCK_ILA,
-    RX_RESET_DONE_ILA,
-    RX_DATA,
-    RX_SYSTEM_RESET,
+    SOFT_RESET,
+    TX_RESET,
+    RX_RESET,
+    TX_MMCM_LOCK,
+    TX_RESET_DONE,
+    TX_FSM_RESET_DONE,
+    RX_MMCM_LOCK,
+    RX_RESET_DONE,
+    RX_FSM_RESET_DONE,
     TX_DATA,
-    TX_SYSTEM_RESET);
+    RX_DATA);
   input Q3_CLK0_GTREFCLK_PAD_N_IN;
   input Q3_CLK0_GTREFCLK_PAD_P_IN;
   input DRP_CLK_IN;
@@ -5313,16 +5423,17 @@ module main_gt_core_0_0_gtwizard_0_exdes
   output TX_USR_CLK2;
   output RX_USR_CLK;
   output RX_USR_CLK2;
-  output RX_RESET_DONE_VIO;
-  input SOFT_RESET_VIO;
-  output TX_MMCM_LOCK_ILA;
-  output TX_RESET_DONE_ILA;
-  output RX_MMCM_LOCK_ILA;
-  output RX_RESET_DONE_ILA;
-  output [79:0]RX_DATA;
-  output RX_SYSTEM_RESET;
+  input SOFT_RESET;
+  output TX_RESET;
+  output RX_RESET;
+  output TX_MMCM_LOCK;
+  output TX_RESET_DONE;
+  output TX_FSM_RESET_DONE;
+  output RX_MMCM_LOCK;
+  output RX_RESET_DONE;
+  output RX_FSM_RESET_DONE;
   input [79:0]TX_DATA;
-  output TX_SYSTEM_RESET;
+  output [79:0]RX_DATA;
 
   wire DATA_VALID;
   wire DRP_CLK_IN;
@@ -5331,42 +5442,28 @@ module main_gt_core_0_0_gtwizard_0_exdes
   wire RXN_IN;
   wire RXP_IN;
   wire [79:0]RX_DATA;
-  wire RX_MMCM_LOCK_ILA;
-  wire RX_RESET_DONE_ILA;
-  wire RX_SYSTEM_RESET;
+  wire RX_FSM_RESET_DONE;
+  wire RX_MMCM_LOCK;
+  wire RX_RESET;
+  wire RX_RESET_DONE;
   wire RX_USR_CLK;
   wire RX_USR_CLK2;
-  wire SOFT_RESET_VIO;
+  wire SOFT_RESET;
   wire TXN_OUT;
   wire TXP_OUT;
   wire [79:0]TX_DATA;
-  wire TX_MMCM_LOCK_ILA;
-  wire TX_RESET_DONE_ILA;
-  wire TX_SYSTEM_RESET;
+  wire TX_FSM_RESET_DONE;
+  wire TX_MMCM_LOCK;
+  wire TX_RESET;
+  wire TX_RESET_DONE;
   wire TX_USR_CLK;
   wire TX_USR_CLK2;
-  (* async_reg = "true" *) wire gt0_rxfsmresetdone_r;
-  (* async_reg = "true" *) wire gt0_rxfsmresetdone_r2;
-  (* async_reg = "true" *) wire gt0_rxresetdone_r;
-  (* async_reg = "true" *) wire gt0_rxresetdone_r2;
-  (* async_reg = "true" *) wire gt0_rxresetdone_r3;
-  (* async_reg = "true" *) wire gt0_rxresetdone_vio_r;
-  (* async_reg = "true" *) wire gt0_rxresetdone_vio_r2;
-  (* async_reg = "true" *) wire gt0_rxresetdone_vio_r3;
-  wire gt0_rxresetdone_vio_r_i_1_n_0;
-  wire gt0_txfsmresetdone_i;
-  (* async_reg = "true" *) wire gt0_txfsmresetdone_r;
-  (* async_reg = "true" *) wire gt0_txfsmresetdone_r2;
-  wire gt0_txfsmresetdone_r_i_1_n_0;
-  (* async_reg = "true" *) wire gt_txfsmresetdone_r;
-  (* async_reg = "true" *) wire gt_txfsmresetdone_r2;
   wire NLW_gtwizard_0_support_i_gt0_drprdy_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_eyescandataerror_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_qplllock_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_qplloutclk_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_qplloutrefclk_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_qpllrefclklost_out_UNCONNECTED;
-  wire NLW_gtwizard_0_support_i_gt0_rx_fsm_reset_done_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_rxoutclkfabric_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_rxprbserr_out_UNCONNECTED;
   wire NLW_gtwizard_0_support_i_gt0_txoutclkfabric_out_UNCONNECTED;
@@ -5376,91 +5473,20 @@ module main_gt_core_0_0_gtwizard_0_exdes
   wire [2:0]NLW_gtwizard_0_support_i_gt0_rxbufstatus_out_UNCONNECTED;
   wire [6:0]NLW_gtwizard_0_support_i_gt0_rxmonitorout_out_UNCONNECTED;
 
-  assign RX_RESET_DONE_VIO = gt0_rxresetdone_vio_r3;
-  LUT1 #(
-    .INIT(2'h1)) 
-    RX_SYSTEM_RESET_INST_0
-       (.I0(gt0_rxresetdone_r3),
-        .O(RX_SYSTEM_RESET));
-  LUT1 #(
-    .INIT(2'h1)) 
-    TX_SYSTEM_RESET_INST_0
-       (.I0(gt0_txfsmresetdone_r2),
-        .O(TX_SYSTEM_RESET));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_r2_reg
-       (.C(RX_USR_CLK2),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(gt0_rxresetdone_r),
-        .Q(gt0_rxresetdone_r2));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_r3_reg
-       (.C(RX_USR_CLK2),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(gt0_rxresetdone_r2),
-        .Q(gt0_rxresetdone_r3));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_r_reg
-       (.C(RX_USR_CLK2),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(1'b1),
-        .Q(gt0_rxresetdone_r));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_vio_r2_reg
-       (.C(DRP_CLK_IN),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(gt0_rxresetdone_vio_r),
-        .Q(gt0_rxresetdone_vio_r2));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_vio_r3_reg
-       (.C(DRP_CLK_IN),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(gt0_rxresetdone_vio_r2),
-        .Q(gt0_rxresetdone_vio_r3));
-  LUT1 #(
-    .INIT(2'h1)) 
-    gt0_rxresetdone_vio_r_i_1
-       (.I0(RX_RESET_DONE_ILA),
-        .O(gt0_rxresetdone_vio_r_i_1_n_0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_rxresetdone_vio_r_reg
-       (.C(DRP_CLK_IN),
-        .CE(1'b1),
-        .CLR(gt0_rxresetdone_vio_r_i_1_n_0),
-        .D(1'b1),
-        .Q(gt0_rxresetdone_vio_r));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_txfsmresetdone_r2_reg
-       (.C(TX_USR_CLK2),
-        .CE(1'b1),
-        .CLR(gt0_txfsmresetdone_r_i_1_n_0),
-        .D(gt0_txfsmresetdone_r),
-        .Q(gt0_txfsmresetdone_r2));
-  LUT1 #(
-    .INIT(2'h1)) 
-    gt0_txfsmresetdone_r_i_1
-       (.I0(gt0_txfsmresetdone_i),
-        .O(gt0_txfsmresetdone_r_i_1_n_0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE gt0_txfsmresetdone_r_reg
-       (.C(TX_USR_CLK2),
-        .CE(1'b1),
-        .CLR(gt0_txfsmresetdone_r_i_1_n_0),
-        .D(1'b1),
-        .Q(gt0_txfsmresetdone_r));
+  LUT3 #(
+    .INIT(8'h7F)) 
+    RX_RESET_INST_0
+       (.I0(RX_MMCM_LOCK),
+        .I1(RX_RESET_DONE),
+        .I2(RX_FSM_RESET_DONE),
+        .O(RX_RESET));
+  LUT3 #(
+    .INIT(8'h7F)) 
+    TX_RESET_INST_0
+       (.I0(TX_MMCM_LOCK),
+        .I1(TX_RESET_DONE),
+        .I2(TX_FSM_RESET_DONE),
+        .O(TX_RESET));
   (* DowngradeIPIdentifiedWarnings = "yes" *) 
   (* X_CORE_INFO = "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}" *) 
   main_gt_core_0_0_gtwizard_0 gtwizard_0_support_i
@@ -5487,8 +5513,8 @@ module main_gt_core_0_0_gtwizard_0_exdes
         .gt0_qplloutclk_out(NLW_gtwizard_0_support_i_gt0_qplloutclk_out_UNCONNECTED),
         .gt0_qplloutrefclk_out(NLW_gtwizard_0_support_i_gt0_qplloutrefclk_out_UNCONNECTED),
         .gt0_qpllrefclklost_out(NLW_gtwizard_0_support_i_gt0_qpllrefclklost_out_UNCONNECTED),
-        .gt0_rx_fsm_reset_done_out(NLW_gtwizard_0_support_i_gt0_rx_fsm_reset_done_out_UNCONNECTED),
-        .gt0_rx_mmcm_lock_out(RX_MMCM_LOCK_ILA),
+        .gt0_rx_fsm_reset_done_out(RX_FSM_RESET_DONE),
+        .gt0_rx_mmcm_lock_out(RX_MMCM_LOCK),
         .gt0_rxbufreset_in(1'b0),
         .gt0_rxbufstatus_out(NLW_gtwizard_0_support_i_gt0_rxbufstatus_out_UNCONNECTED[2:0]),
         .gt0_rxdata_out(RX_DATA),
@@ -5501,49 +5527,30 @@ module main_gt_core_0_0_gtwizard_0_exdes
         .gt0_rxprbscntreset_in(1'b0),
         .gt0_rxprbserr_out(NLW_gtwizard_0_support_i_gt0_rxprbserr_out_UNCONNECTED),
         .gt0_rxprbssel_in({1'b0,1'b0,1'b0}),
-        .gt0_rxresetdone_out(RX_RESET_DONE_ILA),
+        .gt0_rxresetdone_out(RX_RESET_DONE),
         .gt0_rxuserrdy_in(1'b1),
         .gt0_rxusrclk2_out(RX_USR_CLK2),
         .gt0_rxusrclk_out(RX_USR_CLK),
-        .gt0_tx_fsm_reset_done_out(gt0_txfsmresetdone_i),
-        .gt0_tx_mmcm_lock_out(TX_MMCM_LOCK_ILA),
+        .gt0_tx_fsm_reset_done_out(TX_FSM_RESET_DONE),
+        .gt0_tx_mmcm_lock_out(TX_MMCM_LOCK),
         .gt0_txdata_in(TX_DATA),
         .gt0_txoutclkfabric_out(NLW_gtwizard_0_support_i_gt0_txoutclkfabric_out_UNCONNECTED),
         .gt0_txoutclkpcs_out(NLW_gtwizard_0_support_i_gt0_txoutclkpcs_out_UNCONNECTED),
         .gt0_txpcsreset_in(1'b0),
         .gt0_txprbsforceerr_in(1'b0),
         .gt0_txprbssel_in({1'b0,1'b0,1'b0}),
-        .gt0_txresetdone_out(TX_RESET_DONE_ILA),
+        .gt0_txresetdone_out(TX_RESET_DONE),
         .gt0_txuserrdy_in(1'b1),
         .gt0_txusrclk2_out(TX_USR_CLK2),
         .gt0_txusrclk_out(TX_USR_CLK),
         .q3_clk0_gtrefclk_pad_n_in(Q3_CLK0_GTREFCLK_PAD_N_IN),
         .q3_clk0_gtrefclk_pad_p_in(Q3_CLK0_GTREFCLK_PAD_P_IN),
-        .soft_reset_rx_in(SOFT_RESET_VIO),
-        .soft_reset_tx_in(SOFT_RESET_VIO),
+        .soft_reset_rx_in(SOFT_RESET),
+        .soft_reset_tx_in(SOFT_RESET),
         .sysclk_in(DRP_CLK_IN));
-  LUT1 #(
-    .INIT(2'h2)) 
-    i_0
-       (.I0(1'b0),
-        .O(gt_txfsmresetdone_r));
-  LUT1 #(
-    .INIT(2'h2)) 
-    i_1
-       (.I0(1'b0),
-        .O(gt_txfsmresetdone_r2));
-  LUT1 #(
-    .INIT(2'h2)) 
-    i_2
-       (.I0(1'b0),
-        .O(gt0_rxfsmresetdone_r));
-  LUT1 #(
-    .INIT(2'h2)) 
-    i_3
-       (.I0(1'b0),
-        .O(gt0_rxfsmresetdone_r2));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_init" *) 
 module main_gt_core_0_0_gtwizard_0_init
    (gt0_drprdy_out,
     gt0_eyescandataerror_out,
@@ -6531,6 +6538,7 @@ module main_gt_core_0_0_gtwizard_0_init
         .sysclk_in(sysclk_in));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_multi_gt" *) 
 module main_gt_core_0_0_gtwizard_0_multi_gt
    (gt0_drprdy_out,
     gt0_eyescandataerror_out,
@@ -6733,7 +6741,8 @@ module main_gt_core_0_0_gtwizard_0_multi_gt
         .sysclk_in(sysclk_in));
 endmodule
 
-(* DowngradeIPIdentifiedWarnings = "yes" *) (* EXAMPLE_SIM_GTRESET_SPEEDUP = "TRUE" *) (* STABLE_CLOCK_PERIOD = "10" *) 
+(* DowngradeIPIdentifiedWarnings = "yes" *) (* EXAMPLE_SIM_GTRESET_SPEEDUP = "TRUE" *) (* ORIG_REF_NAME = "gtwizard_0_support" *) 
+(* STABLE_CLOCK_PERIOD = "10" *) 
 module main_gt_core_0_0_gtwizard_0_support
    (soft_reset_tx_in,
     soft_reset_rx_in,
@@ -7001,6 +7010,7 @@ module main_gt_core_0_0_gtwizard_0_support
         .sysclk_in(sysclk_in));
 endmodule
 
+(* ORIG_REF_NAME = "gtwizard_0_sync_block" *) 
 module main_gt_core_0_0_gtwizard_0_sync_block
    (data_out,
     gt0_txresetdone_out,
@@ -8304,106 +8314,6 @@ module main_gt_core_0_0_gtwizard_0_sync_block_8
         .D(data_sync5),
         .Q(data_out),
         .R(1'b0));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "main_gt_core_0_0,gtwizard_0_exdes,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "package_project" *) 
-(* X_CORE_INFO = "gtwizard_0_exdes,Vivado 2018.2" *) 
-(* NotValidForBitStream *)
-module main_gt_core_0_0
-   (Q3_CLK0_GTREFCLK_PAD_N_IN,
-    Q3_CLK0_GTREFCLK_PAD_P_IN,
-    DRP_CLK_IN,
-    DATA_VALID,
-    RXN_IN,
-    RXP_IN,
-    TXN_OUT,
-    TXP_OUT,
-    TX_USR_CLK,
-    TX_USR_CLK2,
-    RX_USR_CLK,
-    RX_USR_CLK2,
-    RX_RESET_DONE_VIO,
-    SOFT_RESET_VIO,
-    TX_MMCM_LOCK_ILA,
-    TX_RESET_DONE_ILA,
-    RX_MMCM_LOCK_ILA,
-    RX_RESET_DONE_ILA,
-    RX_DATA,
-    RX_SYSTEM_RESET,
-    TX_DATA,
-    TX_SYSTEM_RESET);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Q3_CLK0_GTREFCLK_PAD_N_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Q3_CLK0_GTREFCLK_PAD_N_IN, FREQ_HZ 100000000, PHASE 0.000" *) input Q3_CLK0_GTREFCLK_PAD_N_IN;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 Q3_CLK0_GTREFCLK_PAD_P_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Q3_CLK0_GTREFCLK_PAD_P_IN, FREQ_HZ 100000000, PHASE 0.000" *) input Q3_CLK0_GTREFCLK_PAD_P_IN;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 DRP_CLK_IN CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DRP_CLK_IN, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN main_clk_wiz_0_1_DRP_CLK_IN" *) input DRP_CLK_IN;
-  input DATA_VALID;
-  input RXN_IN;
-  input RXP_IN;
-  output TXN_OUT;
-  output TXP_OUT;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TX_USR_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_USR_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK" *) output TX_USR_CLK;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TX_USR_CLK2 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_USR_CLK2, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *) output TX_USR_CLK2;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 RX_USR_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_USR_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK" *) output RX_USR_CLK;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 RX_USR_CLK2 CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_USR_CLK2, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *) output RX_USR_CLK2;
-  output RX_RESET_DONE_VIO;
-  input SOFT_RESET_VIO;
-  output TX_MMCM_LOCK_ILA;
-  output TX_RESET_DONE_ILA;
-  output RX_MMCM_LOCK_ILA;
-  output RX_RESET_DONE_ILA;
-  output [79:0]RX_DATA;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RX_SYSTEM_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_SYSTEM_RESET, POLARITY ACTIVE_LOW" *) output RX_SYSTEM_RESET;
-  input [79:0]TX_DATA;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 TX_SYSTEM_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TX_SYSTEM_RESET, POLARITY ACTIVE_LOW" *) output TX_SYSTEM_RESET;
-
-  wire DATA_VALID;
-  wire DRP_CLK_IN;
-  wire Q3_CLK0_GTREFCLK_PAD_N_IN;
-  wire Q3_CLK0_GTREFCLK_PAD_P_IN;
-  wire RXN_IN;
-  wire RXP_IN;
-  wire [79:0]RX_DATA;
-  wire RX_MMCM_LOCK_ILA;
-  wire RX_RESET_DONE_ILA;
-  wire RX_RESET_DONE_VIO;
-  wire RX_SYSTEM_RESET;
-  wire RX_USR_CLK;
-  wire RX_USR_CLK2;
-  wire SOFT_RESET_VIO;
-  wire TXN_OUT;
-  wire TXP_OUT;
-  wire [79:0]TX_DATA;
-  wire TX_MMCM_LOCK_ILA;
-  wire TX_RESET_DONE_ILA;
-  wire TX_SYSTEM_RESET;
-  wire TX_USR_CLK;
-  wire TX_USR_CLK2;
-
-  (* DowngradeIPIdentifiedWarnings = "yes" *) 
-  (* EXAMPLE_USE_CHIPSCOPE = "1" *) 
-  (* LOOPBACK = "0" *) 
-  main_gt_core_0_0_gtwizard_0_exdes inst
-       (.DATA_VALID(DATA_VALID),
-        .DRP_CLK_IN(DRP_CLK_IN),
-        .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN),
-        .Q3_CLK0_GTREFCLK_PAD_P_IN(Q3_CLK0_GTREFCLK_PAD_P_IN),
-        .RXN_IN(RXN_IN),
-        .RXP_IN(RXP_IN),
-        .RX_DATA(RX_DATA),
-        .RX_MMCM_LOCK_ILA(RX_MMCM_LOCK_ILA),
-        .RX_RESET_DONE_ILA(RX_RESET_DONE_ILA),
-        .RX_RESET_DONE_VIO(RX_RESET_DONE_VIO),
-        .RX_SYSTEM_RESET(RX_SYSTEM_RESET),
-        .RX_USR_CLK(RX_USR_CLK),
-        .RX_USR_CLK2(RX_USR_CLK2),
-        .SOFT_RESET_VIO(SOFT_RESET_VIO),
-        .TXN_OUT(TXN_OUT),
-        .TXP_OUT(TXP_OUT),
-        .TX_DATA(TX_DATA),
-        .TX_MMCM_LOCK_ILA(TX_MMCM_LOCK_ILA),
-        .TX_RESET_DONE_ILA(TX_RESET_DONE_ILA),
-        .TX_SYSTEM_RESET(TX_SYSTEM_RESET),
-        .TX_USR_CLK(TX_USR_CLK),
-        .TX_USR_CLK2(TX_USR_CLK2));
 endmodule
 `ifndef GLBL
 `define GLBL

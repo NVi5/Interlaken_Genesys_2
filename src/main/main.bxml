@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="main" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605972184"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605972184"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605972184"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605972184"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605981679"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605981679"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605981679"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605981679"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\main_gt_core_0_0\main_gt_core_0_0.xci" Type="IP">
         <Instance HierarchyPath="interlaken/gt_core_0"/>
@@ -15,24 +15,8 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\main_ila_0_0\main_ila_0_0.xci" Type="IP">
-        <Instance HierarchyPath="interlaken/ila_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip\main_vio_0_0\main_vio_0_0.xci" Type="IP">
         <Instance HierarchyPath="interlaken/vio_0"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\main_ila_1_0\main_ila_1_0.xci" Type="IP">
-        <Instance HierarchyPath="interlaken/ila_1"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -79,17 +63,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth\main.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-      </File>
-      <File Name="sim\main.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip\main_frame_gen_1_0\main_frame_gen_1_0.xci" Type="IP">
         <Instance HierarchyPath="frame_gen"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -124,6 +97,41 @@
       </File>
       <File Name="ip\main_tx_interface_0_0\main_tx_interface_0_0.xci" Type="IP">
         <Instance HierarchyPath="interlaken/tx_interface_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_ila_1_1\main_ila_1_1.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/ila_1"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_ila_0_1_1\main_ila_0_1.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/ila_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="synth\main.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+      </File>
+      <File Name="sim\main.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_ila_2_0\main_ila_2_0.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/ila_2"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

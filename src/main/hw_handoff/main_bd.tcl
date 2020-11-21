@@ -174,12 +174,12 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   create_bd_pin -dir I RXN_IN
   create_bd_pin -dir I RXP_IN
   create_bd_pin -dir O -from 63 -to 0 RX_DATA_OUT
-  create_bd_pin -dir O -type rst RX_SYSTEM_RESET
+  create_bd_pin -dir O -from 0 -to 0 -type rst RX_SYSTEM_RESET
   create_bd_pin -dir O -type clk RX_USR_CLK2
   create_bd_pin -dir O TXN_OUT
   create_bd_pin -dir O TXP_OUT
   create_bd_pin -dir I -from 63 -to 0 TX_DATA_IN
-  create_bd_pin -dir O -type rst TX_SYSTEM_RESET
+  create_bd_pin -dir O -from 0 -to 0 -type rst TX_SYSTEM_RESET
   create_bd_pin -dir O -type clk TX_USR_CLK2
 
   # Create instance: decode_64B_67B, and set properties
@@ -230,11 +230,13 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE10_WIDTH {1} \
    CONFIG.C_PROBE1_WIDTH {1} \
-   CONFIG.C_PROBE3_WIDTH {8} \
-   CONFIG.C_PROBE4_WIDTH {1} \
-   CONFIG.C_PROBE6_WIDTH {80} \
-   CONFIG.C_PROBE7_WIDTH {2} \
-   CONFIG.C_PROBE9_WIDTH {64} \
+   CONFIG.C_PROBE2_WIDTH {8} \
+   CONFIG.C_PROBE3_WIDTH {1} \
+   CONFIG.C_PROBE4_WIDTH {80} \
+   CONFIG.C_PROBE5_WIDTH {2} \
+   CONFIG.C_PROBE6_WIDTH {1} \
+   CONFIG.C_PROBE7_WIDTH {64} \
+   CONFIG.C_PROBE9_WIDTH {1} \
  ] $ila_0
 
   # Create instance: ila_1, and set properties
@@ -243,10 +245,20 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
    CONFIG.C_NUM_OF_PROBES {5} \
-   CONFIG.C_PROBE2_WIDTH {64} \
-   CONFIG.C_PROBE3_WIDTH {64} \
-   CONFIG.C_PROBE4_WIDTH {80} \
+   CONFIG.C_PROBE0_WIDTH {64} \
+   CONFIG.C_PROBE1_WIDTH {64} \
+   CONFIG.C_PROBE2_WIDTH {80} \
+   CONFIG.C_PROBE3_WIDTH {1} \
+   CONFIG.C_PROBE4_WIDTH {1} \
  ] $ila_1
+
+  # Create instance: ila_2, and set properties
+  set ila_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_2 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {2} \
+ ] $ila_2
 
   # Create instance: scrambler, and set properties
   set block_name scrambler
@@ -273,6 +285,8 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
+   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
+   CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {1} \
  ] $vio_0
 
@@ -299,46 +313,47 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
 
   # Create port connections
   connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins tx_interface_0/DATA_TO_SEND]
+  connect_bd_net -net DEBUG_ERROR_COUNT [get_bd_pins DEBUG_ERROR_COUNT] [get_bd_pins ila_0/probe2]
+  connect_bd_net -net DEBUG_TRACK_DATA [get_bd_pins DEBUG_TRACK_DATA] [get_bd_pins ila_0/probe1]
+  connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/SCRAMBLED_DATA_IN] [get_bd_pins ila_0/probe0]
+  connect_bd_net -net DECODER_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe3]
   connect_bd_net -net DECODER_PASSTHROUGH [get_bd_pins decode_64B_67B/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
-  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins RX_DATA_OUT] [get_bd_pins descrambler/UNSCRAMBLED_DATA_OUT] [get_bd_pins ila_0/probe7]
+  connect_bd_net -net DESCRAMBLER_HEADER_OUT_ILA [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5]
+  connect_bd_net -net DESCRAMBLER_LOCKED_ILA [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe6]
+  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins ila_2/clk] [get_bd_pins vio_0/clk]
+  connect_bd_net -net ENCODER_DATA_OUT [get_bd_pins encode_64B_67B/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA] [get_bd_pins ila_1/probe2]
   connect_bd_net -net ENCODER_PASSTHROUGH [get_bd_pins encode_64B_67B/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
   connect_bd_net -net GT_DATA_VALID [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins vio_1/probe_out2]
+  connect_bd_net -net GT_RX_DATA [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gt_core_0/RX_DATA] [get_bd_pins ila_0/probe4]
   connect_bd_net -net HEADER_IN_1 [get_bd_pins HEADER_IN] [get_bd_pins tx_interface_0/HEADER_IN]
   connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins encode_64B_67B/USER_CLK] [get_bd_pins gt_core_0/TX_USR_CLK2] [get_bd_pins scrambler/USER_CLK] [get_bd_pins tx_interface_0/USER_CLK]
+  connect_bd_net -net PASSTHROUGH_DESCRAMBLER [get_bd_pins descrambler/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
   connect_bd_net -net PASSTHROUGH_SCRAMBLER [get_bd_pins scrambler/PASSTHROUGH] [get_bd_pins vio_1/probe_out0]
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_N_IN]
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_P_IN]
   connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins gt_core_0/RXN_IN]
   connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
-  connect_bd_net -net RX_RESET_DONE_VIO [get_bd_pins gt_core_0/RX_RESET_DONE_VIO] [get_bd_pins vio_0/probe_in0]
-  connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins ila_1/probe2] [get_bd_pins scrambler/SCRAMBLED_DATA_OUT]
-  connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET_VIO] [get_bd_pins vio_0/probe_out0]
-  connect_bd_net -net decode_64B_67B_0_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/SCRAMBLED_DATA_IN] [get_bd_pins ila_0/probe0]
+  connect_bd_net -net RX_FSM_RESET_DONE [get_bd_pins gt_core_0/RX_FSM_RESET_DONE] [get_bd_pins ila_2/probe1]
+  connect_bd_net -net RX_MMCM_LOCK [get_bd_pins gt_core_0/RX_MMCM_LOCK] [get_bd_pins ila_0/probe8]
+  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe9]
+  connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins ila_1/probe0] [get_bd_pins scrambler/SCRAMBLED_DATA_OUT]
+  connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net TX_FSM_RESET_DONE [get_bd_pins gt_core_0/TX_FSM_RESET_DONE] [get_bd_pins ila_2/probe0]
+  connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe1] [get_bd_pins scrambler/UNSCRAMBLED_DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
+  connect_bd_net -net TX_MMCM_LOCK [get_bd_pins gt_core_0/TX_MMCM_LOCK] [get_bd_pins ila_1/probe3]
+  connect_bd_net -net TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe4]
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
-  connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe5]
-  connect_bd_net -net descrambler_HEADER_OUT [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe7]
-  connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe8]
-  connect_bd_net -net descrambler_UNSCRAMBLED_DATA_OUT [get_bd_pins RX_DATA_OUT] [get_bd_pins descrambler/UNSCRAMBLED_DATA_OUT] [get_bd_pins ila_0/probe9]
-  connect_bd_net -net encode_64B_67B_0_DATA_OUT [get_bd_pins encode_64B_67B/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA] [get_bd_pins ila_1/probe4]
-  connect_bd_net -net gt_core_0_RX_DATA [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gt_core_0/RX_DATA] [get_bd_pins ila_0/probe6]
-  connect_bd_net -net gt_core_0_RX_MMCM_LOCK_ILA [get_bd_pins gt_core_0/RX_MMCM_LOCK_ILA] [get_bd_pins ila_0/probe1]
-  connect_bd_net -net gt_core_0_RX_RESET_DONE_ILA [get_bd_pins gt_core_0/RX_RESET_DONE_ILA] [get_bd_pins ila_0/probe4]
-  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_SYSTEM_RESET]
+  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
   connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gt_core_0/RX_USR_CLK2]
   connect_bd_net -net gt_core_0_TXN_OUT [get_bd_pins TXN_OUT] [get_bd_pins gt_core_0/TXN_OUT]
   connect_bd_net -net gt_core_0_TXP_OUT [get_bd_pins TXP_OUT] [get_bd_pins gt_core_0/TXP_OUT]
-  connect_bd_net -net gt_core_0_TX_MMCM_LOCK_ILA [get_bd_pins gt_core_0/TX_MMCM_LOCK_ILA] [get_bd_pins ila_1/probe0]
-  connect_bd_net -net gt_core_0_TX_RESET_DONE_ILA [get_bd_pins gt_core_0/TX_RESET_DONE_ILA] [get_bd_pins ila_1/probe1]
-  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_SYSTEM_RESET] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
+  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_RESET] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
   connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins gt_core_0/TX_USR_CLK] [get_bd_pins ila_1/clk] [get_bd_pins vio_1/clk]
   connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins TX_DATA_IN] [get_bd_pins tx_interface_0/DATA_IN]
-  connect_bd_net -net probe2_1 [get_bd_pins DEBUG_TRACK_DATA] [get_bd_pins ila_0/probe2]
-  connect_bd_net -net probe3_1 [get_bd_pins DEBUG_ERROR_COUNT] [get_bd_pins ila_0/probe3]
   connect_bd_net -net scrambler_0_HEADER_OUT [get_bd_pins encode_64B_67B/HEADER_IN] [get_bd_pins scrambler/HEADER_OUT]
-  connect_bd_net -net tx_interface_0_DATA_OUT [get_bd_pins ila_1/probe3] [get_bd_pins scrambler/UNSCRAMBLED_DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
   connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
-  connect_bd_net -net vio_2_probe_out0 [get_bd_pins descrambler/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
 
   # Restore current instance
   current_bd_instance $oldCurInst

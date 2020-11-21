@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Tue Nov 17 00:57:41 2020
+// Date        : Sat Nov 21 18:01:06 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_scrambler_0_0/main_scrambler_0_0_sim_netlist.v
+//               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_scrambler_0_0/main_scrambler_0_0_sim_netlist.v
 // Design      : main_scrambler_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
