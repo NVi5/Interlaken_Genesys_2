@@ -5,8 +5,8 @@
 ## \   \   \/     Version : 3.6
 ##  \   \         Application : 7 Series FPGAs Transceivers Wizard
 ##  /   /         Filename : gtwizard_0_exdes.xdc
-## /___/   /\     
-## \   \  /  \ 
+## /___/   /\
+## \   \  /  \
 ##  \___\/\___\
 ##
 ##
@@ -58,19 +58,22 @@
 ## liability of any use of Xilinx products in Critical
 ## Applications, subject only to applicable laws and
 ## regulations governing limitations on product liability.
-## 
+##
 ## THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 ## PART OF THIS FILE AT ALL TIMES.
+
+## Set false paths
+set_false_path -to [get_pins -hierarchical -filter {NAME =~ *gt0_txfsmresetdone_r*/D}];
 
 ## Clock Constraints
 create_clock -period 8.0 [get_ports Q3_CLK0_GTREFCLK_PAD_P_IN];
 set_property LOC C7 [get_ports  Q3_CLK0_GTREFCLK_PAD_N_IN ];
 set_property LOC C8 [get_ports  Q3_CLK0_GTREFCLK_PAD_P_IN ];
 
-## Genesys 2 board constrain for DRP_CLK_P/N 
+## Genesys 2 board constrain for DRP_CLK_P/N
 set_property -dict { PACKAGE_PIN AD11  IOSTANDARD LVDS     } [get_ports { DRP_CLK_IN_N }]; #IO_L12N_T1_MRCC_33 Sch=sysclk_n
 set_property -dict { PACKAGE_PIN AD12  IOSTANDARD LVDS     } [get_ports { DRP_CLK_IN_P }]; #IO_L12P_T1_MRCC_33 Sch=sysclk_p
- 
+
 ## LEDs
 set_property -dict { PACKAGE_PIN T28   IOSTANDARD LVCMOS33 } [get_ports { TRACK_DATA_OUT }]; #IO_L11N_T1_SRCC_14 Sch=led[0]
 set_output_delay -clock clkout0 -max 5 [get_ports { TRACK_DATA_OUT }];

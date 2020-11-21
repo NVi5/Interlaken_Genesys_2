@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="main" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605981679"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605981679"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605981679"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605981679"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1605995208"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1605995208"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1605995208"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1605995208"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\main_gt_core_0_0\main_gt_core_0_0.xci" Type="IP">
         <Instance HierarchyPath="interlaken/gt_core_0"/>
@@ -24,7 +24,7 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip\main_clk_wiz_0_1\main_clk_wiz_0_1.xci" Type="IP">
-        <Instance HierarchyPath="clk_wiz_0"/>
+        <Instance HierarchyPath="clk_wiz"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -119,6 +119,38 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip\main_ila_2_0\main_ila_2_0.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/ila_2"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_gearbox_tx_0_0\main_gearbox_tx_0_0.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/gearbox_tx"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_stream_manipulator_0_0\main_stream_manipulator_0_0.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/stream_manipulator"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\main_gearbox_rx_0_0\main_gearbox_rx_0_0.xci" Type="IP">
+        <Instance HierarchyPath="interlaken/gearbox_rx"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="synth\main.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
@@ -128,14 +160,6 @@
       <File Name="sim\main.v" Type="Verilog">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="ip\main_ila_2_0\main_ila_2_0.xci" Type="IP">
-        <Instance HierarchyPath="interlaken/ila_2"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="main_ooc.xdc" Type="XDC">

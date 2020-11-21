@@ -74,6 +74,7 @@ module frame_check #
 (
     // User Interface
     input  wire [63:0]  RX_DATA_IN,
+    input  wire [1:0]   RX_HEADER_IN,
 
     // Error Monitoring
     output wire [7:0]   ERROR_COUNT_OUT,
@@ -83,7 +84,8 @@ module frame_check #
 
     // System Interface
     input  wire         USER_CLK,
-    input  wire         SYSTEM_RESET
+    input  wire         SYSTEM_RESET,
+    input  wire         DATA_VALID
 );
 
 //***************************Declarations********************
@@ -107,11 +109,17 @@ reg     [63:0]  rx_data_r2;
 reg     [63:0]  rx_data_r3;
 reg     [63:0]  rx_data_r_track;
 
+reg     [1:0]  rx_header_r;
+reg     [1:0]  rx_header_r2;
+reg     [1:0]  rx_header_r3;
+reg     [1:0]  rx_header_r_track;
+
 wire            error_detected_c;
 wire            next_begin_c;
 wire            next_data_error_detected_c;
 wire            next_track_data_c;
 wire    [63:0]  bram_data_r;
+wire    [1:0]   bram_header_r;
 
 //*********************************Main Body of Code***************************
 
@@ -147,24 +155,32 @@ wire    [63:0]  bram_data_r;
     begin
         if(SYSTEM_RESET)
         begin
-            rx_data_r       <=  `DLY   'h0;
-            rx_data_r2      <=  `DLY   'h0;
-            rx_data_r3      <=  `DLY   'h0;
-            rx_data_r_track <=  `DLY   'h0;
+            rx_data_r           <=  `DLY   'h0;
+            rx_data_r2          <=  `DLY   'h0;
+            rx_data_r3          <=  `DLY   'h0;
+            rx_data_r_track     <=  `DLY   'h0;
+            rx_header_r         <=  `DLY   'h0;
+            rx_header_r2        <=  `DLY   'h0;
+            rx_header_r3        <=  `DLY   'h0;
+            rx_header_r_track   <=  `DLY   'h0;
         end
         else
         begin
-            rx_data_r       <=  `DLY    RX_DATA_IN;
-            rx_data_r2      <=  `DLY    rx_data_r;
-            rx_data_r3      <=  `DLY    rx_data_r2;
-            rx_data_r_track <=  `DLY    rx_data_r3;
+            rx_data_r           <=  `DLY    RX_DATA_IN;
+            rx_data_r2          <=  `DLY    rx_data_r;
+            rx_data_r3          <=  `DLY    rx_data_r2;
+            rx_data_r_track     <=  `DLY    rx_data_r3;
+            rx_header_r         <=  `DLY    RX_HEADER_IN;
+            rx_header_r2        <=  `DLY    rx_header_r;
+            rx_header_r3        <=  `DLY    rx_header_r2;
+            rx_header_r_track   <=  `DLY    rx_header_r3;
         end
     end
 
 //___________________________ Check incoming data for errors ______________
 
     //An error is detected when data read for the BRAM does not match the incoming data
-    assign  error_detected_c    =  track_data_r3 && (rx_data_r_track != bram_data_r);
+    assign  error_detected_c    =  track_data_r3 && ((rx_data_r_track != bram_data_r) || (rx_header_r_track != bram_header_r));
 
     //We register the error_detected signal for use with the error counter logic
     always @(posedge USER_CLK)
@@ -201,6 +217,7 @@ wire    [63:0]  bram_data_r;
 //*********************************BRAM Inference Logic**********************************
 
     assign bram_data_r = rx_data_ram_r[79:16];
+    assign bram_header_r = rx_data_ram_r[1:0];
 
     initial
     begin

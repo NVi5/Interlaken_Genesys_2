@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 18:01:06 2020
+-- Date        : Sat Nov 21 22:48:02 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_encode_64B_67B_0_0/main_encode_64B_67B_0_0_sim_netlist.vhdl
@@ -18,10 +18,10 @@ entity main_encode_64B_67B_0_0_encode_64B_67B is
   port (
     DATA_OUT : out STD_LOGIC_VECTOR ( 66 downto 0 );
     USER_CLK : in STD_LOGIC;
-    DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    SYSTEM_RESET : in STD_LOGIC;
-    PASSTHROUGH : in STD_LOGIC
+    DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    PASSTHROUGH : in STD_LOGIC;
+    SYSTEM_RESET : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_encode_64B_67B_0_0_encode_64B_67B : entity is "encode_64B_67B";
@@ -90,8 +90,6 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   signal \DATA_OUT[61]_i_1_n_0\ : STD_LOGIC;
   signal \DATA_OUT[62]_i_1_n_0\ : STD_LOGIC;
   signal \DATA_OUT[63]_i_1_n_0\ : STD_LOGIC;
-  signal \DATA_OUT[64]_i_1_n_0\ : STD_LOGIC;
-  signal \DATA_OUT[65]_i_1_n_0\ : STD_LOGIC;
   signal \DATA_OUT[66]_i_1_n_0\ : STD_LOGIC;
   signal \DATA_OUT[66]_i_2_n_0\ : STD_LOGIC;
   signal \DATA_OUT[6]_i_1_n_0\ : STD_LOGIC;
@@ -257,79 +255,77 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   signal \disparity_reg_n_0_[9]\ : STD_LOGIC;
   signal \NLW__carry__2_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \DATA_OUT[0]_i_1\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \DATA_OUT[10]_i_1\ : label is "soft_lutpair52";
-  attribute SOFT_HLUTNM of \DATA_OUT[11]_i_1\ : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of \DATA_OUT[12]_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \DATA_OUT[13]_i_1\ : label is "soft_lutpair52";
-  attribute SOFT_HLUTNM of \DATA_OUT[14]_i_1\ : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of \DATA_OUT[15]_i_1\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \DATA_OUT[16]_i_1\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \DATA_OUT[17]_i_1\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \DATA_OUT[18]_i_1\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \DATA_OUT[19]_i_1\ : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of \DATA_OUT[1]_i_1\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \DATA_OUT[20]_i_1\ : label is "soft_lutpair55";
-  attribute SOFT_HLUTNM of \DATA_OUT[21]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \DATA_OUT[22]_i_1\ : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of \DATA_OUT[23]_i_1\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \DATA_OUT[24]_i_1\ : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of \DATA_OUT[25]_i_1\ : label is "soft_lutpair59";
-  attribute SOFT_HLUTNM of \DATA_OUT[26]_i_1\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \DATA_OUT[27]_i_1\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \DATA_OUT[28]_i_1\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \DATA_OUT[29]_i_1\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \DATA_OUT[2]_i_1\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \DATA_OUT[30]_i_1\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \DATA_OUT[31]_i_1\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \DATA_OUT[32]_i_1\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \DATA_OUT[33]_i_1\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \DATA_OUT[34]_i_1\ : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \DATA_OUT[35]_i_1\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \DATA_OUT[36]_i_1\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \DATA_OUT[37]_i_1\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \DATA_OUT[38]_i_1\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \DATA_OUT[39]_i_1\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \DATA_OUT[3]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \DATA_OUT[0]_i_1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \DATA_OUT[10]_i_1\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \DATA_OUT[11]_i_1\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \DATA_OUT[12]_i_1\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \DATA_OUT[13]_i_1\ : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \DATA_OUT[14]_i_1\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \DATA_OUT[15]_i_1\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \DATA_OUT[16]_i_1\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \DATA_OUT[17]_i_1\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \DATA_OUT[18]_i_1\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \DATA_OUT[19]_i_1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \DATA_OUT[1]_i_1\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \DATA_OUT[20]_i_1\ : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of \DATA_OUT[21]_i_1\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \DATA_OUT[22]_i_1\ : label is "soft_lutpair54";
+  attribute SOFT_HLUTNM of \DATA_OUT[23]_i_1\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \DATA_OUT[24]_i_1\ : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of \DATA_OUT[25]_i_1\ : label is "soft_lutpair57";
+  attribute SOFT_HLUTNM of \DATA_OUT[26]_i_1\ : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of \DATA_OUT[27]_i_1\ : label is "soft_lutpair58";
+  attribute SOFT_HLUTNM of \DATA_OUT[28]_i_1\ : label is "soft_lutpair59";
+  attribute SOFT_HLUTNM of \DATA_OUT[29]_i_1\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \DATA_OUT[2]_i_1\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \DATA_OUT[30]_i_1\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \DATA_OUT[31]_i_1\ : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of \DATA_OUT[32]_i_1\ : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of \DATA_OUT[33]_i_1\ : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of \DATA_OUT[34]_i_1\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \DATA_OUT[35]_i_1\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \DATA_OUT[36]_i_1\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \DATA_OUT[37]_i_1\ : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of \DATA_OUT[38]_i_1\ : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of \DATA_OUT[39]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \DATA_OUT[3]_i_1\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \DATA_OUT[40]_i_1\ : label is "soft_lutpair60";
   attribute SOFT_HLUTNM of \DATA_OUT[41]_i_1\ : label is "soft_lutpair59";
   attribute SOFT_HLUTNM of \DATA_OUT[42]_i_1\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \DATA_OUT[43]_i_1\ : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of \DATA_OUT[44]_i_1\ : label is "soft_lutpair55";
-  attribute SOFT_HLUTNM of \DATA_OUT[45]_i_1\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \DATA_OUT[46]_i_1\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \DATA_OUT[47]_i_1\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \DATA_OUT[48]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \DATA_OUT[49]_i_1\ : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of \DATA_OUT[4]_i_1\ : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of \DATA_OUT[50]_i_1\ : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of \DATA_OUT[51]_i_1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \DATA_OUT[52]_i_1\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \DATA_OUT[43]_i_1\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \DATA_OUT[44]_i_1\ : label is "soft_lutpair54";
+  attribute SOFT_HLUTNM of \DATA_OUT[45]_i_1\ : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of \DATA_OUT[46]_i_1\ : label is "soft_lutpair66";
+  attribute SOFT_HLUTNM of \DATA_OUT[47]_i_1\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \DATA_OUT[48]_i_1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \DATA_OUT[49]_i_1\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \DATA_OUT[4]_i_1\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \DATA_OUT[50]_i_1\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \DATA_OUT[51]_i_1\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \DATA_OUT[52]_i_1\ : label is "soft_lutpair58";
   attribute SOFT_HLUTNM of \DATA_OUT[53]_i_1\ : label is "soft_lutpair45";
   attribute SOFT_HLUTNM of \DATA_OUT[54]_i_1\ : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \DATA_OUT[55]_i_1\ : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of \DATA_OUT[56]_i_1\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \DATA_OUT[57]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_1\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \DATA_OUT[59]_i_1\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \DATA_OUT[5]_i_1\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_1\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \DATA_OUT[61]_i_1\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_1\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_1\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \DATA_OUT[64]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \DATA_OUT[65]_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \DATA_OUT[66]_i_1\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \DATA_OUT[6]_i_1\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \DATA_OUT[7]_i_1\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \DATA_OUT[8]_i_1\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \DATA_OUT[9]_i_1\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \DATA_OUT[55]_i_1\ : label is "soft_lutpair66";
+  attribute SOFT_HLUTNM of \DATA_OUT[56]_i_1\ : label is "soft_lutpair67";
+  attribute SOFT_HLUTNM of \DATA_OUT[57]_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_1\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \DATA_OUT[59]_i_1\ : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of \DATA_OUT[5]_i_1\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_1\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \DATA_OUT[61]_i_1\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_1\ : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_1\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \DATA_OUT[66]_i_1\ : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \DATA_OUT[6]_i_1\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \DATA_OUT[7]_i_1\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \DATA_OUT[8]_i_1\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \DATA_OUT[9]_i_1\ : label is "soft_lutpair50";
   attribute METHODOLOGY_DRC_VIOS : string;
   attribute METHODOLOGY_DRC_VIOS of \_carry\ : label is "{SYNTH-8 {cell *THIS*}}";
   attribute METHODOLOGY_DRC_VIOS of \_carry__0\ : label is "{SYNTH-8 {cell *THIS*}}";
   attribute METHODOLOGY_DRC_VIOS of \_carry__1\ : label is "{SYNTH-8 {cell *THIS*}}";
   attribute METHODOLOGY_DRC_VIOS of \_carry__2\ : label is "{SYNTH-8 {cell *THIS*}}";
-  attribute SOFT_HLUTNM of \_carry_i_101\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \_carry_i_101\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \_carry_i_102\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \_carry_i_103\ : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \_carry_i_104\ : label is "soft_lutpair13";
@@ -337,7 +333,7 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   attribute SOFT_HLUTNM of \_carry_i_110\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \_carry_i_111\ : label is "soft_lutpair16";
   attribute SOFT_HLUTNM of \_carry_i_113\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \_carry_i_12\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \_carry_i_12\ : label is "soft_lutpair29";
   attribute SOFT_HLUTNM of \_carry_i_13\ : label is "soft_lutpair19";
   attribute SOFT_HLUTNM of \_carry_i_17\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \_carry_i_18\ : label is "soft_lutpair19";
@@ -345,7 +341,7 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   attribute SOFT_HLUTNM of \_carry_i_20\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \_carry_i_22\ : label is "soft_lutpair18";
   attribute SOFT_HLUTNM of \_carry_i_23\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \_carry_i_25\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \_carry_i_25\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \_carry_i_30\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \_carry_i_31\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \_carry_i_32\ : label is "soft_lutpair12";
@@ -356,12 +352,12 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   attribute SOFT_HLUTNM of \_carry_i_38\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \_carry_i_39\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \_carry_i_40\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \_carry_i_42\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \_carry_i_42\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \_carry_i_44\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \_carry_i_45\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \_carry_i_47\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \_carry_i_48\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \_carry_i_49\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \_carry_i_49\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \_carry_i_50\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \_carry_i_51\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \_carry_i_52\ : label is "soft_lutpair1";
@@ -372,38 +368,38 @@ architecture STRUCTURE of main_encode_64B_67B_0_0_encode_64B_67B is
   attribute SOFT_HLUTNM of \_carry_i_58\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \_carry_i_59\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \_carry_i_61\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \_carry_i_63\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \_carry_i_63\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \_carry_i_64\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \_carry_i_65\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \_carry_i_66\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \_carry_i_67\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \_carry_i_68\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \_carry_i_69\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \_carry_i_65\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \_carry_i_66\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \_carry_i_67\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \_carry_i_68\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \_carry_i_69\ : label is "soft_lutpair39";
   attribute SOFT_HLUTNM of \_carry_i_7\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \_carry_i_70\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \_carry_i_71\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \_carry_i_72\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \_carry_i_73\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \_carry_i_74\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \_carry_i_78\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \_carry_i_79\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \_carry_i_80\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \_carry_i_81\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \_carry_i_82\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \_carry_i_83\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \_carry_i_84\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \_carry_i_85\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \_carry_i_86\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \_carry_i_87\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \_carry_i_88\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \_carry_i_9\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \_carry_i_91\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \_carry_i_92\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \_carry_i_93\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \_carry_i_94\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \_carry_i_96\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \_carry_i_97\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \_carry_i_99\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \_carry_i_70\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \_carry_i_71\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \_carry_i_72\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \_carry_i_73\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \_carry_i_74\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \_carry_i_78\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \_carry_i_79\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \_carry_i_80\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \_carry_i_81\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \_carry_i_82\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \_carry_i_83\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \_carry_i_84\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \_carry_i_85\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \_carry_i_86\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \_carry_i_87\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \_carry_i_88\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \_carry_i_9\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \_carry_i_91\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \_carry_i_92\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \_carry_i_93\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \_carry_i_94\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \_carry_i_96\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \_carry_i_97\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \_carry_i_99\ : label is "soft_lutpair35";
 begin
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT2
     generic map(
@@ -944,26 +940,6 @@ begin
       I0 => \DATA_OUT[66]_i_2_n_0\,
       I1 => DATA_IN(63),
       O => \DATA_OUT[63]_i_1_n_0\
-    );
-\DATA_OUT[64]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"02"
-    )
-        port map (
-      I0 => HEADER_IN(0),
-      I1 => SYSTEM_RESET,
-      I2 => PASSTHROUGH,
-      O => \DATA_OUT[64]_i_1_n_0\
-    );
-\DATA_OUT[65]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"02"
-    )
-        port map (
-      I0 => HEADER_IN(1),
-      I1 => SYSTEM_RESET,
-      I2 => PASSTHROUGH,
-      O => \DATA_OUT[65]_i_1_n_0\
     );
 \DATA_OUT[66]_i_1\: unisim.vcomponents.LUT1
     generic map(
@@ -1506,7 +1482,7 @@ begin
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \DATA_OUT[64]_i_1_n_0\,
+      D => HEADER_IN(0),
       Q => DATA_OUT(64),
       R => '0'
     );
@@ -1514,7 +1490,7 @@ begin
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \DATA_OUT[65]_i_1_n_0\,
+      D => HEADER_IN(1),
       Q => DATA_OUT(65),
       R => '0'
     );
@@ -3192,7 +3168,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_encode_64B_67B_0_0 is
   port (
     DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    DATA_OUT : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    DATA_OUT : out STD_LOGIC_VECTOR ( 66 downto 0 );
     HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 );
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
@@ -3211,8 +3187,6 @@ entity main_encode_64B_67B_0_0 is
 end main_encode_64B_67B_0_0;
 
 architecture STRUCTURE of main_encode_64B_67B_0_0 is
-  signal \<const0>\ : STD_LOGIC;
-  signal \^data_out\ : STD_LOGIC_VECTOR ( 66 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of SYSTEM_RESET : signal is "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST";
   attribute X_INTERFACE_PARAMETER : string;
@@ -3220,28 +3194,10 @@ architecture STRUCTURE of main_encode_64B_67B_0_0 is
   attribute X_INTERFACE_INFO of USER_CLK : signal is "xilinx.com:signal:clock:1.0 USER_CLK CLK";
   attribute X_INTERFACE_PARAMETER of USER_CLK : signal is "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2";
 begin
-  DATA_OUT(79) <= \<const0>\;
-  DATA_OUT(78) <= \<const0>\;
-  DATA_OUT(77) <= \<const0>\;
-  DATA_OUT(76) <= \<const0>\;
-  DATA_OUT(75) <= \<const0>\;
-  DATA_OUT(74) <= \<const0>\;
-  DATA_OUT(73) <= \<const0>\;
-  DATA_OUT(72) <= \<const0>\;
-  DATA_OUT(71) <= \<const0>\;
-  DATA_OUT(70) <= \<const0>\;
-  DATA_OUT(69) <= \<const0>\;
-  DATA_OUT(68) <= \<const0>\;
-  DATA_OUT(67) <= \<const0>\;
-  DATA_OUT(66 downto 0) <= \^data_out\(66 downto 0);
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
 inst: entity work.main_encode_64B_67B_0_0_encode_64B_67B
      port map (
       DATA_IN(63 downto 0) => DATA_IN(63 downto 0),
-      DATA_OUT(66 downto 0) => \^data_out\(66 downto 0),
+      DATA_OUT(66 downto 0) => DATA_OUT(66 downto 0),
       HEADER_IN(1 downto 0) => HEADER_IN(1 downto 0),
       PASSTHROUGH => PASSTHROUGH,
       SYSTEM_RESET => SYSTEM_RESET,

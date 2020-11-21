@@ -1,18 +1,18 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sun Nov  8 16:41:04 2020
+// Date        : Sat Nov 21 21:46:21 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top main_vio_0_0 -prefix
-//               main_vio_0_0_ main_vio_1_0_sim_netlist.v
-// Design      : main_vio_1_0
+//               main_vio_0_0_ main_vio_0_0_sim_netlist.v
+// Design      : main_vio_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7k325tffg900-2
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "main_vio_1_0,vio,{}" *) (* X_CORE_INFO = "vio,Vivado 2018.2" *) 
+(* CHECK_LICENSE_TYPE = "main_vio_0_0,vio,{}" *) (* X_CORE_INFO = "vio,Vivado 2018.2" *) 
 (* NotValidForBitStream *)
 module main_vio_0_0
    (clk,

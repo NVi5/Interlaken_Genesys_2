@@ -33,6 +33,7 @@ module decode_64B_67B(
     // System Interface
     input  wire          USER_CLK,
     input  wire          SYSTEM_RESET,
+    input  wire          DATA_VALID,
     input  wire          PASSTHROUGH
     );
 
@@ -54,7 +55,7 @@ module decode_64B_67B(
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET || PASSTHROUGH)
+        if (SYSTEM_RESET || PASSTHROUGH || (DATA_VALID == 0))
         begin
             candidate       <= `DLY     7'd0;
             state           <= `DLY     STATE_SYNCING;

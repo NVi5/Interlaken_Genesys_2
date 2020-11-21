@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 18:01:07 2020
+-- Date        : Sat Nov 21 22:48:02 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_sim_netlist.vhdl
@@ -21,8 +21,9 @@ entity main_decode_64B_67B_0_0_decode_64B_67B is
     LOCKED : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     DATA_IN : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    SYSTEM_RESET : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC;
-    SYSTEM_RESET : in STD_LOGIC
+    DATA_VALID : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_decode_64B_67B_0_0_decode_64B_67B : entity is "decode_64B_67B";
@@ -392,7 +393,7 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   signal \state[0]_i_4_n_0\ : STD_LOGIC;
   signal \state[0]_i_5_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \DATA_OUT[0]_i_2\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \DATA_OUT[0]_i_2\ : label is "soft_lutpair38";
   attribute SOFT_HLUTNM of \DATA_OUT[0]_i_3\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \DATA_OUT[10]_i_1\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \DATA_OUT[11]_i_1\ : label is "soft_lutpair10";
@@ -401,64 +402,64 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   attribute SOFT_HLUTNM of \DATA_OUT[14]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \DATA_OUT[15]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \DATA_OUT[17]_i_2\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \DATA_OUT[19]_i_2\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \DATA_OUT[19]_i_2\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \DATA_OUT[1]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \DATA_OUT[21]_i_2\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \DATA_OUT[23]_i_2\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \DATA_OUT[23]_i_2\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \DATA_OUT[25]_i_2\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \DATA_OUT[27]_i_2\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \DATA_OUT[27]_i_2\ : label is "soft_lutpair24";
   attribute SOFT_HLUTNM of \DATA_OUT[29]_i_2\ : label is "soft_lutpair40";
   attribute SOFT_HLUTNM of \DATA_OUT[2]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \DATA_OUT[31]_i_2\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \DATA_OUT[33]_i_2\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \DATA_OUT[35]_i_2\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \DATA_OUT[35]_i_2\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \DATA_OUT[37]_i_2\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \DATA_OUT[39]_i_2\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \DATA_OUT[39]_i_2\ : label is "soft_lutpair27";
   attribute SOFT_HLUTNM of \DATA_OUT[3]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \DATA_OUT[41]_i_2\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \DATA_OUT[43]_i_2\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \DATA_OUT[45]_i_2\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \DATA_OUT[47]_i_2\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \DATA_OUT[49]_i_2\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \DATA_OUT[41]_i_2\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \DATA_OUT[43]_i_2\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \DATA_OUT[45]_i_2\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \DATA_OUT[47]_i_2\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \DATA_OUT[49]_i_2\ : label is "soft_lutpair36";
   attribute SOFT_HLUTNM of \DATA_OUT[4]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \DATA_OUT[50]_i_11\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \DATA_OUT[51]_i_2\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \DATA_OUT[53]_i_2\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \DATA_OUT[54]_i_2\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \DATA_OUT[56]_i_2\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_2\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_4\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \DATA_OUT[59]_i_3\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \DATA_OUT[51]_i_2\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \DATA_OUT[53]_i_2\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \DATA_OUT[54]_i_2\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \DATA_OUT[56]_i_2\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_2\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \DATA_OUT[58]_i_4\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \DATA_OUT[59]_i_3\ : label is "soft_lutpair28";
   attribute SOFT_HLUTNM of \DATA_OUT[5]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_2\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_4\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_2\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \DATA_OUT[60]_i_4\ : label is "soft_lutpair28";
   attribute SOFT_HLUTNM of \DATA_OUT[61]_i_3\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_2\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_4\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_2\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \DATA_OUT[62]_i_4\ : label is "soft_lutpair30";
   attribute SOFT_HLUTNM of \DATA_OUT[63]_i_13\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_16\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_18\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_20\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_24\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_16\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_18\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_20\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_24\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \DATA_OUT[63]_i_26\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_28\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_5\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_28\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \DATA_OUT[63]_i_5\ : label is "soft_lutpair32";
   attribute SOFT_HLUTNM of \DATA_OUT[63]_i_9\ : label is "soft_lutpair25";
   attribute SOFT_HLUTNM of \DATA_OUT[6]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \DATA_OUT[8]_i_1\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \DATA_OUT[9]_i_1\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \HEADER_OUT[0]_i_3\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_14\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_15\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_16\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_14\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_15\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_16\ : label is "soft_lutpair35";
   attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_17\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_18\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_19\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_20\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_21\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \candidate[1]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_18\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_19\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_20\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_21\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \candidate[1]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of \candidate[2]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \candidate[3]_i_1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \candidate[3]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of \candidate[4]_i_1\ : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \candidate[6]_i_3\ : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \candidate[6]_i_4\ : label is "soft_lutpair12";
@@ -468,16 +469,16 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   attribute SOFT_HLUTNM of \error_sync_ctr[2]_i_1\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \error_sync_ctr[3]_i_1\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \error_sync_ctr[4]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \good_sync_ctr[0]_i_2\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \good_sync_ctr[0]_i_2\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \good_sync_ctr[2]_i_2\ : label is "soft_lutpair41";
   attribute SOFT_HLUTNM of \good_sync_ctr[3]_i_2\ : label is "soft_lutpair41";
   attribute SOFT_HLUTNM of \good_sync_ctr[4]_i_2\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \good_sync_ctr[5]_i_2\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_11\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_8\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_9\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_8\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \good_sync_ctr[6]_i_9\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \state[0]_i_2\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \state[0]_i_4\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \state[0]_i_4\ : label is "soft_lutpair13";
 begin
   LOCKED <= \^locked\;
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT6
@@ -5299,14 +5300,15 @@ begin
       I5 => good_sync_ctr(0),
       O => \good_sync_ctr[0]_i_1_n_0\
     );
-\good_sync_ctr[0]_i_2\: unisim.vcomponents.LUT3
+\good_sync_ctr[0]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"02"
+      INIT => X"0200"
     )
         port map (
       I0 => \state[0]_i_3_n_0\,
-      I1 => PASSTHROUGH,
-      I2 => SYSTEM_RESET,
+      I1 => SYSTEM_RESET,
+      I2 => PASSTHROUGH,
+      I3 => DATA_VALID,
       O => \good_sync_ctr[0]_i_2_n_0\
     );
 \good_sync_ctr[1]_i_1\: unisim.vcomponents.LUT6
@@ -6916,13 +6918,14 @@ begin
       I1 => good_sync_ctr(6),
       O => \state[0]_i_3_n_0\
     );
-\state[0]_i_4\: unisim.vcomponents.LUT2
+\state[0]_i_4\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"E"
+      INIT => X"FD"
     )
         port map (
-      I0 => SYSTEM_RESET,
+      I0 => DATA_VALID,
       I1 => PASSTHROUGH,
+      I2 => SYSTEM_RESET,
       O => \state[0]_i_4_n_0\
     );
 \state[0]_i_5\: unisim.vcomponents.LUT6
@@ -6959,6 +6962,7 @@ entity main_decode_64B_67B_0_0 is
     LOCKED : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
+    DATA_VALID : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -6985,6 +6989,7 @@ inst: entity work.main_decode_64B_67B_0_0_decode_64B_67B
      port map (
       DATA_IN(79 downto 0) => DATA_IN(79 downto 0),
       DATA_OUT(63 downto 0) => DATA_OUT(63 downto 0),
+      DATA_VALID => DATA_VALID,
       HEADER_OUT(1 downto 0) => HEADER_OUT(1 downto 0),
       LOCKED => LOCKED,
       PASSTHROUGH => PASSTHROUGH,

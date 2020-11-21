@@ -26,7 +26,7 @@
 module encode_64B_67B(
     // User Interface
     input  wire  [63:0]  DATA_IN,
-    output reg   [79:0]  DATA_OUT,
+    output reg   [66:0]  DATA_OUT,
     input  wire  [1:0]   HEADER_IN,
 
     // System Interface
@@ -60,18 +60,18 @@ module encode_64B_67B(
     begin
         if (PASSTHROUGH || SYSTEM_RESET)
         begin
-            DATA_OUT <= `DLY  {{16{1'b0}}, DATA_IN[63:0]};
+            DATA_OUT <= `DLY  {1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
             disparity = 0;
         end
         else begin
             if ((disparity >= 0 && word_disparity >= 0) || ((disparity < 0 && word_disparity < 0)))     // Same sign
             begin
                 disparity = disparity - word_disparity;
-                DATA_OUT <= `DLY  {{13{1'b0}}, 1'b1, HEADER_IN[1:0], ~DATA_IN[63:0]};
+                DATA_OUT <= `DLY  {1'b1, HEADER_IN[1:0], ~DATA_IN[63:0]};
             end
             else begin
                 disparity = disparity + word_disparity;
-                DATA_OUT <= `DLY  {{13{1'b0}}, 1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
+                DATA_OUT <= `DLY  {1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
             end
         end
     end

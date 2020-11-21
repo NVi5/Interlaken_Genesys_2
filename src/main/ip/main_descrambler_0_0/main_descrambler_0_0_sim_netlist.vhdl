@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 18:01:08 2020
+-- Date        : Sat Nov 21 22:48:39 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_descrambler_0_0/main_descrambler_0_0_sim_netlist.vhdl
@@ -22,6 +22,7 @@ entity main_descrambler_0_0_descrambler is
     SCRAMBLED_DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
     PASSTHROUGH : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
+    DATA_VALID : in STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
@@ -51,10 +52,6 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \bad_sync_ctr[2]_i_3_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_4_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_5_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_6_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_7_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_8_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_9_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[0]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[1]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[2]\ : STD_LOGIC;
@@ -64,8 +61,6 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \descrambler[57]_i_4_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_5_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_6_n_0\ : STD_LOGIC;
-  signal \descrambler[57]_i_7_n_0\ : STD_LOGIC;
-  signal \descrambler[57]_i_8_n_0\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[39]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[40]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[41]\ : STD_LOGIC;
@@ -104,6 +99,10 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \frame_ctr[4]_i_20_n_0\ : STD_LOGIC;
   signal \frame_ctr[4]_i_21_n_0\ : STD_LOGIC;
   signal \frame_ctr[4]_i_22_n_0\ : STD_LOGIC;
+  signal \frame_ctr[4]_i_23_n_0\ : STD_LOGIC;
+  signal \frame_ctr[4]_i_24_n_0\ : STD_LOGIC;
+  signal \frame_ctr[4]_i_25_n_0\ : STD_LOGIC;
+  signal \frame_ctr[4]_i_26_n_0\ : STD_LOGIC;
   signal \frame_ctr[4]_i_2_n_0\ : STD_LOGIC;
   signal \frame_ctr[4]_i_3_n_0\ : STD_LOGIC;
   signal \frame_ctr[4]_i_4_n_0\ : STD_LOGIC;
@@ -215,9 +214,6 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \NLW_state1_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_state1_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_state1_carry__3_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_3\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_1\ : label is "soft_lutpair0";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_ADVANCE:011,STATE_WAIT_FOR_WORD:001,STATE_LOCKED_SYNC_STATE:110,STATE_RESET:000,STATE_LOCKED_WAIT_FOR_WORD:100";
   attribute KEEP : string;
@@ -226,14 +222,13 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   attribute KEEP of \FSM_sequential_state_reg[1]\ : label is "yes";
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[2]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_ADVANCE:011,STATE_WAIT_FOR_WORD:001,STATE_LOCKED_SYNC_STATE:110,STATE_RESET:000,STATE_LOCKED_WAIT_FOR_WORD:100";
   attribute KEEP of \FSM_sequential_state_reg[2]\ : label is "yes";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_7\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_9\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \descrambler[57]_i_6\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \frame_ctr[0]_i_2\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \frame_ctr[2]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \frame_ctr[3]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \frame_ctr[4]_i_3\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \frame_ctr[4]_i_8\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_5\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \descrambler[57]_i_6\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \frame_ctr[0]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \frame_ctr[2]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \frame_ctr[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \frame_ctr[4]_i_3\ : label is "soft_lutpair1";
 begin
 \FSM_sequential_state[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -258,18 +253,19 @@ begin
       I2 => \bad_sync_ctr[2]_i_2_n_0\,
       O => \FSM_sequential_state[0]_i_2_n_0\
     );
-\FSM_sequential_state[0]_i_3\: unisim.vcomponents.LUT2
+\FSM_sequential_state[0]_i_3\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"E"
+      INIT => X"FD"
     )
         port map (
-      I0 => SYSTEM_RESET,
-      I1 => PASSTHROUGH,
+      I0 => DATA_VALID,
+      I1 => SYSTEM_RESET,
+      I2 => PASSTHROUGH,
       O => \FSM_sequential_state[0]_i_3_n_0\
     );
-\FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT5
+\FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000E2"
+      INIT => X"000000E200000000"
     )
         port map (
       I0 => \state__0\(1),
@@ -277,6 +273,7 @@ begin
       I2 => \FSM_sequential_state[1]_i_2_n_0\,
       I3 => PASSTHROUGH,
       I4 => SYSTEM_RESET,
+      I5 => DATA_VALID,
       O => \FSM_sequential_state[1]_i_1_n_0\
     );
 \FSM_sequential_state[1]_i_2\: unisim.vcomponents.LUT6
@@ -301,9 +298,9 @@ begin
       I1 => \good_sync_ctr_reg_n_0_[1]\,
       O => \FSM_sequential_state[1]_i_3_n_0\
     );
-\FSM_sequential_state[2]_i_1\: unisim.vcomponents.LUT5
+\FSM_sequential_state[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000E2"
+      INIT => X"000000E200000000"
     )
         port map (
       I0 => \state__0\(2),
@@ -311,6 +308,7 @@ begin
       I2 => \FSM_sequential_state[2]_i_3_n_0\,
       I3 => PASSTHROUGH,
       I4 => SYSTEM_RESET,
+      I5 => DATA_VALID,
       O => \FSM_sequential_state[2]_i_1_n_0\
     );
 \FSM_sequential_state[2]_i_2\: unisim.vcomponents.LUT6
@@ -413,740 +411,754 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
     );
 \UNSCRAMBLED_DATA_OUT[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_0_in_0,
-      I2 => SCRAMBLED_DATA_IN(0),
-      I3 => \descrambler_reg_n_0_[57]\,
+      I0 => p_0_in_0,
+      I1 => \descrambler_reg_n_0_[57]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(0),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(0)
     );
 \UNSCRAMBLED_DATA_OUT[10]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_37_in,
-      I2 => SCRAMBLED_DATA_IN(10),
-      I3 => \descrambler_reg_n_0_[47]\,
+      I0 => p_37_in,
+      I1 => \descrambler_reg_n_0_[47]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(10),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(10)
     );
 \UNSCRAMBLED_DATA_OUT[11]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_41_in,
-      I2 => SCRAMBLED_DATA_IN(11),
-      I3 => \descrambler_reg_n_0_[46]\,
+      I0 => p_41_in,
+      I1 => \descrambler_reg_n_0_[46]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(11),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(11)
     );
 \UNSCRAMBLED_DATA_OUT[12]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_45_in,
-      I2 => SCRAMBLED_DATA_IN(12),
-      I3 => \descrambler_reg_n_0_[45]\,
+      I0 => p_45_in,
+      I1 => \descrambler_reg_n_0_[45]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(12),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(12)
     );
 \UNSCRAMBLED_DATA_OUT[13]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_49_in,
-      I2 => SCRAMBLED_DATA_IN(13),
-      I3 => \descrambler_reg_n_0_[44]\,
+      I0 => p_49_in,
+      I1 => \descrambler_reg_n_0_[44]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(13),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(13)
     );
 \UNSCRAMBLED_DATA_OUT[14]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_53_in,
-      I2 => SCRAMBLED_DATA_IN(14),
-      I3 => \descrambler_reg_n_0_[43]\,
+      I0 => p_53_in,
+      I1 => \descrambler_reg_n_0_[43]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(14),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(14)
     );
 \UNSCRAMBLED_DATA_OUT[15]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_57_in,
-      I2 => SCRAMBLED_DATA_IN(15),
-      I3 => \descrambler_reg_n_0_[42]\,
+      I0 => p_57_in,
+      I1 => \descrambler_reg_n_0_[42]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(15),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(15)
     );
 \UNSCRAMBLED_DATA_OUT[16]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_61_in,
-      I2 => SCRAMBLED_DATA_IN(16),
-      I3 => \descrambler_reg_n_0_[41]\,
+      I0 => p_61_in,
+      I1 => \descrambler_reg_n_0_[41]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(16),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(16)
     );
 \UNSCRAMBLED_DATA_OUT[17]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_65_in,
-      I2 => SCRAMBLED_DATA_IN(17),
-      I3 => \descrambler_reg_n_0_[40]\,
+      I0 => p_65_in,
+      I1 => \descrambler_reg_n_0_[40]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(17),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(17)
     );
 \UNSCRAMBLED_DATA_OUT[18]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_69_in,
-      I2 => SCRAMBLED_DATA_IN(18),
-      I3 => \descrambler_reg_n_0_[39]\,
+      I0 => p_69_in,
+      I1 => \descrambler_reg_n_0_[39]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(18),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(18)
     );
 \UNSCRAMBLED_DATA_OUT[19]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_73_in,
-      I2 => SCRAMBLED_DATA_IN(19),
-      I3 => p_0_in_0,
+      I0 => p_73_in,
+      I1 => p_0_in_0,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(19),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(19)
     );
 \UNSCRAMBLED_DATA_OUT[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_1_in2_in,
-      I2 => SCRAMBLED_DATA_IN(1),
-      I3 => \descrambler_reg_n_0_[56]\,
+      I0 => p_1_in2_in,
+      I1 => \descrambler_reg_n_0_[56]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(1),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(1)
     );
 \UNSCRAMBLED_DATA_OUT[20]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_77_in,
-      I2 => SCRAMBLED_DATA_IN(20),
-      I3 => p_1_in2_in,
+      I0 => p_77_in,
+      I1 => p_1_in2_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(20),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(20)
     );
 \UNSCRAMBLED_DATA_OUT[21]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_81_in,
-      I2 => SCRAMBLED_DATA_IN(21),
-      I3 => p_5_in,
+      I0 => p_81_in,
+      I1 => p_5_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(21),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(21)
     );
 \UNSCRAMBLED_DATA_OUT[22]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_85_in,
-      I2 => SCRAMBLED_DATA_IN(22),
-      I3 => p_9_in,
+      I0 => p_85_in,
+      I1 => p_9_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(22),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(22)
     );
 \UNSCRAMBLED_DATA_OUT[23]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_89_in,
-      I2 => SCRAMBLED_DATA_IN(23),
-      I3 => p_13_in,
+      I0 => p_89_in,
+      I1 => p_13_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(23),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(23)
     );
 \UNSCRAMBLED_DATA_OUT[24]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_93_in,
-      I2 => SCRAMBLED_DATA_IN(24),
-      I3 => p_17_in,
+      I0 => p_93_in,
+      I1 => p_17_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(24),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(24)
     );
 \UNSCRAMBLED_DATA_OUT[25]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_97_in,
-      I2 => SCRAMBLED_DATA_IN(25),
-      I3 => p_21_in,
+      I0 => p_97_in,
+      I1 => p_21_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(25),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(25)
     );
 \UNSCRAMBLED_DATA_OUT[26]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_101_in,
-      I2 => SCRAMBLED_DATA_IN(26),
-      I3 => p_25_in,
+      I0 => p_101_in,
+      I1 => p_25_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(26),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(26)
     );
 \UNSCRAMBLED_DATA_OUT[27]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_105_in,
-      I2 => SCRAMBLED_DATA_IN(27),
-      I3 => p_29_in,
+      I0 => p_105_in,
+      I1 => p_29_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(27),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(27)
     );
 \UNSCRAMBLED_DATA_OUT[28]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_109_in,
-      I2 => SCRAMBLED_DATA_IN(28),
-      I3 => p_33_in,
+      I0 => p_109_in,
+      I1 => p_33_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(28),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(28)
     );
 \UNSCRAMBLED_DATA_OUT[29]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_113_in,
-      I2 => SCRAMBLED_DATA_IN(29),
-      I3 => p_37_in,
+      I0 => p_113_in,
+      I1 => p_37_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(29),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(29)
     );
 \UNSCRAMBLED_DATA_OUT[2]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_5_in,
-      I2 => SCRAMBLED_DATA_IN(2),
-      I3 => \descrambler_reg_n_0_[55]\,
+      I0 => p_5_in,
+      I1 => \descrambler_reg_n_0_[55]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(2),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(2)
     );
 \UNSCRAMBLED_DATA_OUT[30]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_117_in,
-      I2 => SCRAMBLED_DATA_IN(30),
-      I3 => p_41_in,
+      I0 => p_117_in,
+      I1 => p_41_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(30),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(30)
     );
 \UNSCRAMBLED_DATA_OUT[31]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_121_in,
-      I2 => SCRAMBLED_DATA_IN(31),
-      I3 => p_45_in,
+      I0 => p_121_in,
+      I1 => p_45_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(31),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(31)
     );
 \UNSCRAMBLED_DATA_OUT[32]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_125_in,
-      I2 => SCRAMBLED_DATA_IN(32),
-      I3 => p_49_in,
+      I0 => p_125_in,
+      I1 => p_49_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(32),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(32)
     );
 \UNSCRAMBLED_DATA_OUT[33]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_129_in,
-      I2 => SCRAMBLED_DATA_IN(33),
-      I3 => p_53_in,
+      I0 => p_129_in,
+      I1 => p_53_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(33),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(33)
     );
 \UNSCRAMBLED_DATA_OUT[34]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_133_in,
-      I2 => SCRAMBLED_DATA_IN(34),
-      I3 => p_57_in,
+      I0 => p_133_in,
+      I1 => p_57_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(34),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(34)
     );
 \UNSCRAMBLED_DATA_OUT[35]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_137_in,
-      I2 => SCRAMBLED_DATA_IN(35),
-      I3 => p_61_in,
+      I0 => p_137_in,
+      I1 => p_61_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(35),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(35)
     );
 \UNSCRAMBLED_DATA_OUT[36]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_141_in,
-      I2 => SCRAMBLED_DATA_IN(36),
-      I3 => p_65_in,
+      I0 => p_141_in,
+      I1 => p_65_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(36),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(36)
     );
 \UNSCRAMBLED_DATA_OUT[37]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_145_in,
-      I2 => SCRAMBLED_DATA_IN(37),
-      I3 => p_69_in,
+      I0 => p_145_in,
+      I1 => p_69_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(37),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(37)
     );
 \UNSCRAMBLED_DATA_OUT[38]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_149_in,
-      I2 => SCRAMBLED_DATA_IN(38),
-      I3 => p_73_in,
+      I0 => p_149_in,
+      I1 => p_73_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(38),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(38)
     );
 \UNSCRAMBLED_DATA_OUT[39]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(0),
-      I2 => SCRAMBLED_DATA_IN(39),
-      I3 => p_77_in,
+      I0 => SCRAMBLED_DATA_IN(0),
+      I1 => p_77_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(39),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(39)
     );
 \UNSCRAMBLED_DATA_OUT[3]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_9_in,
-      I2 => SCRAMBLED_DATA_IN(3),
-      I3 => \descrambler_reg_n_0_[54]\,
+      I0 => p_9_in,
+      I1 => \descrambler_reg_n_0_[54]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(3),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(3)
     );
 \UNSCRAMBLED_DATA_OUT[40]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(1),
-      I2 => SCRAMBLED_DATA_IN(40),
-      I3 => p_81_in,
+      I0 => SCRAMBLED_DATA_IN(1),
+      I1 => p_81_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(40),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(40)
     );
 \UNSCRAMBLED_DATA_OUT[41]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(2),
-      I2 => SCRAMBLED_DATA_IN(41),
-      I3 => p_85_in,
+      I0 => SCRAMBLED_DATA_IN(2),
+      I1 => p_85_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(41),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(41)
     );
 \UNSCRAMBLED_DATA_OUT[42]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(3),
-      I2 => SCRAMBLED_DATA_IN(42),
-      I3 => p_89_in,
+      I0 => SCRAMBLED_DATA_IN(3),
+      I1 => p_89_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(42),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(42)
     );
 \UNSCRAMBLED_DATA_OUT[43]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(4),
-      I2 => SCRAMBLED_DATA_IN(43),
-      I3 => p_93_in,
+      I0 => SCRAMBLED_DATA_IN(4),
+      I1 => p_93_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(43),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(43)
     );
 \UNSCRAMBLED_DATA_OUT[44]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(5),
-      I2 => SCRAMBLED_DATA_IN(44),
-      I3 => p_97_in,
+      I0 => SCRAMBLED_DATA_IN(5),
+      I1 => p_97_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(44),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(44)
     );
 \UNSCRAMBLED_DATA_OUT[45]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(6),
-      I2 => SCRAMBLED_DATA_IN(45),
-      I3 => p_101_in,
+      I0 => SCRAMBLED_DATA_IN(6),
+      I1 => p_101_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(45),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(45)
     );
 \UNSCRAMBLED_DATA_OUT[46]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(7),
-      I2 => SCRAMBLED_DATA_IN(46),
-      I3 => p_105_in,
+      I0 => SCRAMBLED_DATA_IN(7),
+      I1 => p_105_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(46),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(46)
     );
 \UNSCRAMBLED_DATA_OUT[47]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(8),
-      I2 => SCRAMBLED_DATA_IN(47),
-      I3 => p_109_in,
+      I0 => SCRAMBLED_DATA_IN(8),
+      I1 => p_109_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(47),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(47)
     );
 \UNSCRAMBLED_DATA_OUT[48]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(9),
-      I2 => SCRAMBLED_DATA_IN(48),
-      I3 => p_113_in,
+      I0 => SCRAMBLED_DATA_IN(9),
+      I1 => p_113_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(48),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(48)
     );
 \UNSCRAMBLED_DATA_OUT[49]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(10),
-      I2 => SCRAMBLED_DATA_IN(49),
-      I3 => p_117_in,
+      I0 => SCRAMBLED_DATA_IN(10),
+      I1 => p_117_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(49),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(49)
     );
 \UNSCRAMBLED_DATA_OUT[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_13_in,
-      I2 => SCRAMBLED_DATA_IN(4),
-      I3 => \descrambler_reg_n_0_[53]\,
+      I0 => p_13_in,
+      I1 => \descrambler_reg_n_0_[53]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(4),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(4)
     );
 \UNSCRAMBLED_DATA_OUT[50]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(11),
-      I2 => SCRAMBLED_DATA_IN(50),
-      I3 => p_121_in,
+      I0 => SCRAMBLED_DATA_IN(11),
+      I1 => p_121_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(50),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(50)
     );
 \UNSCRAMBLED_DATA_OUT[51]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(12),
-      I2 => SCRAMBLED_DATA_IN(51),
-      I3 => p_125_in,
+      I0 => SCRAMBLED_DATA_IN(12),
+      I1 => p_125_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(51),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(51)
     );
 \UNSCRAMBLED_DATA_OUT[52]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(13),
-      I2 => SCRAMBLED_DATA_IN(52),
-      I3 => p_129_in,
+      I0 => SCRAMBLED_DATA_IN(13),
+      I1 => p_129_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(52),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(52)
     );
 \UNSCRAMBLED_DATA_OUT[53]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(14),
-      I2 => SCRAMBLED_DATA_IN(53),
-      I3 => p_133_in,
+      I0 => SCRAMBLED_DATA_IN(14),
+      I1 => p_133_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(53),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(53)
     );
 \UNSCRAMBLED_DATA_OUT[54]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(15),
-      I2 => SCRAMBLED_DATA_IN(54),
-      I3 => p_137_in,
+      I0 => SCRAMBLED_DATA_IN(15),
+      I1 => p_137_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(54),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(54)
     );
 \UNSCRAMBLED_DATA_OUT[55]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(16),
-      I2 => SCRAMBLED_DATA_IN(55),
-      I3 => p_141_in,
+      I0 => SCRAMBLED_DATA_IN(16),
+      I1 => p_141_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(55),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(55)
     );
 \UNSCRAMBLED_DATA_OUT[56]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(17),
-      I2 => SCRAMBLED_DATA_IN(56),
-      I3 => p_145_in,
+      I0 => SCRAMBLED_DATA_IN(17),
+      I1 => p_145_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(56),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(56)
     );
 \UNSCRAMBLED_DATA_OUT[57]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(18),
-      I2 => SCRAMBLED_DATA_IN(57),
-      I3 => p_149_in,
+      I0 => SCRAMBLED_DATA_IN(18),
+      I1 => p_149_in,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(57),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(57)
     );
 \UNSCRAMBLED_DATA_OUT[58]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(19),
-      I2 => SCRAMBLED_DATA_IN(58),
-      I3 => SCRAMBLED_DATA_IN(0),
+      I0 => SCRAMBLED_DATA_IN(19),
+      I1 => SCRAMBLED_DATA_IN(0),
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(58),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(58)
     );
 \UNSCRAMBLED_DATA_OUT[59]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFF8AA8A88A8AA8"
+      INIT => X"FECFEFFCAA00AA00"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[61]_i_2_n_0\,
+      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       I1 => \state__0\(1),
-      I2 => SCRAMBLED_DATA_IN(1),
-      I3 => SCRAMBLED_DATA_IN(20),
-      I4 => SCRAMBLED_DATA_IN(59),
-      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I2 => SCRAMBLED_DATA_IN(20),
+      I3 => SCRAMBLED_DATA_IN(59),
+      I4 => SCRAMBLED_DATA_IN(1),
+      I5 => \UNSCRAMBLED_DATA_OUT[61]_i_2_n_0\,
       O => p_0_in(59)
     );
 \UNSCRAMBLED_DATA_OUT[5]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_17_in,
-      I2 => SCRAMBLED_DATA_IN(5),
-      I3 => \descrambler_reg_n_0_[52]\,
+      I0 => p_17_in,
+      I1 => \descrambler_reg_n_0_[52]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(5),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(5)
     );
 \UNSCRAMBLED_DATA_OUT[60]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(21),
-      I2 => SCRAMBLED_DATA_IN(60),
-      I3 => SCRAMBLED_DATA_IN(2),
+      I0 => SCRAMBLED_DATA_IN(21),
+      I1 => SCRAMBLED_DATA_IN(2),
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(60),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(60)
     );
 \UNSCRAMBLED_DATA_OUT[61]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFF8AA8A88A8AA8"
+      INIT => X"FECFEFFCAA00AA00"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[61]_i_2_n_0\,
+      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       I1 => \state__0\(1),
-      I2 => SCRAMBLED_DATA_IN(3),
-      I3 => SCRAMBLED_DATA_IN(22),
-      I4 => SCRAMBLED_DATA_IN(61),
-      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I2 => SCRAMBLED_DATA_IN(22),
+      I3 => SCRAMBLED_DATA_IN(61),
+      I4 => SCRAMBLED_DATA_IN(3),
+      I5 => \UNSCRAMBLED_DATA_OUT[61]_i_2_n_0\,
       O => p_0_in(61)
     );
-\UNSCRAMBLED_DATA_OUT[61]_i_2\: unisim.vcomponents.LUT4
+\UNSCRAMBLED_DATA_OUT[61]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0100"
+      INIT => X"00040000"
     )
         port map (
       I0 => \state__0\(0),
-      I1 => SYSTEM_RESET,
-      I2 => PASSTHROUGH,
-      I3 => \state__0\(2),
+      I1 => DATA_VALID,
+      I2 => SYSTEM_RESET,
+      I3 => PASSTHROUGH,
+      I4 => \state__0\(2),
       O => \UNSCRAMBLED_DATA_OUT[61]_i_2_n_0\
     );
 \UNSCRAMBLED_DATA_OUT[62]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(23),
-      I2 => SCRAMBLED_DATA_IN(62),
-      I3 => SCRAMBLED_DATA_IN(4),
+      I0 => SCRAMBLED_DATA_IN(23),
+      I1 => SCRAMBLED_DATA_IN(4),
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(62),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(62)
     );
 \UNSCRAMBLED_DATA_OUT[63]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => SCRAMBLED_DATA_IN(24),
-      I2 => SCRAMBLED_DATA_IN(63),
-      I3 => SCRAMBLED_DATA_IN(5),
+      I0 => SCRAMBLED_DATA_IN(24),
+      I1 => SCRAMBLED_DATA_IN(5),
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(63),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(63)
     );
-\UNSCRAMBLED_DATA_OUT[63]_i_2\: unisim.vcomponents.LUT5
+\UNSCRAMBLED_DATA_OUT[63]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFF5D"
+      INIT => X"0000000400000000"
+    )
+        port map (
+      I0 => \state__0\(0),
+      I1 => DATA_VALID,
+      I2 => SYSTEM_RESET,
+      I3 => PASSTHROUGH,
+      I4 => \state__0\(1),
+      I5 => \state__0\(2),
+      O => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\
+    );
+\UNSCRAMBLED_DATA_OUT[63]_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFF5DFFFFFFFF"
     )
         port map (
       I0 => \state__0\(2),
@@ -1154,65 +1166,54 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => \state__0\(1),
       I3 => PASSTHROUGH,
       I4 => SYSTEM_RESET,
-      O => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\
-    );
-\UNSCRAMBLED_DATA_OUT[63]_i_3\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00010000"
-    )
-        port map (
-      I0 => \state__0\(0),
-      I1 => SYSTEM_RESET,
-      I2 => PASSTHROUGH,
-      I3 => \state__0\(1),
-      I4 => \state__0\(2),
+      I5 => DATA_VALID,
       O => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\
     );
 \UNSCRAMBLED_DATA_OUT[6]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_21_in,
-      I2 => SCRAMBLED_DATA_IN(6),
-      I3 => \descrambler_reg_n_0_[51]\,
+      I0 => p_21_in,
+      I1 => \descrambler_reg_n_0_[51]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(6),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(6)
     );
 \UNSCRAMBLED_DATA_OUT[7]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_25_in,
-      I2 => SCRAMBLED_DATA_IN(7),
-      I3 => \descrambler_reg_n_0_[50]\,
+      I0 => p_25_in,
+      I1 => \descrambler_reg_n_0_[50]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(7),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(7)
     );
 \UNSCRAMBLED_DATA_OUT[8]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_29_in,
-      I2 => SCRAMBLED_DATA_IN(8),
-      I3 => \descrambler_reg_n_0_[49]\,
+      I0 => p_29_in,
+      I1 => \descrambler_reg_n_0_[49]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(8),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(8)
     );
 \UNSCRAMBLED_DATA_OUT[9]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"E3BCA0A0"
+      INIT => X"FF609060"
     )
         port map (
-      I0 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      I1 => p_33_in,
-      I2 => SCRAMBLED_DATA_IN(9),
-      I3 => \descrambler_reg_n_0_[48]\,
+      I0 => p_33_in,
+      I1 => \descrambler_reg_n_0_[48]\,
+      I2 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      I3 => SCRAMBLED_DATA_IN(9),
       I4 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(9)
     );
@@ -1766,17 +1767,16 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I5 => \bad_sync_ctr_reg_n_0_[2]\,
       O => \bad_sync_ctr[2]_i_1_n_0\
     );
-\bad_sync_ctr[2]_i_2\: unisim.vcomponents.LUT6
+\bad_sync_ctr[2]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFFFFFFFFFE"
+      INIT => X"DFFFFFFF"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_5_n_0\,
-      I1 => \bad_sync_ctr[2]_i_6_n_0\,
-      I2 => \bad_sync_ctr[2]_i_7_n_0\,
-      I3 => \descrambler[57]_i_8_n_0\,
-      I4 => \bad_sync_ctr[2]_i_8_n_0\,
-      I5 => \bad_sync_ctr[2]_i_9_n_0\,
+      I0 => \frame_ctr[4]_i_9_n_0\,
+      I1 => \bad_sync_ctr[2]_i_5_n_0\,
+      I2 => \frame_ctr[4]_i_7_n_0\,
+      I3 => \frame_ctr[4]_i_11_n_0\,
+      I4 => \frame_ctr[4]_i_10_n_0\,
       O => \bad_sync_ctr[2]_i_2_n_0\
     );
 \bad_sync_ctr[2]_i_3\: unisim.vcomponents.LUT2
@@ -1801,18 +1801,7 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I5 => \state__0\(1),
       O => \bad_sync_ctr[2]_i_4_n_0\
     );
-\bad_sync_ctr[2]_i_5\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_12_n_0\,
-      I1 => \frame_ctr[4]_i_19_n_0\,
-      I2 => \frame_ctr[4]_i_10_n_0\,
-      I3 => \frame_ctr[4]_i_11_n_0\,
-      O => \bad_sync_ctr[2]_i_5_n_0\
-    );
-\bad_sync_ctr[2]_i_6\: unisim.vcomponents.LUT5
+\bad_sync_ctr[2]_i_5\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FFFFFBFF"
     )
@@ -1821,41 +1810,8 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(2),
       I2 => SCRAMBLED_DATA_IN(0),
       I3 => SCRAMBLED_DATA_IN(1),
-      I4 => \descrambler[57]_i_7_n_0\,
-      O => \bad_sync_ctr[2]_i_6_n_0\
-    );
-\bad_sync_ctr[2]_i_7\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(13),
-      I1 => SCRAMBLED_DATA_IN(12),
-      I2 => SCRAMBLED_DATA_IN(14),
-      I3 => SCRAMBLED_DATA_IN(15),
-      O => \bad_sync_ctr[2]_i_7_n_0\
-    );
-\bad_sync_ctr[2]_i_8\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_22_n_0\,
-      I1 => \frame_ctr[4]_i_15_n_0\,
-      I2 => \frame_ctr[4]_i_20_n_0\,
-      I3 => \frame_ctr[4]_i_21_n_0\,
-      O => \bad_sync_ctr[2]_i_8_n_0\
-    );
-\bad_sync_ctr[2]_i_9\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_18_n_0\,
-      I1 => \frame_ctr[4]_i_9_n_0\,
-      I2 => \frame_ctr[4]_i_16_n_0\,
-      I3 => \frame_ctr[4]_i_17_n_0\,
-      O => \bad_sync_ctr[2]_i_9_n_0\
+      I4 => \frame_ctr[4]_i_8_n_0\,
+      O => \bad_sync_ctr[2]_i_5_n_0\
     );
 \bad_sync_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -2530,9 +2486,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I4 => \state__0\(2),
       O => descrambler(57)
     );
-\descrambler[57]_i_3\: unisim.vcomponents.LUT5
+\descrambler[57]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000008"
+      INIT => X"0000000800000000"
     )
         port map (
       I0 => \state__0\(1),
@@ -2540,66 +2496,43 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => \state__0\(2),
       I3 => PASSTHROUGH,
       I4 => SYSTEM_RESET,
+      I5 => DATA_VALID,
       O => \descrambler[57]_i_3_n_0\
     );
 \descrambler[57]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFF00000080"
+      INIT => X"FFFFFFFF00800000"
     )
         port map (
-      I0 => \frame_ctr[4]_i_6_n_0\,
-      I1 => \descrambler[57]_i_5_n_0\,
-      I2 => \descrambler[57]_i_6_n_0\,
-      I3 => \descrambler[57]_i_7_n_0\,
-      I4 => \descrambler[57]_i_8_n_0\,
-      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_3_n_0\,
+      I0 => \descrambler[57]_i_5_n_0\,
+      I1 => \frame_ctr[4]_i_10_n_0\,
+      I2 => \frame_ctr[4]_i_9_n_0\,
+      I3 => \frame_ctr[4]_i_8_n_0\,
+      I4 => \frame_ctr[4]_i_7_n_0\,
+      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
       O => \descrambler[57]_i_4_n_0\
     );
-\descrambler[57]_i_5\: unisim.vcomponents.LUT5
+\descrambler[57]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00010000"
+      INIT => X"0010000000000000"
     )
         port map (
-      I0 => \frame_ctr[4]_i_12_n_0\,
-      I1 => \frame_ctr[4]_i_11_n_0\,
-      I2 => \frame_ctr[4]_i_10_n_0\,
-      I3 => \frame_ctr[4]_i_9_n_0\,
-      I4 => \frame_ctr[4]_i_8_n_0\,
+      I0 => \state__0\(1),
+      I1 => SCRAMBLED_DATA_IN(3),
+      I2 => SCRAMBLED_DATA_IN(2),
+      I3 => \descrambler[57]_i_6_n_0\,
+      I4 => \frame_ctr[4]_i_26_n_0\,
+      I5 => \frame_ctr[4]_i_11_n_0\,
       O => \descrambler[57]_i_5_n_0\
     );
-\descrambler[57]_i_6\: unisim.vcomponents.LUT5
+\descrambler[57]_i_6\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"00004000"
+      INIT => X"B"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(15),
-      I1 => SCRAMBLED_DATA_IN(14),
-      I2 => SCRAMBLED_DATA_IN(12),
-      I3 => SCRAMBLED_DATA_IN(13),
-      I4 => \frame_ctr[4]_i_19_n_0\,
+      I0 => SCRAMBLED_DATA_IN(0),
+      I1 => SCRAMBLED_DATA_IN(1),
       O => \descrambler[57]_i_6_n_0\
-    );
-\descrambler[57]_i_7\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(5),
-      I1 => SCRAMBLED_DATA_IN(4),
-      I2 => SCRAMBLED_DATA_IN(7),
-      I3 => SCRAMBLED_DATA_IN(6),
-      O => \descrambler[57]_i_7_n_0\
-    );
-\descrambler[57]_i_8\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(9),
-      I1 => SCRAMBLED_DATA_IN(8),
-      I2 => SCRAMBLED_DATA_IN(11),
-      I3 => SCRAMBLED_DATA_IN(10),
-      O => \descrambler[57]_i_8_n_0\
     );
 \descrambler[5]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -3191,6 +3124,52 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
     );
 \frame_ctr[4]_i_10\: unisim.vcomponents.LUT4
     generic map(
+      INIT => X"0001"
+    )
+        port map (
+      I0 => \frame_ctr[4]_i_18_n_0\,
+      I1 => \frame_ctr[4]_i_19_n_0\,
+      I2 => \frame_ctr[4]_i_20_n_0\,
+      I3 => \frame_ctr[4]_i_21_n_0\,
+      O => \frame_ctr[4]_i_10_n_0\
+    );
+\frame_ctr[4]_i_11\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0001"
+    )
+        port map (
+      I0 => \frame_ctr[4]_i_22_n_0\,
+      I1 => \frame_ctr[4]_i_23_n_0\,
+      I2 => \frame_ctr[4]_i_24_n_0\,
+      I3 => \frame_ctr[4]_i_25_n_0\,
+      O => \frame_ctr[4]_i_11_n_0\
+    );
+\frame_ctr[4]_i_12\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000002000"
+    )
+        port map (
+      I0 => \frame_ctr[4]_i_26_n_0\,
+      I1 => SCRAMBLED_DATA_IN(0),
+      I2 => SCRAMBLED_DATA_IN(1),
+      I3 => SCRAMBLED_DATA_IN(2),
+      I4 => SCRAMBLED_DATA_IN(3),
+      I5 => \state__0\(1),
+      O => \frame_ctr[4]_i_12_n_0\
+    );
+\frame_ctr[4]_i_13\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(13),
+      I1 => SCRAMBLED_DATA_IN(12),
+      I2 => SCRAMBLED_DATA_IN(14),
+      I3 => SCRAMBLED_DATA_IN(15),
+      O => \frame_ctr[4]_i_13_n_0\
+    );
+\frame_ctr[4]_i_14\: unisim.vcomponents.LUT4
+    generic map(
       INIT => X"FF7F"
     )
         port map (
@@ -3198,9 +3177,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(28),
       I2 => SCRAMBLED_DATA_IN(30),
       I3 => SCRAMBLED_DATA_IN(31),
-      O => \frame_ctr[4]_i_10_n_0\
+      O => \frame_ctr[4]_i_14_n_0\
     );
-\frame_ctr[4]_i_11\: unisim.vcomponents.LUT4
+\frame_ctr[4]_i_15\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFEF"
     )
@@ -3209,9 +3188,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(24),
       I2 => SCRAMBLED_DATA_IN(27),
       I3 => SCRAMBLED_DATA_IN(26),
-      O => \frame_ctr[4]_i_11_n_0\
+      O => \frame_ctr[4]_i_15_n_0\
     );
-\frame_ctr[4]_i_12\: unisim.vcomponents.LUT4
+\frame_ctr[4]_i_16\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -3220,77 +3199,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(20),
       I2 => SCRAMBLED_DATA_IN(23),
       I3 => SCRAMBLED_DATA_IN(22),
-      O => \frame_ctr[4]_i_12_n_0\
-    );
-\frame_ctr[4]_i_13\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0001"
-    )
-        port map (
-      I0 => \descrambler[57]_i_8_n_0\,
-      I1 => \descrambler[57]_i_7_n_0\,
-      I2 => \frame_ctr[4]_i_19_n_0\,
-      I3 => \bad_sync_ctr[2]_i_7_n_0\,
-      O => \frame_ctr[4]_i_13_n_0\
-    );
-\frame_ctr[4]_i_14\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000001"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_20_n_0\,
-      I1 => PASSTHROUGH,
-      I2 => SYSTEM_RESET,
-      I3 => \state__0\(0),
-      I4 => \frame_ctr[4]_i_21_n_0\,
-      I5 => \frame_ctr[4]_i_22_n_0\,
-      O => \frame_ctr[4]_i_14_n_0\
-    );
-\frame_ctr[4]_i_15\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFDF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(49),
-      I1 => SCRAMBLED_DATA_IN(48),
-      I2 => SCRAMBLED_DATA_IN(50),
-      I3 => SCRAMBLED_DATA_IN(51),
-      O => \frame_ctr[4]_i_15_n_0\
-    );
-\frame_ctr[4]_i_16\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(45),
-      I1 => SCRAMBLED_DATA_IN(44),
-      I2 => SCRAMBLED_DATA_IN(46),
-      I3 => SCRAMBLED_DATA_IN(47),
       O => \frame_ctr[4]_i_16_n_0\
     );
 \frame_ctr[4]_i_17\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(41),
-      I1 => SCRAMBLED_DATA_IN(40),
-      I2 => SCRAMBLED_DATA_IN(43),
-      I3 => SCRAMBLED_DATA_IN(42),
-      O => \frame_ctr[4]_i_17_n_0\
-    );
-\frame_ctr[4]_i_18\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(37),
-      I1 => SCRAMBLED_DATA_IN(36),
-      I2 => SCRAMBLED_DATA_IN(39),
-      I3 => SCRAMBLED_DATA_IN(38),
-      O => \frame_ctr[4]_i_18_n_0\
-    );
-\frame_ctr[4]_i_19\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFDF"
     )
@@ -3299,11 +3210,33 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(16),
       I2 => SCRAMBLED_DATA_IN(18),
       I3 => SCRAMBLED_DATA_IN(19),
+      O => \frame_ctr[4]_i_17_n_0\
+    );
+\frame_ctr[4]_i_18\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(45),
+      I1 => SCRAMBLED_DATA_IN(44),
+      I2 => SCRAMBLED_DATA_IN(46),
+      I3 => SCRAMBLED_DATA_IN(47),
+      O => \frame_ctr[4]_i_18_n_0\
+    );
+\frame_ctr[4]_i_19\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFEF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(41),
+      I1 => SCRAMBLED_DATA_IN(40),
+      I2 => SCRAMBLED_DATA_IN(43),
+      I3 => SCRAMBLED_DATA_IN(42),
       O => \frame_ctr[4]_i_19_n_0\
     );
-\frame_ctr[4]_i_2\: unisim.vcomponents.LUT6
+\frame_ctr[4]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF012201220122"
+      INIT => X"FFFF0122"
     )
         port map (
       I0 => \state__0\(0),
@@ -3311,10 +3244,31 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => \state__0\(1),
       I3 => \state__0\(2),
       I4 => \frame_ctr[4]_i_5_n_0\,
-      I5 => \frame_ctr[4]_i_6_n_0\,
       O => \frame_ctr[4]_i_2_n_0\
     );
 \frame_ctr[4]_i_20\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(37),
+      I1 => SCRAMBLED_DATA_IN(36),
+      I2 => SCRAMBLED_DATA_IN(39),
+      I3 => SCRAMBLED_DATA_IN(38),
+      O => \frame_ctr[4]_i_20_n_0\
+    );
+\frame_ctr[4]_i_21\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(33),
+      I1 => SCRAMBLED_DATA_IN(32),
+      I2 => SCRAMBLED_DATA_IN(34),
+      I3 => SCRAMBLED_DATA_IN(35),
+      O => \frame_ctr[4]_i_21_n_0\
+    );
+\frame_ctr[4]_i_22\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FF7F"
     )
@@ -3323,9 +3277,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(60),
       I2 => SCRAMBLED_DATA_IN(62),
       I3 => SCRAMBLED_DATA_IN(63),
-      O => \frame_ctr[4]_i_20_n_0\
+      O => \frame_ctr[4]_i_22_n_0\
     );
-\frame_ctr[4]_i_21\: unisim.vcomponents.LUT4
+\frame_ctr[4]_i_23\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFEF"
     )
@@ -3334,9 +3288,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(56),
       I2 => SCRAMBLED_DATA_IN(59),
       I3 => SCRAMBLED_DATA_IN(58),
-      O => \frame_ctr[4]_i_21_n_0\
+      O => \frame_ctr[4]_i_23_n_0\
     );
-\frame_ctr[4]_i_22\: unisim.vcomponents.LUT4
+\frame_ctr[4]_i_24\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -3345,7 +3299,29 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(52),
       I2 => SCRAMBLED_DATA_IN(55),
       I3 => SCRAMBLED_DATA_IN(54),
-      O => \frame_ctr[4]_i_22_n_0\
+      O => \frame_ctr[4]_i_24_n_0\
+    );
+\frame_ctr[4]_i_25\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(49),
+      I1 => SCRAMBLED_DATA_IN(48),
+      I2 => SCRAMBLED_DATA_IN(50),
+      I3 => SCRAMBLED_DATA_IN(51),
+      O => \frame_ctr[4]_i_25_n_0\
+    );
+\frame_ctr[4]_i_26\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0010"
+    )
+        port map (
+      I0 => PASSTHROUGH,
+      I1 => SYSTEM_RESET,
+      I2 => DATA_VALID,
+      I3 => \state__0\(0),
+      O => \frame_ctr[4]_i_26_n_0\
     );
 \frame_ctr[4]_i_3\: unisim.vcomponents.LUT5
     generic map(
@@ -3369,64 +3345,63 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => \frame_ctr_reg_n_0_[1]\,
       I3 => \frame_ctr_reg_n_0_[0]\,
       I4 => \bad_sync_ctr[2]_i_3_n_0\,
-      I5 => \frame_ctr[4]_i_7_n_0\,
+      I5 => \frame_ctr[4]_i_6_n_0\,
       O => \frame_ctr[4]_i_4_n_0\
     );
 \frame_ctr[4]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000200000000"
+      INIT => X"2000000000000000"
     )
         port map (
-      I0 => \frame_ctr[4]_i_8_n_0\,
-      I1 => \frame_ctr[4]_i_9_n_0\,
-      I2 => \frame_ctr[4]_i_10_n_0\,
-      I3 => \frame_ctr[4]_i_11_n_0\,
-      I4 => \frame_ctr[4]_i_12_n_0\,
-      I5 => \frame_ctr[4]_i_13_n_0\,
+      I0 => \frame_ctr[4]_i_7_n_0\,
+      I1 => \frame_ctr[4]_i_8_n_0\,
+      I2 => \frame_ctr[4]_i_9_n_0\,
+      I3 => \frame_ctr[4]_i_10_n_0\,
+      I4 => \frame_ctr[4]_i_11_n_0\,
+      I5 => \frame_ctr[4]_i_12_n_0\,
       O => \frame_ctr[4]_i_5_n_0\
     );
-\frame_ctr[4]_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000002000"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_14_n_0\,
-      I1 => SCRAMBLED_DATA_IN(0),
-      I2 => SCRAMBLED_DATA_IN(1),
-      I3 => SCRAMBLED_DATA_IN(2),
-      I4 => SCRAMBLED_DATA_IN(3),
-      I5 => \state__0\(1),
-      O => \frame_ctr[4]_i_6_n_0\
-    );
-\frame_ctr[4]_i_7\: unisim.vcomponents.LUT2
+\frame_ctr[4]_i_6\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
     )
         port map (
       I0 => \state__0\(0),
       I1 => \state__0\(1),
+      O => \frame_ctr[4]_i_6_n_0\
+    );
+\frame_ctr[4]_i_7\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"00000004"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(10),
+      I1 => SCRAMBLED_DATA_IN(11),
+      I2 => SCRAMBLED_DATA_IN(8),
+      I3 => SCRAMBLED_DATA_IN(9),
+      I4 => \frame_ctr[4]_i_13_n_0\,
       O => \frame_ctr[4]_i_7_n_0\
     );
 \frame_ctr[4]_i_8\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0001"
+      INIT => X"7FFF"
     )
         port map (
-      I0 => \frame_ctr[4]_i_15_n_0\,
-      I1 => \frame_ctr[4]_i_16_n_0\,
-      I2 => \frame_ctr[4]_i_17_n_0\,
-      I3 => \frame_ctr[4]_i_18_n_0\,
+      I0 => SCRAMBLED_DATA_IN(5),
+      I1 => SCRAMBLED_DATA_IN(4),
+      I2 => SCRAMBLED_DATA_IN(7),
+      I3 => SCRAMBLED_DATA_IN(6),
       O => \frame_ctr[4]_i_8_n_0\
     );
 \frame_ctr[4]_i_9\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFDF"
+      INIT => X"0001"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(33),
-      I1 => SCRAMBLED_DATA_IN(32),
-      I2 => SCRAMBLED_DATA_IN(34),
-      I3 => SCRAMBLED_DATA_IN(35),
+      I0 => \frame_ctr[4]_i_14_n_0\,
+      I1 => \frame_ctr[4]_i_15_n_0\,
+      I2 => \frame_ctr[4]_i_16_n_0\,
+      I3 => \frame_ctr[4]_i_17_n_0\,
       O => \frame_ctr[4]_i_9_n_0\
     );
 \frame_ctr_reg[0]\: unisim.vcomponents.FDRE
@@ -3492,17 +3467,16 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I4 => \good_sync_ctr_reg_n_0_[1]\,
       O => \good_sync_ctr[1]_i_1_n_0\
     );
-\good_sync_ctr[1]_i_2\: unisim.vcomponents.LUT6
+\good_sync_ctr[1]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0003000100000001"
+      INIT => X"03010001"
     )
         port map (
       I0 => \bad_sync_ctr[2]_i_2_n_0\,
-      I1 => SYSTEM_RESET,
-      I2 => PASSTHROUGH,
-      I3 => \state__0\(2),
-      I4 => \state__0\(0),
-      I5 => \state__0\(1),
+      I1 => \FSM_sequential_state[0]_i_3_n_0\,
+      I2 => \state__0\(2),
+      I3 => \state__0\(0),
+      I4 => \state__0\(1),
       O => \good_sync_ctr[1]_i_2_n_0\
     );
 \good_sync_ctr_reg[0]\: unisim.vcomponents.FDRE
@@ -3920,6 +3894,7 @@ entity main_descrambler_0_0 is
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
+    DATA_VALID : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -3944,6 +3919,7 @@ architecture STRUCTURE of main_descrambler_0_0 is
 begin
 inst: entity work.main_descrambler_0_0_descrambler
      port map (
+      DATA_VALID => DATA_VALID,
       HEADER_IN(1 downto 0) => HEADER_IN(1 downto 0),
       HEADER_OUT(1 downto 0) => HEADER_OUT(1 downto 0),
       LOCKED => LOCKED,

@@ -41,6 +41,7 @@ module descrambler #
     // System Interface
     input  wire         USER_CLK,
     input  wire         SYSTEM_RESET,
+    input  wire         DATA_VALID,
     input  wire         PASSTHROUGH
 );
 
@@ -87,7 +88,7 @@ module descrambler #
     begin
         UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
 
-        if (SYSTEM_RESET || PASSTHROUGH)
+        if (SYSTEM_RESET || PASSTHROUGH || (DATA_VALID == 0))
             state           <= `DLY     STATE_RESET;
         else
         case(state)

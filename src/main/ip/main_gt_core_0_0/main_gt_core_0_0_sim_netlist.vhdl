@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 19:01:58 2020
+-- Date        : Sat Nov 21 22:38:59 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_core_0_0/main_gt_core_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top main_gt_core_0_0 -prefix
+--               main_gt_core_0_0_ main_gt_core_0_0_sim_netlist.vhdl
 -- Design      : main_gt_core_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,8 +22,6 @@ entity main_gt_core_0_0_gtwizard_0_CLOCK_MODULE is
     GT0_RXOUTCLK_IN : in STD_LOGIC;
     GT0_RX_MMCM_RESET_IN : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_CLOCK_MODULE : entity is "gtwizard_0_CLOCK_MODULE";
 end main_gt_core_0_0_gtwizard_0_CLOCK_MODULE;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_CLOCK_MODULE is
@@ -354,8 +352,6 @@ entity main_gt_core_0_0_gtwizard_0_GT is
     gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
     gt0_drpaddr_in : in STD_LOGIC_VECTOR ( 8 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_GT : entity is "gtwizard_0_GT";
 end main_gt_core_0_0_gtwizard_0_GT;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT is
@@ -906,8 +902,6 @@ entity main_gt_core_0_0_gtwizard_0_common is
     sysclk_in : in STD_LOGIC;
     gt0_qpllreset_t : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_common : entity is "gtwizard_0_common";
 end main_gt_core_0_0_gtwizard_0_common;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_common is
@@ -993,8 +987,6 @@ entity main_gt_core_0_0_gtwizard_0_common_reset is
     soft_reset_tx_in : in STD_LOGIC;
     gt0_qpllreset_i : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_common_reset : entity is "gtwizard_0_common_reset";
 end main_gt_core_0_0_gtwizard_0_common_reset;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_common_reset is
@@ -1335,8 +1327,6 @@ entity main_gt_core_0_0_gtwizard_0_sync_block is
     gt0_txresetdone_out : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_sync_block : entity is "gtwizard_0_sync_block";
 end main_gt_core_0_0_gtwizard_0_sync_block;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block is
@@ -2874,8 +2864,6 @@ entity main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
     q3_clk0_gtrefclk_pad_p_in : in STD_LOGIC;
     q3_clk0_gtrefclk_pad_n_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE : entity is "gtwizard_0_GT_USRCLK_SOURCE";
 end main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
@@ -2937,8 +2925,6 @@ entity main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
     gt0_data_valid_in : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM : entity is "gtwizard_0_RX_STARTUP_FSM";
 end main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
@@ -6079,8 +6065,6 @@ entity main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
     gt0_tx_mmcm_lock_out : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM : entity is "gtwizard_0_TX_STARTUP_FSM";
 end main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
@@ -8015,8 +7999,6 @@ entity main_gt_core_0_0_gtwizard_0_multi_gt is
     gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
     gt0_drpaddr_in : in STD_LOGIC_VECTOR ( 8 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_multi_gt : entity is "gtwizard_0_multi_gt";
 end main_gt_core_0_0_gtwizard_0_multi_gt;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_multi_gt is
@@ -8138,8 +8120,6 @@ entity main_gt_core_0_0_gtwizard_0_init is
     gt0_rx_mmcm_lock_out : in STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_init : entity is "gtwizard_0_init";
 end main_gt_core_0_0_gtwizard_0_init;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_init is
@@ -9297,8 +9277,6 @@ entity main_gt_core_0_0_gtwizard_0_support is
   attribute DowngradeIPIdentifiedWarnings of main_gt_core_0_0_gtwizard_0_support : entity is "yes";
   attribute EXAMPLE_SIM_GTRESET_SPEEDUP : string;
   attribute EXAMPLE_SIM_GTRESET_SPEEDUP of main_gt_core_0_0_gtwizard_0_support : entity is "TRUE";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_support : entity is "gtwizard_0_support";
   attribute STABLE_CLOCK_PERIOD : integer;
   attribute STABLE_CLOCK_PERIOD of main_gt_core_0_0_gtwizard_0_support : entity is 10;
 end main_gt_core_0_0_gtwizard_0_support;
@@ -9493,8 +9471,6 @@ entity main_gt_core_0_0_gtwizard_0 is
   );
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of main_gt_core_0_0_gtwizard_0 : entity is "yes";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0 : entity is "gtwizard_0";
   attribute X_CORE_INFO : string;
   attribute X_CORE_INFO of main_gt_core_0_0_gtwizard_0 : entity is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
 end main_gt_core_0_0_gtwizard_0;
@@ -9577,18 +9553,18 @@ entity main_gt_core_0_0_gtwizard_0_exdes is
     Q3_CLK0_GTREFCLK_PAD_N_IN : in STD_LOGIC;
     Q3_CLK0_GTREFCLK_PAD_P_IN : in STD_LOGIC;
     DRP_CLK_IN : in STD_LOGIC;
-    DATA_VALID : in STD_LOGIC;
-    RXN_IN : in STD_LOGIC;
-    RXP_IN : in STD_LOGIC;
-    TXN_OUT : out STD_LOGIC;
-    TXP_OUT : out STD_LOGIC;
     TX_USR_CLK : out STD_LOGIC;
     TX_USR_CLK2 : out STD_LOGIC;
     RX_USR_CLK : out STD_LOGIC;
     RX_USR_CLK2 : out STD_LOGIC;
+    RXN_IN : in STD_LOGIC;
+    RXP_IN : in STD_LOGIC;
+    TXN_OUT : out STD_LOGIC;
+    TXP_OUT : out STD_LOGIC;
     SOFT_RESET : in STD_LOGIC;
     TX_RESET : out STD_LOGIC;
     RX_RESET : out STD_LOGIC;
+    DATA_VALID : in STD_LOGIC;
     TX_MMCM_LOCK : out STD_LOGIC;
     TX_RESET_DONE : out STD_LOGIC;
     TX_FSM_RESET_DONE : out STD_LOGIC;
@@ -9600,17 +9576,17 @@ entity main_gt_core_0_0_gtwizard_0_exdes is
   );
   attribute LOOPBACK : integer;
   attribute LOOPBACK of main_gt_core_0_0_gtwizard_0_exdes : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_exdes : entity is "gtwizard_0_exdes";
 end main_gt_core_0_0_gtwizard_0_exdes;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_exdes is
-  signal \^rx_fsm_reset_done\ : STD_LOGIC;
   signal \^rx_mmcm_lock\ : STD_LOGIC;
   signal \^rx_reset_done\ : STD_LOGIC;
   signal \^tx_fsm_reset_done\ : STD_LOGIC;
   signal \^tx_mmcm_lock\ : STD_LOGIC;
   signal \^tx_reset_done\ : STD_LOGIC;
+  signal \^tx_usr_clk2\ : STD_LOGIC;
+  signal gt0_txfsmresetdone_r : STD_LOGIC;
+  signal gt0_txfsmresetdone_r2 : STD_LOGIC;
   signal NLW_gtwizard_0_support_i_gt0_drprdy_out_UNCONNECTED : STD_LOGIC;
   signal NLW_gtwizard_0_support_i_gt0_eyescandataerror_out_UNCONNECTED : STD_LOGIC;
   signal NLW_gtwizard_0_support_i_gt0_qplllock_out_UNCONNECTED : STD_LOGIC;
@@ -9630,20 +9606,19 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_exdes is
   attribute X_CORE_INFO : string;
   attribute X_CORE_INFO of gtwizard_0_support_i : label is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
 begin
-  RX_FSM_RESET_DONE <= \^rx_fsm_reset_done\;
   RX_MMCM_LOCK <= \^rx_mmcm_lock\;
   RX_RESET_DONE <= \^rx_reset_done\;
   TX_FSM_RESET_DONE <= \^tx_fsm_reset_done\;
   TX_MMCM_LOCK <= \^tx_mmcm_lock\;
   TX_RESET_DONE <= \^tx_reset_done\;
-RX_RESET_INST_0: unisim.vcomponents.LUT3
+  TX_USR_CLK2 <= \^tx_usr_clk2\;
+RX_RESET_INST_0: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"7F"
+      INIT => X"7"
     )
         port map (
       I0 => \^rx_mmcm_lock\,
       I1 => \^rx_reset_done\,
-      I2 => \^rx_fsm_reset_done\,
       O => RX_RESET
     );
 TX_RESET_INST_0: unisim.vcomponents.LUT3
@@ -9653,8 +9628,24 @@ TX_RESET_INST_0: unisim.vcomponents.LUT3
         port map (
       I0 => \^tx_mmcm_lock\,
       I1 => \^tx_reset_done\,
-      I2 => \^tx_fsm_reset_done\,
+      I2 => gt0_txfsmresetdone_r2,
       O => TX_RESET
+    );
+gt0_txfsmresetdone_r2_reg: unisim.vcomponents.FDRE
+     port map (
+      C => \^tx_usr_clk2\,
+      CE => '1',
+      D => gt0_txfsmresetdone_r,
+      Q => gt0_txfsmresetdone_r2,
+      R => '0'
+    );
+gt0_txfsmresetdone_r_reg: unisim.vcomponents.FDRE
+     port map (
+      C => \^tx_usr_clk2\,
+      CE => '1',
+      D => \^tx_fsm_reset_done\,
+      Q => gt0_txfsmresetdone_r,
+      R => '0'
     );
 gtwizard_0_support_i: entity work.main_gt_core_0_0_gtwizard_0
      port map (
@@ -9681,7 +9672,7 @@ gtwizard_0_support_i: entity work.main_gt_core_0_0_gtwizard_0
       gt0_qplloutclk_out => NLW_gtwizard_0_support_i_gt0_qplloutclk_out_UNCONNECTED,
       gt0_qplloutrefclk_out => NLW_gtwizard_0_support_i_gt0_qplloutrefclk_out_UNCONNECTED,
       gt0_qpllrefclklost_out => NLW_gtwizard_0_support_i_gt0_qpllrefclklost_out_UNCONNECTED,
-      gt0_rx_fsm_reset_done_out => \^rx_fsm_reset_done\,
+      gt0_rx_fsm_reset_done_out => RX_FSM_RESET_DONE,
       gt0_rx_mmcm_lock_out => \^rx_mmcm_lock\,
       gt0_rxbufreset_in => '0',
       gt0_rxbufstatus_out(2 downto 0) => NLW_gtwizard_0_support_i_gt0_rxbufstatus_out_UNCONNECTED(2 downto 0),
@@ -9709,7 +9700,7 @@ gtwizard_0_support_i: entity work.main_gt_core_0_0_gtwizard_0
       gt0_txprbssel_in(2 downto 0) => B"000",
       gt0_txresetdone_out => \^tx_reset_done\,
       gt0_txuserrdy_in => '1',
-      gt0_txusrclk2_out => TX_USR_CLK2,
+      gt0_txusrclk2_out => \^tx_usr_clk2\,
       gt0_txusrclk_out => TX_USR_CLK,
       q3_clk0_gtrefclk_pad_n_in => Q3_CLK0_GTREFCLK_PAD_N_IN,
       q3_clk0_gtrefclk_pad_p_in => Q3_CLK0_GTREFCLK_PAD_P_IN,

@@ -70,34 +70,32 @@ module gtwizard_0_exdes #
     parameter LOOPBACK                             =   3'b000
 )
 (
-// Clocks
     input  wire         Q3_CLK0_GTREFCLK_PAD_N_IN,
     input  wire         Q3_CLK0_GTREFCLK_PAD_P_IN,
     input  wire         DRP_CLK_IN,
-// Data valid
-    input  wire         DATA_VALID,
-// GT Pins
-    input  wire         RXN_IN,
-    input  wire         RXP_IN,
-    output wire         TXN_OUT,
-    output wire         TXP_OUT,
-// User clocks
+
     output wire         TX_USR_CLK,
     output wire         TX_USR_CLK2,
     output wire         RX_USR_CLK,
     output wire         RX_USR_CLK2,
-// Resets
+
+    input  wire         RXN_IN,
+    input  wire         RXP_IN,
+    output wire         TXN_OUT,
+    output wire         TXP_OUT,
+
     input  wire         SOFT_RESET,
     output wire         TX_RESET,
     output wire         RX_RESET,
-// GT State
+
+    input  wire         DATA_VALID,
     output wire         TX_MMCM_LOCK,
     output wire         TX_RESET_DONE,
     output wire         TX_FSM_RESET_DONE,
     output wire         RX_MMCM_LOCK,
     output wire         RX_RESET_DONE,
     output wire         RX_FSM_RESET_DONE,
-// GT Data ports
+
     input  wire [79:0]  TX_DATA,
     output wire [79:0]  RX_DATA
 );
@@ -185,6 +183,14 @@ module gtwizard_0_exdes #
     wire            gt0_rxmmcm_lock_i;
     wire            gt0_rxmmcm_reset_i;
 
+    wire            gt0_txusrclk_i;
+    wire            gt0_txusrclk2_i;
+    wire            gt0_rxusrclk_i;
+    wire            gt0_rxusrclk2_i;
+
+    reg             gt0_txfsmresetdone_r;
+    reg             gt0_txfsmresetdone_r2;
+
 //**************************** Main Body of Code *******************************
 
     //***********************************************************************//
@@ -213,10 +219,10 @@ module gtwizard_0_exdes #
         .gt0_tx_fsm_reset_done_out      (gt0_txfsmresetdone_i),
         .gt0_rx_fsm_reset_done_out      (gt0_rxfsmresetdone_i),
         .gt0_data_valid_in              (DATA_VALID),
-        .gt0_txusrclk_out               (TX_USR_CLK),
-        .gt0_txusrclk2_out              (TX_USR_CLK2),
-        .gt0_rxusrclk_out               (RX_USR_CLK),
-        .gt0_rxusrclk2_out              (RX_USR_CLK2),
+        .gt0_txusrclk_out               (gt0_txusrclk_i),
+        .gt0_txusrclk2_out              (gt0_txusrclk2_i),
+        .gt0_rxusrclk_out               (gt0_rxusrclk_i),
+        .gt0_rxusrclk2_out              (gt0_rxusrclk2_i),
 
         //_____________________________________________________________________
         //_____________________________________________________________________
@@ -285,13 +291,17 @@ module gtwizard_0_exdes #
         .gt0_txprbssel_in               (gt0_txprbssel_i),
 
         //____________________________COMMON PORTS________________________________
-        .gt0_qplllock_out(),
-        .gt0_qpllrefclklost_out(),
-        .gt0_qplloutclk_out(),
-        .gt0_qplloutrefclk_out(),
-        .sysclk_in(DRP_CLK_IN)
+        .gt0_qplllock_out               (),
+        .gt0_qpllrefclklost_out         (),
+        .gt0_qplloutclk_out             (),
+        .gt0_qplloutrefclk_out          (),
+        .sysclk_in                      (DRP_CLK_IN)
     );
 
+//-------------------------Sync reset--------------------
+
+always @(posedge gt0_txusrclk2_i)
+    {gt0_txfsmresetdone_r2,gt0_txfsmresetdone_r}  <=  {gt0_txfsmresetdone_r,gt0_txfsmresetdone_i};
 
 //  Static signal Assigments
 assign tied_to_ground_i             = 1'b0;
@@ -316,14 +326,18 @@ assign gt0_drpen_i = 1'b0;
 assign gt0_drpwe_i = 1'b0;
 
 assign soft_reset_i         = SOFT_RESET;
+assign TX_USR_CLK           = gt0_txusrclk_i;
+assign TX_USR_CLK2          = gt0_txusrclk2_i;
+assign RX_USR_CLK           = gt0_rxusrclk_i;
+assign RX_USR_CLK2          = gt0_rxusrclk2_i;
 assign TX_MMCM_LOCK         = gt0_txmmcm_lock_i;
 assign RX_MMCM_LOCK         = gt0_rxmmcm_lock_i;
 assign TX_RESET_DONE        = gt0_txresetdone_i;
 assign RX_RESET_DONE        = gt0_rxresetdone_i;
 assign TX_FSM_RESET_DONE    = gt0_txfsmresetdone_i;
 assign RX_FSM_RESET_DONE    = gt0_rxfsmresetdone_i;
-assign TX_RESET             = !(gt0_txmmcm_lock_i && gt0_txresetdone_i && gt0_txfsmresetdone_i);
-assign RX_RESET             = !(gt0_rxmmcm_lock_i && gt0_rxresetdone_i && gt0_rxfsmresetdone_i);
+assign TX_RESET             = !(gt0_txmmcm_lock_i && gt0_txresetdone_i && gt0_txfsmresetdone_r2);
+assign RX_RESET             = !(gt0_rxmmcm_lock_i && gt0_rxresetdone_i);
 
 endmodule
 

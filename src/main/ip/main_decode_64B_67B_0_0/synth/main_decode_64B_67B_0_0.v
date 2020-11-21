@@ -62,6 +62,7 @@ module main_decode_64B_67B_0_0 (
   LOCKED,
   USER_CLK,
   SYSTEM_RESET,
+  DATA_VALID,
   PASSTHROUGH
 );
 
@@ -75,6 +76,7 @@ input wire USER_CLK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
+input wire DATA_VALID;
 input wire PASSTHROUGH;
 
   decode_64B_67B inst (
@@ -84,6 +86,7 @@ input wire PASSTHROUGH;
     .LOCKED(LOCKED),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET),
+    .DATA_VALID(DATA_VALID),
     .PASSTHROUGH(PASSTHROUGH)
   );
 endmodule

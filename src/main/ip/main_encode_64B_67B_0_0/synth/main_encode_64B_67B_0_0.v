@@ -65,7 +65,7 @@ module main_encode_64B_67B_0_0 (
 );
 
 input wire [63 : 0] DATA_IN;
-output wire [79 : 0] DATA_OUT;
+output wire [66 : 0] DATA_OUT;
 input wire [1 : 0] HEADER_IN;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)

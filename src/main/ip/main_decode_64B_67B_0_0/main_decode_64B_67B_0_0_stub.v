@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sat Nov 21 18:01:07 2020
+// Date        : Sat Nov 21 22:48:02 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_stub.v
@@ -15,13 +15,14 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "decode_64B_67B,Vivado 2018.2" *)
 module main_decode_64B_67B_0_0(DATA_IN, DATA_OUT, HEADER_OUT, LOCKED, USER_CLK, 
-  SYSTEM_RESET, PASSTHROUGH)
-/* synthesis syn_black_box black_box_pad_pin="DATA_IN[79:0],DATA_OUT[63:0],HEADER_OUT[1:0],LOCKED,USER_CLK,SYSTEM_RESET,PASSTHROUGH" */;
+  SYSTEM_RESET, DATA_VALID, PASSTHROUGH)
+/* synthesis syn_black_box black_box_pad_pin="DATA_IN[79:0],DATA_OUT[63:0],HEADER_OUT[1:0],LOCKED,USER_CLK,SYSTEM_RESET,DATA_VALID,PASSTHROUGH" */;
   input [79:0]DATA_IN;
   output [63:0]DATA_OUT;
   output [1:0]HEADER_OUT;
   output LOCKED;
   input USER_CLK;
   input SYSTEM_RESET;
+  input DATA_VALID;
   input PASSTHROUGH;
 endmodule
