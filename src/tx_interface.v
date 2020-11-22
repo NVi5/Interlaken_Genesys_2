@@ -31,10 +31,10 @@ module tx_interface #
 (
     // User Interface
     input  wire  [63:0]  DATA_IN,
-    input  wire  [1:0]   HEADER_IN,
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
     input  wire          DATA_TO_SEND,
+    output reg           DATA_IN_READY,
 
     // System Interface
     input  wire          USER_CLK,
@@ -42,7 +42,8 @@ module tx_interface #
     );
 
 //***************************Declarations********************
-
+    localparam CONTROL_LEN = 2;
+    localparam CLOCK_OFFSET = 2;
     reg     [$clog2(META_FRAME_LEN)-1:0]      frame_ctr;
 
 //*********************************Main Body of Code**********************************
@@ -57,13 +58,20 @@ always @(posedge USER_CLK)
     end
 
 always @(posedge USER_CLK)
-    if(SYSTEM_RESET || (DATA_TO_SEND == 0))
-    begin
-        DATA_OUT <= `DLY 64'd0;
-        HEADER_OUT <= `DLY 2'd0;
-    end
-    else begin
-        DATA_OUT <= `DLY DATA_IN;
-        HEADER_OUT <= `DLY HEADER_IN;
-    end
+    if (frame_ctr > (META_FRAME_LEN - CLOCK_OFFSET - 1) || frame_ctr < (CONTROL_LEN - CLOCK_OFFSET))    //Software clock offset
+            DATA_IN_READY  <=  `DLY    1'b0;
+    else
+            DATA_IN_READY  <=  `DLY    1'b1;
+
+always @(posedge USER_CLK)
+    case(frame_ctr)
+        0:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h78f678f678f678f6};
+        1:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h2800000000000000};
+        default:
+            if (DATA_TO_SEND)
+                    {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b01, DATA_IN};
+            else
+                    {HEADER_OUT, DATA_OUT}  <=  `DLY    {33{2'b10}}; // Idle word
+    endcase
+
 endmodule

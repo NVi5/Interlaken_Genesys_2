@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sat Nov 21 22:48:37 2020
+// Date        : Sun Nov 22 14:01:24 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.v
@@ -17,281 +17,102 @@
 (* NotValidForBitStream *)
 module main_frame_gen_1_0
    (TX_DATA_OUT,
-    TX_HEADER_OUT,
     TX_DATA_TO_SEND,
+    DATA_IN_READY,
     USER_CLK,
     SYSTEM_RESET);
   output [63:0]TX_DATA_OUT;
-  output [1:0]TX_HEADER_OUT;
   output TX_DATA_TO_SEND;
+  input DATA_IN_READY;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *) input USER_CLK;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *) input SYSTEM_RESET;
 
-  wire \<const1> ;
+  wire DATA_IN_READY;
   wire SYSTEM_RESET;
-  wire [61:0]\^TX_DATA_OUT ;
-  wire [1:1]\^TX_HEADER_OUT ;
+  wire [63:0]TX_DATA_OUT;
+  wire TX_DATA_TO_SEND;
   wire USER_CLK;
 
-  assign TX_DATA_OUT[63] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[62] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[61] = \^TX_DATA_OUT [61];
-  assign TX_DATA_OUT[60] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[59] = \^TX_DATA_OUT [59];
-  assign TX_DATA_OUT[58] = \^TX_DATA_OUT [57];
-  assign TX_DATA_OUT[57] = \^TX_DATA_OUT [57];
-  assign TX_DATA_OUT[56:55] = \^TX_DATA_OUT [40:39];
-  assign TX_DATA_OUT[54] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[53] = \^TX_DATA_OUT [45];
-  assign TX_DATA_OUT[52] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[51] = \^TX_DATA_OUT [35];
-  assign TX_DATA_OUT[50] = \^TX_DATA_OUT [50];
-  assign TX_DATA_OUT[49] = \^TX_DATA_OUT [34];
-  assign TX_DATA_OUT[48] = \^TX_DATA_OUT [32];
-  assign TX_DATA_OUT[47] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[46] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[45] = \^TX_DATA_OUT [45];
-  assign TX_DATA_OUT[44] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[43] = \^TX_DATA_OUT [27];
-  assign TX_DATA_OUT[42] = \^TX_DATA_OUT [57];
-  assign TX_DATA_OUT[41] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[40:39] = \^TX_DATA_OUT [40:39];
-  assign TX_DATA_OUT[38] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[37] = \^TX_DATA_OUT [45];
-  assign TX_DATA_OUT[36] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[35:32] = \^TX_DATA_OUT [35:32];
-  assign TX_DATA_OUT[31] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[30] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[29] = \^TX_DATA_OUT [45];
-  assign TX_DATA_OUT[28] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[27] = \^TX_DATA_OUT [27];
-  assign TX_DATA_OUT[26] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[25] = \^TX_DATA_OUT [57];
-  assign TX_DATA_OUT[24:23] = \^TX_DATA_OUT [40:39];
-  assign TX_DATA_OUT[22] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[21] = \^TX_DATA_OUT [45];
-  assign TX_DATA_OUT[20] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[19] = \^TX_DATA_OUT [35];
-  assign TX_DATA_OUT[18] = \^TX_DATA_OUT [39];
-  assign TX_DATA_OUT[17] = \^TX_DATA_OUT [34];
-  assign TX_DATA_OUT[16] = \^TX_DATA_OUT [32];
-  assign TX_DATA_OUT[15:13] = \^TX_DATA_OUT [15:13];
-  assign TX_DATA_OUT[12] = \^TX_DATA_OUT [52];
-  assign TX_DATA_OUT[11] = \^TX_DATA_OUT [27];
-  assign TX_DATA_OUT[10] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[9] = \^TX_DATA_OUT [47];
-  assign TX_DATA_OUT[8:7] = \^TX_DATA_OUT [40:39];
-  assign TX_DATA_OUT[6] = \^TX_DATA_OUT [54];
-  assign TX_DATA_OUT[5:3] = \^TX_DATA_OUT [5:3];
-  assign TX_DATA_OUT[2] = \^TX_DATA_OUT [1];
-  assign TX_DATA_OUT[1:0] = \^TX_DATA_OUT [1:0];
-  assign TX_DATA_TO_SEND = \<const1> ;
-  assign TX_HEADER_OUT[1] = \^TX_HEADER_OUT [1];
-  assign TX_HEADER_OUT[0] = \^TX_DATA_OUT [57];
-  VCC VCC
-       (.P(\<const1> ));
   main_frame_gen_1_0_frame_gen inst
-       (.SYSTEM_RESET(SYSTEM_RESET),
-        .TX_DATA_OUT({\^TX_DATA_OUT [47],\^TX_DATA_OUT [54],\^TX_DATA_OUT [61],\^TX_DATA_OUT [52],\^TX_DATA_OUT [59],\^TX_DATA_OUT [57],\^TX_DATA_OUT [40:39],\^TX_DATA_OUT [45],\^TX_DATA_OUT [35],\^TX_DATA_OUT [50],\^TX_DATA_OUT [34],\^TX_DATA_OUT [32],\^TX_DATA_OUT [27],\^TX_DATA_OUT [33],\^TX_DATA_OUT [15:13],\^TX_DATA_OUT [5:3],\^TX_DATA_OUT [1:0]}),
-        .TX_HEADER_OUT(\^TX_HEADER_OUT ),
+       (.DATA_IN_READY(DATA_IN_READY),
+        .SYSTEM_RESET(SYSTEM_RESET),
+        .TX_DATA_OUT(TX_DATA_OUT),
+        .TX_DATA_TO_SEND(TX_DATA_TO_SEND),
         .USER_CLK(USER_CLK));
 endmodule
 
 (* ORIG_REF_NAME = "frame_gen" *) 
 module main_frame_gen_1_0_frame_gen
    (TX_DATA_OUT,
-    TX_HEADER_OUT,
+    TX_DATA_TO_SEND,
+    SYSTEM_RESET,
     USER_CLK,
-    SYSTEM_RESET);
-  output [22:0]TX_DATA_OUT;
-  output [0:0]TX_HEADER_OUT;
-  input USER_CLK;
+    DATA_IN_READY);
+  output [63:0]TX_DATA_OUT;
+  output TX_DATA_TO_SEND;
   input SYSTEM_RESET;
+  input USER_CLK;
+  input DATA_IN_READY;
 
+  wire DATA_IN_READY;
   wire SYSTEM_RESET;
-  wire [22:0]TX_DATA_OUT;
-  wire [0:0]TX_HEADER_OUT;
+  wire [63:0]TX_DATA_OUT;
+  wire TX_DATA_TO_SEND;
   wire USER_CLK;
-  wire [63:0]p_0_in;
-  wire [9:4]p_0_in__0;
+  wire [8:0]p_0_in;
+  wire [9:9]p_0_in__0;
+  wire \read_counter_i[9]_i_1_n_0 ;
   wire [9:0]read_counter_i_reg__0;
-  wire [3:0]read_counter_i_reg_rep__0;
-  wire \read_counter_i_rep[0]_i_1_n_0 ;
-  wire \read_counter_i_rep[1]_i_1_n_0 ;
-  wire \read_counter_i_rep[2]_i_1_n_0 ;
-  wire \read_counter_i_rep[3]_i_1_n_0 ;
-  wire \read_counter_i_rep[3]_i_2_n_0 ;
-  wire \read_counter_i_rep[3]_i_3_n_0 ;
-  wire \tx_data_ram_r[16]_i_1_n_0 ;
-  wire \tx_data_ram_r[18]_i_1_n_0 ;
-  wire \tx_data_ram_r[1]_i_1_n_0 ;
-  wire \tx_data_ram_r[20]_i_1_n_0 ;
-  wire \tx_data_ram_r[21]_i_1_n_0 ;
-  wire \tx_data_ram_r[29]_i_1_n_0 ;
-  wire \tx_data_ram_r[30]_i_1_n_0 ;
-  wire \tx_data_ram_r[31]_i_1_n_0 ;
-  wire \tx_data_ram_r[49]_i_1_n_0 ;
-  wire \tx_data_ram_r[59]_i_1_n_0 ;
-  wire \tx_data_ram_r[64]_i_1_n_0 ;
-  wire \tx_data_ram_r[65]_i_1_n_0 ;
-  wire \tx_data_ram_r[66]_i_1_n_0 ;
-  wire \tx_data_ram_r[67]_i_1_n_0 ;
-  wire \tx_data_ram_r[69]_i_1_n_0 ;
-  wire \tx_data_ram_r[71]_i_1_n_0 ;
-  wire \tx_data_ram_r[72]_i_1_n_0 ;
-  wire \tx_data_ram_r[74]_i_1_n_0 ;
-  wire \tx_data_ram_r[75]_i_1_n_0 ;
-  wire \tx_data_ram_r[76]_i_1_n_0 ;
-  wire \tx_data_ram_r[77]_i_1_n_0 ;
-  wire \tx_data_ram_r[78]_i_1_n_0 ;
-  wire \tx_data_ram_r[79]_i_1_n_0 ;
-  wire \tx_data_ram_r_reg_n_0_[1] ;
+  wire read_counter_i_reg_rep_1_i_10_n_0;
+  wire read_counter_i_reg_rep_1_i_11_n_0;
+  wire read_counter_i_reg_rep_1_i_1_n_0;
+  wire read_counter_i_reg_rep_1_i_2_n_0;
+  wire read_counter_i_reg_rep_1_i_3_n_0;
+  wire read_counter_i_reg_rep_1_i_4_n_0;
+  wire read_counter_i_reg_rep_1_i_5_n_0;
+  wire read_counter_i_reg_rep_1_i_6_n_0;
+  wire read_counter_i_reg_rep_1_i_7_n_0;
+  wire read_counter_i_reg_rep_1_i_8_n_0;
+  wire read_counter_i_reg_rep_1_i_9_n_0;
+  wire [15:10]NLW_read_counter_i_reg_rep_1_DOBDO_UNCONNECTED;
+  wire [1:0]NLW_read_counter_i_reg_rep_1_DOPBDOP_UNCONNECTED;
 
-  FDRE \TX_DATA_OUT_reg[0] 
+  FDRE TX_DATA_TO_SEND_reg
        (.C(USER_CLK),
         .CE(1'b1),
-        .D(p_0_in[0]),
-        .Q(TX_DATA_OUT[0]),
+        .D(1'b1),
+        .Q(TX_DATA_TO_SEND),
         .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[13] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[13]),
-        .Q(TX_DATA_OUT[5]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[14] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[14]),
-        .Q(TX_DATA_OUT[6]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[15] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[15]),
-        .Q(TX_DATA_OUT[7]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[2] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[2]),
-        .Q(TX_DATA_OUT[1]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[33] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[33]),
-        .Q(TX_DATA_OUT[8]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[3] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[3]),
-        .Q(TX_DATA_OUT[2]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[43] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[43]),
-        .Q(TX_DATA_OUT[9]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[48] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[48]),
-        .Q(TX_DATA_OUT[10]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[49] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[49]),
-        .Q(TX_DATA_OUT[11]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[4] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[4]),
-        .Q(TX_DATA_OUT[3]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[50] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[50]),
-        .Q(TX_DATA_OUT[12]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[51] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[51]),
-        .Q(TX_DATA_OUT[13]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[53] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[53]),
-        .Q(TX_DATA_OUT[14]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[55] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[55]),
-        .Q(TX_DATA_OUT[15]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[56] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[56]),
-        .Q(TX_DATA_OUT[16]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[58] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[58]),
-        .Q(TX_DATA_OUT[17]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[59] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[59]),
-        .Q(TX_DATA_OUT[18]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[5] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[5]),
-        .Q(TX_DATA_OUT[4]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[60] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[60]),
-        .Q(TX_DATA_OUT[19]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[61] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[61]),
-        .Q(TX_DATA_OUT[20]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[62] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[62]),
-        .Q(TX_DATA_OUT[21]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_DATA_OUT_reg[63] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in[63]),
-        .Q(TX_DATA_OUT[22]),
-        .R(SYSTEM_RESET));
-  FDRE \TX_HEADER_OUT_reg[1] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r_reg_n_0_[1] ),
-        .Q(TX_HEADER_OUT),
-        .R(SYSTEM_RESET));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT1 #(
+    .INIT(2'h1)) 
+    \read_counter_i[0]_i_1 
+       (.I0(read_counter_i_reg__0[0]),
+        .O(p_0_in[0]));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \read_counter_i[1]_i_1 
+       (.I0(read_counter_i_reg__0[0]),
+        .I1(read_counter_i_reg__0[1]),
+        .O(p_0_in[1]));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT3 #(
+    .INIT(8'h78)) 
+    \read_counter_i[2]_i_1 
+       (.I0(read_counter_i_reg__0[1]),
+        .I1(read_counter_i_reg__0[0]),
+        .I2(read_counter_i_reg__0[2]),
+        .O(p_0_in[2]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \read_counter_i[3]_i_1 
+       (.I0(read_counter_i_reg__0[2]),
+        .I1(read_counter_i_reg__0[0]),
+        .I2(read_counter_i_reg__0[1]),
+        .I3(read_counter_i_reg__0[3]),
+        .O(p_0_in[3]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \read_counter_i[4]_i_1 
@@ -300,7 +121,7 @@ module main_frame_gen_1_0_frame_gen
         .I2(read_counter_i_reg__0[0]),
         .I3(read_counter_i_reg__0[2]),
         .I4(read_counter_i_reg__0[4]),
-        .O(p_0_in__0[4]));
+        .O(p_0_in[4]));
   LUT6 #(
     .INIT(64'h7FFFFFFF80000000)) 
     \read_counter_i[5]_i_1 
@@ -310,515 +131,457 @@ module main_frame_gen_1_0_frame_gen
         .I3(read_counter_i_reg__0[1]),
         .I4(read_counter_i_reg__0[3]),
         .I5(read_counter_i_reg__0[5]),
-        .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+        .O(p_0_in[5]));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h9)) 
     \read_counter_i[6]_i_1 
-       (.I0(\read_counter_i_rep[3]_i_3_n_0 ),
+       (.I0(read_counter_i_reg_rep_1_i_11_n_0),
         .I1(read_counter_i_reg__0[6]),
-        .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+        .O(p_0_in[6]));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hD2)) 
     \read_counter_i[7]_i_1 
        (.I0(read_counter_i_reg__0[6]),
-        .I1(\read_counter_i_rep[3]_i_3_n_0 ),
+        .I1(read_counter_i_reg_rep_1_i_11_n_0),
         .I2(read_counter_i_reg__0[7]),
-        .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+        .O(p_0_in[7]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hDF20)) 
     \read_counter_i[8]_i_1 
        (.I0(read_counter_i_reg__0[7]),
-        .I1(\read_counter_i_rep[3]_i_3_n_0 ),
+        .I1(read_counter_i_reg_rep_1_i_11_n_0),
         .I2(read_counter_i_reg__0[6]),
         .I3(read_counter_i_reg__0[8]),
-        .O(p_0_in__0[8]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hF7FF0800)) 
-    \read_counter_i[9]_i_1 
-       (.I0(read_counter_i_reg__0[8]),
-        .I1(read_counter_i_reg__0[6]),
-        .I2(\read_counter_i_rep[3]_i_3_n_0 ),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg__0[9]),
-        .O(p_0_in__0[9]));
-  FDRE \read_counter_i_reg[0] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[0]_i_1_n_0 ),
-        .Q(read_counter_i_reg__0[0]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[1] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[1]_i_1_n_0 ),
-        .Q(read_counter_i_reg__0[1]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[2] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[2]_i_1_n_0 ),
-        .Q(read_counter_i_reg__0[2]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[3] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[3]_i_2_n_0 ),
-        .Q(read_counter_i_reg__0[3]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[4] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[4]),
-        .Q(read_counter_i_reg__0[4]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[5] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[5]),
-        .Q(read_counter_i_reg__0[5]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[6] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[6]),
-        .Q(read_counter_i_reg__0[6]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[7] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[7]),
-        .Q(read_counter_i_reg__0[7]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[8] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[8]),
-        .Q(read_counter_i_reg__0[8]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  FDRE \read_counter_i_reg[9] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(p_0_in__0[9]),
-        .Q(read_counter_i_reg__0[9]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
-  FDRE \read_counter_i_reg_rep[0] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[0]_i_1_n_0 ),
-        .Q(read_counter_i_reg_rep__0[0]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
-  FDRE \read_counter_i_reg_rep[1] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[1]_i_1_n_0 ),
-        .Q(read_counter_i_reg_rep__0[1]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
-  FDRE \read_counter_i_reg_rep[2] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[2]_i_1_n_0 ),
-        .Q(read_counter_i_reg_rep__0[2]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
-  FDRE \read_counter_i_reg_rep[3] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\read_counter_i_rep[3]_i_2_n_0 ),
-        .Q(read_counter_i_reg_rep__0[3]),
-        .R(\read_counter_i_rep[3]_i_1_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \read_counter_i_rep[0]_i_1 
-       (.I0(read_counter_i_reg__0[0]),
-        .O(\read_counter_i_rep[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \read_counter_i_rep[1]_i_1 
-       (.I0(read_counter_i_reg__0[0]),
-        .I1(read_counter_i_reg__0[1]),
-        .O(\read_counter_i_rep[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT3 #(
-    .INIT(8'h78)) 
-    \read_counter_i_rep[2]_i_1 
-       (.I0(read_counter_i_reg__0[1]),
-        .I1(read_counter_i_reg__0[0]),
-        .I2(read_counter_i_reg__0[2]),
-        .O(\read_counter_i_rep[2]_i_1_n_0 ));
+        .O(p_0_in[8]));
   LUT6 #(
     .INIT(64'hFFFFFFFF04000000)) 
-    \read_counter_i_rep[3]_i_1 
+    \read_counter_i[9]_i_1 
        (.I0(read_counter_i_reg__0[9]),
         .I1(read_counter_i_reg__0[7]),
-        .I2(\read_counter_i_rep[3]_i_3_n_0 ),
+        .I2(read_counter_i_reg_rep_1_i_11_n_0),
         .I3(read_counter_i_reg__0[6]),
         .I4(read_counter_i_reg__0[8]),
         .I5(SYSTEM_RESET),
-        .O(\read_counter_i_rep[3]_i_1_n_0 ));
+        .O(\read_counter_i[9]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \read_counter_i_rep[3]_i_2 
-       (.I0(read_counter_i_reg__0[2]),
-        .I1(read_counter_i_reg__0[0]),
-        .I2(read_counter_i_reg__0[1]),
-        .I3(read_counter_i_reg__0[3]),
-        .O(\read_counter_i_rep[3]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hF7FF0800)) 
+    \read_counter_i[9]_i_2 
+       (.I0(read_counter_i_reg__0[8]),
+        .I1(read_counter_i_reg__0[6]),
+        .I2(read_counter_i_reg_rep_1_i_11_n_0),
+        .I3(read_counter_i_reg__0[7]),
+        .I4(read_counter_i_reg__0[9]),
+        .O(p_0_in__0));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[0] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[0]),
+        .Q(read_counter_i_reg__0[0]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[1] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[1]),
+        .Q(read_counter_i_reg__0[1]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[2] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[2]),
+        .Q(read_counter_i_reg__0[2]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[3] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[3]),
+        .Q(read_counter_i_reg__0[3]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[4] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[4]),
+        .Q(read_counter_i_reg__0[4]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[5] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[5]),
+        .Q(read_counter_i_reg__0[5]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[6] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[6]),
+        .Q(read_counter_i_reg__0[6]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[7] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[7]),
+        .Q(read_counter_i_reg__0[7]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[8] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in[8]),
+        .Q(read_counter_i_reg__0[8]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* equivalent_register_removal = "no" *) 
+  FDRE \read_counter_i_reg[9] 
+       (.C(USER_CLK),
+        .CE(DATA_IN_READY),
+        .D(p_0_in__0),
+        .Q(read_counter_i_reg__0[9]),
+        .R(\read_counter_i[9]_i_1_n_0 ));
+  (* \MEM.PORTA.DATA_BIT_LAYOUT  = "p2_d16" *) 
+  (* \MEM.PORTB.DATA_BIT_LAYOUT  = "p2_d16" *) 
+  (* METHODOLOGY_DRC_VIOS = "{SYNTH-6 {cell *THIS*}}" *) 
+  (* RTL_RAM_BITS = "32768" *) 
+  (* RTL_RAM_NAME = "inst/read_counter_i" *) 
+  (* bram_addr_begin = "0" *) 
+  (* bram_addr_end = "511" *) 
+  (* bram_ext_slice_begin = "18" *) 
+  (* bram_ext_slice_end = "35" *) 
+  (* bram_slice_begin = "0" *) 
+  (* bram_slice_end = "17" *) 
+  RAMB18E1 #(
+    .DOA_REG(1),
+    .DOB_REG(1),
+    .INITP_00(256'h5555555655555556555555565555555655555556555555565555555655555556),
+    .INITP_01(256'h5555555655555556555555565555555655555556555555565555555655555556),
+    .INITP_02(256'h5555555655555556555555565555555655555556555555565555555655555556),
+    .INITP_03(256'h5555555655555556555555565555555655555556555555565555555655555556),
+    .INITP_04(256'h8888888988888889888888898888888988888889888888898888888988888889),
+    .INITP_05(256'h8888888988888889888888898888888988888889888888898888888988888889),
+    .INITP_06(256'h8888888988888889888888898888888988888889888888898888888988888889),
+    .INITP_07(256'h8888888988888889888888898888888988888889888888898888888988888889),
+    .INIT_00(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_01(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_02(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_03(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_04(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_05(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_06(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_07(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_08(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_09(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0A(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0B(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0C(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0D(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0E(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_0F(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_10(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_11(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_12(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_13(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_14(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_15(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_16(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_17(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_18(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_19(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1A(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1B(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1C(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1D(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1E(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_1F(256'h7877706F6867605F5857504F4847403F3837302F2827201F1817100F08000100),
+    .INIT_20(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_21(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_22(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_23(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_24(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_25(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_26(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_27(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_28(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_29(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2A(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2B(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2C(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2D(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2E(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_2F(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_30(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_31(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_32(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_33(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_34(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_35(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_36(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_37(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_38(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_39(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3A(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3B(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3C(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3D(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3E(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_3F(256'hDE9EDC9CDA9AD898D696D494D292D090CE8ECC8CCA8AC888C686C484C28200C0),
+    .INIT_A(18'h00000),
+    .INIT_B(18'h00000),
+    .RAM_MODE("TDP"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
+    .READ_WIDTH_A(18),
+    .READ_WIDTH_B(18),
+    .RSTREG_PRIORITY_A("RSTREG"),
+    .RSTREG_PRIORITY_B("RSTREG"),
+    .SIM_COLLISION_CHECK("ALL"),
+    .SIM_DEVICE("7SERIES"),
+    .SRVAL_A(18'h00000),
+    .SRVAL_B(18'h00000),
+    .WRITE_MODE_A("WRITE_FIRST"),
+    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_WIDTH_A(18),
+    .WRITE_WIDTH_B(18)) 
+    read_counter_i_reg_rep_0
+       (.ADDRARDADDR({1'b0,read_counter_i_reg_rep_1_i_2_n_0,read_counter_i_reg_rep_1_i_3_n_0,read_counter_i_reg_rep_1_i_4_n_0,read_counter_i_reg_rep_1_i_5_n_0,read_counter_i_reg_rep_1_i_6_n_0,read_counter_i_reg_rep_1_i_7_n_0,read_counter_i_reg_rep_1_i_8_n_0,read_counter_i_reg_rep_1_i_9_n_0,read_counter_i_reg_rep_1_i_10_n_0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,read_counter_i_reg_rep_1_i_2_n_0,read_counter_i_reg_rep_1_i_3_n_0,read_counter_i_reg_rep_1_i_4_n_0,read_counter_i_reg_rep_1_i_5_n_0,read_counter_i_reg_rep_1_i_6_n_0,read_counter_i_reg_rep_1_i_7_n_0,read_counter_i_reg_rep_1_i_8_n_0,read_counter_i_reg_rep_1_i_9_n_0,read_counter_i_reg_rep_1_i_10_n_0,1'b0,1'b0,1'b0,1'b0}),
+        .CLKARDCLK(USER_CLK),
+        .CLKBWRCLK(USER_CLK),
+        .DIADI({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
+        .DIBDI({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
+        .DIPADIP({1'b1,1'b1}),
+        .DIPBDIP({1'b1,1'b1}),
+        .DOADO(TX_DATA_OUT[15:0]),
+        .DOBDO(TX_DATA_OUT[33:18]),
+        .DOPADOP(TX_DATA_OUT[17:16]),
+        .DOPBDOP(TX_DATA_OUT[35:34]),
+        .ENARDEN(read_counter_i_reg_rep_1_i_1_n_0),
+        .ENBWREN(read_counter_i_reg_rep_1_i_1_n_0),
+        .REGCEAREGCE(1'b1),
+        .REGCEB(1'b1),
+        .RSTRAMARSTRAM(1'b0),
+        .RSTRAMB(1'b0),
+        .RSTREGARSTREG(SYSTEM_RESET),
+        .RSTREGB(SYSTEM_RESET),
+        .WEA({1'b0,1'b0}),
+        .WEBWE({1'b0,1'b0,1'b0,1'b0}));
+  (* \MEM.PORTA.DATA_BIT_LAYOUT  = "p2_d16" *) 
+  (* \MEM.PORTB.DATA_BIT_LAYOUT  = "p0_d10" *) 
+  (* METHODOLOGY_DRC_VIOS = "{SYNTH-6 {cell *THIS*}}" *) 
+  (* RTL_RAM_BITS = "32768" *) 
+  (* RTL_RAM_NAME = "inst/read_counter_i" *) 
+  (* bram_addr_begin = "0" *) 
+  (* bram_addr_end = "511" *) 
+  (* bram_ext_slice_begin = "54" *) 
+  (* bram_ext_slice_end = "63" *) 
+  (* bram_slice_begin = "36" *) 
+  (* bram_slice_end = "53" *) 
+  RAMB18E1 #(
+    .DOA_REG(1),
+    .DOB_REG(1),
+    .INITP_00(256'hFA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50),
+    .INITP_01(256'hFA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50),
+    .INITP_02(256'hFA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50),
+    .INITP_03(256'hFA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50FA50),
+    .INITP_04(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_05(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_06(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INITP_07(256'h0000000000000000000000000000000000000000000000000000000000000000),
+    .INIT_00(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_01(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_02(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_03(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_04(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_05(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_06(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_07(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_08(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_09(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0A(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0B(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0C(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0D(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0E(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_0F(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_10(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_11(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_12(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_13(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_14(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_15(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_16(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_17(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_18(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_19(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1A(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1B(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1C(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1D(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1E(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_1F(256'hD7C75747D6C65646D5C55545D4C45444D3C35343D2C25242D1C15141D0C06050),
+    .INIT_20(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_21(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_22(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_23(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_24(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_25(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_26(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_27(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_28(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_29(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2A(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2B(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2C(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2D(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2E(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_2F(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_30(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_31(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_32(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_33(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_34(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_35(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_36(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_37(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_38(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_39(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3A(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3B(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3C(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3D(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3E(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_3F(256'h01F901D901B90199017901590139011900F800D800B80098007800580038001C),
+    .INIT_A(18'h00000),
+    .INIT_B(18'h00000),
+    .RAM_MODE("TDP"),
+    .RDADDR_COLLISION_HWCONFIG("DELAYED_WRITE"),
+    .READ_WIDTH_A(18),
+    .READ_WIDTH_B(18),
+    .RSTREG_PRIORITY_A("RSTREG"),
+    .RSTREG_PRIORITY_B("RSTREG"),
+    .SIM_COLLISION_CHECK("ALL"),
+    .SIM_DEVICE("7SERIES"),
+    .SRVAL_A(18'h00000),
+    .SRVAL_B(18'h00000),
+    .WRITE_MODE_A("WRITE_FIRST"),
+    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_WIDTH_A(18),
+    .WRITE_WIDTH_B(18)) 
+    read_counter_i_reg_rep_1
+       (.ADDRARDADDR({1'b0,read_counter_i_reg_rep_1_i_2_n_0,read_counter_i_reg_rep_1_i_3_n_0,read_counter_i_reg_rep_1_i_4_n_0,read_counter_i_reg_rep_1_i_5_n_0,read_counter_i_reg_rep_1_i_6_n_0,read_counter_i_reg_rep_1_i_7_n_0,read_counter_i_reg_rep_1_i_8_n_0,read_counter_i_reg_rep_1_i_9_n_0,read_counter_i_reg_rep_1_i_10_n_0,1'b0,1'b0,1'b0,1'b0}),
+        .ADDRBWRADDR({1'b1,read_counter_i_reg_rep_1_i_2_n_0,read_counter_i_reg_rep_1_i_3_n_0,read_counter_i_reg_rep_1_i_4_n_0,read_counter_i_reg_rep_1_i_5_n_0,read_counter_i_reg_rep_1_i_6_n_0,read_counter_i_reg_rep_1_i_7_n_0,read_counter_i_reg_rep_1_i_8_n_0,read_counter_i_reg_rep_1_i_9_n_0,read_counter_i_reg_rep_1_i_10_n_0,1'b0,1'b0,1'b0,1'b0}),
+        .CLKARDCLK(USER_CLK),
+        .CLKBWRCLK(USER_CLK),
+        .DIADI({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
+        .DIBDI({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
+        .DIPADIP({1'b1,1'b1}),
+        .DIPBDIP({1'b1,1'b1}),
+        .DOADO(TX_DATA_OUT[51:36]),
+        .DOBDO({NLW_read_counter_i_reg_rep_1_DOBDO_UNCONNECTED[15:10],TX_DATA_OUT[63:54]}),
+        .DOPADOP(TX_DATA_OUT[53:52]),
+        .DOPBDOP(NLW_read_counter_i_reg_rep_1_DOPBDOP_UNCONNECTED[1:0]),
+        .ENARDEN(read_counter_i_reg_rep_1_i_1_n_0),
+        .ENBWREN(read_counter_i_reg_rep_1_i_1_n_0),
+        .REGCEAREGCE(1'b1),
+        .REGCEB(1'b1),
+        .RSTRAMARSTRAM(1'b0),
+        .RSTRAMB(1'b0),
+        .RSTREGARSTREG(SYSTEM_RESET),
+        .RSTREGB(SYSTEM_RESET),
+        .WEA({1'b0,1'b0}),
+        .WEBWE({1'b0,1'b0,1'b0,1'b0}));
+  LUT2 #(
+    .INIT(4'hE)) 
+    read_counter_i_reg_rep_1_i_1
+       (.I0(\read_counter_i[9]_i_1_n_0 ),
+        .I1(DATA_IN_READY),
+        .O(read_counter_i_reg_rep_1_i_1_n_0));
+  LUT2 #(
+    .INIT(4'h1)) 
+    read_counter_i_reg_rep_1_i_10
+       (.I0(read_counter_i_reg__0[0]),
+        .I1(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_10_n_0));
   LUT6 #(
     .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    \read_counter_i_rep[3]_i_3 
+    read_counter_i_reg_rep_1_i_11
        (.I0(read_counter_i_reg__0[4]),
         .I1(read_counter_i_reg__0[2]),
         .I2(read_counter_i_reg__0[0]),
         .I3(read_counter_i_reg__0[1]),
         .I4(read_counter_i_reg__0[3]),
         .I5(read_counter_i_reg__0[5]),
-        .O(\read_counter_i_rep[3]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \tx_data_ram_r[16]_i_1 
-       (.I0(read_counter_i_reg_rep__0[1]),
-        .I1(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[16]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+        .O(read_counter_i_reg_rep_1_i_11_n_0));
+  LUT5 #(
+    .INIT(32'h44144444)) 
+    read_counter_i_reg_rep_1_i_2
+       (.I0(SYSTEM_RESET),
+        .I1(read_counter_i_reg__0[8]),
+        .I2(read_counter_i_reg__0[6]),
+        .I3(read_counter_i_reg_rep_1_i_11_n_0),
+        .I4(read_counter_i_reg__0[7]),
+        .O(read_counter_i_reg_rep_1_i_2_n_0));
   LUT4 #(
-    .INIT(16'hFFAE)) 
-    \tx_data_ram_r[18]_i_1 
-       (.I0(read_counter_i_reg_rep__0[2]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[0]),
-        .I3(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[18]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+    .INIT(16'h5104)) 
+    read_counter_i_reg_rep_1_i_3
+       (.I0(SYSTEM_RESET),
+        .I1(read_counter_i_reg__0[6]),
+        .I2(read_counter_i_reg_rep_1_i_11_n_0),
+        .I3(read_counter_i_reg__0[7]),
+        .O(read_counter_i_reg_rep_1_i_3_n_0));
   LUT3 #(
-    .INIT(8'h04)) 
-    \tx_data_ram_r[1]_i_1 
-       (.I0(read_counter_i_reg_rep__0[1]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'hCCB2)) 
-    \tx_data_ram_r[20]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[2]),
-        .I3(read_counter_i_reg_rep__0[0]),
-        .O(\tx_data_ram_r[20]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hEE10)) 
-    \tx_data_ram_r[21]_i_1 
-       (.I0(read_counter_i_reg_rep__0[1]),
-        .I1(read_counter_i_reg_rep__0[0]),
-        .I2(read_counter_i_reg_rep__0[3]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[21]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT3 #(
-    .INIT(8'h06)) 
-    \tx_data_ram_r[29]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[0]),
-        .O(\tx_data_ram_r[29]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hAA8E)) 
-    \tx_data_ram_r[30]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[0]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[30]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h4004)) 
-    \tx_data_ram_r[31]_i_1 
-       (.I0(read_counter_i_reg_rep__0[0]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[3]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'hFFF6)) 
-    \tx_data_ram_r[49]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[0]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[49]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'hEA9A)) 
-    \tx_data_ram_r[59]_i_1 
-       (.I0(read_counter_i_reg_rep__0[0]),
-        .I1(read_counter_i_reg_rep__0[2]),
-        .I2(read_counter_i_reg_rep__0[3]),
-        .I3(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[59]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'hFFF4)) 
-    \tx_data_ram_r[64]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[0]),
-        .I2(read_counter_i_reg_rep__0[2]),
-        .I3(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[64]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT3 #(
-    .INIT(8'h91)) 
-    \tx_data_ram_r[65]_i_1 
-       (.I0(read_counter_i_reg_rep__0[2]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[3]),
-        .O(\tx_data_ram_r[65]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT3 #(
-    .INIT(8'hF7)) 
-    \tx_data_ram_r[66]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[0]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[66]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'hFB80)) 
-    \tx_data_ram_r[67]_i_1 
-       (.I0(read_counter_i_reg_rep__0[2]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .I3(read_counter_i_reg_rep__0[0]),
-        .O(\tx_data_ram_r[67]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \tx_data_ram_r[69]_i_1 
-       (.I0(read_counter_i_reg_rep__0[0]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[69]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT4 #(
-    .INIT(16'h4004)) 
-    \tx_data_ram_r[71]_i_1 
-       (.I0(read_counter_i_reg_rep__0[0]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[2]),
-        .I3(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[71]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT3 #(
-    .INIT(8'h81)) 
-    \tx_data_ram_r[72]_i_1 
-       (.I0(read_counter_i_reg_rep__0[1]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[72]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'hB)) 
-    \tx_data_ram_r[74]_i_1 
-       (.I0(read_counter_i_reg_rep__0[1]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .O(\tx_data_ram_r[74]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT4 #(
-    .INIT(16'hEAAE)) 
-    \tx_data_ram_r[75]_i_1 
-       (.I0(read_counter_i_reg_rep__0[0]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[75]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'hFF04)) 
-    \tx_data_ram_r[76]_i_1 
-       (.I0(read_counter_i_reg_rep__0[2]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[0]),
-        .I3(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[76]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+    .INIT(8'h41)) 
+    read_counter_i_reg_rep_1_i_4
+       (.I0(SYSTEM_RESET),
+        .I1(read_counter_i_reg__0[6]),
+        .I2(read_counter_i_reg_rep_1_i_11_n_0),
+        .O(read_counter_i_reg_rep_1_i_4_n_0));
   LUT2 #(
     .INIT(4'h2)) 
-    \tx_data_ram_r[77]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[77]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+    read_counter_i_reg_rep_1_i_5
+       (.I0(p_0_in[5]),
+        .I1(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_5_n_0));
+  LUT6 #(
+    .INIT(64'h000000006AAAAAAA)) 
+    read_counter_i_reg_rep_1_i_6
+       (.I0(read_counter_i_reg__0[4]),
+        .I1(read_counter_i_reg__0[2]),
+        .I2(read_counter_i_reg__0[0]),
+        .I3(read_counter_i_reg__0[1]),
+        .I4(read_counter_i_reg__0[3]),
+        .I5(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_6_n_0));
+  LUT5 #(
+    .INIT(32'h00006AAA)) 
+    read_counter_i_reg_rep_1_i_7
+       (.I0(read_counter_i_reg__0[3]),
+        .I1(read_counter_i_reg__0[1]),
+        .I2(read_counter_i_reg__0[0]),
+        .I3(read_counter_i_reg__0[2]),
+        .I4(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_7_n_0));
   LUT4 #(
-    .INIT(16'hAA8A)) 
-    \tx_data_ram_r[78]_i_1 
-       (.I0(read_counter_i_reg_rep__0[3]),
-        .I1(read_counter_i_reg_rep__0[1]),
-        .I2(read_counter_i_reg_rep__0[0]),
-        .I3(read_counter_i_reg_rep__0[2]),
-        .O(\tx_data_ram_r[78]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+    .INIT(16'h006A)) 
+    read_counter_i_reg_rep_1_i_8
+       (.I0(read_counter_i_reg__0[2]),
+        .I1(read_counter_i_reg__0[0]),
+        .I2(read_counter_i_reg__0[1]),
+        .I3(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_8_n_0));
   LUT3 #(
-    .INIT(8'h80)) 
-    \tx_data_ram_r[79]_i_1 
-       (.I0(read_counter_i_reg_rep__0[2]),
-        .I1(read_counter_i_reg_rep__0[3]),
-        .I2(read_counter_i_reg_rep__0[1]),
-        .O(\tx_data_ram_r[79]_i_1_n_0 ));
-  FDRE \tx_data_ram_r_reg[16] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[16]_i_1_n_0 ),
-        .Q(p_0_in[0]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[18] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[18]_i_1_n_0 ),
-        .Q(p_0_in[2]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[19] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[16]_i_1_n_0 ),
-        .Q(p_0_in[3]),
-        .R(read_counter_i_reg_rep__0[0]));
-  FDRE \tx_data_ram_r_reg[1] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[1]_i_1_n_0 ),
-        .Q(\tx_data_ram_r_reg_n_0_[1] ),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[20] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[20]_i_1_n_0 ),
-        .Q(p_0_in[4]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[21] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[21]_i_1_n_0 ),
-        .Q(p_0_in[5]),
-        .R(1'b0));
-  FDSE \tx_data_ram_r_reg[29] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[29]_i_1_n_0 ),
-        .Q(p_0_in[13]),
-        .S(read_counter_i_reg_rep__0[2]));
-  FDRE \tx_data_ram_r_reg[30] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[30]_i_1_n_0 ),
-        .Q(p_0_in[14]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[31] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[31]_i_1_n_0 ),
-        .Q(p_0_in[15]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[49] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[49]_i_1_n_0 ),
-        .Q(p_0_in[33]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[59] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[59]_i_1_n_0 ),
-        .Q(p_0_in[43]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[64] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[64]_i_1_n_0 ),
-        .Q(p_0_in[48]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[65] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[65]_i_1_n_0 ),
-        .Q(p_0_in[49]),
-        .R(read_counter_i_reg_rep__0[0]));
-  FDSE \tx_data_ram_r_reg[66] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[66]_i_1_n_0 ),
-        .Q(p_0_in[50]),
-        .S(read_counter_i_reg_rep__0[2]));
-  FDRE \tx_data_ram_r_reg[67] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[67]_i_1_n_0 ),
-        .Q(p_0_in[51]),
-        .R(1'b0));
-  FDSE \tx_data_ram_r_reg[69] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[69]_i_1_n_0 ),
-        .Q(p_0_in[53]),
-        .S(read_counter_i_reg_rep__0[2]));
-  FDRE \tx_data_ram_r_reg[71] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[71]_i_1_n_0 ),
-        .Q(p_0_in[55]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[72] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[72]_i_1_n_0 ),
-        .Q(p_0_in[56]),
-        .R(read_counter_i_reg_rep__0[0]));
-  FDSE \tx_data_ram_r_reg[74] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[74]_i_1_n_0 ),
-        .Q(p_0_in[58]),
-        .S(read_counter_i_reg_rep__0[2]));
-  FDRE \tx_data_ram_r_reg[75] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[75]_i_1_n_0 ),
-        .Q(p_0_in[59]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[76] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[76]_i_1_n_0 ),
-        .Q(p_0_in[60]),
-        .R(1'b0));
-  FDSE \tx_data_ram_r_reg[77] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[77]_i_1_n_0 ),
-        .Q(p_0_in[61]),
-        .S(read_counter_i_reg_rep__0[2]));
-  FDRE \tx_data_ram_r_reg[78] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[78]_i_1_n_0 ),
-        .Q(p_0_in[62]),
-        .R(1'b0));
-  FDRE \tx_data_ram_r_reg[79] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\tx_data_ram_r[79]_i_1_n_0 ),
-        .Q(p_0_in[63]),
-        .R(read_counter_i_reg_rep__0[0]));
+    .INIT(8'h06)) 
+    read_counter_i_reg_rep_1_i_9
+       (.I0(read_counter_i_reg__0[1]),
+        .I1(read_counter_i_reg__0[0]),
+        .I2(\read_counter_i[9]_i_1_n_0 ),
+        .O(read_counter_i_reg_rep_1_i_9_n_0));
 endmodule
 `ifndef GLBL
 `define GLBL

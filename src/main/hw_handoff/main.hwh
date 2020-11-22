@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 00:15:54 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 14:48:29 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -681,7 +681,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TRACK_DATA_OUT"/>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe1"/>
-            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="DATA_VALID"/>
+            <CONNECTION INSTANCE="interlaken_util_vector_logic_0" PORT="Op1"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
@@ -715,14 +715,14 @@
             <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="TX_HEADER_OUT" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="HEADER_IN"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="TX_DATA_TO_SEND" SIGIS="undef" SIGNAME="frame_gen_TX_DATA_TO_SEND">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_TO_SEND"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="DATA_IN_READY" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_IN_READY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_IN_READY"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
@@ -972,9 +972,9 @@
             <CONNECTION INSTANCE="clk_wiz" PORT="DRP_CLK_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="DATA_VALID" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
+        <PORT DIR="I" NAME="DATA_VALID" SIGIS="undef" SIGNAME="interlaken_util_vector_logic_0_Res">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="frame_check" PORT="TRACK_DATA_OUT"/>
+            <CONNECTION INSTANCE="interlaken_util_vector_logic_0" PORT="Res"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="RXN_IN" SIGIS="undef" SIGNAME="External_Ports_RXN_IN">
@@ -10723,11 +10723,6 @@
             <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="frame_gen_TX_HEADER_OUT">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="frame_gen" PORT="TX_HEADER_OUT"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="63" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_scrambler" PORT="UNSCRAMBLED_DATA_IN"/>
@@ -10744,6 +10739,11 @@
             <CONNECTION INSTANCE="frame_gen" PORT="TX_DATA_TO_SEND"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" NAME="DATA_IN_READY" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_DATA_IN_READY">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_gen" PORT="DATA_IN_READY"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
@@ -10752,6 +10752,34 @@
         <PORT DIR="I" NAME="SYSTEM_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_TX_RESET">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/interlaken/util_vector_logic_0" HWVERSION="2.0" INSTANCE="interlaken_util_vector_logic_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_vector_logic" VLNV="xilinx.com:ip:util_vector_logic:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="C_OPERATION" VALUE="or"/>
+        <PARAMETER NAME="C_SIZE" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="main_util_vector_logic_0_0"/>
+        <PARAMETER NAME="LOGO_FILE" VALUE="data/sym_orgate.png"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="Op1" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_check" PORT="TRACK_DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="Op2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_0_probe_out1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_0" PORT="probe_out1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Res" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_util_vector_logic_0_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="DATA_VALID"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -10782,7 +10810,7 @@
         <PARAMETER NAME="C_BUS_DATA_WIDTH" VALUE="16"/>
         <PARAMETER NAME="C_NUM_PROBE_IN" VALUE="0"/>
         <PARAMETER NAME="C_EN_PROBE_IN_ACTIVITY" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="1"/>
+        <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="2"/>
         <PARAMETER NAME="C_EN_SYNCHRONIZATION" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN1_WIDTH" VALUE="1"/>
@@ -11564,6 +11592,11 @@
         <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_0_probe_out0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="SOFT_RESET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_0_probe_out1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_util_vector_logic_0" PORT="Op2"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

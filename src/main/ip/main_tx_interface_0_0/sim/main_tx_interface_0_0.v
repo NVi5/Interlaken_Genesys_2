@@ -56,19 +56,19 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_tx_interface_0_0 (
   DATA_IN,
-  HEADER_IN,
   DATA_OUT,
   HEADER_OUT,
   DATA_TO_SEND,
+  DATA_IN_READY,
   USER_CLK,
   SYSTEM_RESET
 );
 
 input wire [63 : 0] DATA_IN;
-input wire [1 : 0] HEADER_IN;
 output wire [63 : 0] DATA_OUT;
 output wire [1 : 0] HEADER_OUT;
 input wire DATA_TO_SEND;
+output wire DATA_IN_READY;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
@@ -80,10 +80,10 @@ input wire SYSTEM_RESET;
     .META_FRAME_LEN(16)
   ) inst (
     .DATA_IN(DATA_IN),
-    .HEADER_IN(HEADER_IN),
     .DATA_OUT(DATA_OUT),
     .HEADER_OUT(HEADER_OUT),
     .DATA_TO_SEND(DATA_TO_SEND),
+    .DATA_IN_READY(DATA_IN_READY),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET)
   );

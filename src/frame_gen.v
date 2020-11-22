@@ -30,8 +30,8 @@ module frame_gen #
 (
     // User Interface
     output reg  [63:0]  TX_DATA_OUT,
-    output reg  [1:0]   TX_HEADER_OUT,
-    output wire         TX_DATA_TO_SEND,
+    output reg          TX_DATA_TO_SEND,
+    input  wire         DATA_IN_READY,
 
     // System Interface
     input  wire         USER_CLK,
@@ -41,8 +41,7 @@ module frame_gen #
 //***************************Declarations***************************
 
 reg     [$clog2(WORDS_IN_BRAM):0]   read_counter_i;
-reg     [79:0]  rom [0:(WORDS_IN_BRAM - 1)];
-reg     [79:0]  tx_data_ram_r;
+reg     [63:0]  rom [0:(WORDS_IN_BRAM - 1)];
 
 //*********************************Main Body of Code**********************************
 
@@ -51,31 +50,26 @@ reg     [79:0]  tx_data_ram_r;
         begin
             read_counter_i   <=  `DLY    'h0;
         end
-        else begin
+        else if (DATA_IN_READY)
+        begin
             read_counter_i   <=  `DLY    read_counter_i + 1'b1;
         end
 
     always @(posedge USER_CLK)
         if(SYSTEM_RESET)
         begin
-            TX_DATA_OUT <= `DLY 80'd0;
-            TX_HEADER_OUT <= `DLY 2'd0;
+            TX_DATA_OUT <= `DLY 64'd0;
+            TX_DATA_TO_SEND <= `DLY 1'b0;
         end
         else begin
-            TX_DATA_OUT <= `DLY tx_data_ram_r[79:16];
-            TX_HEADER_OUT <= `DLY tx_data_ram_r[1:0];
+            TX_DATA_OUT <= `DLY rom[read_counter_i];
+            TX_DATA_TO_SEND <= `DLY 1'b1;
         end
-
-//*********************************BRAM Inference Logic**********************************
 
     initial
         begin
             $readmemh("gt_rom_data.dat",rom,0,(WORDS_IN_BRAM - 1));
         end
 
-    always @(posedge USER_CLK)
-        tx_data_ram_r <= `DLY rom[read_counter_i];
-
-    assign TX_DATA_TO_SEND = 1;
 endmodule
 

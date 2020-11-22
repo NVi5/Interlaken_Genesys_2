@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sun Nov 22 00:15:53 2020
+//Date        : Sun Nov 22 14:48:29 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -10,10 +10,10 @@
 `timescale 1 ps / 1 ps
 
 module interlaken_imp_1RYIMTC
-   (DATA_TO_SEND,
+   (DATA_IN_READY,
+    DATA_TO_SEND,
     DEBUG_ERROR_COUNT,
     DRP_CLK_IN,
-    HEADER_IN,
     HEADER_OUT,
     LOCKED,
     Q3_CLK0_GTREFCLK_PAD_N_IN,
@@ -29,10 +29,10 @@ module interlaken_imp_1RYIMTC
     TX_DATA_IN,
     TX_SYSTEM_RESET,
     TX_USR_CLK2);
+  output DATA_IN_READY;
   input DATA_TO_SEND;
   input [7:0]DEBUG_ERROR_COUNT;
   input DRP_CLK_IN;
-  input [1:0]HEADER_IN;
   output [1:0]HEADER_OUT;
   output LOCKED;
   input Q3_CLK0_GTREFCLK_PAD_N_IN;
@@ -50,6 +50,7 @@ module interlaken_imp_1RYIMTC
   output TX_USR_CLK2;
 
   wire DATA_TO_SEND_1;
+  wire [0:0]DATA_VALID;
   wire [7:0]DEBUG_ERROR_COUNT;
   wire [63:0]DECODER_DATA_OUT;
   wire DECODER_LOCKED;
@@ -63,9 +64,9 @@ module interlaken_imp_1RYIMTC
   wire [79:0]GEARBOX_RX_DATA_OUT;
   wire [79:0]GEARBOX_TX_DATA_OUT;
   wire [79:0]GT_RX_DATA;
-  wire [1:0]HEADER_IN_1;
   wire [79:0]MANIPULATOR_DATA_OUT;
   wire Net1;
+  wire [0:0]OVERRIDE_DATA_VALID;
   wire [0:0]PASSTHROUGH_DESCRAMBLER;
   wire [0:0]PASSTHROUGH_SCRAMBLER;
   wire Q3_CLK0_GTREFCLK_PAD_N_IN_1;
@@ -93,10 +94,11 @@ module interlaken_imp_1RYIMTC
   wire gt_core_0_TX_USR_CLK;
   wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
   wire [1:0]scrambler_0_HEADER_OUT;
+  wire tx_interface_0_DATA_IN_READY;
   wire [1:0]tx_interface_0_HEADER_OUT;
 
+  assign DATA_IN_READY = tx_interface_0_DATA_IN_READY;
   assign DATA_TO_SEND_1 = DATA_TO_SEND;
-  assign HEADER_IN_1 = HEADER_IN[1:0];
   assign HEADER_OUT[1:0] = DESCRAMBLER_HEADER_OUT_ILA;
   assign LOCKED = DESCRAMBLER_LOCKED_ILA;
   assign Q3_CLK0_GTREFCLK_PAD_N_IN_1 = Q3_CLK0_GTREFCLK_PAD_N_IN;
@@ -147,7 +149,7 @@ module interlaken_imp_1RYIMTC
         .DATA_OUT(GEARBOX_TX_DATA_OUT),
         .USER_CLK(Net1));
   main_gt_core_0_0 gt_core_0
-       (.DATA_VALID(TRACK_DATA),
+       (.DATA_VALID(DATA_VALID),
         .DRP_CLK_IN(DRP_CLK_IN),
         .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN_1),
         .Q3_CLK0_GTREFCLK_PAD_P_IN(Q3_CLK0_GTREFCLK_PAD_P_IN_1),
@@ -210,15 +212,20 @@ module interlaken_imp_1RYIMTC
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_tx_interface_0_0 tx_interface_0
        (.DATA_IN(gt_frame_gen_0_TX_DATA_OUT),
+        .DATA_IN_READY(tx_interface_0_DATA_IN_READY),
         .DATA_OUT(TX_INTERFACE_DATA_OUT),
         .DATA_TO_SEND(DATA_TO_SEND_1),
-        .HEADER_IN(HEADER_IN_1),
         .HEADER_OUT(tx_interface_0_HEADER_OUT),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));
+  main_util_vector_logic_0_0 util_vector_logic_0
+       (.Op1(TRACK_DATA),
+        .Op2(OVERRIDE_DATA_VALID),
+        .Res(DATA_VALID));
   main_vio_0_0 vio_0
        (.clk(DRP_CLK_IN),
-        .probe_out0(SOFT_RESET));
+        .probe_out0(SOFT_RESET),
+        .probe_out1(OVERRIDE_DATA_VALID));
   main_vio_1_0 vio_1
        (.clk(gt_core_0_TX_USR_CLK),
         .probe_out0(PASSTHROUGH_SCRAMBLER),
@@ -229,7 +236,7 @@ module interlaken_imp_1RYIMTC
         .probe_out1(DECODER_PASSTHROUGH));
 endmodule
 
-(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=19,numReposBlks=18,numNonXlnxBlks=0,numHierBlks=1,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=10,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
+(* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=20,numReposBlks=19,numNonXlnxBlks=0,numHierBlks=1,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=10,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
 module main
    (DRP_CLK_IN_N,
     DRP_CLK_IN_P,
@@ -260,7 +267,6 @@ module main
   wire RXP_IN_1;
   wire [63:0]descrambler_UNSCRAMBLED_DATA_OUT;
   wire [7:0]frame_check_ERROR_COUNT_OUT;
-  wire [1:0]frame_gen_1_TX_HEADER_OUT;
   wire frame_gen_TX_DATA_TO_SEND;
   wire [0:0]gt_core_0_RX_SYSTEM_RESET;
   wire gt_core_0_RX_USR_CLK2;
@@ -269,6 +275,7 @@ module main
   wire [0:0]gt_core_0_TX_SYSTEM_RESET;
   wire gt_frame_check_0_TRACK_DATA_OUT;
   wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
+  wire interlaken_DATA_IN_READY;
   wire [1:0]interlaken_HEADER_OUT;
   wire interlaken_LOCKED;
 
@@ -294,16 +301,16 @@ module main
         .TRACK_DATA_OUT(gt_frame_check_0_TRACK_DATA_OUT),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_frame_gen_1_0 frame_gen
-       (.SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
+       (.DATA_IN_READY(interlaken_DATA_IN_READY),
+        .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .TX_DATA_OUT(gt_frame_gen_0_TX_DATA_OUT),
         .TX_DATA_TO_SEND(frame_gen_TX_DATA_TO_SEND),
-        .TX_HEADER_OUT(frame_gen_1_TX_HEADER_OUT),
         .USER_CLK(Net1));
   interlaken_imp_1RYIMTC interlaken
-       (.DATA_TO_SEND(frame_gen_TX_DATA_TO_SEND),
+       (.DATA_IN_READY(interlaken_DATA_IN_READY),
+        .DATA_TO_SEND(frame_gen_TX_DATA_TO_SEND),
         .DEBUG_ERROR_COUNT(frame_check_ERROR_COUNT_OUT),
         .DRP_CLK_IN(DRP_CLK_IN),
-        .HEADER_IN(frame_gen_1_TX_HEADER_OUT),
         .HEADER_OUT(interlaken_HEADER_OUT),
         .LOCKED(interlaken_LOCKED),
         .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN_1),

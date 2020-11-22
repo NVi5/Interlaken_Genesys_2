@@ -97,29 +97,23 @@ reg     [$clog2(WORDS_IN_BRAM):0]   error_count_r;
 reg             error_detected_r;
 
 reg     [$clog2(WORDS_IN_BRAM):0]   read_counter_i;
-reg     [79:0]  rom [0:(WORDS_IN_BRAM - 1)];
-reg     [79:0]  rx_data_ram_r;
+reg     [63:0]  rom [0:(WORDS_IN_BRAM - 1)];
 
 reg             track_data_r;
 reg             track_data_r2;
-reg             track_data_r3;
 
 reg     [63:0]  rx_data_r;
 reg     [63:0]  rx_data_r2;
-reg     [63:0]  rx_data_r3;
 reg     [63:0]  rx_data_r_track;
 
-reg     [1:0]  rx_header_r;
-reg     [1:0]  rx_header_r2;
-reg     [1:0]  rx_header_r3;
-reg     [1:0]  rx_header_r_track;
+reg     [1:0]   rx_header_r;
+reg     [1:0]   rx_header_r2;
+reg     [1:0]   rx_header_r_track;
 
 wire            error_detected_c;
 wire            next_begin_c;
 wire            next_data_error_detected_c;
 wire            next_track_data_c;
-wire    [63:0]  bram_data_r;
-wire    [1:0]   bram_header_r;
 
 //*********************************Main Body of Code***************************
 
@@ -146,7 +140,6 @@ wire    [1:0]   bram_header_r;
     always @(posedge USER_CLK)
         begin
             track_data_r2    <=   `DLY  track_data_r;
-            track_data_r3    <=   `DLY  track_data_r2;
         end
 
 //______________________________ Capture incoming data ____________________
@@ -157,30 +150,26 @@ wire    [1:0]   bram_header_r;
         begin
             rx_data_r           <=  `DLY   'h0;
             rx_data_r2          <=  `DLY   'h0;
-            rx_data_r3          <=  `DLY   'h0;
             rx_data_r_track     <=  `DLY   'h0;
             rx_header_r         <=  `DLY   'h0;
             rx_header_r2        <=  `DLY   'h0;
-            rx_header_r3        <=  `DLY   'h0;
             rx_header_r_track   <=  `DLY   'h0;
         end
         else
         begin
             rx_data_r           <=  `DLY    RX_DATA_IN;
             rx_data_r2          <=  `DLY    rx_data_r;
-            rx_data_r3          <=  `DLY    rx_data_r2;
-            rx_data_r_track     <=  `DLY    rx_data_r3;
+            rx_data_r_track     <=  `DLY    rx_data_r2;
             rx_header_r         <=  `DLY    RX_HEADER_IN;
             rx_header_r2        <=  `DLY    rx_header_r;
-            rx_header_r3        <=  `DLY    rx_header_r2;
-            rx_header_r_track   <=  `DLY    rx_header_r3;
+            rx_header_r_track   <=  `DLY    rx_header_r2;
         end
     end
 
 //___________________________ Check incoming data for errors ______________
 
     //An error is detected when data read for the BRAM does not match the incoming data
-    assign  error_detected_c    =  track_data_r3 && ((rx_data_r_track != bram_data_r) || (rx_header_r_track != bram_header_r));
+    assign  error_detected_c    =  track_data_r2 && (rx_data_r_track != rom[read_counter_i]) && (rx_header_r_track == 2'b01);
 
     //We register the error_detected signal for use with the error counter logic
     always @(posedge USER_CLK)
@@ -210,22 +199,15 @@ wire    [1:0]   bram_header_r;
         begin
             read_counter_i  <=  `DLY    'h0;
         end
-        else begin
+        else if (rx_header_r2 == 2'b01)
+        begin
             read_counter_i  <=  `DLY    read_counter_i + 1'b1;
         end
-
-//*********************************BRAM Inference Logic**********************************
-
-    assign bram_data_r = rx_data_ram_r[79:16];
-    assign bram_header_r = rx_data_ram_r[1:0];
 
     initial
     begin
            $readmemh("gt_rom_data.dat",rom,0,(WORDS_IN_BRAM - 1));
     end
-
-    always @(posedge USER_CLK)
-           rx_data_ram_r <= `DLY  rom[read_counter_i];
 
 
 endmodule
