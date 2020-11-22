@@ -40,7 +40,7 @@ module frame_gen #
 
 //***************************Declarations***************************
 
-reg     [$clog2(WORDS_IN_BRAM):0]   read_counter_i;
+reg     [$clog2(WORDS_IN_BRAM)-1:0]   read_counter_i;
 reg     [63:0]  rom [0:(WORDS_IN_BRAM - 1)];
 
 //*********************************Main Body of Code**********************************

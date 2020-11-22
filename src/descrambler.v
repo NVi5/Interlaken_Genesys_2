@@ -66,7 +66,7 @@ module descrambler #
     reg     [2:0]                           good_sync_ctr;
     reg     [2:0]                           bad_sync_ctr;
     reg     [2:0]                           mismatch_ctr;
-    reg     [$clog2(META_FRAME_LEN):0]      frame_ctr;
+    reg     [$clog2(META_FRAME_LEN)-1:0]    frame_ctr;
     reg     [2:0]                           state;
 
 //*********************************Scrambling Logic***************************

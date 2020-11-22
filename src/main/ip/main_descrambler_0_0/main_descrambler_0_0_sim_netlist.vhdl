@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 22 13:37:02 2020
+-- Date        : Sun Nov 22 15:40:09 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_descrambler_0_0/main_descrambler_0_0_sim_netlist.vhdl
@@ -54,6 +54,11 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \bad_sync_ctr[2]_i_2_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_3_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_4_n_0\ : STD_LOGIC;
+  signal \bad_sync_ctr[2]_i_5_n_0\ : STD_LOGIC;
+  signal \bad_sync_ctr[2]_i_6_n_0\ : STD_LOGIC;
+  signal \bad_sync_ctr[2]_i_7_n_0\ : STD_LOGIC;
+  signal \bad_sync_ctr[2]_i_8_n_0\ : STD_LOGIC;
+  signal \bad_sync_ctr[2]_i_9_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[0]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[1]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[2]\ : STD_LOGIC;
@@ -62,9 +67,6 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \descrambler[57]_i_3_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_4_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_5_n_0\ : STD_LOGIC;
-  signal \descrambler[57]_i_6_n_0\ : STD_LOGIC;
-  signal \descrambler[57]_i_7_n_0\ : STD_LOGIC;
-  signal \descrambler[57]_i_8_n_0\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[39]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[40]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[41]\ : STD_LOGIC;
@@ -87,37 +89,29 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \frame_ctr[0]_i_1_n_0\ : STD_LOGIC;
   signal \frame_ctr[1]_i_1_n_0\ : STD_LOGIC;
   signal \frame_ctr[2]_i_1_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_10_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_11_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_12_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_13_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_14_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_15_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_16_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_17_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_18_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_19_n_0\ : STD_LOGIC;
   signal \frame_ctr[3]_i_1_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_10_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_11_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_12_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_13_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_14_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_15_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_16_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_17_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_18_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_19_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_1_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_20_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_21_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_22_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_23_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_24_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_25_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_2_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_3_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_4_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_5_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_6_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_7_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_8_n_0\ : STD_LOGIC;
-  signal \frame_ctr[4]_i_9_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_2_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_3_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_4_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_5_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_6_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_7_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_8_n_0\ : STD_LOGIC;
+  signal \frame_ctr[3]_i_9_n_0\ : STD_LOGIC;
   signal \frame_ctr_reg_n_0_[0]\ : STD_LOGIC;
   signal \frame_ctr_reg_n_0_[1]\ : STD_LOGIC;
   signal \frame_ctr_reg_n_0_[2]\ : STD_LOGIC;
   signal \frame_ctr_reg_n_0_[3]\ : STD_LOGIC;
-  signal \frame_ctr_reg_n_0_[4]\ : STD_LOGIC;
   signal \good_sync_ctr[0]_i_1_n_0\ : STD_LOGIC;
   signal \good_sync_ctr[1]_i_1_n_0\ : STD_LOGIC;
   signal \good_sync_ctr[2]_i_1_n_0\ : STD_LOGIC;
@@ -222,7 +216,7 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \NLW_state1_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_state1_carry__3_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_6\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_6\ : label is "soft_lutpair1";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_WAIT_FOR_WORD:001,STATE_ADVANCE:011,STATE_LOCKED_SYNC_STATE:110,STATE_LOCKED_WAIT_FOR_WORD:100,STATE_RESET:000";
   attribute KEEP : string;
@@ -232,12 +226,8 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[2]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_WAIT_FOR_WORD:001,STATE_ADVANCE:011,STATE_LOCKED_SYNC_STATE:110,STATE_LOCKED_WAIT_FOR_WORD:100,STATE_RESET:000";
   attribute KEEP of \FSM_sequential_state_reg[2]\ : label is "yes";
   attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_4\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \descrambler[57]_i_4\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \descrambler[57]_i_8\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \frame_ctr[2]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \frame_ctr[3]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \frame_ctr[4]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \frame_ctr[4]_i_5\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \descrambler[57]_i_4\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \frame_ctr[3]_i_10\ : label is "soft_lutpair0";
 begin
 \FSM_sequential_state[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -341,15 +331,15 @@ begin
     );
 \FSM_sequential_state[2]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FDFEFEFEFDFEFEFF"
+      INIT => X"FFFFFFFF5BAA5BAF"
     )
         port map (
       I0 => \state__0\(1),
       I1 => \FSM_sequential_state[2]_i_4_n_0\,
-      I2 => \FSM_sequential_state[2]_i_5_n_0\,
-      I3 => \state__0\(2),
-      I4 => \state__0\(0),
-      I5 => \bad_sync_ctr[2]_i_2_n_0\,
+      I2 => \state__0\(2),
+      I3 => \state__0\(0),
+      I4 => \bad_sync_ctr[2]_i_2_n_0\,
+      I5 => \FSM_sequential_state[2]_i_5_n_0\,
       O => \FSM_sequential_state[2]_i_2_n_0\
     );
 \FSM_sequential_state[2]_i_3\: unisim.vcomponents.LUT6
@@ -365,28 +355,26 @@ begin
       I5 => \state__0\(2),
       O => \FSM_sequential_state[2]_i_3_n_0\
     );
-\FSM_sequential_state[2]_i_4\: unisim.vcomponents.LUT6
+\FSM_sequential_state[2]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0008000000000000"
+      INIT => X"FF7F"
     )
         port map (
-      I0 => \mismatch_ctr[2]_i_2_n_0\,
-      I1 => \frame_ctr_reg_n_0_[0]\,
-      I2 => \frame_ctr_reg_n_0_[1]\,
-      I3 => \frame_ctr_reg_n_0_[4]\,
-      I4 => \frame_ctr_reg_n_0_[2]\,
-      I5 => \frame_ctr_reg_n_0_[3]\,
+      I0 => \frame_ctr_reg_n_0_[1]\,
+      I1 => \frame_ctr_reg_n_0_[2]\,
+      I2 => \frame_ctr_reg_n_0_[3]\,
+      I3 => \frame_ctr_reg_n_0_[0]\,
       O => \FSM_sequential_state[2]_i_4_n_0\
     );
 \FSM_sequential_state[2]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0040000000000000"
+      INIT => X"0400000000000000"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[0]\,
-      I1 => \frame_ctr_reg_n_0_[1]\,
-      I2 => \FSM_sequential_state[1]_i_2_n_0\,
-      I3 => \frame_ctr_reg_n_0_[4]\,
+      I0 => \frame_ctr_reg_n_0_[1]\,
+      I1 => \state__0\(2),
+      I2 => \state__0\(0),
+      I3 => \frame_ctr_reg_n_0_[0]\,
       I4 => \frame_ctr_reg_n_0_[2]\,
       I5 => \frame_ctr_reg_n_0_[3]\,
       O => \FSM_sequential_state[2]_i_5_n_0\
@@ -1805,7 +1793,7 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I0 => \bad_sync_ctr[2]_i_2_n_0\,
       I1 => \bad_sync_ctr_reg_n_0_[1]\,
       I2 => \bad_sync_ctr_reg_n_0_[0]\,
-      I3 => \frame_ctr[4]_i_4_n_0\,
+      I3 => \frame_ctr[3]_i_4_n_0\,
       I4 => \bad_sync_ctr[2]_i_3_n_0\,
       I5 => \bad_sync_ctr_reg_n_0_[2]\,
       O => \bad_sync_ctr[2]_i_1_n_0\
@@ -1815,11 +1803,11 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       INIT => X"DFFFFFFF"
     )
         port map (
-      I0 => \frame_ctr[4]_i_9_n_0\,
+      I0 => \frame_ctr[3]_i_7_n_0\,
       I1 => \bad_sync_ctr[2]_i_4_n_0\,
-      I2 => \frame_ctr[4]_i_7_n_0\,
-      I3 => \frame_ctr[4]_i_11_n_0\,
-      I4 => \frame_ctr[4]_i_10_n_0\,
+      I2 => \frame_ctr[3]_i_9_n_0\,
+      I3 => \bad_sync_ctr[2]_i_5_n_0\,
+      I4 => \frame_ctr[3]_i_6_n_0\,
       O => \bad_sync_ctr[2]_i_2_n_0\
     );
 \bad_sync_ctr[2]_i_3\: unisim.vcomponents.LUT6
@@ -1844,8 +1832,63 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(2),
       I2 => SCRAMBLED_DATA_IN(0),
       I3 => SCRAMBLED_DATA_IN(1),
-      I4 => \frame_ctr[4]_i_8_n_0\,
+      I4 => \frame_ctr[3]_i_8_n_0\,
       O => \bad_sync_ctr[2]_i_4_n_0\
+    );
+\bad_sync_ctr[2]_i_5\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0001"
+    )
+        port map (
+      I0 => \bad_sync_ctr[2]_i_6_n_0\,
+      I1 => \bad_sync_ctr[2]_i_7_n_0\,
+      I2 => \bad_sync_ctr[2]_i_8_n_0\,
+      I3 => \bad_sync_ctr[2]_i_9_n_0\,
+      O => \bad_sync_ctr[2]_i_5_n_0\
+    );
+\bad_sync_ctr[2]_i_6\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(61),
+      I1 => SCRAMBLED_DATA_IN(60),
+      I2 => SCRAMBLED_DATA_IN(62),
+      I3 => SCRAMBLED_DATA_IN(63),
+      O => \bad_sync_ctr[2]_i_6_n_0\
+    );
+\bad_sync_ctr[2]_i_7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFEF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(57),
+      I1 => SCRAMBLED_DATA_IN(56),
+      I2 => SCRAMBLED_DATA_IN(59),
+      I3 => SCRAMBLED_DATA_IN(58),
+      O => \bad_sync_ctr[2]_i_7_n_0\
+    );
+\bad_sync_ctr[2]_i_8\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(53),
+      I1 => SCRAMBLED_DATA_IN(52),
+      I2 => SCRAMBLED_DATA_IN(55),
+      I3 => SCRAMBLED_DATA_IN(54),
+      O => \bad_sync_ctr[2]_i_8_n_0\
+    );
+\bad_sync_ctr[2]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => SCRAMBLED_DATA_IN(49),
+      I1 => SCRAMBLED_DATA_IN(48),
+      I2 => SCRAMBLED_DATA_IN(50),
+      I3 => SCRAMBLED_DATA_IN(51),
+      O => \bad_sync_ctr[2]_i_9_n_0\
     );
 \bad_sync_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -2505,7 +2548,7 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => \descrambler[57]_i_4_n_0\,
       I3 => \state__0\(2),
       I4 => \descrambler[57]_i_5_n_0\,
-      I5 => \descrambler[57]_i_6_n_0\,
+      I5 => \frame_ctr[3]_i_3_n_0\,
       O => \descrambler[57]_i_1_n_0\
     );
 \descrambler[57]_i_2\: unisim.vcomponents.LUT5
@@ -2553,41 +2596,6 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I2 => DATA_VALID,
       I3 => \state__0\(0),
       O => \descrambler[57]_i_5_n_0\
-    );
-\descrambler[57]_i_6\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFF00800000"
-    )
-        port map (
-      I0 => \descrambler[57]_i_7_n_0\,
-      I1 => \frame_ctr[4]_i_10_n_0\,
-      I2 => \frame_ctr[4]_i_9_n_0\,
-      I3 => \frame_ctr[4]_i_8_n_0\,
-      I4 => \frame_ctr[4]_i_7_n_0\,
-      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
-      O => \descrambler[57]_i_6_n_0\
-    );
-\descrambler[57]_i_7\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0010000000000000"
-    )
-        port map (
-      I0 => \state__0\(1),
-      I1 => SCRAMBLED_DATA_IN(3),
-      I2 => SCRAMBLED_DATA_IN(2),
-      I3 => \descrambler[57]_i_8_n_0\,
-      I4 => \descrambler[57]_i_5_n_0\,
-      I5 => \frame_ctr[4]_i_11_n_0\,
-      O => \descrambler[57]_i_7_n_0\
-    );
-\descrambler[57]_i_8\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"B"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(0),
-      I1 => SCRAMBLED_DATA_IN(1),
-      O => \descrambler[57]_i_8_n_0\
     );
 \descrambler[5]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -3115,151 +3123,66 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
     );
 \frame_ctr[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000FFFFFFB00000"
+      INIT => X"0000FFFF00007F00"
     )
         port map (
-      I0 => \frame_ctr[4]_i_5_n_0\,
-      I1 => \frame_ctr_reg_n_0_[1]\,
-      I2 => \FSM_sequential_state[1]_i_2_n_0\,
-      I3 => \frame_ctr[4]_i_4_n_0\,
-      I4 => \frame_ctr[4]_i_2_n_0\,
-      I5 => \frame_ctr_reg_n_0_[0]\,
+      I0 => \frame_ctr_reg_n_0_[3]\,
+      I1 => \frame_ctr_reg_n_0_[2]\,
+      I2 => \frame_ctr_reg_n_0_[1]\,
+      I3 => \FSM_sequential_state[1]_i_2_n_0\,
+      I4 => \frame_ctr_reg_n_0_[0]\,
+      I5 => \frame_ctr[3]_i_4_n_0\,
       O => \frame_ctr[0]_i_1_n_0\
     );
-\frame_ctr[1]_i_1\: unisim.vcomponents.LUT2
+\frame_ctr[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"6"
+      INIT => X"0000F7F0FF700000"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[0]\,
-      I1 => \frame_ctr_reg_n_0_[1]\,
+      I0 => \frame_ctr_reg_n_0_[2]\,
+      I1 => \frame_ctr_reg_n_0_[3]\,
+      I2 => \FSM_sequential_state[1]_i_2_n_0\,
+      I3 => \frame_ctr[3]_i_4_n_0\,
+      I4 => \frame_ctr_reg_n_0_[1]\,
+      I5 => \frame_ctr_reg_n_0_[0]\,
       O => \frame_ctr[1]_i_1_n_0\
     );
-\frame_ctr[2]_i_1\: unisim.vcomponents.LUT3
+\frame_ctr[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"78"
+      INIT => X"00FCDC00F400FC00"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[0]\,
-      I1 => \frame_ctr_reg_n_0_[1]\,
-      I2 => \frame_ctr_reg_n_0_[2]\,
+      I0 => \frame_ctr_reg_n_0_[3]\,
+      I1 => \FSM_sequential_state[1]_i_2_n_0\,
+      I2 => \frame_ctr[3]_i_4_n_0\,
+      I3 => \frame_ctr_reg_n_0_[2]\,
+      I4 => \frame_ctr_reg_n_0_[1]\,
+      I5 => \frame_ctr_reg_n_0_[0]\,
       O => \frame_ctr[2]_i_1_n_0\
     );
-\frame_ctr[3]_i_1\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7F80"
+      INIT => X"FFFFFFFF00000200"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[0]\,
-      I1 => \frame_ctr_reg_n_0_[1]\,
-      I2 => \frame_ctr_reg_n_0_[2]\,
-      I3 => \frame_ctr_reg_n_0_[3]\,
+      I0 => DATA_VALID,
+      I1 => SYSTEM_RESET,
+      I2 => PASSTHROUGH,
+      I3 => \state__0\(0),
+      I4 => \state__0\(2),
+      I5 => \frame_ctr[3]_i_3_n_0\,
       O => \frame_ctr[3]_i_1_n_0\
     );
-\frame_ctr[4]_i_1\: unisim.vcomponents.LUT6
+\frame_ctr[3]_i_10\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"00000A0A00082A0A"
+      INIT => X"B"
     )
         port map (
-      I0 => \frame_ctr[4]_i_2_n_0\,
-      I1 => \frame_ctr_reg_n_0_[0]\,
-      I2 => \FSM_sequential_state[1]_i_2_n_0\,
-      I3 => \frame_ctr_reg_n_0_[1]\,
-      I4 => \frame_ctr[4]_i_4_n_0\,
-      I5 => \frame_ctr[4]_i_5_n_0\,
-      O => \frame_ctr[4]_i_1_n_0\
+      I0 => SCRAMBLED_DATA_IN(0),
+      I1 => SCRAMBLED_DATA_IN(1),
+      O => \frame_ctr[3]_i_10_n_0\
     );
-\frame_ctr[4]_i_10\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0001"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_18_n_0\,
-      I1 => \frame_ctr[4]_i_19_n_0\,
-      I2 => \frame_ctr[4]_i_20_n_0\,
-      I3 => \frame_ctr[4]_i_21_n_0\,
-      O => \frame_ctr[4]_i_10_n_0\
-    );
-\frame_ctr[4]_i_11\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0001"
-    )
-        port map (
-      I0 => \frame_ctr[4]_i_22_n_0\,
-      I1 => \frame_ctr[4]_i_23_n_0\,
-      I2 => \frame_ctr[4]_i_24_n_0\,
-      I3 => \frame_ctr[4]_i_25_n_0\,
-      O => \frame_ctr[4]_i_11_n_0\
-    );
-\frame_ctr[4]_i_12\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000002000"
-    )
-        port map (
-      I0 => \descrambler[57]_i_5_n_0\,
-      I1 => SCRAMBLED_DATA_IN(0),
-      I2 => SCRAMBLED_DATA_IN(1),
-      I3 => SCRAMBLED_DATA_IN(2),
-      I4 => SCRAMBLED_DATA_IN(3),
-      I5 => \state__0\(1),
-      O => \frame_ctr[4]_i_12_n_0\
-    );
-\frame_ctr[4]_i_13\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(13),
-      I1 => SCRAMBLED_DATA_IN(12),
-      I2 => SCRAMBLED_DATA_IN(14),
-      I3 => SCRAMBLED_DATA_IN(15),
-      O => \frame_ctr[4]_i_13_n_0\
-    );
-\frame_ctr[4]_i_14\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(29),
-      I1 => SCRAMBLED_DATA_IN(28),
-      I2 => SCRAMBLED_DATA_IN(30),
-      I3 => SCRAMBLED_DATA_IN(31),
-      O => \frame_ctr[4]_i_14_n_0\
-    );
-\frame_ctr[4]_i_15\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(25),
-      I1 => SCRAMBLED_DATA_IN(24),
-      I2 => SCRAMBLED_DATA_IN(27),
-      I3 => SCRAMBLED_DATA_IN(26),
-      O => \frame_ctr[4]_i_15_n_0\
-    );
-\frame_ctr[4]_i_16\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(21),
-      I1 => SCRAMBLED_DATA_IN(20),
-      I2 => SCRAMBLED_DATA_IN(23),
-      I3 => SCRAMBLED_DATA_IN(22),
-      O => \frame_ctr[4]_i_16_n_0\
-    );
-\frame_ctr[4]_i_17\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFDF"
-    )
-        port map (
-      I0 => SCRAMBLED_DATA_IN(17),
-      I1 => SCRAMBLED_DATA_IN(16),
-      I2 => SCRAMBLED_DATA_IN(18),
-      I3 => SCRAMBLED_DATA_IN(19),
-      O => \frame_ctr[4]_i_17_n_0\
-    );
-\frame_ctr[4]_i_18\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_11\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FF7F"
     )
@@ -3268,9 +3191,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(44),
       I2 => SCRAMBLED_DATA_IN(46),
       I3 => SCRAMBLED_DATA_IN(47),
-      O => \frame_ctr[4]_i_18_n_0\
+      O => \frame_ctr[3]_i_11_n_0\
     );
-\frame_ctr[4]_i_19\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_12\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFEF"
     )
@@ -3279,21 +3202,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(40),
       I2 => SCRAMBLED_DATA_IN(43),
       I3 => SCRAMBLED_DATA_IN(42),
-      O => \frame_ctr[4]_i_19_n_0\
+      O => \frame_ctr[3]_i_12_n_0\
     );
-\frame_ctr[4]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFF0122"
-    )
-        port map (
-      I0 => \state__0\(0),
-      I1 => \FSM_sequential_state[1]_i_5_n_0\,
-      I2 => \state__0\(1),
-      I3 => \state__0\(2),
-      I4 => \frame_ctr[4]_i_6_n_0\,
-      O => \frame_ctr[4]_i_2_n_0\
-    );
-\frame_ctr[4]_i_20\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_13\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -3302,9 +3213,9 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(36),
       I2 => SCRAMBLED_DATA_IN(39),
       I3 => SCRAMBLED_DATA_IN(38),
-      O => \frame_ctr[4]_i_20_n_0\
+      O => \frame_ctr[3]_i_13_n_0\
     );
-\frame_ctr[4]_i_21\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_14\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFDF"
     )
@@ -3313,109 +3224,134 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(32),
       I2 => SCRAMBLED_DATA_IN(34),
       I3 => SCRAMBLED_DATA_IN(35),
-      O => \frame_ctr[4]_i_21_n_0\
+      O => \frame_ctr[3]_i_14_n_0\
     );
-\frame_ctr[4]_i_22\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_15\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FF7F"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(61),
-      I1 => SCRAMBLED_DATA_IN(60),
-      I2 => SCRAMBLED_DATA_IN(62),
-      I3 => SCRAMBLED_DATA_IN(63),
-      O => \frame_ctr[4]_i_22_n_0\
+      I0 => SCRAMBLED_DATA_IN(29),
+      I1 => SCRAMBLED_DATA_IN(28),
+      I2 => SCRAMBLED_DATA_IN(30),
+      I3 => SCRAMBLED_DATA_IN(31),
+      O => \frame_ctr[3]_i_15_n_0\
     );
-\frame_ctr[4]_i_23\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_16\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFEF"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(57),
-      I1 => SCRAMBLED_DATA_IN(56),
-      I2 => SCRAMBLED_DATA_IN(59),
-      I3 => SCRAMBLED_DATA_IN(58),
-      O => \frame_ctr[4]_i_23_n_0\
+      I0 => SCRAMBLED_DATA_IN(25),
+      I1 => SCRAMBLED_DATA_IN(24),
+      I2 => SCRAMBLED_DATA_IN(27),
+      I3 => SCRAMBLED_DATA_IN(26),
+      O => \frame_ctr[3]_i_16_n_0\
     );
-\frame_ctr[4]_i_24\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_17\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(53),
-      I1 => SCRAMBLED_DATA_IN(52),
-      I2 => SCRAMBLED_DATA_IN(55),
-      I3 => SCRAMBLED_DATA_IN(54),
-      O => \frame_ctr[4]_i_24_n_0\
+      I0 => SCRAMBLED_DATA_IN(21),
+      I1 => SCRAMBLED_DATA_IN(20),
+      I2 => SCRAMBLED_DATA_IN(23),
+      I3 => SCRAMBLED_DATA_IN(22),
+      O => \frame_ctr[3]_i_17_n_0\
     );
-\frame_ctr[4]_i_25\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_18\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFDF"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(49),
-      I1 => SCRAMBLED_DATA_IN(48),
-      I2 => SCRAMBLED_DATA_IN(50),
-      I3 => SCRAMBLED_DATA_IN(51),
-      O => \frame_ctr[4]_i_25_n_0\
+      I0 => SCRAMBLED_DATA_IN(17),
+      I1 => SCRAMBLED_DATA_IN(16),
+      I2 => SCRAMBLED_DATA_IN(18),
+      I3 => SCRAMBLED_DATA_IN(19),
+      O => \frame_ctr[3]_i_18_n_0\
     );
-\frame_ctr[4]_i_3\: unisim.vcomponents.LUT5
+\frame_ctr[3]_i_19\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7FFF8000"
+      INIT => X"FF7F"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[2]\,
-      I1 => \frame_ctr_reg_n_0_[3]\,
-      I2 => \frame_ctr_reg_n_0_[0]\,
-      I3 => \frame_ctr_reg_n_0_[1]\,
-      I4 => \frame_ctr_reg_n_0_[4]\,
-      O => \frame_ctr[4]_i_3_n_0\
+      I0 => SCRAMBLED_DATA_IN(13),
+      I1 => SCRAMBLED_DATA_IN(12),
+      I2 => SCRAMBLED_DATA_IN(14),
+      I3 => SCRAMBLED_DATA_IN(15),
+      O => \frame_ctr[3]_i_19_n_0\
     );
-\frame_ctr[4]_i_4\: unisim.vcomponents.LUT2
+\frame_ctr[3]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0EE0A0E0C0E0E0E0"
+    )
+        port map (
+      I0 => \FSM_sequential_state[1]_i_2_n_0\,
+      I1 => \frame_ctr[3]_i_4_n_0\,
+      I2 => \frame_ctr_reg_n_0_[3]\,
+      I3 => \frame_ctr_reg_n_0_[2]\,
+      I4 => \frame_ctr_reg_n_0_[1]\,
+      I5 => \frame_ctr_reg_n_0_[0]\,
+      O => \frame_ctr[3]_i_2_n_0\
+    );
+\frame_ctr[3]_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFF00800000"
+    )
+        port map (
+      I0 => \frame_ctr[3]_i_5_n_0\,
+      I1 => \frame_ctr[3]_i_6_n_0\,
+      I2 => \frame_ctr[3]_i_7_n_0\,
+      I3 => \frame_ctr[3]_i_8_n_0\,
+      I4 => \frame_ctr[3]_i_9_n_0\,
+      I5 => \UNSCRAMBLED_DATA_OUT[63]_i_2_n_0\,
+      O => \frame_ctr[3]_i_3_n_0\
+    );
+\frame_ctr[3]_i_4\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"2"
     )
         port map (
       I0 => \state__0\(2),
       I1 => \state__0\(1),
-      O => \frame_ctr[4]_i_4_n_0\
+      O => \frame_ctr[3]_i_4_n_0\
     );
-\frame_ctr[4]_i_5\: unisim.vcomponents.LUT3
+\frame_ctr[3]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"F7"
+      INIT => X"0010000000000000"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[3]\,
-      I1 => \frame_ctr_reg_n_0_[2]\,
-      I2 => \frame_ctr_reg_n_0_[4]\,
-      O => \frame_ctr[4]_i_5_n_0\
+      I0 => \state__0\(1),
+      I1 => SCRAMBLED_DATA_IN(3),
+      I2 => SCRAMBLED_DATA_IN(2),
+      I3 => \frame_ctr[3]_i_10_n_0\,
+      I4 => \descrambler[57]_i_5_n_0\,
+      I5 => \bad_sync_ctr[2]_i_5_n_0\,
+      O => \frame_ctr[3]_i_5_n_0\
     );
-\frame_ctr[4]_i_6\: unisim.vcomponents.LUT6
+\frame_ctr[3]_i_6\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"2000000000000000"
+      INIT => X"0001"
     )
         port map (
-      I0 => \frame_ctr[4]_i_7_n_0\,
-      I1 => \frame_ctr[4]_i_8_n_0\,
-      I2 => \frame_ctr[4]_i_9_n_0\,
-      I3 => \frame_ctr[4]_i_10_n_0\,
-      I4 => \frame_ctr[4]_i_11_n_0\,
-      I5 => \frame_ctr[4]_i_12_n_0\,
-      O => \frame_ctr[4]_i_6_n_0\
+      I0 => \frame_ctr[3]_i_11_n_0\,
+      I1 => \frame_ctr[3]_i_12_n_0\,
+      I2 => \frame_ctr[3]_i_13_n_0\,
+      I3 => \frame_ctr[3]_i_14_n_0\,
+      O => \frame_ctr[3]_i_6_n_0\
     );
-\frame_ctr[4]_i_7\: unisim.vcomponents.LUT5
+\frame_ctr[3]_i_7\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"00000004"
+      INIT => X"0001"
     )
         port map (
-      I0 => SCRAMBLED_DATA_IN(10),
-      I1 => SCRAMBLED_DATA_IN(11),
-      I2 => SCRAMBLED_DATA_IN(8),
-      I3 => SCRAMBLED_DATA_IN(9),
-      I4 => \frame_ctr[4]_i_13_n_0\,
-      O => \frame_ctr[4]_i_7_n_0\
+      I0 => \frame_ctr[3]_i_15_n_0\,
+      I1 => \frame_ctr[3]_i_16_n_0\,
+      I2 => \frame_ctr[3]_i_17_n_0\,
+      I3 => \frame_ctr[3]_i_18_n_0\,
+      O => \frame_ctr[3]_i_7_n_0\
     );
-\frame_ctr[4]_i_8\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_8\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"7FFF"
     )
@@ -3424,23 +3360,24 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       I1 => SCRAMBLED_DATA_IN(4),
       I2 => SCRAMBLED_DATA_IN(7),
       I3 => SCRAMBLED_DATA_IN(6),
-      O => \frame_ctr[4]_i_8_n_0\
+      O => \frame_ctr[3]_i_8_n_0\
     );
-\frame_ctr[4]_i_9\: unisim.vcomponents.LUT4
+\frame_ctr[3]_i_9\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0001"
+      INIT => X"00000004"
     )
         port map (
-      I0 => \frame_ctr[4]_i_14_n_0\,
-      I1 => \frame_ctr[4]_i_15_n_0\,
-      I2 => \frame_ctr[4]_i_16_n_0\,
-      I3 => \frame_ctr[4]_i_17_n_0\,
-      O => \frame_ctr[4]_i_9_n_0\
+      I0 => SCRAMBLED_DATA_IN(10),
+      I1 => SCRAMBLED_DATA_IN(11),
+      I2 => SCRAMBLED_DATA_IN(8),
+      I3 => SCRAMBLED_DATA_IN(9),
+      I4 => \frame_ctr[3]_i_19_n_0\,
+      O => \frame_ctr[3]_i_9_n_0\
     );
 \frame_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => '1',
+      CE => \frame_ctr[3]_i_1_n_0\,
       D => \frame_ctr[0]_i_1_n_0\,
       Q => \frame_ctr_reg_n_0_[0]\,
       R => '0'
@@ -3448,34 +3385,26 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
 \frame_ctr_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => \frame_ctr[4]_i_2_n_0\,
+      CE => \frame_ctr[3]_i_1_n_0\,
       D => \frame_ctr[1]_i_1_n_0\,
       Q => \frame_ctr_reg_n_0_[1]\,
-      R => \frame_ctr[4]_i_1_n_0\
+      R => '0'
     );
 \frame_ctr_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => \frame_ctr[4]_i_2_n_0\,
+      CE => \frame_ctr[3]_i_1_n_0\,
       D => \frame_ctr[2]_i_1_n_0\,
       Q => \frame_ctr_reg_n_0_[2]\,
-      R => \frame_ctr[4]_i_1_n_0\
+      R => '0'
     );
 \frame_ctr_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => \frame_ctr[4]_i_2_n_0\,
-      D => \frame_ctr[3]_i_1_n_0\,
+      CE => \frame_ctr[3]_i_1_n_0\,
+      D => \frame_ctr[3]_i_2_n_0\,
       Q => \frame_ctr_reg_n_0_[3]\,
-      R => \frame_ctr[4]_i_1_n_0\
-    );
-\frame_ctr_reg[4]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => \frame_ctr[4]_i_2_n_0\,
-      D => \frame_ctr[4]_i_3_n_0\,
-      Q => \frame_ctr_reg_n_0_[4]\,
-      R => \frame_ctr[4]_i_1_n_0\
+      R => '0'
     );
 \good_sync_ctr[0]_i_1\: unisim.vcomponents.LUT4
     generic map(

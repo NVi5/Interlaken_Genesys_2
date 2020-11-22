@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 22 14:01:24 2020
+-- Date        : Sun Nov 22 15:40:07 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.vhdl
@@ -28,11 +28,11 @@ end main_frame_gen_1_0_frame_gen;
 
 architecture STRUCTURE of main_frame_gen_1_0_frame_gen is
   signal p_0_in : STD_LOGIC_VECTOR ( 8 downto 0 );
-  signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 9 to 9 );
-  signal \read_counter_i[9]_i_1_n_0\ : STD_LOGIC;
-  signal \read_counter_i_reg__0\ : STD_LOGIC_VECTOR ( 9 downto 0 );
+  signal \read_counter_i[8]_i_1_n_0\ : STD_LOGIC;
+  signal \read_counter_i_reg__0\ : STD_LOGIC_VECTOR ( 8 downto 0 );
   signal read_counter_i_reg_rep_1_i_10_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_1_i_11_n_0 : STD_LOGIC;
+  signal read_counter_i_reg_rep_1_i_12_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_1_i_1_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_1_i_2_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_1_i_3_n_0 : STD_LOGIC;
@@ -45,14 +45,13 @@ architecture STRUCTURE of main_frame_gen_1_0_frame_gen is
   signal NLW_read_counter_i_reg_rep_1_DOBDO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 10 );
   signal NLW_read_counter_i_reg_rep_1_DOPBDOP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \read_counter_i[1]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \read_counter_i[2]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \read_counter_i[3]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \read_counter_i[0]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \read_counter_i[1]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \read_counter_i[2]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \read_counter_i[3]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \read_counter_i[4]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \read_counter_i[6]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \read_counter_i[7]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \read_counter_i[8]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \read_counter_i[9]_i_2\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \read_counter_i[7]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \read_counter_i[8]_i_2\ : label is "soft_lutpair2";
   attribute equivalent_register_removal : string;
   attribute equivalent_register_removal of \read_counter_i_reg[0]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg[1]\ : label is "no";
@@ -63,7 +62,6 @@ architecture STRUCTURE of main_frame_gen_1_0_frame_gen is
   attribute equivalent_register_removal of \read_counter_i_reg[6]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg[7]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg[8]\ : label is "no";
-  attribute equivalent_register_removal of \read_counter_i_reg[9]\ : label is "no";
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ : string;
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ of read_counter_i_reg_rep_0 : label is "p2_d16";
   attribute \MEM.PORTB.DATA_BIT_LAYOUT\ : string;
@@ -97,6 +95,7 @@ architecture STRUCTURE of main_frame_gen_1_0_frame_gen is
   attribute bram_ext_slice_end of read_counter_i_reg_rep_1 : label is 63;
   attribute bram_slice_begin of read_counter_i_reg_rep_1 : label is 36;
   attribute bram_slice_end of read_counter_i_reg_rep_1 : label is 53;
+  attribute SOFT_HLUTNM of read_counter_i_reg_rep_1_i_12 : label is "soft_lutpair0";
 begin
 TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
      port map (
@@ -188,7 +187,19 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       I2 => \read_counter_i_reg__0\(7),
       O => p_0_in(7)
     );
-\read_counter_i[8]_i_1\: unisim.vcomponents.LUT4
+\read_counter_i[8]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFF2000"
+    )
+        port map (
+      I0 => \read_counter_i_reg__0\(6),
+      I1 => read_counter_i_reg_rep_1_i_11_n_0,
+      I2 => \read_counter_i_reg__0\(7),
+      I3 => \read_counter_i_reg__0\(8),
+      I4 => SYSTEM_RESET,
+      O => \read_counter_i[8]_i_1_n_0\
+    );
+\read_counter_i[8]_i_2\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"DF20"
     )
@@ -199,38 +210,13 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       I3 => \read_counter_i_reg__0\(8),
       O => p_0_in(8)
     );
-\read_counter_i[9]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFF04000000"
-    )
-        port map (
-      I0 => \read_counter_i_reg__0\(9),
-      I1 => \read_counter_i_reg__0\(7),
-      I2 => read_counter_i_reg_rep_1_i_11_n_0,
-      I3 => \read_counter_i_reg__0\(6),
-      I4 => \read_counter_i_reg__0\(8),
-      I5 => SYSTEM_RESET,
-      O => \read_counter_i[9]_i_1_n_0\
-    );
-\read_counter_i[9]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"F7FF0800"
-    )
-        port map (
-      I0 => \read_counter_i_reg__0\(8),
-      I1 => \read_counter_i_reg__0\(6),
-      I2 => read_counter_i_reg_rep_1_i_11_n_0,
-      I3 => \read_counter_i_reg__0\(7),
-      I4 => \read_counter_i_reg__0\(9),
-      O => \p_0_in__0\(9)
-    );
 \read_counter_i_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => DATA_IN_READY,
       D => p_0_in(0),
       Q => \read_counter_i_reg__0\(0),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -238,7 +224,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(1),
       Q => \read_counter_i_reg__0\(1),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -246,7 +232,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(2),
       Q => \read_counter_i_reg__0\(2),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -254,7 +240,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(3),
       Q => \read_counter_i_reg__0\(3),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[4]\: unisim.vcomponents.FDRE
      port map (
@@ -262,7 +248,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(4),
       Q => \read_counter_i_reg__0\(4),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -270,7 +256,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(5),
       Q => \read_counter_i_reg__0\(5),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[6]\: unisim.vcomponents.FDRE
      port map (
@@ -278,7 +264,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(6),
       Q => \read_counter_i_reg__0\(6),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[7]\: unisim.vcomponents.FDRE
      port map (
@@ -286,7 +272,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(7),
       Q => \read_counter_i_reg__0\(7),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 \read_counter_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
@@ -294,15 +280,7 @@ TX_DATA_TO_SEND_reg: unisim.vcomponents.FDRE
       CE => DATA_IN_READY,
       D => p_0_in(8),
       Q => \read_counter_i_reg__0\(8),
-      R => \read_counter_i[9]_i_1_n_0\
-    );
-\read_counter_i_reg[9]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_READY,
-      D => \p_0_in__0\(9),
-      Q => \read_counter_i_reg__0\(9),
-      R => \read_counter_i[9]_i_1_n_0\
+      R => \read_counter_i[8]_i_1_n_0\
     );
 read_counter_i_reg_rep_0: unisim.vcomponents.RAMB18E1
     generic map(
@@ -579,22 +557,30 @@ read_counter_i_reg_rep_1: unisim.vcomponents.RAMB18E1
       WEA(1 downto 0) => B"00",
       WEBWE(3 downto 0) => B"0000"
     );
-read_counter_i_reg_rep_1_i_1: unisim.vcomponents.LUT2
+read_counter_i_reg_rep_1_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E"
+      INIT => X"FFFFFFFFAAEAAAAA"
     )
         port map (
-      I0 => \read_counter_i[9]_i_1_n_0\,
-      I1 => DATA_IN_READY,
+      I0 => SYSTEM_RESET,
+      I1 => \read_counter_i_reg__0\(8),
+      I2 => \read_counter_i_reg__0\(7),
+      I3 => read_counter_i_reg_rep_1_i_11_n_0,
+      I4 => \read_counter_i_reg__0\(6),
+      I5 => DATA_IN_READY,
       O => read_counter_i_reg_rep_1_i_1_n_0
     );
-read_counter_i_reg_rep_1_i_10: unisim.vcomponents.LUT2
+read_counter_i_reg_rep_1_i_10: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"1"
+      INIT => X"1111011111111111"
     )
         port map (
       I0 => \read_counter_i_reg__0\(0),
-      I1 => \read_counter_i[9]_i_1_n_0\,
+      I1 => SYSTEM_RESET,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => \read_counter_i_reg__0\(7),
+      I4 => read_counter_i_reg_rep_1_i_11_n_0,
+      I5 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_10_n_0
     );
 read_counter_i_reg_rep_1_i_11: unisim.vcomponents.LUT6
@@ -610,6 +596,18 @@ read_counter_i_reg_rep_1_i_11: unisim.vcomponents.LUT6
       I5 => \read_counter_i_reg__0\(5),
       O => read_counter_i_reg_rep_1_i_11_n_0
     );
+read_counter_i_reg_rep_1_i_12: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"7FFFFFFF"
+    )
+        port map (
+      I0 => \read_counter_i_reg__0\(3),
+      I1 => \read_counter_i_reg__0\(1),
+      I2 => \read_counter_i_reg__0\(0),
+      I3 => \read_counter_i_reg__0\(2),
+      I4 => \read_counter_i_reg__0\(4),
+      O => read_counter_i_reg_rep_1_i_12_n_0
+    );
 read_counter_i_reg_rep_1_i_2: unisim.vcomponents.LUT5
     generic map(
       INIT => X"44144444"
@@ -617,20 +615,20 @@ read_counter_i_reg_rep_1_i_2: unisim.vcomponents.LUT5
         port map (
       I0 => SYSTEM_RESET,
       I1 => \read_counter_i_reg__0\(8),
-      I2 => \read_counter_i_reg__0\(6),
+      I2 => \read_counter_i_reg__0\(7),
       I3 => read_counter_i_reg_rep_1_i_11_n_0,
-      I4 => \read_counter_i_reg__0\(7),
+      I4 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_2_n_0
     );
 read_counter_i_reg_rep_1_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"5104"
+      INIT => X"4144"
     )
         port map (
       I0 => SYSTEM_RESET,
-      I1 => \read_counter_i_reg__0\(6),
+      I1 => \read_counter_i_reg__0\(7),
       I2 => read_counter_i_reg_rep_1_i_11_n_0,
-      I3 => \read_counter_i_reg__0\(7),
+      I3 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_3_n_0
     );
 read_counter_i_reg_rep_1_i_4: unisim.vcomponents.LUT3
@@ -639,63 +637,70 @@ read_counter_i_reg_rep_1_i_4: unisim.vcomponents.LUT3
     )
         port map (
       I0 => SYSTEM_RESET,
-      I1 => \read_counter_i_reg__0\(6),
-      I2 => read_counter_i_reg_rep_1_i_11_n_0,
+      I1 => read_counter_i_reg_rep_1_i_11_n_0,
+      I2 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_4_n_0
     );
-read_counter_i_reg_rep_1_i_5: unisim.vcomponents.LUT2
+read_counter_i_reg_rep_1_i_5: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"2"
+      INIT => X"41"
     )
         port map (
-      I0 => p_0_in(5),
-      I1 => \read_counter_i[9]_i_1_n_0\,
+      I0 => SYSTEM_RESET,
+      I1 => \read_counter_i_reg__0\(5),
+      I2 => read_counter_i_reg_rep_1_i_12_n_0,
       O => read_counter_i_reg_rep_1_i_5_n_0
     );
 read_counter_i_reg_rep_1_i_6: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000006AAAAAAA"
+      INIT => X"2222022222222222"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(4),
-      I1 => \read_counter_i_reg__0\(2),
-      I2 => \read_counter_i_reg__0\(0),
-      I3 => \read_counter_i_reg__0\(1),
-      I4 => \read_counter_i_reg__0\(3),
-      I5 => \read_counter_i[9]_i_1_n_0\,
+      I0 => p_0_in(4),
+      I1 => SYSTEM_RESET,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => \read_counter_i_reg__0\(7),
+      I4 => read_counter_i_reg_rep_1_i_11_n_0,
+      I5 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_6_n_0
     );
-read_counter_i_reg_rep_1_i_7: unisim.vcomponents.LUT5
+read_counter_i_reg_rep_1_i_7: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00006AAA"
+      INIT => X"2222022222222222"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(3),
-      I1 => \read_counter_i_reg__0\(1),
-      I2 => \read_counter_i_reg__0\(0),
-      I3 => \read_counter_i_reg__0\(2),
-      I4 => \read_counter_i[9]_i_1_n_0\,
+      I0 => p_0_in(3),
+      I1 => SYSTEM_RESET,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => \read_counter_i_reg__0\(7),
+      I4 => read_counter_i_reg_rep_1_i_11_n_0,
+      I5 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_7_n_0
     );
-read_counter_i_reg_rep_1_i_8: unisim.vcomponents.LUT4
+read_counter_i_reg_rep_1_i_8: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"006A"
+      INIT => X"2222022222222222"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(2),
-      I1 => \read_counter_i_reg__0\(0),
-      I2 => \read_counter_i_reg__0\(1),
-      I3 => \read_counter_i[9]_i_1_n_0\,
+      I0 => p_0_in(2),
+      I1 => SYSTEM_RESET,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => \read_counter_i_reg__0\(7),
+      I4 => read_counter_i_reg_rep_1_i_11_n_0,
+      I5 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_8_n_0
     );
-read_counter_i_reg_rep_1_i_9: unisim.vcomponents.LUT3
+read_counter_i_reg_rep_1_i_9: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"06"
+      INIT => X"2222022222222222"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(1),
-      I1 => \read_counter_i_reg__0\(0),
-      I2 => \read_counter_i[9]_i_1_n_0\,
+      I0 => p_0_in(1),
+      I1 => SYSTEM_RESET,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => \read_counter_i_reg__0\(7),
+      I4 => read_counter_i_reg_rep_1_i_11_n_0,
+      I5 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_1_i_9_n_0
     );
 end STRUCTURE;
