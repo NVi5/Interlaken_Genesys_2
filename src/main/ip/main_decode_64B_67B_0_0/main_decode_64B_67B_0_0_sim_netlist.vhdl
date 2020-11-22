@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 22 13:37:01 2020
+-- Date        : Sun Nov 22 19:12:29 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_sim_netlist.vhdl
@@ -17,6 +17,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_decode_64B_67B_0_0_decode_64B_67B is
   port (
     LOCKED : out STD_LOGIC;
+    Q : out STD_LOGIC_VECTOR ( 6 downto 0 );
     DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
     USER_CLK : in STD_LOGIC;
@@ -355,11 +356,11 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   signal \HEADER_OUT[1]_i_7_n_0\ : STD_LOGIC;
   signal \HEADER_OUT[1]_i_8_n_0\ : STD_LOGIC;
   signal \^locked\ : STD_LOGIC;
+  signal \^q\ : STD_LOGIC_VECTOR ( 6 downto 0 );
   signal candidate : STD_LOGIC_VECTOR ( 6 downto 0 );
   signal \candidate[6]_i_1_n_0\ : STD_LOGIC;
   signal \candidate[6]_i_2_n_0\ : STD_LOGIC;
   signal \candidate[6]_i_4_n_0\ : STD_LOGIC;
-  signal candidate_0 : STD_LOGIC_VECTOR ( 6 downto 0 );
   signal \error_sync_ctr[0]_i_1_n_0\ : STD_LOGIC;
   signal \error_sync_ctr[1]_i_1_n_0\ : STD_LOGIC;
   signal \error_sync_ctr[2]_i_1_n_0\ : STD_LOGIC;
@@ -483,6 +484,7 @@ architecture STRUCTURE of main_decode_64B_67B_0_0_decode_64B_67B is
   attribute SOFT_HLUTNM of \state[0]_i_4\ : label is "soft_lutpair31";
 begin
   LOCKED <= \^locked\;
+  Q(6 downto 0) <= \^q\(6 downto 0);
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"555556A6AAAA56A6"
@@ -490,9 +492,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[0]_i_2_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[0]_i_3_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[1]_i_2_n_0\,
       O => \DATA_OUT[0]_i_1_n_0\
     );
@@ -502,7 +504,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[4]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[0]_i_4_n_0\,
       O => \DATA_OUT[0]_i_2_n_0\
     );
@@ -512,7 +514,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[6]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[2]_i_3_n_0\,
       O => \DATA_OUT[0]_i_3_n_0\
     );
@@ -522,9 +524,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[24]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[8]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[16]_i_4_n_0\,
       I5 => \DATA_OUT[0]_i_5_n_0\,
       O => \DATA_OUT[0]_i_4_n_0\
@@ -536,9 +538,9 @@ begin
         port map (
       I0 => rx_data_common(96),
       I1 => rx_data_common(32),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(64),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(0),
       O => \DATA_OUT[0]_i_5_n_0\
     );
@@ -549,7 +551,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[10]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[11]_i_2_n_0\,
       O => \DATA_OUT[10]_i_1_n_0\
     );
@@ -560,9 +562,9 @@ begin
         port map (
       I0 => \DATA_OUT[16]_i_3_n_0\,
       I1 => \DATA_OUT[12]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[14]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[10]_i_3_n_0\,
       O => \DATA_OUT[10]_i_2_n_0\
     );
@@ -572,11 +574,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[26]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[10]_i_4_n_0\,
       I3 => \DATA_OUT[34]_i_4_n_0\,
       I4 => \DATA_OUT[18]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[10]_i_3_n_0\
     );
 \DATA_OUT[10]_i_4\: unisim.vcomponents.LUT6
@@ -586,9 +588,9 @@ begin
         port map (
       I0 => rx_data_common(106),
       I1 => rx_data_common(42),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(74),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(10),
       O => \DATA_OUT[10]_i_4_n_0\
     );
@@ -599,7 +601,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[11]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[12]_i_2_n_0\,
       O => \DATA_OUT[11]_i_1_n_0\
     );
@@ -610,9 +612,9 @@ begin
         port map (
       I0 => \DATA_OUT[17]_i_3_n_0\,
       I1 => \DATA_OUT[13]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[15]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[11]_i_3_n_0\,
       O => \DATA_OUT[11]_i_2_n_0\
     );
@@ -622,11 +624,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[27]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[11]_i_4_n_0\,
       I3 => \DATA_OUT[35]_i_4_n_0\,
       I4 => \DATA_OUT[19]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[11]_i_3_n_0\
     );
 \DATA_OUT[11]_i_4\: unisim.vcomponents.LUT6
@@ -636,9 +638,9 @@ begin
         port map (
       I0 => rx_data_common(107),
       I1 => rx_data_common(43),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(75),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(11),
       O => \DATA_OUT[11]_i_4_n_0\
     );
@@ -649,7 +651,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[12]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[13]_i_2_n_0\,
       O => \DATA_OUT[12]_i_1_n_0\
     );
@@ -660,9 +662,9 @@ begin
         port map (
       I0 => \DATA_OUT[18]_i_3_n_0\,
       I1 => \DATA_OUT[14]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[16]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[12]_i_3_n_0\,
       O => \DATA_OUT[12]_i_2_n_0\
     );
@@ -672,11 +674,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[28]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[12]_i_4_n_0\,
       I3 => \DATA_OUT[36]_i_4_n_0\,
       I4 => \DATA_OUT[20]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[12]_i_3_n_0\
     );
 \DATA_OUT[12]_i_4\: unisim.vcomponents.LUT6
@@ -686,9 +688,9 @@ begin
         port map (
       I0 => rx_data_common(108),
       I1 => rx_data_common(44),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(76),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(12),
       O => \DATA_OUT[12]_i_4_n_0\
     );
@@ -699,7 +701,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[13]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[14]_i_2_n_0\,
       O => \DATA_OUT[13]_i_1_n_0\
     );
@@ -710,9 +712,9 @@ begin
         port map (
       I0 => \DATA_OUT[19]_i_3_n_0\,
       I1 => \DATA_OUT[15]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[17]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[13]_i_3_n_0\,
       O => \DATA_OUT[13]_i_2_n_0\
     );
@@ -722,11 +724,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[29]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[13]_i_4_n_0\,
       I3 => \DATA_OUT[37]_i_4_n_0\,
       I4 => \DATA_OUT[21]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[13]_i_3_n_0\
     );
 \DATA_OUT[13]_i_4\: unisim.vcomponents.LUT6
@@ -736,9 +738,9 @@ begin
         port map (
       I0 => rx_data_common(109),
       I1 => rx_data_common(45),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(77),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(13),
       O => \DATA_OUT[13]_i_4_n_0\
     );
@@ -749,7 +751,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[14]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[15]_i_2_n_0\,
       O => \DATA_OUT[14]_i_1_n_0\
     );
@@ -759,9 +761,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[16]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[18]_i_3_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[14]_i_3_n_0\,
       O => \DATA_OUT[14]_i_2_n_0\
     );
@@ -771,11 +773,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[30]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[14]_i_4_n_0\,
       I3 => \DATA_OUT[38]_i_4_n_0\,
       I4 => \DATA_OUT[22]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[14]_i_3_n_0\
     );
 \DATA_OUT[14]_i_4\: unisim.vcomponents.LUT6
@@ -785,9 +787,9 @@ begin
         port map (
       I0 => rx_data_common(110),
       I1 => rx_data_common(46),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(78),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(14),
       O => \DATA_OUT[14]_i_4_n_0\
     );
@@ -797,11 +799,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[18]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[16]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[15]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[15]_i_1_n_0\
     );
 \DATA_OUT[15]_i_2\: unisim.vcomponents.LUT6
@@ -810,9 +812,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[21]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[17]_i_3_n_0\,
-      I3 => candidate(1),
+      I3 => \^q\(1),
       I4 => \DATA_OUT[19]_i_3_n_0\,
       I5 => \DATA_OUT[15]_i_3_n_0\,
       O => \DATA_OUT[15]_i_2_n_0\
@@ -823,11 +825,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[31]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[15]_i_4_n_0\,
       I3 => \DATA_OUT[39]_i_4_n_0\,
       I4 => \DATA_OUT[23]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[15]_i_3_n_0\
     );
 \DATA_OUT[15]_i_4\: unisim.vcomponents.LUT6
@@ -837,9 +839,9 @@ begin
         port map (
       I0 => rx_data_common(111),
       I1 => rx_data_common(47),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(79),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(15),
       O => \DATA_OUT[15]_i_4_n_0\
     );
@@ -849,10 +851,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[18]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[16]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[17]_i_2_n_0\,
       O => \DATA_OUT[16]_i_1_n_0\
     );
@@ -862,7 +864,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[20]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[16]_i_3_n_0\,
       O => \DATA_OUT[16]_i_2_n_0\
     );
@@ -873,9 +875,9 @@ begin
         port map (
       I0 => \DATA_OUT[40]_i_4_n_0\,
       I1 => \DATA_OUT[24]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[32]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[16]_i_4_n_0\,
       O => \DATA_OUT[16]_i_3_n_0\
     );
@@ -886,9 +888,9 @@ begin
         port map (
       I0 => rx_data_common(112),
       I1 => rx_data_common(48),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(80),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(16),
       O => \DATA_OUT[16]_i_4_n_0\
     );
@@ -898,11 +900,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[20]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[18]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[17]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[17]_i_1_n_0\
     );
 \DATA_OUT[17]_i_2\: unisim.vcomponents.LUT6
@@ -911,11 +913,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[21]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[17]_i_3_n_0\,
       I3 => \DATA_OUT[23]_i_3_n_0\,
       I4 => \DATA_OUT[19]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[17]_i_2_n_0\
     );
 \DATA_OUT[17]_i_3\: unisim.vcomponents.LUT6
@@ -925,9 +927,9 @@ begin
         port map (
       I0 => \DATA_OUT[41]_i_4_n_0\,
       I1 => \DATA_OUT[25]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[33]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[17]_i_4_n_0\,
       O => \DATA_OUT[17]_i_3_n_0\
     );
@@ -938,9 +940,9 @@ begin
         port map (
       I0 => rx_data_common(113),
       I1 => rx_data_common(49),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(81),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(17),
       O => \DATA_OUT[17]_i_4_n_0\
     );
@@ -950,10 +952,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[20]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[18]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[19]_i_2_n_0\,
       O => \DATA_OUT[18]_i_1_n_0\
     );
@@ -963,7 +965,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[22]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[18]_i_3_n_0\,
       O => \DATA_OUT[18]_i_2_n_0\
     );
@@ -974,9 +976,9 @@ begin
         port map (
       I0 => \DATA_OUT[42]_i_4_n_0\,
       I1 => \DATA_OUT[26]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[34]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[18]_i_4_n_0\,
       O => \DATA_OUT[18]_i_3_n_0\
     );
@@ -987,9 +989,9 @@ begin
         port map (
       I0 => rx_data_common(114),
       I1 => rx_data_common(50),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(82),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(18),
       O => \DATA_OUT[18]_i_4_n_0\
     );
@@ -999,11 +1001,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[22]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[20]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[19]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[19]_i_1_n_0\
     );
 \DATA_OUT[19]_i_2\: unisim.vcomponents.LUT6
@@ -1012,11 +1014,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[25]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[21]_i_3_n_0\,
       I3 => \DATA_OUT[23]_i_3_n_0\,
       I4 => \DATA_OUT[19]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[19]_i_2_n_0\
     );
 \DATA_OUT[19]_i_3\: unisim.vcomponents.LUT6
@@ -1026,9 +1028,9 @@ begin
         port map (
       I0 => \DATA_OUT[43]_i_4_n_0\,
       I1 => \DATA_OUT[27]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[35]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[19]_i_4_n_0\,
       O => \DATA_OUT[19]_i_3_n_0\
     );
@@ -1039,9 +1041,9 @@ begin
         port map (
       I0 => rx_data_common(115),
       I1 => rx_data_common(51),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(83),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(19),
       O => \DATA_OUT[19]_i_4_n_0\
     );
@@ -1052,7 +1054,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[1]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[2]_i_2_n_0\,
       O => \DATA_OUT[1]_i_1_n_0\
     );
@@ -1063,9 +1065,9 @@ begin
         port map (
       I0 => \DATA_OUT[7]_i_3_n_0\,
       I1 => \DATA_OUT[3]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[5]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[1]_i_3_n_0\,
       O => \DATA_OUT[1]_i_2_n_0\
     );
@@ -1075,9 +1077,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[25]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[9]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[17]_i_4_n_0\,
       I5 => \DATA_OUT[1]_i_4_n_0\,
       O => \DATA_OUT[1]_i_3_n_0\
@@ -1089,9 +1091,9 @@ begin
         port map (
       I0 => rx_data_common(97),
       I1 => rx_data_common(33),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(65),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(1),
       O => \DATA_OUT[1]_i_4_n_0\
     );
@@ -1101,10 +1103,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[22]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[20]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[21]_i_2_n_0\,
       O => \DATA_OUT[20]_i_1_n_0\
     );
@@ -1114,7 +1116,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[24]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[20]_i_3_n_0\,
       O => \DATA_OUT[20]_i_2_n_0\
     );
@@ -1125,9 +1127,9 @@ begin
         port map (
       I0 => \DATA_OUT[44]_i_4_n_0\,
       I1 => \DATA_OUT[28]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[36]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[20]_i_4_n_0\,
       O => \DATA_OUT[20]_i_3_n_0\
     );
@@ -1138,9 +1140,9 @@ begin
         port map (
       I0 => rx_data_common(116),
       I1 => rx_data_common(52),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(84),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(20),
       O => \DATA_OUT[20]_i_4_n_0\
     );
@@ -1150,11 +1152,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[24]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[22]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[21]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[21]_i_1_n_0\
     );
 \DATA_OUT[21]_i_2\: unisim.vcomponents.LUT6
@@ -1163,11 +1165,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[25]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[21]_i_3_n_0\,
       I3 => \DATA_OUT[27]_i_3_n_0\,
       I4 => \DATA_OUT[23]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[21]_i_2_n_0\
     );
 \DATA_OUT[21]_i_3\: unisim.vcomponents.LUT6
@@ -1177,9 +1179,9 @@ begin
         port map (
       I0 => \DATA_OUT[45]_i_4_n_0\,
       I1 => \DATA_OUT[29]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[37]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[21]_i_4_n_0\,
       O => \DATA_OUT[21]_i_3_n_0\
     );
@@ -1190,9 +1192,9 @@ begin
         port map (
       I0 => rx_data_common(117),
       I1 => rx_data_common(53),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(85),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(21),
       O => \DATA_OUT[21]_i_4_n_0\
     );
@@ -1202,10 +1204,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[24]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[22]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[23]_i_2_n_0\,
       O => \DATA_OUT[22]_i_1_n_0\
     );
@@ -1215,7 +1217,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[26]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[22]_i_3_n_0\,
       O => \DATA_OUT[22]_i_2_n_0\
     );
@@ -1226,9 +1228,9 @@ begin
         port map (
       I0 => \DATA_OUT[46]_i_4_n_0\,
       I1 => \DATA_OUT[30]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[38]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[22]_i_4_n_0\,
       O => \DATA_OUT[22]_i_3_n_0\
     );
@@ -1239,9 +1241,9 @@ begin
         port map (
       I0 => rx_data_common(118),
       I1 => rx_data_common(54),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(86),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(22),
       O => \DATA_OUT[22]_i_4_n_0\
     );
@@ -1251,11 +1253,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[26]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[24]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[23]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[23]_i_1_n_0\
     );
 \DATA_OUT[23]_i_2\: unisim.vcomponents.LUT6
@@ -1264,11 +1266,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[29]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[25]_i_3_n_0\,
       I3 => \DATA_OUT[27]_i_3_n_0\,
       I4 => \DATA_OUT[23]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[23]_i_2_n_0\
     );
 \DATA_OUT[23]_i_3\: unisim.vcomponents.LUT6
@@ -1278,9 +1280,9 @@ begin
         port map (
       I0 => \DATA_OUT[47]_i_4_n_0\,
       I1 => \DATA_OUT[31]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[39]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[23]_i_4_n_0\,
       O => \DATA_OUT[23]_i_3_n_0\
     );
@@ -1291,9 +1293,9 @@ begin
         port map (
       I0 => rx_data_common(119),
       I1 => rx_data_common(55),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(87),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(23),
       O => \DATA_OUT[23]_i_4_n_0\
     );
@@ -1303,10 +1305,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[26]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[24]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[25]_i_2_n_0\,
       O => \DATA_OUT[24]_i_1_n_0\
     );
@@ -1316,7 +1318,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[28]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[24]_i_3_n_0\,
       O => \DATA_OUT[24]_i_2_n_0\
     );
@@ -1327,9 +1329,9 @@ begin
         port map (
       I0 => \DATA_OUT[48]_i_4_n_0\,
       I1 => \DATA_OUT[32]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[40]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[24]_i_4_n_0\,
       O => \DATA_OUT[24]_i_3_n_0\
     );
@@ -1340,9 +1342,9 @@ begin
         port map (
       I0 => rx_data_common(120),
       I1 => rx_data_common(56),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(88),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(24),
       O => \DATA_OUT[24]_i_4_n_0\
     );
@@ -1352,11 +1354,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[28]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[26]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[25]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[25]_i_1_n_0\
     );
 \DATA_OUT[25]_i_2\: unisim.vcomponents.LUT6
@@ -1365,11 +1367,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[29]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[25]_i_3_n_0\,
       I3 => \DATA_OUT[31]_i_3_n_0\,
       I4 => \DATA_OUT[27]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[25]_i_2_n_0\
     );
 \DATA_OUT[25]_i_3\: unisim.vcomponents.LUT6
@@ -1379,9 +1381,9 @@ begin
         port map (
       I0 => \DATA_OUT[49]_i_4_n_0\,
       I1 => \DATA_OUT[33]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[41]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[25]_i_4_n_0\,
       O => \DATA_OUT[25]_i_3_n_0\
     );
@@ -1392,9 +1394,9 @@ begin
         port map (
       I0 => rx_data_common(121),
       I1 => rx_data_common(57),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(89),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(25),
       O => \DATA_OUT[25]_i_4_n_0\
     );
@@ -1404,10 +1406,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[28]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[26]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[27]_i_2_n_0\,
       O => \DATA_OUT[26]_i_1_n_0\
     );
@@ -1417,7 +1419,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[30]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[26]_i_3_n_0\,
       O => \DATA_OUT[26]_i_2_n_0\
     );
@@ -1428,9 +1430,9 @@ begin
         port map (
       I0 => \DATA_OUT[50]_i_7_n_0\,
       I1 => \DATA_OUT[34]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[42]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[26]_i_4_n_0\,
       O => \DATA_OUT[26]_i_3_n_0\
     );
@@ -1441,9 +1443,9 @@ begin
         port map (
       I0 => rx_data_common(122),
       I1 => rx_data_common(58),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(90),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(26),
       O => \DATA_OUT[26]_i_4_n_0\
     );
@@ -1453,11 +1455,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[30]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[28]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[27]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[27]_i_1_n_0\
     );
 \DATA_OUT[27]_i_2\: unisim.vcomponents.LUT6
@@ -1466,11 +1468,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[33]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[29]_i_3_n_0\,
       I3 => \DATA_OUT[31]_i_3_n_0\,
       I4 => \DATA_OUT[27]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[27]_i_2_n_0\
     );
 \DATA_OUT[27]_i_3\: unisim.vcomponents.LUT6
@@ -1480,9 +1482,9 @@ begin
         port map (
       I0 => \DATA_OUT[51]_i_4_n_0\,
       I1 => \DATA_OUT[35]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[43]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[27]_i_4_n_0\,
       O => \DATA_OUT[27]_i_3_n_0\
     );
@@ -1493,9 +1495,9 @@ begin
         port map (
       I0 => rx_data_common(123),
       I1 => rx_data_common(59),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(91),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(27),
       O => \DATA_OUT[27]_i_4_n_0\
     );
@@ -1505,10 +1507,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[30]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[28]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[29]_i_2_n_0\,
       O => \DATA_OUT[28]_i_1_n_0\
     );
@@ -1518,7 +1520,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[32]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[28]_i_3_n_0\,
       O => \DATA_OUT[28]_i_2_n_0\
     );
@@ -1529,9 +1531,9 @@ begin
         port map (
       I0 => \DATA_OUT[50]_i_6_n_0\,
       I1 => \DATA_OUT[36]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[44]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[28]_i_4_n_0\,
       O => \DATA_OUT[28]_i_3_n_0\
     );
@@ -1542,9 +1544,9 @@ begin
         port map (
       I0 => rx_data_common(124),
       I1 => rx_data_common(60),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(92),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(28),
       O => \DATA_OUT[28]_i_4_n_0\
     );
@@ -1554,11 +1556,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[32]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[30]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[29]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[29]_i_1_n_0\
     );
 \DATA_OUT[29]_i_2\: unisim.vcomponents.LUT6
@@ -1567,11 +1569,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[33]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[29]_i_3_n_0\,
       I3 => \DATA_OUT[35]_i_3_n_0\,
       I4 => \DATA_OUT[31]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[29]_i_2_n_0\
     );
 \DATA_OUT[29]_i_3\: unisim.vcomponents.LUT6
@@ -1581,9 +1583,9 @@ begin
         port map (
       I0 => \DATA_OUT[53]_i_4_n_0\,
       I1 => \DATA_OUT[37]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[45]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[29]_i_4_n_0\,
       O => \DATA_OUT[29]_i_3_n_0\
     );
@@ -1594,9 +1596,9 @@ begin
         port map (
       I0 => rx_data_common(125),
       I1 => rx_data_common(61),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(93),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(29),
       O => \DATA_OUT[29]_i_4_n_0\
     );
@@ -1607,7 +1609,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[2]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[3]_i_2_n_0\,
       O => \DATA_OUT[2]_i_1_n_0\
     );
@@ -1618,9 +1620,9 @@ begin
         port map (
       I0 => \DATA_OUT[8]_i_3_n_0\,
       I1 => \DATA_OUT[4]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[6]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[2]_i_3_n_0\,
       O => \DATA_OUT[2]_i_2_n_0\
     );
@@ -1630,9 +1632,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[26]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[10]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[18]_i_4_n_0\,
       I5 => \DATA_OUT[2]_i_4_n_0\,
       O => \DATA_OUT[2]_i_3_n_0\
@@ -1644,9 +1646,9 @@ begin
         port map (
       I0 => rx_data_common(98),
       I1 => rx_data_common(34),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(66),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(2),
       O => \DATA_OUT[2]_i_4_n_0\
     );
@@ -1656,10 +1658,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[32]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[30]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[31]_i_2_n_0\,
       O => \DATA_OUT[30]_i_1_n_0\
     );
@@ -1669,7 +1671,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[34]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[30]_i_3_n_0\,
       O => \DATA_OUT[30]_i_2_n_0\
     );
@@ -1680,9 +1682,9 @@ begin
         port map (
       I0 => \DATA_OUT[54]_i_4_n_0\,
       I1 => \DATA_OUT[38]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[46]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[30]_i_4_n_0\,
       O => \DATA_OUT[30]_i_3_n_0\
     );
@@ -1693,9 +1695,9 @@ begin
         port map (
       I0 => rx_data_common(126),
       I1 => rx_data_common(62),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(94),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(30),
       O => \DATA_OUT[30]_i_4_n_0\
     );
@@ -1705,11 +1707,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[34]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[32]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[31]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[31]_i_1_n_0\
     );
 \DATA_OUT[31]_i_2\: unisim.vcomponents.LUT6
@@ -1718,11 +1720,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[37]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[33]_i_3_n_0\,
       I3 => \DATA_OUT[35]_i_3_n_0\,
       I4 => \DATA_OUT[31]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[31]_i_2_n_0\
     );
 \DATA_OUT[31]_i_3\: unisim.vcomponents.LUT6
@@ -1732,9 +1734,9 @@ begin
         port map (
       I0 => \DATA_OUT[55]_i_5_n_0\,
       I1 => \DATA_OUT[39]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[47]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[31]_i_4_n_0\,
       O => \DATA_OUT[31]_i_3_n_0\
     );
@@ -1745,9 +1747,9 @@ begin
         port map (
       I0 => rx_data_common(127),
       I1 => rx_data_common(63),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(95),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(31),
       O => \DATA_OUT[31]_i_4_n_0\
     );
@@ -1757,10 +1759,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[34]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[32]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[33]_i_2_n_0\,
       O => \DATA_OUT[32]_i_1_n_0\
     );
@@ -1770,7 +1772,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[36]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[32]_i_3_n_0\,
       O => \DATA_OUT[32]_i_2_n_0\
     );
@@ -1781,9 +1783,9 @@ begin
         port map (
       I0 => \DATA_OUT[56]_i_4_n_0\,
       I1 => \DATA_OUT[40]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[48]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[32]_i_4_n_0\,
       O => \DATA_OUT[32]_i_3_n_0\
     );
@@ -1794,9 +1796,9 @@ begin
         port map (
       I0 => rx_data_common(128),
       I1 => rx_data_common(64),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(96),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(32),
       O => \DATA_OUT[32]_i_4_n_0\
     );
@@ -1806,11 +1808,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[36]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[34]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[33]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[33]_i_1_n_0\
     );
 \DATA_OUT[33]_i_2\: unisim.vcomponents.LUT6
@@ -1819,11 +1821,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[37]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[33]_i_3_n_0\,
       I3 => \DATA_OUT[39]_i_3_n_0\,
       I4 => \DATA_OUT[35]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[33]_i_2_n_0\
     );
 \DATA_OUT[33]_i_3\: unisim.vcomponents.LUT6
@@ -1833,9 +1835,9 @@ begin
         port map (
       I0 => \DATA_OUT[57]_i_4_n_0\,
       I1 => \DATA_OUT[41]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[49]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[33]_i_4_n_0\,
       O => \DATA_OUT[33]_i_3_n_0\
     );
@@ -1846,9 +1848,9 @@ begin
         port map (
       I0 => rx_data_common(129),
       I1 => rx_data_common(65),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(97),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(33),
       O => \DATA_OUT[33]_i_4_n_0\
     );
@@ -1858,10 +1860,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[36]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[34]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[35]_i_2_n_0\,
       O => \DATA_OUT[34]_i_1_n_0\
     );
@@ -1871,7 +1873,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[38]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[34]_i_3_n_0\,
       O => \DATA_OUT[34]_i_2_n_0\
     );
@@ -1882,9 +1884,9 @@ begin
         port map (
       I0 => \DATA_OUT[58]_i_4_n_0\,
       I1 => \DATA_OUT[42]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[50]_i_7_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[34]_i_4_n_0\,
       O => \DATA_OUT[34]_i_3_n_0\
     );
@@ -1895,9 +1897,9 @@ begin
         port map (
       I0 => rx_data_common(130),
       I1 => rx_data_common(66),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(98),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(34),
       O => \DATA_OUT[34]_i_4_n_0\
     );
@@ -1907,11 +1909,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[38]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[36]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[35]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[35]_i_1_n_0\
     );
 \DATA_OUT[35]_i_2\: unisim.vcomponents.LUT6
@@ -1920,11 +1922,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[41]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[37]_i_3_n_0\,
       I3 => \DATA_OUT[39]_i_3_n_0\,
       I4 => \DATA_OUT[35]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[35]_i_2_n_0\
     );
 \DATA_OUT[35]_i_3\: unisim.vcomponents.LUT6
@@ -1934,9 +1936,9 @@ begin
         port map (
       I0 => \DATA_OUT[59]_i_4_n_0\,
       I1 => \DATA_OUT[43]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[51]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[35]_i_4_n_0\,
       O => \DATA_OUT[35]_i_3_n_0\
     );
@@ -1947,9 +1949,9 @@ begin
         port map (
       I0 => rx_data_common(131),
       I1 => rx_data_common(67),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(99),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(35),
       O => \DATA_OUT[35]_i_4_n_0\
     );
@@ -1959,10 +1961,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[38]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[36]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[37]_i_2_n_0\,
       O => \DATA_OUT[36]_i_1_n_0\
     );
@@ -1972,7 +1974,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[40]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[36]_i_3_n_0\,
       O => \DATA_OUT[36]_i_2_n_0\
     );
@@ -1983,9 +1985,9 @@ begin
         port map (
       I0 => \DATA_OUT[60]_i_4_n_0\,
       I1 => \DATA_OUT[44]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[50]_i_6_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[36]_i_4_n_0\,
       O => \DATA_OUT[36]_i_3_n_0\
     );
@@ -1996,9 +1998,9 @@ begin
         port map (
       I0 => rx_data_common(132),
       I1 => rx_data_common(68),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(100),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(36),
       O => \DATA_OUT[36]_i_4_n_0\
     );
@@ -2008,11 +2010,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[40]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[38]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[37]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[37]_i_1_n_0\
     );
 \DATA_OUT[37]_i_2\: unisim.vcomponents.LUT6
@@ -2021,11 +2023,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[41]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[37]_i_3_n_0\,
       I3 => \DATA_OUT[43]_i_3_n_0\,
       I4 => \DATA_OUT[39]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[37]_i_2_n_0\
     );
 \DATA_OUT[37]_i_3\: unisim.vcomponents.LUT6
@@ -2035,9 +2037,9 @@ begin
         port map (
       I0 => \DATA_OUT[61]_i_4_n_0\,
       I1 => \DATA_OUT[45]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[53]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[37]_i_4_n_0\,
       O => \DATA_OUT[37]_i_3_n_0\
     );
@@ -2048,9 +2050,9 @@ begin
         port map (
       I0 => rx_data_common(133),
       I1 => rx_data_common(69),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(101),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(37),
       O => \DATA_OUT[37]_i_4_n_0\
     );
@@ -2060,10 +2062,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[40]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[38]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[39]_i_2_n_0\,
       O => \DATA_OUT[38]_i_1_n_0\
     );
@@ -2073,7 +2075,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[42]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[38]_i_3_n_0\,
       O => \DATA_OUT[38]_i_2_n_0\
     );
@@ -2084,9 +2086,9 @@ begin
         port map (
       I0 => \DATA_OUT[62]_i_5_n_0\,
       I1 => \DATA_OUT[46]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[54]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[38]_i_4_n_0\,
       O => \DATA_OUT[38]_i_3_n_0\
     );
@@ -2097,9 +2099,9 @@ begin
         port map (
       I0 => rx_data_common(134),
       I1 => rx_data_common(70),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(102),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(38),
       O => \DATA_OUT[38]_i_4_n_0\
     );
@@ -2109,11 +2111,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[42]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[40]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[39]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[39]_i_1_n_0\
     );
 \DATA_OUT[39]_i_2\: unisim.vcomponents.LUT6
@@ -2122,11 +2124,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[45]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[41]_i_3_n_0\,
       I3 => \DATA_OUT[43]_i_3_n_0\,
       I4 => \DATA_OUT[39]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[39]_i_2_n_0\
     );
 \DATA_OUT[39]_i_3\: unisim.vcomponents.LUT6
@@ -2136,9 +2138,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_32_n_0\,
       I1 => \DATA_OUT[47]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[55]_i_5_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[39]_i_4_n_0\,
       O => \DATA_OUT[39]_i_3_n_0\
     );
@@ -2149,9 +2151,9 @@ begin
         port map (
       I0 => rx_data_common(135),
       I1 => rx_data_common(71),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(103),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(39),
       O => \DATA_OUT[39]_i_4_n_0\
     );
@@ -2162,7 +2164,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[3]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[4]_i_2_n_0\,
       O => \DATA_OUT[3]_i_1_n_0\
     );
@@ -2173,9 +2175,9 @@ begin
         port map (
       I0 => \DATA_OUT[9]_i_3_n_0\,
       I1 => \DATA_OUT[5]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[7]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[3]_i_3_n_0\,
       O => \DATA_OUT[3]_i_2_n_0\
     );
@@ -2185,9 +2187,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[27]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[11]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[19]_i_4_n_0\,
       I5 => \DATA_OUT[3]_i_4_n_0\,
       O => \DATA_OUT[3]_i_3_n_0\
@@ -2199,9 +2201,9 @@ begin
         port map (
       I0 => rx_data_common(99),
       I1 => rx_data_common(35),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(67),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(3),
       O => \DATA_OUT[3]_i_4_n_0\
     );
@@ -2211,10 +2213,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[42]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[40]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[41]_i_2_n_0\,
       O => \DATA_OUT[40]_i_1_n_0\
     );
@@ -2224,7 +2226,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[44]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[40]_i_3_n_0\,
       O => \DATA_OUT[40]_i_2_n_0\
     );
@@ -2235,9 +2237,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_48_n_0\,
       I1 => \DATA_OUT[48]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[56]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[40]_i_4_n_0\,
       O => \DATA_OUT[40]_i_3_n_0\
     );
@@ -2248,9 +2250,9 @@ begin
         port map (
       I0 => rx_data_common(136),
       I1 => rx_data_common(72),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(104),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(40),
       O => \DATA_OUT[40]_i_4_n_0\
     );
@@ -2260,11 +2262,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[44]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[42]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[41]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[41]_i_1_n_0\
     );
 \DATA_OUT[41]_i_2\: unisim.vcomponents.LUT6
@@ -2273,11 +2275,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[45]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[41]_i_3_n_0\,
       I3 => \DATA_OUT[47]_i_3_n_0\,
       I4 => \DATA_OUT[43]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[41]_i_2_n_0\
     );
 \DATA_OUT[41]_i_3\: unisim.vcomponents.LUT6
@@ -2287,9 +2289,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_26_n_0\,
       I1 => \DATA_OUT[49]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[57]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[41]_i_4_n_0\,
       O => \DATA_OUT[41]_i_3_n_0\
     );
@@ -2300,9 +2302,9 @@ begin
         port map (
       I0 => rx_data_common(137),
       I1 => rx_data_common(73),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(105),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(41),
       O => \DATA_OUT[41]_i_4_n_0\
     );
@@ -2312,10 +2314,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[44]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[42]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[43]_i_2_n_0\,
       O => \DATA_OUT[42]_i_1_n_0\
     );
@@ -2325,7 +2327,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[46]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[42]_i_3_n_0\,
       O => \DATA_OUT[42]_i_2_n_0\
     );
@@ -2336,9 +2338,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_40_n_0\,
       I1 => \DATA_OUT[50]_i_7_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[58]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[42]_i_4_n_0\,
       O => \DATA_OUT[42]_i_3_n_0\
     );
@@ -2349,9 +2351,9 @@ begin
         port map (
       I0 => rx_data_common(138),
       I1 => rx_data_common(74),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(106),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(42),
       O => \DATA_OUT[42]_i_4_n_0\
     );
@@ -2361,11 +2363,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[46]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[44]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[43]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[43]_i_1_n_0\
     );
 \DATA_OUT[43]_i_2\: unisim.vcomponents.LUT6
@@ -2374,11 +2376,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[49]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[45]_i_3_n_0\,
       I3 => \DATA_OUT[47]_i_3_n_0\,
       I4 => \DATA_OUT[43]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[43]_i_2_n_0\
     );
 \DATA_OUT[43]_i_3\: unisim.vcomponents.LUT6
@@ -2388,9 +2390,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_30_n_0\,
       I1 => \DATA_OUT[51]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[59]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[43]_i_4_n_0\,
       O => \DATA_OUT[43]_i_3_n_0\
     );
@@ -2401,9 +2403,9 @@ begin
         port map (
       I0 => rx_data_common(139),
       I1 => rx_data_common(75),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(107),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(43),
       O => \DATA_OUT[43]_i_4_n_0\
     );
@@ -2413,10 +2415,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[46]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[44]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[45]_i_2_n_0\,
       O => \DATA_OUT[44]_i_1_n_0\
     );
@@ -2426,7 +2428,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[48]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[44]_i_3_n_0\,
       O => \DATA_OUT[44]_i_2_n_0\
     );
@@ -2437,9 +2439,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_44_n_0\,
       I1 => \DATA_OUT[50]_i_6_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[60]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[44]_i_4_n_0\,
       O => \DATA_OUT[44]_i_3_n_0\
     );
@@ -2450,9 +2452,9 @@ begin
         port map (
       I0 => rx_data_common(140),
       I1 => rx_data_common(76),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(108),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(44),
       O => \DATA_OUT[44]_i_4_n_0\
     );
@@ -2462,11 +2464,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[48]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[46]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[45]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[45]_i_1_n_0\
     );
 \DATA_OUT[45]_i_2\: unisim.vcomponents.LUT6
@@ -2475,11 +2477,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[49]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[45]_i_3_n_0\,
       I3 => \DATA_OUT[51]_i_3_n_0\,
       I4 => \DATA_OUT[47]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[45]_i_2_n_0\
     );
 \DATA_OUT[45]_i_3\: unisim.vcomponents.LUT6
@@ -2489,9 +2491,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_22_n_0\,
       I1 => \DATA_OUT[53]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[61]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[45]_i_4_n_0\,
       O => \DATA_OUT[45]_i_3_n_0\
     );
@@ -2502,9 +2504,9 @@ begin
         port map (
       I0 => rx_data_common(141),
       I1 => rx_data_common(77),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(109),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(45),
       O => \DATA_OUT[45]_i_4_n_0\
     );
@@ -2514,10 +2516,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[48]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[46]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[47]_i_2_n_0\,
       O => \DATA_OUT[46]_i_1_n_0\
     );
@@ -2527,7 +2529,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_5_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[46]_i_3_n_0\,
       O => \DATA_OUT[46]_i_2_n_0\
     );
@@ -2538,9 +2540,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_36_n_0\,
       I1 => \DATA_OUT[54]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[62]_i_5_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[46]_i_4_n_0\,
       O => \DATA_OUT[46]_i_3_n_0\
     );
@@ -2551,9 +2553,9 @@ begin
         port map (
       I0 => rx_data_common(142),
       I1 => rx_data_common(78),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(110),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(46),
       O => \DATA_OUT[46]_i_4_n_0\
     );
@@ -2563,11 +2565,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_3_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[48]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[47]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[47]_i_1_n_0\
     );
 \DATA_OUT[47]_i_2\: unisim.vcomponents.LUT6
@@ -2576,11 +2578,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[53]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[49]_i_3_n_0\,
       I3 => \DATA_OUT[51]_i_3_n_0\,
       I4 => \DATA_OUT[47]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[47]_i_2_n_0\
     );
 \DATA_OUT[47]_i_3\: unisim.vcomponents.LUT6
@@ -2590,9 +2592,9 @@ begin
         port map (
       I0 => \DATA_OUT[55]_i_4_n_0\,
       I1 => \DATA_OUT[55]_i_5_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_32_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[47]_i_4_n_0\,
       O => \DATA_OUT[47]_i_3_n_0\
     );
@@ -2603,9 +2605,9 @@ begin
         port map (
       I0 => rx_data_common(143),
       I1 => rx_data_common(79),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(111),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(47),
       O => \DATA_OUT[47]_i_4_n_0\
     );
@@ -2615,10 +2617,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_3_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[48]_i_2_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[49]_i_2_n_0\,
       O => \DATA_OUT[48]_i_1_n_0\
     );
@@ -2628,7 +2630,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_4_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[48]_i_3_n_0\,
       O => \DATA_OUT[48]_i_2_n_0\
     );
@@ -2639,9 +2641,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_46_n_0\,
       I1 => \DATA_OUT[56]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_48_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[48]_i_4_n_0\,
       O => \DATA_OUT[48]_i_3_n_0\
     );
@@ -2652,9 +2654,9 @@ begin
         port map (
       I0 => rx_data_common(144),
       I1 => rx_data_common(80),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(112),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(48),
       O => \DATA_OUT[48]_i_4_n_0\
     );
@@ -2664,11 +2666,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[50]_i_3_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
       I4 => \DATA_OUT[49]_i_2_n_0\,
-      I5 => candidate(0),
+      I5 => \^q\(0),
       O => \DATA_OUT[49]_i_1_n_0\
     );
 \DATA_OUT[49]_i_2\: unisim.vcomponents.LUT6
@@ -2677,11 +2679,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[53]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[49]_i_3_n_0\,
       I3 => \DATA_OUT[55]_i_3_n_0\,
       I4 => \DATA_OUT[51]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[49]_i_2_n_0\
     );
 \DATA_OUT[49]_i_3\: unisim.vcomponents.LUT6
@@ -2691,9 +2693,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_24_n_0\,
       I1 => \DATA_OUT[57]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_26_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[49]_i_4_n_0\,
       O => \DATA_OUT[49]_i_3_n_0\
     );
@@ -2704,9 +2706,9 @@ begin
         port map (
       I0 => rx_data_common(145),
       I1 => rx_data_common(81),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(113),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(49),
       O => \DATA_OUT[49]_i_4_n_0\
     );
@@ -2717,7 +2719,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[4]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[5]_i_2_n_0\,
       O => \DATA_OUT[4]_i_1_n_0\
     );
@@ -2728,9 +2730,9 @@ begin
         port map (
       I0 => \DATA_OUT[10]_i_3_n_0\,
       I1 => \DATA_OUT[6]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[8]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[4]_i_3_n_0\,
       O => \DATA_OUT[4]_i_2_n_0\
     );
@@ -2740,9 +2742,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[28]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[12]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[20]_i_4_n_0\,
       I5 => \DATA_OUT[4]_i_4_n_0\,
       O => \DATA_OUT[4]_i_3_n_0\
@@ -2754,9 +2756,9 @@ begin
         port map (
       I0 => rx_data_common(100),
       I1 => rx_data_common(36),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(68),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(4),
       O => \DATA_OUT[4]_i_4_n_0\
     );
@@ -2766,10 +2768,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[50]_i_2_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[50]_i_3_n_0\,
       I3 => \DATA_OUT[63]_i_2_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \DATA_OUT[51]_i_2_n_0\,
       O => \DATA_OUT[50]_i_1_n_0\
     );
@@ -2779,7 +2781,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[56]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[50]_i_4_n_0\,
       O => \DATA_OUT[50]_i_2_n_0\
     );
@@ -2789,7 +2791,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[54]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[50]_i_5_n_0\,
       O => \DATA_OUT[50]_i_3_n_0\
     );
@@ -2800,9 +2802,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_42_n_0\,
       I1 => \DATA_OUT[60]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_44_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[50]_i_6_n_0\,
       O => \DATA_OUT[50]_i_4_n_0\
     );
@@ -2813,9 +2815,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_38_n_0\,
       I1 => \DATA_OUT[58]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_40_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[50]_i_7_n_0\,
       O => \DATA_OUT[50]_i_5_n_0\
     );
@@ -2826,9 +2828,9 @@ begin
         port map (
       I0 => rx_data_common(148),
       I1 => rx_data_common(84),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(116),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(52),
       O => \DATA_OUT[50]_i_6_n_0\
     );
@@ -2839,9 +2841,9 @@ begin
         port map (
       I0 => rx_data_common(146),
       I1 => rx_data_common(82),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(114),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(50),
       O => \DATA_OUT[50]_i_7_n_0\
     );
@@ -2852,7 +2854,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[51]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[52]_i_2_n_0\,
       O => \DATA_OUT[51]_i_1_n_0\
     );
@@ -2862,11 +2864,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[57]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[53]_i_3_n_0\,
       I3 => \DATA_OUT[55]_i_3_n_0\,
       I4 => \DATA_OUT[51]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[51]_i_2_n_0\
     );
 \DATA_OUT[51]_i_3\: unisim.vcomponents.LUT6
@@ -2876,9 +2878,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_28_n_0\,
       I1 => \DATA_OUT[59]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_30_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[51]_i_4_n_0\,
       O => \DATA_OUT[51]_i_3_n_0\
     );
@@ -2889,9 +2891,9 @@ begin
         port map (
       I0 => rx_data_common(147),
       I1 => rx_data_common(83),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(115),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(51),
       O => \DATA_OUT[51]_i_4_n_0\
     );
@@ -2902,7 +2904,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[52]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[53]_i_2_n_0\,
       O => \DATA_OUT[52]_i_1_n_0\
     );
@@ -2912,9 +2914,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[58]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[54]_i_3_n_0\,
-      I3 => candidate(1),
+      I3 => \^q\(1),
       I4 => \DATA_OUT[50]_i_2_n_0\,
       O => \DATA_OUT[52]_i_2_n_0\
     );
@@ -2925,7 +2927,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[53]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[54]_i_2_n_0\,
       O => \DATA_OUT[53]_i_1_n_0\
     );
@@ -2935,11 +2937,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[57]_i_3_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[53]_i_3_n_0\,
       I3 => \DATA_OUT[59]_i_3_n_0\,
       I4 => \DATA_OUT[55]_i_3_n_0\,
-      I5 => candidate(1),
+      I5 => \^q\(1),
       O => \DATA_OUT[53]_i_2_n_0\
     );
 \DATA_OUT[53]_i_3\: unisim.vcomponents.LUT6
@@ -2949,9 +2951,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_20_n_0\,
       I1 => \DATA_OUT[61]_i_4_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_22_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[53]_i_4_n_0\,
       O => \DATA_OUT[53]_i_3_n_0\
     );
@@ -2962,9 +2964,9 @@ begin
         port map (
       I0 => rx_data_common(149),
       I1 => rx_data_common(85),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(117),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(53),
       O => \DATA_OUT[53]_i_4_n_0\
     );
@@ -2975,7 +2977,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[54]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[55]_i_2_n_0\,
       O => \DATA_OUT[54]_i_1_n_0\
     );
@@ -2986,9 +2988,9 @@ begin
         port map (
       I0 => \DATA_OUT[60]_i_3_n_0\,
       I1 => \DATA_OUT[56]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[58]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[54]_i_3_n_0\,
       O => \DATA_OUT[54]_i_2_n_0\
     );
@@ -2999,9 +3001,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_34_n_0\,
       I1 => \DATA_OUT[62]_i_5_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_36_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[54]_i_4_n_0\,
       O => \DATA_OUT[54]_i_3_n_0\
     );
@@ -3012,9 +3014,9 @@ begin
         port map (
       I0 => rx_data_common(150),
       I1 => rx_data_common(86),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(118),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(54),
       O => \DATA_OUT[54]_i_4_n_0\
     );
@@ -3025,7 +3027,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[55]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[56]_i_2_n_0\,
       O => \DATA_OUT[55]_i_1_n_0\
     );
@@ -3036,9 +3038,9 @@ begin
         port map (
       I0 => \DATA_OUT[61]_i_3_n_0\,
       I1 => \DATA_OUT[57]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[59]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[55]_i_3_n_0\,
       O => \DATA_OUT[55]_i_2_n_0\
     );
@@ -3049,9 +3051,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_31_n_0\,
       I1 => \DATA_OUT[63]_i_32_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[55]_i_4_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[55]_i_5_n_0\,
       O => \DATA_OUT[55]_i_3_n_0\
     );
@@ -3061,9 +3063,9 @@ begin
     )
         port map (
       I0 => rx_data_common(103),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(135),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(71),
       O => \DATA_OUT[55]_i_4_n_0\
     );
@@ -3074,9 +3076,9 @@ begin
         port map (
       I0 => rx_data_common(151),
       I1 => rx_data_common(87),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(119),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(55),
       O => \DATA_OUT[55]_i_5_n_0\
     );
@@ -3087,7 +3089,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[56]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[57]_i_2_n_0\,
       O => \DATA_OUT[56]_i_1_n_0\
     );
@@ -3098,9 +3100,9 @@ begin
         port map (
       I0 => \DATA_OUT[62]_i_4_n_0\,
       I1 => \DATA_OUT[58]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[60]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[56]_i_3_n_0\,
       O => \DATA_OUT[56]_i_2_n_0\
     );
@@ -3111,9 +3113,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_47_n_0\,
       I1 => \DATA_OUT[63]_i_48_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_46_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[56]_i_4_n_0\,
       O => \DATA_OUT[56]_i_3_n_0\
     );
@@ -3124,9 +3126,9 @@ begin
         port map (
       I0 => rx_data_common(152),
       I1 => rx_data_common(88),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(120),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(56),
       O => \DATA_OUT[56]_i_4_n_0\
     );
@@ -3137,7 +3139,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[57]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[58]_i_2_n_0\,
       O => \DATA_OUT[57]_i_1_n_0\
     );
@@ -3148,9 +3150,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_10_n_0\,
       I1 => \DATA_OUT[59]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[61]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[57]_i_3_n_0\,
       O => \DATA_OUT[57]_i_2_n_0\
     );
@@ -3161,9 +3163,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_25_n_0\,
       I1 => \DATA_OUT[63]_i_26_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_24_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[57]_i_4_n_0\,
       O => \DATA_OUT[57]_i_3_n_0\
     );
@@ -3174,9 +3176,9 @@ begin
         port map (
       I0 => rx_data_common(153),
       I1 => rx_data_common(89),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(121),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(57),
       O => \DATA_OUT[57]_i_4_n_0\
     );
@@ -3187,7 +3189,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[58]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[59]_i_2_n_0\,
       O => \DATA_OUT[58]_i_1_n_0\
     );
@@ -3198,9 +3200,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_14_n_0\,
       I1 => \DATA_OUT[60]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[62]_i_4_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[58]_i_3_n_0\,
       O => \DATA_OUT[58]_i_2_n_0\
     );
@@ -3210,10 +3212,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_38_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[58]_i_4_n_0\,
       I3 => \DATA_OUT[58]_i_5_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[58]_i_3_n_0\
     );
 \DATA_OUT[58]_i_4\: unisim.vcomponents.LUT6
@@ -3223,9 +3225,9 @@ begin
         port map (
       I0 => rx_data_common(154),
       I1 => rx_data_common(90),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(122),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(58),
       O => \DATA_OUT[58]_i_4_n_0\
     );
@@ -3235,10 +3237,10 @@ begin
     )
         port map (
       I0 => rx_data_common(114),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[58]_i_6_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_40_n_0\,
       O => \DATA_OUT[58]_i_5_n_0\
     );
@@ -3248,7 +3250,7 @@ begin
     )
         port map (
       I0 => rx_data_common(146),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(82),
       O => \DATA_OUT[58]_i_6_n_0\
     );
@@ -3259,7 +3261,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[59]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[60]_i_2_n_0\,
       O => \DATA_OUT[59]_i_1_n_0\
     );
@@ -3270,9 +3272,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_8_n_0\,
       I1 => \DATA_OUT[61]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_10_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[59]_i_3_n_0\,
       O => \DATA_OUT[59]_i_2_n_0\
     );
@@ -3282,10 +3284,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_28_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[59]_i_4_n_0\,
       I3 => \DATA_OUT[59]_i_5_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[59]_i_3_n_0\
     );
 \DATA_OUT[59]_i_4\: unisim.vcomponents.LUT6
@@ -3295,9 +3297,9 @@ begin
         port map (
       I0 => rx_data_common(155),
       I1 => rx_data_common(91),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(123),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(59),
       O => \DATA_OUT[59]_i_4_n_0\
     );
@@ -3307,10 +3309,10 @@ begin
     )
         port map (
       I0 => rx_data_common(115),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[59]_i_6_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_30_n_0\,
       O => \DATA_OUT[59]_i_5_n_0\
     );
@@ -3320,7 +3322,7 @@ begin
     )
         port map (
       I0 => rx_data_common(147),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(83),
       O => \DATA_OUT[59]_i_6_n_0\
     );
@@ -3331,7 +3333,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[5]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[6]_i_2_n_0\,
       O => \DATA_OUT[5]_i_1_n_0\
     );
@@ -3342,9 +3344,9 @@ begin
         port map (
       I0 => \DATA_OUT[11]_i_3_n_0\,
       I1 => \DATA_OUT[7]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[9]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[5]_i_3_n_0\,
       O => \DATA_OUT[5]_i_2_n_0\
     );
@@ -3354,9 +3356,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[29]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[13]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[21]_i_4_n_0\,
       I5 => \DATA_OUT[5]_i_4_n_0\,
       O => \DATA_OUT[5]_i_3_n_0\
@@ -3368,9 +3370,9 @@ begin
         port map (
       I0 => rx_data_common(101),
       I1 => rx_data_common(37),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(69),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(5),
       O => \DATA_OUT[5]_i_4_n_0\
     );
@@ -3381,7 +3383,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[60]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[61]_i_2_n_0\,
       O => \DATA_OUT[60]_i_1_n_0\
     );
@@ -3392,9 +3394,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_12_n_0\,
       I1 => \DATA_OUT[62]_i_4_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_14_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[60]_i_3_n_0\,
       O => \DATA_OUT[60]_i_2_n_0\
     );
@@ -3404,10 +3406,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_42_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[60]_i_4_n_0\,
       I3 => \DATA_OUT[60]_i_5_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[60]_i_3_n_0\
     );
 \DATA_OUT[60]_i_4\: unisim.vcomponents.LUT6
@@ -3417,9 +3419,9 @@ begin
         port map (
       I0 => rx_data_common(156),
       I1 => rx_data_common(92),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(124),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(60),
       O => \DATA_OUT[60]_i_4_n_0\
     );
@@ -3429,10 +3431,10 @@ begin
     )
         port map (
       I0 => rx_data_common(116),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[60]_i_6_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_44_n_0\,
       O => \DATA_OUT[60]_i_5_n_0\
     );
@@ -3442,7 +3444,7 @@ begin
     )
         port map (
       I0 => rx_data_common(148),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(84),
       O => \DATA_OUT[60]_i_6_n_0\
     );
@@ -3453,7 +3455,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[61]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[62]_i_2_n_0\,
       O => \DATA_OUT[61]_i_1_n_0\
     );
@@ -3464,9 +3466,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_9_n_0\,
       I1 => \DATA_OUT[63]_i_10_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_8_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[61]_i_3_n_0\,
       O => \DATA_OUT[61]_i_2_n_0\
     );
@@ -3476,10 +3478,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_20_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[61]_i_4_n_0\,
       I3 => \DATA_OUT[61]_i_5_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[61]_i_3_n_0\
     );
 \DATA_OUT[61]_i_4\: unisim.vcomponents.LUT6
@@ -3489,9 +3491,9 @@ begin
         port map (
       I0 => rx_data_common(157),
       I1 => rx_data_common(93),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(125),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(61),
       O => \DATA_OUT[61]_i_4_n_0\
     );
@@ -3501,10 +3503,10 @@ begin
     )
         port map (
       I0 => rx_data_common(117),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[61]_i_6_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_22_n_0\,
       O => \DATA_OUT[61]_i_5_n_0\
     );
@@ -3514,7 +3516,7 @@ begin
     )
         port map (
       I0 => rx_data_common(149),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(85),
       O => \DATA_OUT[61]_i_6_n_0\
     );
@@ -3525,7 +3527,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[62]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[63]_i_3_n_0\,
       O => \DATA_OUT[62]_i_1_n_0\
     );
@@ -3535,9 +3537,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[62]_i_3_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[63]_i_12_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[62]_i_4_n_0\,
       O => \DATA_OUT[62]_i_2_n_0\
     );
@@ -3547,7 +3549,7 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_13_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[63]_i_14_n_0\,
       O => \DATA_OUT[62]_i_3_n_0\
     );
@@ -3557,10 +3559,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_34_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[62]_i_5_n_0\,
       I3 => \DATA_OUT[62]_i_6_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[62]_i_4_n_0\
     );
 \DATA_OUT[62]_i_5\: unisim.vcomponents.LUT6
@@ -3570,9 +3572,9 @@ begin
         port map (
       I0 => rx_data_common(158),
       I1 => rx_data_common(94),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(126),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(62),
       O => \DATA_OUT[62]_i_5_n_0\
     );
@@ -3582,10 +3584,10 @@ begin
     )
         port map (
       I0 => rx_data_common(118),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[62]_i_7_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_36_n_0\,
       O => \DATA_OUT[62]_i_6_n_0\
     );
@@ -3595,7 +3597,7 @@ begin
     )
         port map (
       I0 => rx_data_common(150),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(86),
       O => \DATA_OUT[62]_i_7_n_0\
     );
@@ -3606,7 +3608,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[63]_i_3_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[63]_i_4_n_0\,
       O => \DATA_OUT[63]_i_1_n_0\
     );
@@ -3616,10 +3618,10 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_31_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[63]_i_32_n_0\,
       I3 => \DATA_OUT[63]_i_18_n_0\,
-      I4 => candidate(3),
+      I4 => \^q\(3),
       O => \DATA_OUT[63]_i_10_n_0\
     );
 \DATA_OUT[63]_i_11\: unisim.vcomponents.LUT6
@@ -3629,9 +3631,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_33_n_0\,
       I1 => \DATA_OUT[63]_i_34_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_35_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_36_n_0\,
       O => \DATA_OUT[63]_i_11_n_0\
     );
@@ -3642,9 +3644,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_37_n_0\,
       I1 => \DATA_OUT[63]_i_38_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_39_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_40_n_0\,
       O => \DATA_OUT[63]_i_12_n_0\
     );
@@ -3655,9 +3657,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_41_n_0\,
       I1 => \DATA_OUT[63]_i_42_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_43_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_44_n_0\,
       O => \DATA_OUT[63]_i_13_n_0\
     );
@@ -3668,9 +3670,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_45_n_0\,
       I1 => \DATA_OUT[63]_i_46_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_47_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_48_n_0\,
       O => \DATA_OUT[63]_i_14_n_0\
     );
@@ -3680,10 +3682,10 @@ begin
     )
         port map (
       I0 => rx_data_common(129),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(97),
-      I3 => candidate(6),
-      I4 => candidate(4),
+      I3 => \^q\(6),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_25_n_0\,
       O => \DATA_OUT[63]_i_15_n_0\
     );
@@ -3693,10 +3695,10 @@ begin
     )
         port map (
       I0 => rx_data_common(121),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[63]_i_49_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_24_n_0\,
       O => \DATA_OUT[63]_i_16_n_0\
     );
@@ -3706,10 +3708,10 @@ begin
     )
         port map (
       I0 => rx_data_common(127),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[63]_i_50_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_31_n_0\,
       O => \DATA_OUT[63]_i_17_n_0\
     );
@@ -3719,10 +3721,10 @@ begin
     )
         port map (
       I0 => rx_data_common(119),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \DATA_OUT[63]_i_51_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[55]_i_4_n_0\,
       O => \DATA_OUT[63]_i_18_n_0\
     );
@@ -3732,9 +3734,9 @@ begin
     )
         port map (
       I0 => rx_data_common(125),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(157),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(93),
       O => \DATA_OUT[63]_i_19_n_0\
     );
@@ -3744,9 +3746,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_5_n_0\,
-      I1 => candidate(1),
+      I1 => \^q\(1),
       I2 => \DATA_OUT[63]_i_6_n_0\,
-      I3 => candidate(0),
+      I3 => \^q\(0),
       I4 => \HEADER_OUT[1]_i_2_n_0\,
       O => \DATA_OUT[63]_i_2_n_0\
     );
@@ -3756,9 +3758,9 @@ begin
     )
         port map (
       I0 => rx_data_common(109),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(141),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(77),
       O => \DATA_OUT[63]_i_20_n_0\
     );
@@ -3768,9 +3770,9 @@ begin
     )
         port map (
       I0 => rx_data_common(117),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(149),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(85),
       O => \DATA_OUT[63]_i_21_n_0\
     );
@@ -3780,9 +3782,9 @@ begin
     )
         port map (
       I0 => rx_data_common(101),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(133),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(69),
       O => \DATA_OUT[63]_i_22_n_0\
     );
@@ -3792,9 +3794,9 @@ begin
     )
         port map (
       I0 => rx_data_common(121),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(153),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(89),
       O => \DATA_OUT[63]_i_23_n_0\
     );
@@ -3804,9 +3806,9 @@ begin
     )
         port map (
       I0 => rx_data_common(105),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(137),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(73),
       O => \DATA_OUT[63]_i_24_n_0\
     );
@@ -3816,9 +3818,9 @@ begin
     )
         port map (
       I0 => rx_data_common(113),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(145),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(81),
       O => \DATA_OUT[63]_i_25_n_0\
     );
@@ -3828,9 +3830,9 @@ begin
     )
         port map (
       I0 => rx_data_common(97),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(129),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(65),
       O => \DATA_OUT[63]_i_26_n_0\
     );
@@ -3840,9 +3842,9 @@ begin
     )
         port map (
       I0 => rx_data_common(123),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(155),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(91),
       O => \DATA_OUT[63]_i_27_n_0\
     );
@@ -3852,9 +3854,9 @@ begin
     )
         port map (
       I0 => rx_data_common(107),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(139),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(75),
       O => \DATA_OUT[63]_i_28_n_0\
     );
@@ -3864,9 +3866,9 @@ begin
     )
         port map (
       I0 => rx_data_common(115),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(147),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(83),
       O => \DATA_OUT[63]_i_29_n_0\
     );
@@ -3876,9 +3878,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_7_n_0\,
-      I1 => candidate(2),
+      I1 => \^q\(2),
       I2 => \DATA_OUT[63]_i_8_n_0\,
-      I3 => candidate(1),
+      I3 => \^q\(1),
       I4 => \DATA_OUT[63]_i_9_n_0\,
       I5 => \DATA_OUT[63]_i_10_n_0\,
       O => \DATA_OUT[63]_i_3_n_0\
@@ -3889,9 +3891,9 @@ begin
     )
         port map (
       I0 => rx_data_common(99),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(131),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(67),
       O => \DATA_OUT[63]_i_30_n_0\
     );
@@ -3901,9 +3903,9 @@ begin
     )
         port map (
       I0 => rx_data_common(111),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(143),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(79),
       O => \DATA_OUT[63]_i_31_n_0\
     );
@@ -3914,9 +3916,9 @@ begin
         port map (
       I0 => rx_data_common(159),
       I1 => rx_data_common(95),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(127),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(63),
       O => \DATA_OUT[63]_i_32_n_0\
     );
@@ -3926,9 +3928,9 @@ begin
     )
         port map (
       I0 => rx_data_common(126),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(158),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(94),
       O => \DATA_OUT[63]_i_33_n_0\
     );
@@ -3938,9 +3940,9 @@ begin
     )
         port map (
       I0 => rx_data_common(110),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(142),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(78),
       O => \DATA_OUT[63]_i_34_n_0\
     );
@@ -3950,9 +3952,9 @@ begin
     )
         port map (
       I0 => rx_data_common(118),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(150),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(86),
       O => \DATA_OUT[63]_i_35_n_0\
     );
@@ -3962,9 +3964,9 @@ begin
     )
         port map (
       I0 => rx_data_common(102),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(134),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(70),
       O => \DATA_OUT[63]_i_36_n_0\
     );
@@ -3974,9 +3976,9 @@ begin
     )
         port map (
       I0 => rx_data_common(122),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(154),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(90),
       O => \DATA_OUT[63]_i_37_n_0\
     );
@@ -3986,9 +3988,9 @@ begin
     )
         port map (
       I0 => rx_data_common(106),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(138),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(74),
       O => \DATA_OUT[63]_i_38_n_0\
     );
@@ -3998,9 +4000,9 @@ begin
     )
         port map (
       I0 => rx_data_common(114),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(146),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(82),
       O => \DATA_OUT[63]_i_39_n_0\
     );
@@ -4011,9 +4013,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_11_n_0\,
       I1 => \DATA_OUT[63]_i_12_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_13_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[63]_i_14_n_0\,
       O => \DATA_OUT[63]_i_4_n_0\
     );
@@ -4023,9 +4025,9 @@ begin
     )
         port map (
       I0 => rx_data_common(98),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(130),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(66),
       O => \DATA_OUT[63]_i_40_n_0\
     );
@@ -4035,9 +4037,9 @@ begin
     )
         port map (
       I0 => rx_data_common(124),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(156),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(92),
       O => \DATA_OUT[63]_i_41_n_0\
     );
@@ -4047,9 +4049,9 @@ begin
     )
         port map (
       I0 => rx_data_common(108),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(140),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(76),
       O => \DATA_OUT[63]_i_42_n_0\
     );
@@ -4059,9 +4061,9 @@ begin
     )
         port map (
       I0 => rx_data_common(116),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(148),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(84),
       O => \DATA_OUT[63]_i_43_n_0\
     );
@@ -4071,9 +4073,9 @@ begin
     )
         port map (
       I0 => rx_data_common(100),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(132),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(68),
       O => \DATA_OUT[63]_i_44_n_0\
     );
@@ -4083,9 +4085,9 @@ begin
     )
         port map (
       I0 => rx_data_common(120),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(152),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(88),
       O => \DATA_OUT[63]_i_45_n_0\
     );
@@ -4095,9 +4097,9 @@ begin
     )
         port map (
       I0 => rx_data_common(104),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(136),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(72),
       O => \DATA_OUT[63]_i_46_n_0\
     );
@@ -4107,9 +4109,9 @@ begin
     )
         port map (
       I0 => rx_data_common(112),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(144),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(80),
       O => \DATA_OUT[63]_i_47_n_0\
     );
@@ -4119,9 +4121,9 @@ begin
     )
         port map (
       I0 => rx_data_common(96),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(128),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(64),
       O => \DATA_OUT[63]_i_48_n_0\
     );
@@ -4131,7 +4133,7 @@ begin
     )
         port map (
       I0 => rx_data_common(153),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(89),
       O => \DATA_OUT[63]_i_49_n_0\
     );
@@ -4141,9 +4143,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_15_n_0\,
-      I1 => candidate(3),
+      I1 => \^q\(3),
       I2 => \DATA_OUT[63]_i_16_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[63]_i_7_n_0\,
       O => \DATA_OUT[63]_i_5_n_0\
     );
@@ -4153,7 +4155,7 @@ begin
     )
         port map (
       I0 => rx_data_common(159),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(95),
       O => \DATA_OUT[63]_i_50_n_0\
     );
@@ -4163,7 +4165,7 @@ begin
     )
         port map (
       I0 => rx_data_common(151),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(87),
       O => \DATA_OUT[63]_i_51_n_0\
     );
@@ -4173,9 +4175,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[63]_i_17_n_0\,
-      I1 => candidate(3),
+      I1 => \^q\(3),
       I2 => \DATA_OUT[63]_i_18_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[63]_i_9_n_0\,
       O => \DATA_OUT[63]_i_6_n_0\
     );
@@ -4186,9 +4188,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_19_n_0\,
       I1 => \DATA_OUT[63]_i_20_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_21_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_22_n_0\,
       O => \DATA_OUT[63]_i_7_n_0\
     );
@@ -4199,9 +4201,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_23_n_0\,
       I1 => \DATA_OUT[63]_i_24_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_25_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_26_n_0\,
       O => \DATA_OUT[63]_i_8_n_0\
     );
@@ -4212,9 +4214,9 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_27_n_0\,
       I1 => \DATA_OUT[63]_i_28_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_29_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_30_n_0\,
       O => \DATA_OUT[63]_i_9_n_0\
     );
@@ -4225,7 +4227,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[6]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[7]_i_2_n_0\,
       O => \DATA_OUT[6]_i_1_n_0\
     );
@@ -4236,9 +4238,9 @@ begin
         port map (
       I0 => \DATA_OUT[12]_i_3_n_0\,
       I1 => \DATA_OUT[8]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[10]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[6]_i_3_n_0\,
       O => \DATA_OUT[6]_i_2_n_0\
     );
@@ -4248,9 +4250,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[30]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[14]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[22]_i_4_n_0\,
       I5 => \DATA_OUT[6]_i_4_n_0\,
       O => \DATA_OUT[6]_i_3_n_0\
@@ -4262,9 +4264,9 @@ begin
         port map (
       I0 => rx_data_common(102),
       I1 => rx_data_common(38),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(70),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(6),
       O => \DATA_OUT[6]_i_4_n_0\
     );
@@ -4275,7 +4277,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[7]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[8]_i_2_n_0\,
       O => \DATA_OUT[7]_i_1_n_0\
     );
@@ -4286,9 +4288,9 @@ begin
         port map (
       I0 => \DATA_OUT[13]_i_3_n_0\,
       I1 => \DATA_OUT[9]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[11]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[7]_i_3_n_0\,
       O => \DATA_OUT[7]_i_2_n_0\
     );
@@ -4298,9 +4300,9 @@ begin
     )
         port map (
       I0 => \DATA_OUT[31]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[15]_i_4_n_0\,
-      I3 => candidate(3),
+      I3 => \^q\(3),
       I4 => \DATA_OUT[23]_i_4_n_0\,
       I5 => \DATA_OUT[7]_i_4_n_0\,
       O => \DATA_OUT[7]_i_3_n_0\
@@ -4312,9 +4314,9 @@ begin
         port map (
       I0 => rx_data_common(103),
       I1 => rx_data_common(39),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(71),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(7),
       O => \DATA_OUT[7]_i_4_n_0\
     );
@@ -4325,7 +4327,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[8]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[9]_i_2_n_0\,
       O => \DATA_OUT[8]_i_1_n_0\
     );
@@ -4336,9 +4338,9 @@ begin
         port map (
       I0 => \DATA_OUT[14]_i_3_n_0\,
       I1 => \DATA_OUT[10]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[12]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[8]_i_3_n_0\,
       O => \DATA_OUT[8]_i_2_n_0\
     );
@@ -4348,11 +4350,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[24]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[8]_i_4_n_0\,
       I3 => \DATA_OUT[32]_i_4_n_0\,
       I4 => \DATA_OUT[16]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[8]_i_3_n_0\
     );
 \DATA_OUT[8]_i_4\: unisim.vcomponents.LUT6
@@ -4362,9 +4364,9 @@ begin
         port map (
       I0 => rx_data_common(104),
       I1 => rx_data_common(40),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(72),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(8),
       O => \DATA_OUT[8]_i_4_n_0\
     );
@@ -4375,7 +4377,7 @@ begin
         port map (
       I0 => \DATA_OUT[63]_i_2_n_0\,
       I1 => \DATA_OUT[9]_i_2_n_0\,
-      I2 => candidate(0),
+      I2 => \^q\(0),
       I3 => \DATA_OUT[10]_i_2_n_0\,
       O => \DATA_OUT[9]_i_1_n_0\
     );
@@ -4386,9 +4388,9 @@ begin
         port map (
       I0 => \DATA_OUT[15]_i_3_n_0\,
       I1 => \DATA_OUT[11]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[13]_i_3_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[9]_i_3_n_0\,
       O => \DATA_OUT[9]_i_2_n_0\
     );
@@ -4398,11 +4400,11 @@ begin
     )
         port map (
       I0 => \DATA_OUT[25]_i_4_n_0\,
-      I1 => candidate(4),
+      I1 => \^q\(4),
       I2 => \DATA_OUT[9]_i_4_n_0\,
       I3 => \DATA_OUT[33]_i_4_n_0\,
       I4 => \DATA_OUT[17]_i_4_n_0\,
-      I5 => candidate(3),
+      I5 => \^q\(3),
       O => \DATA_OUT[9]_i_3_n_0\
     );
 \DATA_OUT[9]_i_4\: unisim.vcomponents.LUT6
@@ -4412,9 +4414,9 @@ begin
         port map (
       I0 => rx_data_common(105),
       I1 => rx_data_common(41),
-      I2 => candidate(5),
+      I2 => \^q\(5),
       I3 => rx_data_common(73),
-      I4 => candidate(6),
+      I4 => \^q\(6),
       I5 => rx_data_common(9),
       O => \DATA_OUT[9]_i_4_n_0\
     );
@@ -4936,7 +4938,7 @@ begin
     )
         port map (
       I0 => \HEADER_OUT[1]_i_3_n_0\,
-      I1 => candidate(0),
+      I1 => \^q\(0),
       I2 => \DATA_OUT[63]_i_4_n_0\,
       O => p_0_in
     );
@@ -4946,7 +4948,7 @@ begin
     )
         port map (
       I0 => \HEADER_OUT[1]_i_2_n_0\,
-      I1 => candidate(0),
+      I1 => \^q\(0),
       I2 => \HEADER_OUT[1]_i_3_n_0\,
       O => p_1_in
     );
@@ -4957,9 +4959,9 @@ begin
         port map (
       I0 => \HEADER_OUT[1]_i_4_n_0\,
       I1 => \DATA_OUT[63]_i_13_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_11_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[63]_i_12_n_0\,
       O => \HEADER_OUT[1]_i_2_n_0\
     );
@@ -4970,9 +4972,9 @@ begin
         port map (
       I0 => \HEADER_OUT[1]_i_5_n_0\,
       I1 => \DATA_OUT[63]_i_9_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \DATA_OUT[63]_i_7_n_0\,
-      I4 => candidate(2),
+      I4 => \^q\(2),
       I5 => \DATA_OUT[63]_i_8_n_0\,
       O => \HEADER_OUT[1]_i_3_n_0\
     );
@@ -4983,9 +4985,9 @@ begin
         port map (
       I0 => \HEADER_OUT[1]_i_6_n_0\,
       I1 => \DATA_OUT[63]_i_47_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \DATA_OUT[63]_i_45_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_46_n_0\,
       O => \HEADER_OUT[1]_i_4_n_0\
     );
@@ -4996,9 +4998,9 @@ begin
         port map (
       I0 => \HEADER_OUT[1]_i_7_n_0\,
       I1 => \DATA_OUT[63]_i_31_n_0\,
-      I2 => candidate(3),
+      I2 => \^q\(3),
       I3 => \HEADER_OUT[1]_i_8_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[55]_i_4_n_0\,
       O => \HEADER_OUT[1]_i_5_n_0\
     );
@@ -5008,9 +5010,9 @@ begin
     )
         port map (
       I0 => rx_data_common(128),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(96),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       O => \HEADER_OUT[1]_i_6_n_0\
     );
 \HEADER_OUT[1]_i_7\: unisim.vcomponents.LUT5
@@ -5019,9 +5021,9 @@ begin
     )
         port map (
       I0 => rx_data_common(127),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(159),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(95),
       O => \HEADER_OUT[1]_i_7_n_0\
     );
@@ -5031,9 +5033,9 @@ begin
     )
         port map (
       I0 => rx_data_common(119),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(151),
-      I3 => candidate(6),
+      I3 => \^q\(6),
       I4 => rx_data_common(87),
       O => \HEADER_OUT[1]_i_8_n_0\
     );
@@ -5058,62 +5060,62 @@ begin
       INIT => X"1"
     )
         port map (
-      I0 => candidate(0),
-      O => candidate_0(0)
+      I0 => \^q\(0),
+      O => candidate(0)
     );
 \candidate[1]_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"6"
     )
         port map (
-      I0 => candidate(0),
-      I1 => candidate(1),
-      O => candidate_0(1)
+      I0 => \^q\(0),
+      I1 => \^q\(1),
+      O => candidate(1)
     );
 \candidate[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"6A"
     )
         port map (
-      I0 => candidate(2),
-      I1 => candidate(1),
-      I2 => candidate(0),
-      O => candidate_0(2)
+      I0 => \^q\(2),
+      I1 => \^q\(1),
+      I2 => \^q\(0),
+      O => candidate(2)
     );
 \candidate[3]_i_1\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"6AAA"
     )
         port map (
-      I0 => candidate(3),
-      I1 => candidate(2),
-      I2 => candidate(0),
-      I3 => candidate(1),
-      O => candidate_0(3)
+      I0 => \^q\(3),
+      I1 => \^q\(2),
+      I2 => \^q\(0),
+      I3 => \^q\(1),
+      O => candidate(3)
     );
 \candidate[4]_i_1\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0BF0"
     )
         port map (
-      I0 => candidate(5),
-      I1 => candidate(6),
-      I2 => candidate(4),
+      I0 => \^q\(5),
+      I1 => \^q\(6),
+      I2 => \^q\(4),
       I3 => \candidate[6]_i_4_n_0\,
-      O => candidate_0(4)
+      O => candidate(4)
     );
 \candidate[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"6AAAAAAAAAAAAAAA"
     )
         port map (
-      I0 => candidate(5),
-      I1 => candidate(4),
-      I2 => candidate(2),
-      I3 => candidate(0),
-      I4 => candidate(1),
-      I5 => candidate(3),
-      O => candidate_0(5)
+      I0 => \^q\(5),
+      I1 => \^q\(4),
+      I2 => \^q\(2),
+      I3 => \^q\(0),
+      I4 => \^q\(1),
+      I5 => \^q\(3),
+      O => candidate(5)
     );
 \candidate[6]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -5139,77 +5141,77 @@ begin
       INIT => X"6F80"
     )
         port map (
-      I0 => candidate(5),
-      I1 => candidate(4),
+      I0 => \^q\(5),
+      I1 => \^q\(4),
       I2 => \candidate[6]_i_4_n_0\,
-      I3 => candidate(6),
-      O => candidate_0(6)
+      I3 => \^q\(6),
+      O => candidate(6)
     );
 \candidate[6]_i_4\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"8000"
     )
         port map (
-      I0 => candidate(2),
-      I1 => candidate(0),
-      I2 => candidate(1),
-      I3 => candidate(3),
+      I0 => \^q\(2),
+      I1 => \^q\(0),
+      I2 => \^q\(1),
+      I3 => \^q\(3),
       O => \candidate[6]_i_4_n_0\
     );
 \candidate_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(0),
-      Q => candidate(0),
+      D => candidate(0),
+      Q => \^q\(0),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(1),
-      Q => candidate(1),
+      D => candidate(1),
+      Q => \^q\(1),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(2),
-      Q => candidate(2),
+      D => candidate(2),
+      Q => \^q\(2),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(3),
-      Q => candidate(3),
+      D => candidate(3),
+      Q => \^q\(3),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(4),
-      Q => candidate(4),
+      D => candidate(4),
+      Q => \^q\(4),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(5),
-      Q => candidate(5),
+      D => candidate(5),
+      Q => \^q\(5),
       R => \candidate[6]_i_1_n_0\
     );
 \candidate_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => \candidate[6]_i_2_n_0\,
-      D => candidate_0(6),
-      Q => candidate(6),
+      D => candidate(6),
+      Q => \^q\(6),
       R => \candidate[6]_i_1_n_0\
     );
 \error_sync_ctr[0]_i_1\: unisim.vcomponents.LUT1
@@ -6746,7 +6748,7 @@ begin
     )
         port map (
       I0 => rx_data_common(152),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(88),
       O => \state[0]_i_10_n_0\
     );
@@ -6756,7 +6758,7 @@ begin
     )
         port map (
       I0 => rx_data_common(158),
-      I1 => candidate(6),
+      I1 => \^q\(6),
       I2 => rx_data_common(94),
       O => \state[0]_i_11_n_0\
     );
@@ -6780,9 +6782,9 @@ begin
         port map (
       I0 => \state[0]_i_5_n_0\,
       I1 => \DATA_OUT[62]_i_3_n_0\,
-      I2 => candidate(1),
+      I2 => \^q\(1),
       I3 => \state[0]_i_6_n_0\,
-      I4 => candidate(0),
+      I4 => \^q\(0),
       I5 => \HEADER_OUT[1]_i_3_n_0\,
       O => \state[0]_i_3_n_0\
     );
@@ -6802,9 +6804,9 @@ begin
     )
         port map (
       I0 => \state[0]_i_7_n_0\,
-      I1 => candidate(3),
+      I1 => \^q\(3),
       I2 => \state[0]_i_8_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[63]_i_13_n_0\,
       O => \state[0]_i_5_n_0\
     );
@@ -6814,9 +6816,9 @@ begin
     )
         port map (
       I0 => \state[0]_i_9_n_0\,
-      I1 => candidate(3),
+      I1 => \^q\(3),
       I2 => \DATA_OUT[62]_i_6_n_0\,
-      I3 => candidate(2),
+      I3 => \^q\(2),
       I4 => \DATA_OUT[63]_i_12_n_0\,
       O => \state[0]_i_6_n_0\
     );
@@ -6826,10 +6828,10 @@ begin
     )
         port map (
       I0 => rx_data_common(128),
-      I1 => candidate(5),
+      I1 => \^q\(5),
       I2 => rx_data_common(96),
-      I3 => candidate(6),
-      I4 => candidate(4),
+      I3 => \^q\(6),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_47_n_0\,
       O => \state[0]_i_7_n_0\
     );
@@ -6839,10 +6841,10 @@ begin
     )
         port map (
       I0 => rx_data_common(120),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \state[0]_i_10_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_46_n_0\,
       O => \state[0]_i_8_n_0\
     );
@@ -6852,10 +6854,10 @@ begin
     )
         port map (
       I0 => rx_data_common(126),
-      I1 => candidate(6),
-      I2 => candidate(5),
+      I1 => \^q\(6),
+      I2 => \^q\(5),
       I3 => \state[0]_i_11_n_0\,
-      I4 => candidate(4),
+      I4 => \^q\(4),
       I5 => \DATA_OUT[63]_i_34_n_0\,
       O => \state[0]_i_9_n_0\
     );
@@ -6878,6 +6880,7 @@ entity main_decode_64B_67B_0_0 is
     DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
     LOCKED : out STD_LOGIC;
+    CANDIDATE : out STD_LOGIC_VECTOR ( 6 downto 0 );
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
     DATA_VALID : in STD_LOGIC;
@@ -6911,6 +6914,7 @@ inst: entity work.main_decode_64B_67B_0_0_decode_64B_67B
       HEADER_OUT(1 downto 0) => HEADER_OUT(1 downto 0),
       LOCKED => LOCKED,
       PASSTHROUGH => PASSTHROUGH,
+      Q(6 downto 0) => CANDIDATE(6 downto 0),
       SYSTEM_RESET => SYSTEM_RESET,
       USER_CLK => USER_CLK
     );

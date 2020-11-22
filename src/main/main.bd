@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xA6007E49E35AA0F7" bd:device="xc7k325tffg900-2" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="main" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xA6007E49E35AA0F7" bd:device="xc7k325tffg900-2" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="main" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -30,7 +30,35 @@
             </spirit:physicalPort>
           </spirit:portMap>
         </spirit:portMaps>
-        <spirit:parameters/>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>FREQ_HZ</spirit:name>
+            <spirit:value>100000000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>PHASE</spirit:name>
+            <spirit:value>0.000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>CLK_DOMAIN</spirit:name>
+            <spirit:value>main_DRP_CLK_IN_N</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+        </spirit:parameters>
       </spirit:busInterface>
       <spirit:busInterface>
         <spirit:name>CLK.DRP_CLK_IN_P</spirit:name>
@@ -49,7 +77,35 @@
             </spirit:physicalPort>
           </spirit:portMap>
         </spirit:portMaps>
-        <spirit:parameters/>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>FREQ_HZ</spirit:name>
+            <spirit:value>100000000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>PHASE</spirit:name>
+            <spirit:value>0.000</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>CLK_DOMAIN</spirit:name>
+            <spirit:value>main_DRP_CLK_IN_P</spirit:value>
+            <spirit:vendorExtensions>
+              <bd:configElementInfos>
+                <bd:configElementInfo bd:valueSource="default"/>
+              </bd:configElementInfos>
+            </spirit:vendorExtensions>
+          </spirit:parameter>
+        </spirit:parameters>
       </spirit:busInterface>
     </spirit:busInterfaces>
     <spirit:model>
@@ -582,8 +638,11 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_2_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_INIT_VAL">0x0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT0_INIT_VAL">0x0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">2</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT3_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_WIDTH">3</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">4</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_EN_PROBE_IN_ACTIVITY">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">4</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -640,6 +699,7 @@
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE12_WIDTH">7</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE11_WIDTH">80</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">80</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE9_WIDTH">1</spirit:configurableElementValue>
@@ -651,7 +711,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">8</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">12</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">13</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -672,17 +732,6 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_encode_64B_67B_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">encode_64B_67B</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>stream_manipulator</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="stream_manipulator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_stream_manipulator_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">stream_manipulator</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -719,17 +768,6 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>decode_64B_67B</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="decode_64B_67B" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_decode_64B_67B_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">decode_64B_67B</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>util_vector_logic_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="util_vector_logic" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
@@ -756,6 +794,28 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_descrambler_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="META_FRAME_LEN">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">descrambler</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>stream_manipulator</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="stream_manipulator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_stream_manipulator_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">stream_manipulator</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>decode_64B_67B</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="decode_64B_67B" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_decode_64B_67B_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">decode_64B_67B</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -828,17 +888,17 @@
         <spirit:name>gt_core_0_RX_USR_CLK2</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_USR_CLK2"/>
         <spirit:externalPortReference spirit:portRef="RX_USR_CLK2"/>
-        <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="USER_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_SYSTEM_RESET</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_RESET"/>
         <spirit:externalPortReference spirit:portRef="RX_SYSTEM_RESET"/>
-        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="SYSTEM_RESET"/>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>Q3_CLK0_GTREFCLK_PAD_N_IN_1</spirit:name>
@@ -909,12 +969,14 @@
         <spirit:externalPortReference spirit:portRef="TRACK_DATA"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe1"/>
         <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op1"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in3"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DECODER_LOCKED</spirit:name>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="LOCKED"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe3"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_VALID"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in0"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DESCRAMBLER_DATA_OUT</spirit:name>
@@ -943,6 +1005,7 @@
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="LOCKED"/>
         <spirit:externalPortReference spirit:portRef="LOCKED"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe6"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in1"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_INTERFACE_DATA_OUT</spirit:name>
@@ -1027,6 +1090,22 @@
         <spirit:name>tx_interface_0_DATA_IN_READY</spirit:name>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="DATA_IN_READY"/>
         <spirit:externalPortReference spirit:portRef="DATA_IN_READY"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>OFFSET</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_out2"/>
+        <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="OFFSET"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>MASK</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_out3"/>
+        <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="MASK"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>CANDIDATE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="CANDIDATE"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe12"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in2"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>

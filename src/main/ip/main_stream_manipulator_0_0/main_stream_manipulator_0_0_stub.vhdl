@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 22:48:00 2020
+-- Date        : Sun Nov 22 19:12:27 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_stream_manipulator_0_0/main_stream_manipulator_0_0_stub.vhdl
@@ -16,6 +16,8 @@ entity main_stream_manipulator_0_0 is
   Port ( 
     DATA_IN : in STD_LOGIC_VECTOR ( 79 downto 0 );
     DATA_OUT : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    OFFSET : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    MASK : in STD_LOGIC_VECTOR ( 79 downto 0 );
     USER_CLK : in STD_LOGIC
   );
 
@@ -25,7 +27,7 @@ architecture stub of main_stream_manipulator_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "DATA_IN[79:0],DATA_OUT[79:0],USER_CLK";
+attribute black_box_pad_pin of stub : architecture is "DATA_IN[79:0],DATA_OUT[79:0],OFFSET[2:0],MASK[79:0],USER_CLK";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "stream_manipulator,Vivado 2018.2";
 begin

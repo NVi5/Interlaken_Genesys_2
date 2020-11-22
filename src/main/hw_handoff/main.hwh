@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 15:32:56 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 19:10:29 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -682,6 +682,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="TRACK_DATA_OUT"/>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe1"/>
             <CONNECTION INSTANCE="interlaken_util_vector_logic_0" PORT="Op1"/>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_in3"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
@@ -765,6 +766,13 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe3"/>
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="DATA_VALID"/>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_in0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="6" NAME="CANDIDATE" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_CANDIDATE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe12"/>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_in2"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
@@ -815,6 +823,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_check" PORT="DATA_VALID"/>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe6"/>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_in1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="HEADER_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_HEADER_OUT">
@@ -1021,10 +1030,10 @@
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_check" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_gearbox_rx" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="SOFT_RESET" SIGIS="rst" SIGNAME="interlaken_vio_0_probe_out0">
@@ -1043,8 +1052,8 @@
         <PORT DIR="O" NAME="RX_RESET" SIGIS="rst" SIGNAME="interlaken_gt_core_0_RX_RESET">
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_check" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="TX_MMCM_LOCK" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_MMCM_LOCK">
@@ -1111,7 +1120,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="12"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="13"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2018"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -1147,7 +1156,7 @@
         <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="80"/>
         <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="80"/>
-        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="7"/>
         <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE15_WIDTH" VALUE="1"/>
@@ -4294,6 +4303,11 @@
         <PORT DIR="I" LEFT="79" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_DATA"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="6" NAME="probe12" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_CANDIDATE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="CANDIDATE"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -10702,6 +10716,16 @@
             <CONNECTION INSTANCE="interlaken_gearbox_rx" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="2" NAME="OFFSET" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="79" NAME="MASK" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out3"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK2"/>
@@ -11325,7 +11349,7 @@
         <PARAMETER NAME="C_PROBE_OUT254_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT255_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x0"/>
-        <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT2_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT4_INIT_VAL" VALUE="0x0"/>
@@ -12442,13 +12466,13 @@
         <PARAMETER NAME="C_PIPE_IFACE" VALUE="0"/>
         <PARAMETER NAME="C_BUS_ADDR_WIDTH" VALUE="17"/>
         <PARAMETER NAME="C_BUS_DATA_WIDTH" VALUE="16"/>
-        <PARAMETER NAME="C_NUM_PROBE_IN" VALUE="0"/>
-        <PARAMETER NAME="C_EN_PROBE_IN_ACTIVITY" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="2"/>
+        <PARAMETER NAME="C_NUM_PROBE_IN" VALUE="4"/>
+        <PARAMETER NAME="C_EN_PROBE_IN_ACTIVITY" VALUE="1"/>
+        <PARAMETER NAME="C_NUM_PROBE_OUT" VALUE="4"/>
         <PARAMETER NAME="C_EN_SYNCHRONIZATION" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN1_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE_IN2_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE_IN2_WIDTH" VALUE="7"/>
         <PARAMETER NAME="C_PROBE_IN3_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_IN5_WIDTH" VALUE="1"/>
@@ -12704,8 +12728,8 @@
         <PARAMETER NAME="C_PROBE_IN255_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT1_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE_OUT2_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE_OUT3_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE_OUT2_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="C_PROBE_OUT3_WIDTH" VALUE="80"/>
         <PARAMETER NAME="C_PROBE_OUT4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT5_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT6_WIDTH" VALUE="1"/>
@@ -12961,7 +12985,7 @@
         <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT2_INIT_VAL" VALUE="0x0"/>
-        <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x0"/>
+        <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x00000000000000000000"/>
         <PARAMETER NAME="C_PROBE_OUT4_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT5_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT6_INIT_VAL" VALUE="0x0"/>
@@ -13223,6 +13247,26 @@
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_USR_CLK"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe_in0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="LOCKED"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe_in1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_descrambler_LOCKED">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_descrambler" PORT="LOCKED"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="6" NAME="probe_in2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_decode_64B_67B_CANDIDATE">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="CANDIDATE"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe_in3" RIGHT="0" SIGIS="undef" SIGNAME="frame_check_TRACK_DATA_OUT">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="frame_check" PORT="TRACK_DATA_OUT"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="0" NAME="probe_out0" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="PASSTHROUGH"/>
@@ -13231,6 +13275,16 @@
         <PORT DIR="O" LEFT="0" NAME="probe_out1" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="PASSTHROUGH"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="probe_out2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="OFFSET"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="79" NAME="probe_out3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="MASK"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

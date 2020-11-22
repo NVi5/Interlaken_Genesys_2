@@ -60,6 +60,7 @@ module main_decode_64B_67B_0_0 (
   DATA_OUT,
   HEADER_OUT,
   LOCKED,
+  CANDIDATE,
   USER_CLK,
   SYSTEM_RESET,
   DATA_VALID,
@@ -70,6 +71,7 @@ input wire [79 : 0] DATA_IN;
 output wire [63 : 0] DATA_OUT;
 output wire [1 : 0] HEADER_OUT;
 output wire LOCKED;
+output wire [6 : 0] CANDIDATE;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
@@ -84,6 +86,7 @@ input wire PASSTHROUGH;
     .DATA_OUT(DATA_OUT),
     .HEADER_OUT(HEADER_OUT),
     .LOCKED(LOCKED),
+    .CANDIDATE(CANDIDATE),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET),
     .DATA_VALID(DATA_VALID),

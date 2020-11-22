@@ -32,14 +32,26 @@ module stream_manipulator #
     // User Interface
     input  wire  [(DATA_WIDTH-1):0]  DATA_IN,
     output reg   [(DATA_WIDTH-1):0]  DATA_OUT,
+    input  wire  [2:0]               OFFSET,
+    input  wire  [(DATA_WIDTH-1):0]  MASK,
 
     // System Interface
     input  wire          USER_CLK
     );
 
+//***************************Declarations********************
+
+    reg     [DATA_WIDTH-1:0]   rx_data_r;
+    reg     [2*DATA_WIDTH-1:0] rx_data_common;
+
 //*********************************Main Body of Code**********************************
+    always @(posedge USER_CLK)
+    begin
+        rx_data_r       <= `DLY     DATA_IN;
+        rx_data_common  <= `DLY     {DATA_IN,rx_data_r};
+    end
 
     always @(posedge USER_CLK)
-        DATA_OUT <= `DLY DATA_IN;
+        DATA_OUT <= `DLY (rx_data_common >> OFFSET) ^ MASK;
 
 endmodule

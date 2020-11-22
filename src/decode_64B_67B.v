@@ -29,6 +29,7 @@ module decode_64B_67B(
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
     output wire          LOCKED,
+    output wire  [6:0]   CANDIDATE,
 
     // System Interface
     input  wire          USER_CLK,
@@ -134,5 +135,6 @@ module decode_64B_67B(
         rx_aligned = rx_data_common >> candidate;
 
     assign  LOCKED = state;
+    assign  CANDIDATE = candidate;
 
 endmodule

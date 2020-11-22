@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sun Nov 22 15:32:56 2020
+//Date        : Sun Nov 22 19:10:15 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -49,6 +49,7 @@ module interlaken_imp_1RYIMTC
   output [0:0]TX_SYSTEM_RESET;
   output TX_USR_CLK2;
 
+  wire [6:0]CANDIDATE;
   wire DATA_TO_SEND_1;
   wire [0:0]DATA_VALID;
   wire [7:0]DEBUG_ERROR_COUNT;
@@ -65,7 +66,9 @@ module interlaken_imp_1RYIMTC
   wire [79:0]GEARBOX_TX_DATA_OUT;
   wire [79:0]GT_RX_DATA;
   wire [79:0]MANIPULATOR_DATA_OUT;
+  wire [79:0]MASK;
   wire Net1;
+  wire [2:0]OFFSET;
   wire [0:0]OVERRIDE_DATA_VALID;
   wire [0:0]PASSTHROUGH_DESCRAMBLER;
   wire [0:0]PASSTHROUGH_SCRAMBLER;
@@ -114,7 +117,8 @@ module interlaken_imp_1RYIMTC
   assign TX_USR_CLK2 = Net1;
   assign gt_frame_gen_0_TX_DATA_OUT = TX_DATA_IN[63:0];
   main_decode_64B_67B_0_0 decode_64B_67B
-       (.DATA_IN(GEARBOX_RX_DATA_OUT),
+       (.CANDIDATE(CANDIDATE),
+        .DATA_IN(GEARBOX_RX_DATA_OUT),
         .DATA_OUT(DECODER_DATA_OUT),
         .DATA_VALID(gearbox_rx_0_LOCKED),
         .HEADER_OUT(decode_64B_67B_HEADER_OUT),
@@ -178,6 +182,7 @@ module interlaken_imp_1RYIMTC
         .probe1(TRACK_DATA),
         .probe10(MANIPULATOR_DATA_OUT),
         .probe11(GT_RX_DATA),
+        .probe12(CANDIDATE),
         .probe2(DEBUG_ERROR_COUNT),
         .probe3(DECODER_LOCKED),
         .probe4(GEARBOX_RX_DATA_OUT),
@@ -209,6 +214,8 @@ module interlaken_imp_1RYIMTC
   main_stream_manipulator_0_0 stream_manipulator
        (.DATA_IN(GT_RX_DATA),
         .DATA_OUT(MANIPULATOR_DATA_OUT),
+        .MASK(MASK),
+        .OFFSET(OFFSET),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_tx_interface_0_0 tx_interface_0
        (.DATA_IN(gt_frame_gen_0_TX_DATA_OUT),
@@ -232,8 +239,14 @@ module interlaken_imp_1RYIMTC
         .probe_out1(ENCODER_PASSTHROUGH));
   main_vio_2_0 vio_2
        (.clk(gt_core_0_RX_USR_CLK),
+        .probe_in0(DECODER_LOCKED),
+        .probe_in1(DESCRAMBLER_LOCKED_ILA),
+        .probe_in2(CANDIDATE),
+        .probe_in3(TRACK_DATA),
         .probe_out0(PASSTHROUGH_DESCRAMBLER),
-        .probe_out1(DECODER_PASSTHROUGH));
+        .probe_out1(DECODER_PASSTHROUGH),
+        .probe_out2(OFFSET),
+        .probe_out3(MASK));
 endmodule
 
 (* CORE_GENERATION_INFO = "main,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=main,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=20,numReposBlks=19,numNonXlnxBlks=0,numHierBlks=1,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=10,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "main.hwdef" *) 
