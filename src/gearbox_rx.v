@@ -26,7 +26,7 @@
 
 module gearbox_rx(
     // User Interface
-    input  wire  [79:0]  DATA_IN,
+    input  wire  [19:0]  DATA_IN,
     output reg   [79:0]  DATA_OUT,
     output wire          LOCKED,
 
@@ -37,7 +37,7 @@ module gearbox_rx(
 //*********************************Main Body of Code**********************************
 
     always @(posedge USER_CLK)
-        DATA_OUT <= `DLY DATA_IN;
+        DATA_OUT <= `DLY {DATA_IN,DATA_IN,DATA_IN,DATA_IN};
 
     assign LOCKED = 1'b1;
 

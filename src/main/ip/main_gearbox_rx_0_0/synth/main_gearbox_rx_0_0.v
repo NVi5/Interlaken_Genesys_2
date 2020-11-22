@@ -62,7 +62,7 @@ module main_gearbox_rx_0_0 (
   USER_CLK
 );
 
-input wire [79 : 0] DATA_IN;
+input wire [19 : 0] DATA_IN;
 output wire [79 : 0] DATA_OUT;
 output wire LOCKED;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)

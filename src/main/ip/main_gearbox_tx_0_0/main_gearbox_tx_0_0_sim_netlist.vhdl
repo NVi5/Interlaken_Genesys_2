@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 22 19:12:24 2020
+-- Date        : Sun Nov 22 20:33:00 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gearbox_tx_0_0/main_gearbox_tx_0_0_sim_netlist.vhdl
@@ -16,8 +16,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity main_gearbox_tx_0_0_gearbox_tx is
   port (
-    DATA_OUT : out STD_LOGIC_VECTOR ( 66 downto 0 );
-    DATA_IN : in STD_LOGIC_VECTOR ( 66 downto 0 );
+    DATA_OUT : out STD_LOGIC_VECTOR ( 19 downto 0 );
+    DATA_IN : in STD_LOGIC_VECTOR ( 19 downto 0 );
     USER_CLK : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -122,172 +122,12 @@ begin
       Q => DATA_OUT(1),
       R => '0'
     );
-\DATA_OUT_reg[20]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(20),
-      Q => DATA_OUT(20),
-      R => '0'
-    );
-\DATA_OUT_reg[21]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(21),
-      Q => DATA_OUT(21),
-      R => '0'
-    );
-\DATA_OUT_reg[22]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(22),
-      Q => DATA_OUT(22),
-      R => '0'
-    );
-\DATA_OUT_reg[23]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(23),
-      Q => DATA_OUT(23),
-      R => '0'
-    );
-\DATA_OUT_reg[24]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(24),
-      Q => DATA_OUT(24),
-      R => '0'
-    );
-\DATA_OUT_reg[25]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(25),
-      Q => DATA_OUT(25),
-      R => '0'
-    );
-\DATA_OUT_reg[26]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(26),
-      Q => DATA_OUT(26),
-      R => '0'
-    );
-\DATA_OUT_reg[27]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(27),
-      Q => DATA_OUT(27),
-      R => '0'
-    );
-\DATA_OUT_reg[28]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(28),
-      Q => DATA_OUT(28),
-      R => '0'
-    );
-\DATA_OUT_reg[29]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(29),
-      Q => DATA_OUT(29),
-      R => '0'
-    );
 \DATA_OUT_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
       D => DATA_IN(2),
       Q => DATA_OUT(2),
-      R => '0'
-    );
-\DATA_OUT_reg[30]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(30),
-      Q => DATA_OUT(30),
-      R => '0'
-    );
-\DATA_OUT_reg[31]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(31),
-      Q => DATA_OUT(31),
-      R => '0'
-    );
-\DATA_OUT_reg[32]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(32),
-      Q => DATA_OUT(32),
-      R => '0'
-    );
-\DATA_OUT_reg[33]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(33),
-      Q => DATA_OUT(33),
-      R => '0'
-    );
-\DATA_OUT_reg[34]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(34),
-      Q => DATA_OUT(34),
-      R => '0'
-    );
-\DATA_OUT_reg[35]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(35),
-      Q => DATA_OUT(35),
-      R => '0'
-    );
-\DATA_OUT_reg[36]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(36),
-      Q => DATA_OUT(36),
-      R => '0'
-    );
-\DATA_OUT_reg[37]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(37),
-      Q => DATA_OUT(37),
-      R => '0'
-    );
-\DATA_OUT_reg[38]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(38),
-      Q => DATA_OUT(38),
-      R => '0'
-    );
-\DATA_OUT_reg[39]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(39),
-      Q => DATA_OUT(39),
       R => '0'
     );
 \DATA_OUT_reg[3]\: unisim.vcomponents.FDRE
@@ -298,86 +138,6 @@ begin
       Q => DATA_OUT(3),
       R => '0'
     );
-\DATA_OUT_reg[40]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(40),
-      Q => DATA_OUT(40),
-      R => '0'
-    );
-\DATA_OUT_reg[41]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(41),
-      Q => DATA_OUT(41),
-      R => '0'
-    );
-\DATA_OUT_reg[42]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(42),
-      Q => DATA_OUT(42),
-      R => '0'
-    );
-\DATA_OUT_reg[43]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(43),
-      Q => DATA_OUT(43),
-      R => '0'
-    );
-\DATA_OUT_reg[44]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(44),
-      Q => DATA_OUT(44),
-      R => '0'
-    );
-\DATA_OUT_reg[45]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(45),
-      Q => DATA_OUT(45),
-      R => '0'
-    );
-\DATA_OUT_reg[46]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(46),
-      Q => DATA_OUT(46),
-      R => '0'
-    );
-\DATA_OUT_reg[47]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(47),
-      Q => DATA_OUT(47),
-      R => '0'
-    );
-\DATA_OUT_reg[48]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(48),
-      Q => DATA_OUT(48),
-      R => '0'
-    );
-\DATA_OUT_reg[49]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(49),
-      Q => DATA_OUT(49),
-      R => '0'
-    );
 \DATA_OUT_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
@@ -386,148 +146,12 @@ begin
       Q => DATA_OUT(4),
       R => '0'
     );
-\DATA_OUT_reg[50]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(50),
-      Q => DATA_OUT(50),
-      R => '0'
-    );
-\DATA_OUT_reg[51]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(51),
-      Q => DATA_OUT(51),
-      R => '0'
-    );
-\DATA_OUT_reg[52]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(52),
-      Q => DATA_OUT(52),
-      R => '0'
-    );
-\DATA_OUT_reg[53]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(53),
-      Q => DATA_OUT(53),
-      R => '0'
-    );
-\DATA_OUT_reg[54]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(54),
-      Q => DATA_OUT(54),
-      R => '0'
-    );
-\DATA_OUT_reg[55]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(55),
-      Q => DATA_OUT(55),
-      R => '0'
-    );
-\DATA_OUT_reg[56]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(56),
-      Q => DATA_OUT(56),
-      R => '0'
-    );
-\DATA_OUT_reg[57]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(57),
-      Q => DATA_OUT(57),
-      R => '0'
-    );
-\DATA_OUT_reg[58]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(58),
-      Q => DATA_OUT(58),
-      R => '0'
-    );
-\DATA_OUT_reg[59]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(59),
-      Q => DATA_OUT(59),
-      R => '0'
-    );
 \DATA_OUT_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
       D => DATA_IN(5),
       Q => DATA_OUT(5),
-      R => '0'
-    );
-\DATA_OUT_reg[60]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(60),
-      Q => DATA_OUT(60),
-      R => '0'
-    );
-\DATA_OUT_reg[61]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(61),
-      Q => DATA_OUT(61),
-      R => '0'
-    );
-\DATA_OUT_reg[62]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(62),
-      Q => DATA_OUT(62),
-      R => '0'
-    );
-\DATA_OUT_reg[63]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(63),
-      Q => DATA_OUT(63),
-      R => '0'
-    );
-\DATA_OUT_reg[64]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(64),
-      Q => DATA_OUT(64),
-      R => '0'
-    );
-\DATA_OUT_reg[65]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(65),
-      Q => DATA_OUT(65),
-      R => '0'
-    );
-\DATA_OUT_reg[66]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => DATA_IN(66),
-      Q => DATA_OUT(66),
       R => '0'
     );
 \DATA_OUT_reg[6]\: unisim.vcomponents.FDRE
@@ -570,7 +194,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_gearbox_tx_0_0 is
   port (
     DATA_IN : in STD_LOGIC_VECTOR ( 66 downto 0 );
-    DATA_OUT : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    DATA_OUT : out STD_LOGIC_VECTOR ( 19 downto 0 );
     USER_CLK : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -586,35 +210,15 @@ entity main_gearbox_tx_0_0 is
 end main_gearbox_tx_0_0;
 
 architecture STRUCTURE of main_gearbox_tx_0_0 is
-  signal \<const0>\ : STD_LOGIC;
-  signal \^data_out\ : STD_LOGIC_VECTOR ( 66 downto 0 );
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of USER_CLK : signal is "xilinx.com:signal:clock:1.0 USER_CLK CLK";
   attribute X_INTERFACE_PARAMETER : string;
   attribute X_INTERFACE_PARAMETER of USER_CLK : signal is "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2";
 begin
-  DATA_OUT(79) <= \<const0>\;
-  DATA_OUT(78) <= \<const0>\;
-  DATA_OUT(77) <= \<const0>\;
-  DATA_OUT(76) <= \<const0>\;
-  DATA_OUT(75) <= \<const0>\;
-  DATA_OUT(74) <= \<const0>\;
-  DATA_OUT(73) <= \<const0>\;
-  DATA_OUT(72) <= \<const0>\;
-  DATA_OUT(71) <= \<const0>\;
-  DATA_OUT(70) <= \<const0>\;
-  DATA_OUT(69) <= \<const0>\;
-  DATA_OUT(68) <= \<const0>\;
-  DATA_OUT(67) <= \<const0>\;
-  DATA_OUT(66 downto 0) <= \^data_out\(66 downto 0);
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
 inst: entity work.main_gearbox_tx_0_0_gearbox_tx
      port map (
-      DATA_IN(66 downto 0) => DATA_IN(66 downto 0),
-      DATA_OUT(66 downto 0) => \^data_out\(66 downto 0),
+      DATA_IN(19 downto 0) => DATA_IN(19 downto 0),
+      DATA_OUT(19 downto 0) => DATA_OUT(19 downto 0),
       USER_CLK => USER_CLK
     );
 end STRUCTURE;

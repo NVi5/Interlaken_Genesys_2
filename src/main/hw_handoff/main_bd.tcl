@@ -255,8 +255,8 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_MONITOR_TYPE {Native} \
    CONFIG.C_NUM_OF_PROBES {13} \
    CONFIG.C_PROBE0_WIDTH {64} \
-   CONFIG.C_PROBE10_WIDTH {80} \
-   CONFIG.C_PROBE11_WIDTH {80} \
+   CONFIG.C_PROBE10_WIDTH {20} \
+   CONFIG.C_PROBE11_WIDTH {20} \
    CONFIG.C_PROBE12_WIDTH {7} \
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE2_WIDTH {8} \
@@ -276,7 +276,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_NUM_OF_PROBES {6} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE1_WIDTH {64} \
-   CONFIG.C_PROBE2_WIDTH {80} \
+   CONFIG.C_PROBE2_WIDTH {20} \
    CONFIG.C_PROBE3_WIDTH {1} \
    CONFIG.C_PROBE4_WIDTH {1} \
    CONFIG.C_PROBE5_WIDTH {67} \
@@ -311,7 +311,10 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-  
+    set_property -dict [ list \
+   CONFIG.DATA_WIDTH {20} \
+ ] $stream_manipulator
+
   # Create instance: tx_interface_0, and set properties
   set block_name tx_interface
   set block_cell_name tx_interface_0
@@ -360,7 +363,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT2_WIDTH {3} \
-   CONFIG.C_PROBE_OUT3_WIDTH {80} \
+   CONFIG.C_PROBE_OUT3_WIDTH {20} \
  ] $vio_2
 
   # Create port connections
@@ -392,15 +395,13 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins gt_core_0/RXN_IN]
   connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
   connect_bd_net -net RX_FSM_RESET_DONE [get_bd_pins gt_core_0/RX_FSM_RESET_DONE] [get_bd_pins ila_2/probe1]
-  connect_bd_net -net RX_MMCM_LOCK [get_bd_pins gt_core_0/RX_MMCM_LOCK] [get_bd_pins ila_0/probe8]
-  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe9]
+  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe8] [get_bd_pins ila_0/probe9]
   connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins ila_1/probe0] [get_bd_pins scrambler/SCRAMBLED_DATA_OUT]
   connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET] [get_bd_pins vio_0/probe_out0]
   connect_bd_net -net TRACK_DATA [get_bd_pins TRACK_DATA] [get_bd_pins ila_0/probe1] [get_bd_pins util_vector_logic_0/Op1] [get_bd_pins vio_2/probe_in3]
   connect_bd_net -net TX_FSM_RESET_DONE [get_bd_pins gt_core_0/TX_FSM_RESET_DONE] [get_bd_pins ila_2/probe0]
   connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe1] [get_bd_pins scrambler/UNSCRAMBLED_DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
-  connect_bd_net -net TX_MMCM_LOCK [get_bd_pins gt_core_0/TX_MMCM_LOCK] [get_bd_pins ila_1/probe3]
-  connect_bd_net -net TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe4]
+  connect_bd_net -net TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe3] [get_bd_pins ila_1/probe4]
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
   connect_bd_net -net gearbox_rx_0_LOCKED [get_bd_pins decode_64B_67B/DATA_VALID] [get_bd_pins gearbox_rx/LOCKED]
   connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]

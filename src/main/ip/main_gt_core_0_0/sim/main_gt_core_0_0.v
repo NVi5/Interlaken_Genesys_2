@@ -48,7 +48,7 @@
 
 
 // IP VLNV: xilinx.com:user:gt_core:1.0
-// IP Revision: 27
+// IP Revision: 29
 
 `timescale 1ns/1ps
 
@@ -70,10 +70,8 @@ module main_gt_core_0_0 (
   SOFT_RESET,
   TX_RESET,
   RX_RESET,
-  TX_MMCM_LOCK,
   TX_RESET_DONE,
   TX_FSM_RESET_DONE,
-  RX_MMCM_LOCK,
   RX_RESET_DONE,
   RX_FSM_RESET_DONE,
   RX_DATA,
@@ -115,14 +113,12 @@ output wire TX_RESET;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RX_RESET, POLARITY ACTIVE_LOW" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RX_RESET RST" *)
 output wire RX_RESET;
-output wire TX_MMCM_LOCK;
 output wire TX_RESET_DONE;
 output wire TX_FSM_RESET_DONE;
-output wire RX_MMCM_LOCK;
 output wire RX_RESET_DONE;
 output wire RX_FSM_RESET_DONE;
-output wire [79 : 0] RX_DATA;
-input wire [79 : 0] TX_DATA;
+output wire [19 : 0] RX_DATA;
+input wire [19 : 0] TX_DATA;
 
   gtwizard_0_exdes #(
     .LOOPBACK('B000)
@@ -142,10 +138,8 @@ input wire [79 : 0] TX_DATA;
     .SOFT_RESET(SOFT_RESET),
     .TX_RESET(TX_RESET),
     .RX_RESET(RX_RESET),
-    .TX_MMCM_LOCK(TX_MMCM_LOCK),
     .TX_RESET_DONE(TX_RESET_DONE),
     .TX_FSM_RESET_DONE(TX_FSM_RESET_DONE),
-    .RX_MMCM_LOCK(RX_MMCM_LOCK),
     .RX_RESET_DONE(RX_RESET_DONE),
     .RX_FSM_RESET_DONE(RX_FSM_RESET_DONE),
     .RX_DATA(RX_DATA),

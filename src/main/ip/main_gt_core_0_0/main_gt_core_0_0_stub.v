@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sat Nov 21 22:38:59 2020
+// Date        : Sun Nov 22 20:33:06 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top main_gt_core_0_0 -prefix
-//               main_gt_core_0_0_ main_gt_core_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_core_0_0/main_gt_core_0_0_stub.v
 // Design      : main_gt_core_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7k325tffg900-2
@@ -16,10 +16,9 @@
 (* X_CORE_INFO = "gtwizard_0_exdes,Vivado 2018.2" *)
 module main_gt_core_0_0(Q3_CLK0_GTREFCLK_PAD_N_IN, 
   Q3_CLK0_GTREFCLK_PAD_P_IN, DRP_CLK_IN, DATA_VALID, RXN_IN, RXP_IN, TXN_OUT, TXP_OUT, 
-  TX_USR_CLK, TX_USR_CLK2, RX_USR_CLK, RX_USR_CLK2, SOFT_RESET, TX_RESET, RX_RESET, TX_MMCM_LOCK, 
-  TX_RESET_DONE, TX_FSM_RESET_DONE, RX_MMCM_LOCK, RX_RESET_DONE, RX_FSM_RESET_DONE, RX_DATA, 
-  TX_DATA)
-/* synthesis syn_black_box black_box_pad_pin="Q3_CLK0_GTREFCLK_PAD_N_IN,Q3_CLK0_GTREFCLK_PAD_P_IN,DRP_CLK_IN,DATA_VALID,RXN_IN,RXP_IN,TXN_OUT,TXP_OUT,TX_USR_CLK,TX_USR_CLK2,RX_USR_CLK,RX_USR_CLK2,SOFT_RESET,TX_RESET,RX_RESET,TX_MMCM_LOCK,TX_RESET_DONE,TX_FSM_RESET_DONE,RX_MMCM_LOCK,RX_RESET_DONE,RX_FSM_RESET_DONE,RX_DATA[79:0],TX_DATA[79:0]" */;
+  TX_USR_CLK, TX_USR_CLK2, RX_USR_CLK, RX_USR_CLK2, SOFT_RESET, TX_RESET, RX_RESET, 
+  TX_RESET_DONE, TX_FSM_RESET_DONE, RX_RESET_DONE, RX_FSM_RESET_DONE, RX_DATA, TX_DATA)
+/* synthesis syn_black_box black_box_pad_pin="Q3_CLK0_GTREFCLK_PAD_N_IN,Q3_CLK0_GTREFCLK_PAD_P_IN,DRP_CLK_IN,DATA_VALID,RXN_IN,RXP_IN,TXN_OUT,TXP_OUT,TX_USR_CLK,TX_USR_CLK2,RX_USR_CLK,RX_USR_CLK2,SOFT_RESET,TX_RESET,RX_RESET,TX_RESET_DONE,TX_FSM_RESET_DONE,RX_RESET_DONE,RX_FSM_RESET_DONE,RX_DATA[19:0],TX_DATA[19:0]" */;
   input Q3_CLK0_GTREFCLK_PAD_N_IN;
   input Q3_CLK0_GTREFCLK_PAD_P_IN;
   input DRP_CLK_IN;
@@ -35,12 +34,10 @@ module main_gt_core_0_0(Q3_CLK0_GTREFCLK_PAD_N_IN,
   input SOFT_RESET;
   output TX_RESET;
   output RX_RESET;
-  output TX_MMCM_LOCK;
   output TX_RESET_DONE;
   output TX_FSM_RESET_DONE;
-  output RX_MMCM_LOCK;
   output RX_RESET_DONE;
   output RX_FSM_RESET_DONE;
-  output [79:0]RX_DATA;
-  input [79:0]TX_DATA;
+  output [19:0]RX_DATA;
+  input [19:0]TX_DATA;
 endmodule

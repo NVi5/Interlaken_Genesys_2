@@ -638,7 +638,7 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_2_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_INIT_VAL">0x0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT0_INIT_VAL">0x0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT3_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT3_WIDTH">20</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT2_WIDTH">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">4</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_EN_PROBE_IN_ACTIVITY">1</spirit:configurableElementValue>
@@ -686,7 +686,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_PROBE5_WIDTH">67</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">20</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">6</spirit:configurableElementValue>
@@ -700,8 +700,8 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_0_1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE12_WIDTH">7</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE11_WIDTH">80</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">80</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE11_WIDTH">20</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">20</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE9_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE7_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE6_WIDTH">1</spirit:configurableElementValue>
@@ -735,36 +735,6 @@
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>gearbox_tx</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_tx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_tx_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_tx</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>gearbox_rx</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_rx_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_rx</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>gt_core_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="user" spirit:name="gt_core" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gt_core_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="LOOPBACK">"000"</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -804,6 +774,7 @@
         <spirit:componentRef spirit:library="module_ref" spirit:name="stream_manipulator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_stream_manipulator_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="DATA_WIDTH">20</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">stream_manipulator</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
@@ -819,6 +790,36 @@
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>gearbox_rx</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_rx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_rx</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>gearbox_tx</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_tx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_tx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_tx</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>gt_core_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="gt_core" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gt_core_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="LOOPBACK">"000"</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -888,10 +889,10 @@
         <spirit:name>gt_core_0_RX_USR_CLK2</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_USR_CLK2"/>
         <spirit:externalPortReference spirit:portRef="RX_USR_CLK2"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_SYSTEM_RESET</spirit:name>
@@ -943,8 +944,8 @@
         <spirit:externalPortReference spirit:portRef="TX_USR_CLK2"/>
         <spirit:internalPortReference spirit:componentRef="scrambler" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="USER_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_TX_SYSTEM_RESET</spirit:name>
@@ -1027,26 +1028,18 @@
         <spirit:name>RX_RESET_DONE</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_RESET_DONE"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe9"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe8"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_RESET_DONE</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_RESET_DONE"/>
         <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe4"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>TX_MMCM_LOCK</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_MMCM_LOCK"/>
         <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe3"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_FSM_RESET_DONE</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_FSM_RESET_DONE"/>
         <spirit:internalPortReference spirit:componentRef="ila_2" spirit:portRef="probe0"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>RX_MMCM_LOCK</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_MMCM_LOCK"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe8"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>RX_FSM_RESET_DONE</spirit:name>

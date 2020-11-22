@@ -7,45 +7,6 @@
   <spirit:model>
     <spirit:views>
       <spirit:view>
-        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
-        <spirit:displayName>Synthesis</spirit:displayName>
-        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
-        <spirit:modelName>gtwizard_v3_6_9</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 22 18:10:19 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:e23500ed</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
-        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
-        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
-        <spirit:language>verilog</spirit:language>
-        <spirit:modelName>gtwizard_0</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 22 18:10:19 UTC 2020</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:e23500ed</spirit:value>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
         <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
         <spirit:displayName>Simulation</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
@@ -56,11 +17,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 22 18:10:19 UTC 2020</spirit:value>
+            <spirit:value>Sun Nov 22 19:11:33 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:6156b7fe</spirit:value>
+            <spirit:value>8:c89ef327</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -76,11 +37,50 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 22 18:10:19 UTC 2020</spirit:value>
+            <spirit:value>Sun Nov 22 19:11:33 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:6156b7fe</spirit:value>
+            <spirit:value>8:c89ef327</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>gtwizard_v3_6_9</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Sun Nov 22 19:32:08 UTC 2020</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>8:8fc0eafd</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
+        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>gtwizard_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Sun Nov 22 19:32:08 UTC 2020</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>8:8fc0eafd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -627,7 +627,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_tx_data_width</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_tx_data_width">80</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_tx_data_width">20</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_encoding</spirit:name>
@@ -635,7 +635,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_tx_int_datawidth</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_tx_int_datawidth">40</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_tx_int_datawidth">20</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_tx_reference_clock</spirit:name>
@@ -671,7 +671,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_rx_data_width</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_rx_data_width">80</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_rx_data_width">20</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_decoding</spirit:name>
@@ -679,7 +679,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_rx_int_datawidth</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_rx_int_datawidth">40</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.gt0_val_rx_int_datawidth">20</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>gt0_val_rx_reference_clock</spirit:name>
@@ -2541,6 +2541,10 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
+      <spirit:name>choice_list_0fbde0c1</spirit:name>
+      <spirit:enumeration>20</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
       <spirit:name>choice_list_11c8f0f1</spirit:name>
       <spirit:enumeration>TXOUTCLK</spirit:enumeration>
       <spirit:enumeration>RXOUTCLK</spirit:enumeration>
@@ -2677,10 +2681,6 @@
       <spirit:enumeration>1100</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choice_list_d6a7b2e7</spirit:name>
-      <spirit:enumeration>40</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
       <spirit:name>choice_list_dede9491</spirit:name>
       <spirit:enumeration>CPLL</spirit:enumeration>
       <spirit:enumeration>QPLL</spirit:enumeration>
@@ -2716,6 +2716,11 @@
       <spirit:name>choice_pairs_02337852</spirit:name>
       <spirit:enumeration spirit:text="REFCLK0 Q10">REFCLK0_Q10</spirit:enumeration>
       <spirit:enumeration spirit:text="REFCLK1 Q10">REFCLK1_Q10</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_pairs_070f48d6</spirit:name>
+      <spirit:enumeration spirit:text="Any Byte Boundary">Any_Byte_Boundary</spirit:enumeration>
+      <spirit:enumeration spirit:text="Two Byte Boundaries">Two_Byte_Boundaries</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_pairs_1578a8ac</spirit:name>
@@ -2756,12 +2761,6 @@
       <spirit:name>choice_pairs_53749dec</spirit:name>
       <spirit:enumeration spirit:text="Include Shared Logic in core">1</spirit:enumeration>
       <spirit:enumeration spirit:text="Include Shared Logic in example design">0</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
-      <spirit:name>choice_pairs_55bc3414</spirit:name>
-      <spirit:enumeration spirit:text="Any Byte Boundary">Any_Byte_Boundary</spirit:enumeration>
-      <spirit:enumeration spirit:text="Two Byte Boundaries">Two_Byte_Boundaries</spirit:enumeration>
-      <spirit:enumeration spirit:text="Four Byte Boundaries">Four_Byte_Boundaries</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_pairs_5d8a4689</spirit:name>
@@ -2942,14 +2941,63 @@
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>gtwizard_0_common_reset.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>gtwizard_0/example_design/support/gtwizard_0_clock_module.v</spirit:name>
+        <spirit:name>gtwizard_0_common.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0_gt_usrclk_source.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0_support.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0/example_design/gtwizard_0_tx_startup_fsm.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0/example_design/gtwizard_0_rx_startup_fsm.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0_init.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0_gt.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0_multi_gt.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>gtwizard_0/example_design/gtwizard_0_sync_block.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>gtwizard_0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>gtwizard_0_common_reset.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
       </spirit:file>
@@ -3006,65 +3054,6 @@
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>gtwizard_0.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>gtwizard_0_common_reset.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0/example_design/support/gtwizard_0_clock_module.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_common.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_gt_usrclk_source.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_support.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>USED_IN_ipsharedlogic</spirit:userFileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0/example_design/gtwizard_0_tx_startup_fsm.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0/example_design/gtwizard_0_rx_startup_fsm.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_init.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_gt.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0_multi_gt.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>gtwizard_0/example_design/gtwizard_0_sync_block.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>gtwizard_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
@@ -3884,7 +3873,7 @@
     <spirit:parameter>
       <spirit:name>gt0_val_tx_data_width</spirit:name>
       <spirit:displayName>Gt0 Val Tx Data Width</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_tx_data_width" spirit:choiceRef="choice_list_7f4090d6" spirit:order="245">80</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_tx_data_width" spirit:choiceRef="choice_list_7f4090d6" spirit:order="245">20</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>gt0_val_encoding</spirit:name>
@@ -3894,7 +3883,7 @@
     <spirit:parameter>
       <spirit:name>gt0_val_tx_int_datawidth</spirit:name>
       <spirit:displayName>Gt0 Val Tx Int Datawidth</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_tx_int_datawidth" spirit:choiceRef="choice_list_d6a7b2e7" spirit:order="247">40</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_tx_int_datawidth" spirit:choiceRef="choice_list_0fbde0c1" spirit:order="247">20</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>gt0_val_tx_reference_clock</spirit:name>
@@ -3909,7 +3898,7 @@
     <spirit:parameter>
       <spirit:name>gt0_val_rx_data_width</spirit:name>
       <spirit:displayName>Gt0 Val Rx Data Width</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_rx_data_width" spirit:choiceRef="choice_list_7f4090d6" spirit:order="250">80</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_rx_data_width" spirit:choiceRef="choice_list_7f4090d6" spirit:order="250">20</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>gt0_val_decoding</spirit:name>
@@ -3919,7 +3908,7 @@
     <spirit:parameter>
       <spirit:name>gt0_val_rx_int_datawidth</spirit:name>
       <spirit:displayName>Gt0 Val Rx Int Datawidth</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_rx_int_datawidth" spirit:choiceRef="choice_list_d6a7b2e7" spirit:order="252">40</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_rx_int_datawidth" spirit:choiceRef="choice_list_0fbde0c1" spirit:order="252">20</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>gt0_val_rx_reference_clock</spirit:name>
@@ -4142,7 +4131,7 @@
     <spirit:parameter>
       <spirit:name>gt0_val_align_comma_word</spirit:name>
       <spirit:displayName>Gt0 Val Align Comma Word</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_align_comma_word" spirit:choiceRef="choice_pairs_55bc3414" spirit:order="306">Any_Byte_Boundary</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.gt0_val_align_comma_word" spirit:choiceRef="choice_pairs_070f48d6" spirit:order="306">Any_Byte_Boundary</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>gt0_val_port_rxpcommaalignen</spirit:name>

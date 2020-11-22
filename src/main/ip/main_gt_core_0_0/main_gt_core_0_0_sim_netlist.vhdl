@@ -1,301 +1,15 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 22:38:59 2020
+-- Date        : Sun Nov 22 20:33:06 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top main_gt_core_0_0 -prefix
---               main_gt_core_0_0_ main_gt_core_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_core_0_0/main_gt_core_0_0_sim_netlist.vhdl
 -- Design      : main_gt_core_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7k325tffg900-2
 -- --------------------------------------------------------------------------------
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity main_gt_core_0_0_gtwizard_0_CLOCK_MODULE is
-  port (
-    gt0_rx_mmcm_lock_out : out STD_LOGIC;
-    gt0_rxusrclk2_out : out STD_LOGIC;
-    GT0_RXUSRCLK_OUT : out STD_LOGIC;
-    GT0_RXOUTCLK_IN : in STD_LOGIC;
-    GT0_RX_MMCM_RESET_IN : in STD_LOGIC
-  );
-end main_gt_core_0_0_gtwizard_0_CLOCK_MODULE;
-
-architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_CLOCK_MODULE is
-  signal clkfbout : STD_LOGIC;
-  signal clkin1 : STD_LOGIC;
-  signal clkout0 : STD_LOGIC;
-  signal clkout1 : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_DRDY_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_PSDONE_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_DO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
-  attribute BOX_TYPE : string;
-  attribute BOX_TYPE of clkin1_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of clkout0_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
-begin
-clkin1_buf: unisim.vcomponents.BUFG
-     port map (
-      I => GT0_RXOUTCLK_IN,
-      O => clkin1
-    );
-clkout0_buf: unisim.vcomponents.BUFG
-     port map (
-      I => clkout0,
-      O => gt0_rxusrclk2_out
-    );
-clkout1_buf: unisim.vcomponents.BUFG
-     port map (
-      I => clkout1,
-      O => GT0_RXUSRCLK_OUT
-    );
-mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
-    generic map(
-      BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 20.000000,
-      CLKFBOUT_PHASE => 0.000000,
-      CLKFBOUT_USE_FINE_PS => false,
-      CLKIN1_PERIOD => 32.000000,
-      CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 40.000000,
-      CLKOUT0_DUTY_CYCLE => 0.500000,
-      CLKOUT0_PHASE => 0.000000,
-      CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 20,
-      CLKOUT1_DUTY_CYCLE => 0.500000,
-      CLKOUT1_PHASE => 0.000000,
-      CLKOUT1_USE_FINE_PS => false,
-      CLKOUT2_DIVIDE => 1,
-      CLKOUT2_DUTY_CYCLE => 0.500000,
-      CLKOUT2_PHASE => 0.000000,
-      CLKOUT2_USE_FINE_PS => false,
-      CLKOUT3_DIVIDE => 1,
-      CLKOUT3_DUTY_CYCLE => 0.500000,
-      CLKOUT3_PHASE => 0.000000,
-      CLKOUT3_USE_FINE_PS => false,
-      CLKOUT4_CASCADE => false,
-      CLKOUT4_DIVIDE => 1,
-      CLKOUT4_DUTY_CYCLE => 0.500000,
-      CLKOUT4_PHASE => 0.000000,
-      CLKOUT4_USE_FINE_PS => false,
-      CLKOUT5_DIVIDE => 1,
-      CLKOUT5_DUTY_CYCLE => 0.500000,
-      CLKOUT5_PHASE => 0.000000,
-      CLKOUT5_USE_FINE_PS => false,
-      CLKOUT6_DIVIDE => 1,
-      CLKOUT6_DUTY_CYCLE => 0.500000,
-      CLKOUT6_PHASE => 0.000000,
-      CLKOUT6_USE_FINE_PS => false,
-      COMPENSATION => "INTERNAL",
-      DIVCLK_DIVIDE => 1,
-      IS_CLKINSEL_INVERTED => '0',
-      IS_PSEN_INVERTED => '0',
-      IS_PSINCDEC_INVERTED => '0',
-      IS_PWRDWN_INVERTED => '0',
-      IS_RST_INVERTED => '0',
-      REF_JITTER1 => 0.010000,
-      REF_JITTER2 => 0.010000,
-      SS_EN => "FALSE",
-      SS_MODE => "CENTER_HIGH",
-      SS_MOD_PERIOD => 10000,
-      STARTUP_WAIT => false
-    )
-        port map (
-      CLKFBIN => clkfbout,
-      CLKFBOUT => clkfbout,
-      CLKFBOUTB => NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED,
-      CLKFBSTOPPED => NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED,
-      CLKIN1 => clkin1,
-      CLKIN2 => '0',
-      CLKINSEL => '1',
-      CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
-      CLKOUT0 => clkout0,
-      CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => clkout1,
-      CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
-      CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
-      CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
-      CLKOUT3 => NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED,
-      CLKOUT3B => NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED,
-      CLKOUT4 => NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED,
-      CLKOUT5 => NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED,
-      CLKOUT6 => NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED,
-      DADDR(6 downto 0) => B"0000000",
-      DCLK => '0',
-      DEN => '0',
-      DI(15 downto 0) => B"0000000000000000",
-      DO(15 downto 0) => NLW_mmcm_adv_inst_DO_UNCONNECTED(15 downto 0),
-      DRDY => NLW_mmcm_adv_inst_DRDY_UNCONNECTED,
-      DWE => '0',
-      LOCKED => gt0_rx_mmcm_lock_out,
-      PSCLK => '0',
-      PSDONE => NLW_mmcm_adv_inst_PSDONE_UNCONNECTED,
-      PSEN => '0',
-      PSINCDEC => '0',
-      PWRDWN => '0',
-      RST => GT0_RX_MMCM_RESET_IN
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9 is
-  port (
-    gt0_tx_mmcm_lock_out : out STD_LOGIC;
-    gt0_txusrclk2_out : out STD_LOGIC;
-    gt0_txusrclk_out : out STD_LOGIC;
-    GT0_TXOUTCLK_IN : in STD_LOGIC;
-    GT0_TX_MMCM_RESET_IN : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9 : entity is "gtwizard_0_CLOCK_MODULE";
-end main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9;
-
-architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9 is
-  signal clkfbout : STD_LOGIC;
-  signal clkin1 : STD_LOGIC;
-  signal clkout0 : STD_LOGIC;
-  signal clkout1 : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_DRDY_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_PSDONE_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_DO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
-  attribute BOX_TYPE : string;
-  attribute BOX_TYPE of clkin1_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of clkout0_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
-  attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
-begin
-clkin1_buf: unisim.vcomponents.BUFG
-     port map (
-      I => GT0_TXOUTCLK_IN,
-      O => clkin1
-    );
-clkout0_buf: unisim.vcomponents.BUFG
-     port map (
-      I => clkout0,
-      O => gt0_txusrclk2_out
-    );
-clkout1_buf: unisim.vcomponents.BUFG
-     port map (
-      I => clkout1,
-      O => gt0_txusrclk_out
-    );
-mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
-    generic map(
-      BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 20.000000,
-      CLKFBOUT_PHASE => 0.000000,
-      CLKFBOUT_USE_FINE_PS => false,
-      CLKIN1_PERIOD => 32.000000,
-      CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 40.000000,
-      CLKOUT0_DUTY_CYCLE => 0.500000,
-      CLKOUT0_PHASE => 0.000000,
-      CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 20,
-      CLKOUT1_DUTY_CYCLE => 0.500000,
-      CLKOUT1_PHASE => 0.000000,
-      CLKOUT1_USE_FINE_PS => false,
-      CLKOUT2_DIVIDE => 1,
-      CLKOUT2_DUTY_CYCLE => 0.500000,
-      CLKOUT2_PHASE => 0.000000,
-      CLKOUT2_USE_FINE_PS => false,
-      CLKOUT3_DIVIDE => 1,
-      CLKOUT3_DUTY_CYCLE => 0.500000,
-      CLKOUT3_PHASE => 0.000000,
-      CLKOUT3_USE_FINE_PS => false,
-      CLKOUT4_CASCADE => false,
-      CLKOUT4_DIVIDE => 1,
-      CLKOUT4_DUTY_CYCLE => 0.500000,
-      CLKOUT4_PHASE => 0.000000,
-      CLKOUT4_USE_FINE_PS => false,
-      CLKOUT5_DIVIDE => 1,
-      CLKOUT5_DUTY_CYCLE => 0.500000,
-      CLKOUT5_PHASE => 0.000000,
-      CLKOUT5_USE_FINE_PS => false,
-      CLKOUT6_DIVIDE => 1,
-      CLKOUT6_DUTY_CYCLE => 0.500000,
-      CLKOUT6_PHASE => 0.000000,
-      CLKOUT6_USE_FINE_PS => false,
-      COMPENSATION => "INTERNAL",
-      DIVCLK_DIVIDE => 1,
-      IS_CLKINSEL_INVERTED => '0',
-      IS_PSEN_INVERTED => '0',
-      IS_PSINCDEC_INVERTED => '0',
-      IS_PWRDWN_INVERTED => '0',
-      IS_RST_INVERTED => '0',
-      REF_JITTER1 => 0.010000,
-      REF_JITTER2 => 0.010000,
-      SS_EN => "FALSE",
-      SS_MODE => "CENTER_HIGH",
-      SS_MOD_PERIOD => 10000,
-      STARTUP_WAIT => false
-    )
-        port map (
-      CLKFBIN => clkfbout,
-      CLKFBOUT => clkfbout,
-      CLKFBOUTB => NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED,
-      CLKFBSTOPPED => NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED,
-      CLKIN1 => clkin1,
-      CLKIN2 => '0',
-      CLKINSEL => '1',
-      CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
-      CLKOUT0 => clkout0,
-      CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => clkout1,
-      CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
-      CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
-      CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
-      CLKOUT3 => NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED,
-      CLKOUT3B => NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED,
-      CLKOUT4 => NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED,
-      CLKOUT5 => NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED,
-      CLKOUT6 => NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED,
-      DADDR(6 downto 0) => B"0000000",
-      DCLK => '0',
-      DEN => '0',
-      DI(15 downto 0) => B"0000000000000000",
-      DO(15 downto 0) => NLW_mmcm_adv_inst_DO_UNCONNECTED(15 downto 0),
-      DRDY => NLW_mmcm_adv_inst_DRDY_UNCONNECTED,
-      DWE => '0',
-      LOCKED => gt0_tx_mmcm_lock_out,
-      PSCLK => '0',
-      PSDONE => NLW_mmcm_adv_inst_PSDONE_UNCONNECTED,
-      PSEN => '0',
-      PSINCDEC => '0',
-      PWRDWN => '0',
-      RST => GT0_TX_MMCM_RESET_IN
-    );
-end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
@@ -316,7 +30,7 @@ entity main_gt_core_0_0_gtwizard_0_GT is
     gt0_txresetdone_out : out STD_LOGIC;
     gt0_drpdo_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxbufstatus_out : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_rxmonitorout_out : out STD_LOGIC_VECTOR ( 6 downto 0 );
     gt0_dmonitorout_out : out STD_LOGIC_VECTOR ( 7 downto 0 );
     sysclk_in : in STD_LOGIC;
@@ -337,21 +51,21 @@ entity main_gt_core_0_0_gtwizard_0_GT is
     gt0_rxpmareset_in : in STD_LOGIC;
     gt0_rxprbscntreset_in : in STD_LOGIC;
     gt0_rxuserrdy_i : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC;
-    gt0_rxusrclk2_out : in STD_LOGIC;
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC;
     gt0_txpcsreset_in : in STD_LOGIC;
     gt0_txprbsforceerr_in : in STD_LOGIC;
     gt0_txuserrdy_i : in STD_LOGIC;
     gt0_txusrclk_out : in STD_LOGIC;
-    gt0_txusrclk2_out : in STD_LOGIC;
     gt0_drpdi_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxmonitorsel_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gt0_loopback_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_rxprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_txprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_txdata_in : in STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_drpaddr_in : in STD_LOGIC_VECTOR ( 8 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_GT : entity is "gtwizard_0_GT";
 end main_gt_core_0_0_gtwizard_0_GT;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT is
@@ -391,8 +105,11 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT is
   signal NLW_gtxe2_i_TXRATEDONE_UNCONNECTED : STD_LOGIC;
   signal NLW_gtxe2_i_PCSRSVDOUT_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal NLW_gtxe2_i_RXCHARISCOMMA_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal NLW_gtxe2_i_RXCHARISK_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 2 );
   signal NLW_gtxe2_i_RXCHBONDO_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal NLW_gtxe2_i_RXCLKCORCNT_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal NLW_gtxe2_i_RXDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 16 );
+  signal NLW_gtxe2_i_RXDISPERR_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 2 );
   signal NLW_gtxe2_i_RXHEADER_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_gtxe2_i_RXNOTINTABLE_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal NLW_gtxe2_i_RXPHMONITOR_UNCONNECTED : STD_LOGIC_VECTOR ( 4 downto 0 );
@@ -429,8 +146,8 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       CHAN_BOND_SEQ_LEN => 1,
       CLK_CORRECT_USE => "FALSE",
       CLK_COR_KEEP_IDLE => "FALSE",
-      CLK_COR_MAX_LAT => 19,
-      CLK_COR_MIN_LAT => 15,
+      CLK_COR_MAX_LAT => 9,
+      CLK_COR_MIN_LAT => 7,
       CLK_COR_PRECEDENCE => "TRUE",
       CLK_COR_REPEAT_WAIT => 0,
       CLK_COR_SEQ_1_1 => B"0100000000",
@@ -530,7 +247,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RX_CLKMUX_PD => '1',
       RX_CM_SEL => B"11",
       RX_CM_TRIM => B"010",
-      RX_DATA_WIDTH => 80,
+      RX_DATA_WIDTH => 20,
       RX_DDI_SEL => B"000000",
       RX_DEBUG_CFG => B"000000000000",
       RX_DEFER_RESET_BUF_EN => "TRUE",
@@ -547,7 +264,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RX_DFE_VP_CFG => B"00011111100000011",
       RX_DFE_XYD_CFG => B"0000000000000",
       RX_DISPERR_SEQ_MATCH => "FALSE",
-      RX_INT_DATAWIDTH => 1,
+      RX_INT_DATAWIDTH => 0,
       RX_OS_CFG => B"0000010000000",
       RX_SIG_VALID_DLY => 10,
       RX_XCLK_SEL => "RXREC",
@@ -587,13 +304,13 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       TXPMARESET_TIME => B"00001",
       TX_CLK25_DIV => 5,
       TX_CLKMUX_PD => '1',
-      TX_DATA_WIDTH => 80,
+      TX_DATA_WIDTH => 20,
       TX_DEEMPH0 => B"00000",
       TX_DEEMPH1 => B"00000",
       TX_DRIVE_MODE => "DIRECT",
       TX_EIDLE_ASSERT_DELAY => B"110",
       TX_EIDLE_DEASSERT_DELAY => B"100",
-      TX_INT_DATAWIDTH => 1,
+      TX_INT_DATAWIDTH => 0,
       TX_LOOPBACK_DRIVE_HIZ => "FALSE",
       TX_MAINCURSOR_SEL => '0',
       TX_MARGIN_FULL_0 => B"1001110",
@@ -677,12 +394,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RXCHANISALIGNED => NLW_gtxe2_i_RXCHANISALIGNED_UNCONNECTED,
       RXCHANREALIGN => NLW_gtxe2_i_RXCHANREALIGN_UNCONNECTED,
       RXCHARISCOMMA(7 downto 0) => NLW_gtxe2_i_RXCHARISCOMMA_UNCONNECTED(7 downto 0),
-      RXCHARISK(7) => gt0_rxdata_out(78),
-      RXCHARISK(6) => gt0_rxdata_out(68),
-      RXCHARISK(5) => gt0_rxdata_out(58),
-      RXCHARISK(4) => gt0_rxdata_out(48),
-      RXCHARISK(3) => gt0_rxdata_out(38),
-      RXCHARISK(2) => gt0_rxdata_out(28),
+      RXCHARISK(7 downto 2) => NLW_gtxe2_i_RXCHARISK_UNCONNECTED(7 downto 2),
       RXCHARISK(1) => gt0_rxdata_out(18),
       RXCHARISK(0) => gt0_rxdata_out(8),
       RXCHBONDEN => '0',
@@ -697,12 +409,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RXCOMMADETEN => '0',
       RXCOMSASDET => NLW_gtxe2_i_RXCOMSASDET_UNCONNECTED,
       RXCOMWAKEDET => NLW_gtxe2_i_RXCOMWAKEDET_UNCONNECTED,
-      RXDATA(63 downto 56) => gt0_rxdata_out(77 downto 70),
-      RXDATA(55 downto 48) => gt0_rxdata_out(67 downto 60),
-      RXDATA(47 downto 40) => gt0_rxdata_out(57 downto 50),
-      RXDATA(39 downto 32) => gt0_rxdata_out(47 downto 40),
-      RXDATA(31 downto 24) => gt0_rxdata_out(37 downto 30),
-      RXDATA(23 downto 16) => gt0_rxdata_out(27 downto 20),
+      RXDATA(63 downto 16) => NLW_gtxe2_i_RXDATA_UNCONNECTED(63 downto 16),
       RXDATA(15 downto 8) => gt0_rxdata_out(17 downto 10),
       RXDATA(7 downto 0) => gt0_rxdata_out(7 downto 0),
       RXDATAVALID => NLW_gtxe2_i_RXDATAVALID_UNCONNECTED,
@@ -729,12 +436,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RXDFEXYDEN => '1',
       RXDFEXYDHOLD => '0',
       RXDFEXYDOVRDEN => '0',
-      RXDISPERR(7) => gt0_rxdata_out(79),
-      RXDISPERR(6) => gt0_rxdata_out(69),
-      RXDISPERR(5) => gt0_rxdata_out(59),
-      RXDISPERR(4) => gt0_rxdata_out(49),
-      RXDISPERR(3) => gt0_rxdata_out(39),
-      RXDISPERR(2) => gt0_rxdata_out(29),
+      RXDISPERR(7 downto 2) => NLW_gtxe2_i_RXDISPERR_UNCONNECTED(7 downto 2),
       RXDISPERR(1) => gt0_rxdata_out(19),
       RXDISPERR(0) => gt0_rxdata_out(9),
       RXDLYBYPASS => '1',
@@ -790,8 +492,8 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       RXSTATUS(2 downto 0) => NLW_gtxe2_i_RXSTATUS_UNCONNECTED(2 downto 0),
       RXSYSCLKSEL(1 downto 0) => B"11",
       RXUSERRDY => gt0_rxuserrdy_i,
-      RXUSRCLK => GT0_RXUSRCLK_OUT,
-      RXUSRCLK2 => gt0_rxusrclk2_out,
+      RXUSRCLK => GT0_RXUSRCLK2_OUT,
+      RXUSRCLK2 => GT0_RXUSRCLK2_OUT,
       RXVALID => NLW_gtxe2_i_RXVALID_UNCONNECTED,
       SETERRSTATUS => '0',
       TSTIN(19 downto 0) => B"11111111111111111111",
@@ -800,20 +502,10 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       TX8B10BEN => '0',
       TXBUFDIFFCTRL(2 downto 0) => B"100",
       TXBUFSTATUS(1 downto 0) => NLW_gtxe2_i_TXBUFSTATUS_UNCONNECTED(1 downto 0),
-      TXCHARDISPMODE(7) => gt0_txdata_in(79),
-      TXCHARDISPMODE(6) => gt0_txdata_in(69),
-      TXCHARDISPMODE(5) => gt0_txdata_in(59),
-      TXCHARDISPMODE(4) => gt0_txdata_in(49),
-      TXCHARDISPMODE(3) => gt0_txdata_in(39),
-      TXCHARDISPMODE(2) => gt0_txdata_in(29),
+      TXCHARDISPMODE(7 downto 2) => B"000000",
       TXCHARDISPMODE(1) => gt0_txdata_in(19),
       TXCHARDISPMODE(0) => gt0_txdata_in(9),
-      TXCHARDISPVAL(7) => gt0_txdata_in(78),
-      TXCHARDISPVAL(6) => gt0_txdata_in(68),
-      TXCHARDISPVAL(5) => gt0_txdata_in(58),
-      TXCHARDISPVAL(4) => gt0_txdata_in(48),
-      TXCHARDISPVAL(3) => gt0_txdata_in(38),
-      TXCHARDISPVAL(2) => gt0_txdata_in(28),
+      TXCHARDISPVAL(7 downto 2) => B"000000",
       TXCHARDISPVAL(1) => gt0_txdata_in(18),
       TXCHARDISPVAL(0) => gt0_txdata_in(8),
       TXCHARISK(7 downto 0) => B"00000000",
@@ -821,12 +513,7 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       TXCOMINIT => '0',
       TXCOMSAS => '0',
       TXCOMWAKE => '0',
-      TXDATA(63 downto 56) => gt0_txdata_in(77 downto 70),
-      TXDATA(55 downto 48) => gt0_txdata_in(67 downto 60),
-      TXDATA(47 downto 40) => gt0_txdata_in(57 downto 50),
-      TXDATA(39 downto 32) => gt0_txdata_in(47 downto 40),
-      TXDATA(31 downto 24) => gt0_txdata_in(37 downto 30),
-      TXDATA(23 downto 16) => gt0_txdata_in(27 downto 20),
+      TXDATA(63 downto 16) => B"000000000000000000000000000000000000000000000000",
       TXDATA(15 downto 8) => gt0_txdata_in(17 downto 10),
       TXDATA(7 downto 0) => gt0_txdata_in(7 downto 0),
       TXDEEMPH => '0',
@@ -885,7 +572,56 @@ gtxe2_i: unisim.vcomponents.GTXE2_CHANNEL
       TXSYSCLKSEL(1 downto 0) => B"11",
       TXUSERRDY => gt0_txuserrdy_i,
       TXUSRCLK => gt0_txusrclk_out,
-      TXUSRCLK2 => gt0_txusrclk2_out
+      TXUSRCLK2 => gt0_txusrclk_out
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
+  port (
+    Q3_CLK0_GTREFCLK_OUT : out STD_LOGIC;
+    gt0_txusrclk_out : out STD_LOGIC;
+    GT0_RXUSRCLK2_OUT : out STD_LOGIC;
+    q3_clk0_gtrefclk_pad_p_in : in STD_LOGIC;
+    q3_clk0_gtrefclk_pad_n_in : in STD_LOGIC;
+    GT0_TXOUTCLK_IN : in STD_LOGIC;
+    GT0_RXOUTCLK_IN : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE : entity is "gtwizard_0_GT_USRCLK_SOURCE";
+end main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE;
+
+architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
+  signal NLW_ibufds_instQ3_CLK0_ODIV2_UNCONNECTED : STD_LOGIC;
+  attribute BOX_TYPE : string;
+  attribute BOX_TYPE of ibufds_instQ3_CLK0 : label is "PRIMITIVE";
+  attribute BOX_TYPE of rxoutclk_bufg1_i : label is "PRIMITIVE";
+  attribute BOX_TYPE of txoutclk_bufg0_i : label is "PRIMITIVE";
+begin
+ibufds_instQ3_CLK0: unisim.vcomponents.IBUFDS_GTE2
+    generic map(
+      CLKCM_CFG => true,
+      CLKRCV_TRST => true,
+      CLKSWING_CFG => B"11"
+    )
+        port map (
+      CEB => '0',
+      I => q3_clk0_gtrefclk_pad_p_in,
+      IB => q3_clk0_gtrefclk_pad_n_in,
+      O => Q3_CLK0_GTREFCLK_OUT,
+      ODIV2 => NLW_ibufds_instQ3_CLK0_ODIV2_UNCONNECTED
+    );
+rxoutclk_bufg1_i: unisim.vcomponents.BUFG
+     port map (
+      I => GT0_RXOUTCLK_IN,
+      O => GT0_RXUSRCLK2_OUT
+    );
+txoutclk_bufg0_i: unisim.vcomponents.BUFG
+     port map (
+      I => GT0_TXOUTCLK_IN,
+      O => gt0_txusrclk_out
     );
 end STRUCTURE;
 library IEEE;
@@ -902,6 +638,8 @@ entity main_gt_core_0_0_gtwizard_0_common is
     sysclk_in : in STD_LOGIC;
     gt0_qpllreset_t : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_common : entity is "gtwizard_0_common";
 end main_gt_core_0_0_gtwizard_0_common;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_common is
@@ -987,6 +725,8 @@ entity main_gt_core_0_0_gtwizard_0_common_reset is
     soft_reset_tx_in : in STD_LOGIC;
     gt0_qpllreset_i : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_common_reset : entity is "gtwizard_0_common_reset";
 end main_gt_core_0_0_gtwizard_0_common_reset;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_common_reset is
@@ -1005,16 +745,16 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_common_reset is
   signal state : STD_LOGIC;
   signal state_i_1_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of COMMON_RESET_i_1 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of common_reset_asserted_i_1 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \init_wait_count[0]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of COMMON_RESET_i_1 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of common_reset_asserted_i_1 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \init_wait_count[4]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \init_wait_count[6]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \init_wait_count[7]_i_2\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \init_wait_count[6]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \init_wait_count[7]_i_2\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \init_wait_count[7]_i_3\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \init_wait_count[7]_i_4\ : label is "soft_lutpair2";
 begin
 COMMON_RESET_i_1: unisim.vcomponents.LUT3
     generic map(
@@ -1106,14 +846,14 @@ gtxe2_common_i_i_1: unisim.vcomponents.LUT2
     );
 \init_wait_count[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"6AAAAAAA"
+      INIT => X"7FFF8000"
     )
         port map (
-      I0 => \init_wait_count_reg__0\(4),
-      I1 => \init_wait_count_reg__0\(0),
-      I2 => \init_wait_count_reg__0\(1),
-      I3 => \init_wait_count_reg__0\(3),
-      I4 => \init_wait_count_reg__0\(2),
+      I0 => \init_wait_count_reg__0\(0),
+      I1 => \init_wait_count_reg__0\(1),
+      I2 => \init_wait_count_reg__0\(3),
+      I3 => \init_wait_count_reg__0\(2),
+      I4 => \init_wait_count_reg__0\(4),
       O => p_0_in(4)
     );
 \init_wait_count[5]_i_1\: unisim.vcomponents.LUT6
@@ -1122,20 +862,22 @@ gtxe2_common_i_i_1: unisim.vcomponents.LUT2
     )
         port map (
       I0 => \init_wait_count_reg__0\(5),
-      I1 => \init_wait_count_reg__0\(2),
-      I2 => \init_wait_count_reg__0\(3),
-      I3 => \init_wait_count_reg__0\(1),
-      I4 => \init_wait_count_reg__0\(0),
+      I1 => \init_wait_count_reg__0\(0),
+      I2 => \init_wait_count_reg__0\(1),
+      I3 => \init_wait_count_reg__0\(3),
+      I4 => \init_wait_count_reg__0\(2),
       I5 => \init_wait_count_reg__0\(4),
       O => p_0_in(5)
     );
-\init_wait_count[6]_i_1\: unisim.vcomponents.LUT2
+\init_wait_count[6]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"9"
+      INIT => X"9AAA"
     )
         port map (
-      I0 => \init_wait_count[7]_i_4_n_0\,
-      I1 => \init_wait_count_reg__0\(6),
+      I0 => \init_wait_count_reg__0\(6),
+      I1 => \init_wait_count[7]_i_4_n_0\,
+      I2 => \init_wait_count_reg__0\(4),
+      I3 => \init_wait_count_reg__0\(5),
       O => p_0_in(6)
     );
 \init_wait_count[7]_i_1\: unisim.vcomponents.LUT5
@@ -1150,14 +892,16 @@ gtxe2_common_i_i_1: unisim.vcomponents.LUT2
       I4 => \init_wait_count_reg__0\(6),
       O => init_wait_count
     );
-\init_wait_count[7]_i_2\: unisim.vcomponents.LUT3
+\init_wait_count[7]_i_2\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"9A"
+      INIT => X"AA6AAAAA"
     )
         port map (
       I0 => \init_wait_count_reg__0\(7),
-      I1 => \init_wait_count[7]_i_4_n_0\,
-      I2 => \init_wait_count_reg__0\(6),
+      I1 => \init_wait_count_reg__0\(5),
+      I2 => \init_wait_count_reg__0\(4),
+      I3 => \init_wait_count[7]_i_4_n_0\,
+      I4 => \init_wait_count_reg__0\(6),
       O => p_0_in(7)
     );
 \init_wait_count[7]_i_3\: unisim.vcomponents.LUT4
@@ -1171,17 +915,15 @@ gtxe2_common_i_i_1: unisim.vcomponents.LUT2
       I3 => \init_wait_count_reg__0\(1),
       O => \init_wait_count[7]_i_3_n_0\
     );
-\init_wait_count[7]_i_4\: unisim.vcomponents.LUT6
+\init_wait_count[7]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7FFFFFFFFFFFFFFF"
+      INIT => X"7FFF"
     )
         port map (
-      I0 => \init_wait_count_reg__0\(2),
-      I1 => \init_wait_count_reg__0\(3),
-      I2 => \init_wait_count_reg__0\(1),
-      I3 => \init_wait_count_reg__0\(0),
-      I4 => \init_wait_count_reg__0\(5),
-      I5 => \init_wait_count_reg__0\(4),
+      I0 => \init_wait_count_reg__0\(0),
+      I1 => \init_wait_count_reg__0\(1),
+      I2 => \init_wait_count_reg__0\(3),
+      I3 => \init_wait_count_reg__0\(2),
       O => \init_wait_count[7]_i_4_n_0\
     );
 \init_wait_count_reg[0]\: unisim.vcomponents.FDRE
@@ -1327,6 +1069,8 @@ entity main_gt_core_0_0_gtwizard_0_sync_block is
     gt0_txresetdone_out : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_sync_block : entity is "gtwizard_0_sync_block";
 end main_gt_core_0_0_gtwizard_0_sync_block;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block is
@@ -1440,9 +1184,8 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_0 is
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     mmcm_lock_reclocked_reg : out STD_LOGIC;
     mmcm_lock_reclocked : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \mmcm_lock_count_reg[5]\ : in STD_LOGIC;
-    gt0_tx_mmcm_lock_out : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    \mmcm_lock_count_reg[4]\ : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -1484,9 +1227,6 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_0 is
   attribute BOX_TYPE of data_sync_reg6 : label is "PRIMITIVE";
   attribute SHREG_EXTRACT of data_sync_reg6 : label is "no";
   attribute XILINX_LEGACY_PRIM of data_sync_reg6 : label is "FD";
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of mmcm_lock_reclocked_i_1 : label is "soft_lutpair19";
 begin
 data_sync_reg1: unisim.vcomponents.FDRE
     generic map(
@@ -1495,7 +1235,7 @@ data_sync_reg1: unisim.vcomponents.FDRE
         port map (
       C => sysclk_in,
       CE => '1',
-      D => gt0_tx_mmcm_lock_out,
+      D => '1',
       Q => data_sync1,
       R => '0'
     );
@@ -1562,16 +1302,17 @@ data_sync_reg6: unisim.vcomponents.FDRE
       I0 => mmcm_lock_i,
       O => SR(0)
     );
-mmcm_lock_reclocked_i_1: unisim.vcomponents.LUT5
+mmcm_lock_reclocked_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EAAA0000"
+      INIT => X"EAAAAAAA00000000"
     )
         port map (
       I0 => mmcm_lock_reclocked,
-      I1 => Q(1),
-      I2 => \mmcm_lock_count_reg[5]\,
-      I3 => Q(0),
-      I4 => mmcm_lock_i,
+      I1 => Q(2),
+      I2 => Q(0),
+      I3 => \mmcm_lock_count_reg[4]\,
+      I4 => Q(1),
+      I5 => mmcm_lock_i,
       O => mmcm_lock_reclocked_reg
     );
 end STRUCTURE;
@@ -1588,13 +1329,13 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_1 is
     init_wait_done_reg : in STD_LOGIC;
     \FSM_sequential_tx_state_reg[2]\ : in STD_LOGIC;
     sel : in STD_LOGIC;
-    mmcm_lock_reclocked : in STD_LOGIC;
-    reset_time_out : in STD_LOGIC;
-    time_tlock_max_reg : in STD_LOGIC;
-    pll_reset_asserted_reg : in STD_LOGIC;
     txresetdone_s3 : in STD_LOGIC;
+    reset_time_out : in STD_LOGIC;
     time_out_500us_reg : in STD_LOGIC;
     time_out_2ms_reg : in STD_LOGIC;
+    time_tlock_max_reg : in STD_LOGIC;
+    mmcm_lock_reclocked : in STD_LOGIC;
+    pll_reset_asserted_reg : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
   );
@@ -1657,12 +1398,12 @@ begin
     );
 \FSM_sequential_tx_state[3]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"45FF450045FF45FF"
+      INIT => X"0DFF0D000DFF0DFF"
     )
         port map (
-      I0 => mmcm_lock_reclocked,
+      I0 => time_tlock_max_reg,
       I1 => reset_time_out,
-      I2 => time_tlock_max_reg,
+      I2 => mmcm_lock_reclocked,
       I3 => \out\(2),
       I4 => qplllock_sync,
       I5 => pll_reset_asserted_reg,
@@ -1903,8 +1644,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_gt_core_0_0_gtwizard_0_sync_block_3 is
   port (
     D : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     reset_time_out_reg : out STD_LOGIC;
+    E : out STD_LOGIC_VECTOR ( 0 to 0 );
     rx_fsm_reset_done_int_reg : out STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \FSM_sequential_rx_state_reg[1]\ : in STD_LOGIC;
@@ -1912,18 +1653,14 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_3 is
     reset_time_out_reg_0 : in STD_LOGIC;
     time_out_1us_reg : in STD_LOGIC;
     \FSM_sequential_rx_state_reg[1]_0\ : in STD_LOGIC;
-    \wait_time_cnt_reg[0]\ : in STD_LOGIC;
+    \wait_time_cnt_reg[15]\ : in STD_LOGIC;
     \FSM_sequential_rx_state_reg[0]_0\ : in STD_LOGIC;
-    \FSM_sequential_rx_state_reg[2]\ : in STD_LOGIC;
+    \FSM_sequential_rx_state_reg[3]\ : in STD_LOGIC;
     time_out_wait_bypass_s3 : in STD_LOGIC;
-    \FSM_sequential_rx_state_reg[2]_0\ : in STD_LOGIC;
+    \FSM_sequential_rx_state_reg[2]\ : in STD_LOGIC;
     \FSM_sequential_rx_state_reg[0]_1\ : in STD_LOGIC;
-    data_out : in STD_LOGIC;
-    mmcm_lock_reclocked_reg : in STD_LOGIC;
     dont_reset_on_data_error_in : in STD_LOGIC;
     time_out_100us_reg : in STD_LOGIC;
-    \FSM_sequential_rx_state_reg[0]_2\ : in STD_LOGIC;
-    \FSM_sequential_rx_state_reg[1]_1\ : in STD_LOGIC;
     gt0_rx_fsm_reset_done_out : in STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
@@ -1942,11 +1679,11 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_3 is
   signal data_sync4 : STD_LOGIC;
   signal data_sync5 : STD_LOGIC;
   signal data_valid_sync : STD_LOGIC;
-  signal \reset_time_out_i_3__0_n_0\ : STD_LOGIC;
   signal rx_fsm_reset_done_int : STD_LOGIC;
   signal rx_fsm_reset_done_int_i_3_n_0 : STD_LOGIC;
   signal rx_fsm_reset_done_int_i_4_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \FSM_sequential_rx_state[3]_i_3\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \FSM_sequential_rx_state[3]_i_7\ : label is "soft_lutpair5";
   attribute ASYNC_REG : boolean;
   attribute ASYNC_REG of data_sync_reg1 : label is std.standard.true;
@@ -1976,6 +1713,7 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_3 is
   attribute BOX_TYPE of data_sync_reg6 : label is "PRIMITIVE";
   attribute SHREG_EXTRACT of data_sync_reg6 : label is "no";
   attribute XILINX_LEGACY_PRIM of data_sync_reg6 : label is "FD";
+  attribute SOFT_HLUTNM of reset_time_out_i_4 : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of rx_fsm_reset_done_int_i_4 : label is "soft_lutpair5";
 begin
 \FSM_sequential_rx_state[0]_i_1\: unisim.vcomponents.LUT4
@@ -2011,7 +1749,7 @@ begin
       I2 => dont_reset_on_data_error_in,
       I3 => data_valid_sync,
       I4 => \out\(0),
-      I5 => \FSM_sequential_rx_state_reg[2]_0\,
+      I5 => \FSM_sequential_rx_state_reg[2]\,
       O => \FSM_sequential_rx_state[1]_i_2_n_0\
     );
 \FSM_sequential_rx_state[3]_i_1\: unisim.vcomponents.LUT6
@@ -2021,10 +1759,10 @@ begin
         port map (
       I0 => \FSM_sequential_rx_state[3]_i_3_n_0\,
       I1 => \FSM_sequential_rx_state_reg[1]_0\,
-      I2 => \wait_time_cnt_reg[0]\,
+      I2 => \wait_time_cnt_reg[15]\,
       I3 => \out\(0),
       I4 => \FSM_sequential_rx_state_reg[0]_0\,
-      I5 => \FSM_sequential_rx_state_reg[2]\,
+      I5 => \FSM_sequential_rx_state_reg[3]\,
       O => E(0)
     );
 \FSM_sequential_rx_state[3]_i_2\: unisim.vcomponents.LUT6
@@ -2035,7 +1773,7 @@ begin
       I0 => \FSM_sequential_rx_state[3]_i_7_n_0\,
       I1 => \out\(0),
       I2 => time_out_wait_bypass_s3,
-      I3 => \FSM_sequential_rx_state_reg[2]_0\,
+      I3 => \FSM_sequential_rx_state_reg[2]\,
       I4 => \out\(3),
       I5 => \FSM_sequential_rx_state_reg[0]_1\,
       O => D(2)
@@ -2129,31 +1867,16 @@ data_sync_reg6: unisim.vcomponents.FDRE
       Q => data_valid_sync,
       R => '0'
     );
-\reset_time_out_i_1__0\: unisim.vcomponents.LUT6
+reset_time_out_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"00DFFFFF00DF0000"
+      INIT => X"30D0"
     )
         port map (
-      I0 => \out\(3),
+      I0 => \out\(0),
       I1 => data_valid_sync,
-      I2 => \FSM_sequential_rx_state_reg[0]_2\,
-      I3 => \reset_time_out_i_3__0_n_0\,
-      I4 => \FSM_sequential_rx_state_reg[1]_1\,
-      I5 => reset_time_out_reg_0,
+      I2 => \out\(3),
+      I3 => \out\(1),
       O => reset_time_out_reg
-    );
-\reset_time_out_i_3__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"888888880000FF0C"
-    )
-        port map (
-      I0 => data_valid_sync,
-      I1 => \out\(1),
-      I2 => data_out,
-      I3 => \out\(2),
-      I4 => mmcm_lock_reclocked_reg,
-      I5 => \out\(3),
-      O => \reset_time_out_i_3__0_n_0\
     );
 rx_fsm_reset_done_int_i_1: unisim.vcomponents.LUT5
     generic map(
@@ -2213,9 +1936,8 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_4 is
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     mmcm_lock_reclocked_reg : out STD_LOGIC;
     mmcm_lock_reclocked : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \mmcm_lock_count_reg[5]\ : in STD_LOGIC;
-    gt0_rx_mmcm_lock_out : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    \mmcm_lock_count_reg[4]\ : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -2257,9 +1979,6 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_4 is
   attribute BOX_TYPE of data_sync_reg6 : label is "PRIMITIVE";
   attribute SHREG_EXTRACT of data_sync_reg6 : label is "no";
   attribute XILINX_LEGACY_PRIM of data_sync_reg6 : label is "FD";
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_1__0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \mmcm_lock_reclocked_i_1__0\ : label is "soft_lutpair6";
 begin
 data_sync_reg1: unisim.vcomponents.FDRE
     generic map(
@@ -2268,7 +1987,7 @@ data_sync_reg1: unisim.vcomponents.FDRE
         port map (
       C => sysclk_in,
       CE => '1',
-      D => gt0_rx_mmcm_lock_out,
+      D => '1',
       Q => data_sync1,
       R => '0'
     );
@@ -2335,16 +2054,17 @@ data_sync_reg6: unisim.vcomponents.FDRE
       I0 => mmcm_lock_i,
       O => SR(0)
     );
-\mmcm_lock_reclocked_i_1__0\: unisim.vcomponents.LUT5
+\mmcm_lock_reclocked_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"EAAA0000"
+      INIT => X"EAAAAAAA00000000"
     )
         port map (
       I0 => mmcm_lock_reclocked,
-      I1 => Q(1),
-      I2 => \mmcm_lock_count_reg[5]\,
-      I3 => Q(0),
-      I4 => mmcm_lock_i,
+      I1 => Q(2),
+      I2 => Q(0),
+      I3 => \mmcm_lock_count_reg[4]\,
+      I4 => Q(1),
+      I5 => mmcm_lock_i,
       O => mmcm_lock_reclocked_reg
     );
 end STRUCTURE;
@@ -2355,10 +2075,14 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_gt_core_0_0_gtwizard_0_sync_block_5 is
   port (
     \FSM_sequential_rx_state_reg[0]\ : out STD_LOGIC;
-    data_out : out STD_LOGIC;
+    reset_time_out_reg : out STD_LOGIC;
     adapt_count_reset_reg : out STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     time_out_2ms_reg : in STD_LOGIC;
+    mmcm_lock_reclocked_reg : in STD_LOGIC;
+    \FSM_sequential_rx_state_reg[0]_0\ : in STD_LOGIC;
+    \FSM_sequential_rx_state_reg[1]\ : in STD_LOGIC;
+    reset_time_out_reg_0 : in STD_LOGIC;
     recclk_mon_count_reset : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC;
     sysclk_in : in STD_LOGIC
@@ -2368,12 +2092,13 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_5 is
 end main_gt_core_0_0_gtwizard_0_sync_block_5;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_5 is
-  signal \^data_out\ : STD_LOGIC;
   signal data_sync1 : STD_LOGIC;
   signal data_sync2 : STD_LOGIC;
   signal data_sync3 : STD_LOGIC;
   signal data_sync4 : STD_LOGIC;
   signal data_sync5 : STD_LOGIC;
+  signal qplllock_sync : STD_LOGIC;
+  signal \reset_time_out_i_2__0_n_0\ : STD_LOGIC;
   attribute ASYNC_REG : boolean;
   attribute ASYNC_REG of data_sync_reg1 : label is std.standard.true;
   attribute BOX_TYPE : string;
@@ -2403,17 +2128,17 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_sync_block_5 is
   attribute SHREG_EXTRACT of data_sync_reg6 : label is "no";
   attribute XILINX_LEGACY_PRIM of data_sync_reg6 : label is "FD";
 begin
-  data_out <= \^data_out\;
-\FSM_sequential_rx_state[3]_i_6\: unisim.vcomponents.LUT5
+\FSM_sequential_rx_state[3]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFEFF"
+      INIT => X"5500550055005700"
     )
         port map (
-      I0 => \out\(2),
-      I1 => \out\(3),
-      I2 => time_out_2ms_reg,
+      I0 => \out\(0),
+      I1 => time_out_2ms_reg,
+      I2 => qplllock_sync,
       I3 => \out\(1),
-      I4 => \^data_out\,
+      I4 => \out\(3),
+      I5 => \out\(2),
       O => \FSM_sequential_rx_state_reg[0]\
     );
 adapt_count_reset_i_1: unisim.vcomponents.LUT6
@@ -2424,7 +2149,7 @@ adapt_count_reset_i_1: unisim.vcomponents.LUT6
       I0 => \out\(3),
       I1 => \out\(0),
       I2 => \out\(1),
-      I3 => \^data_out\,
+      I3 => qplllock_sync,
       I4 => \out\(2),
       I5 => recclk_mon_count_reset,
       O => adapt_count_reset_reg
@@ -2492,8 +2217,31 @@ data_sync_reg6: unisim.vcomponents.FDRE
       C => sysclk_in,
       CE => '1',
       D => data_sync5,
-      Q => \^data_out\,
+      Q => qplllock_sync,
       R => '0'
+    );
+\reset_time_out_i_1__0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FF0DFFFFFF0D0000"
+    )
+        port map (
+      I0 => \reset_time_out_i_2__0_n_0\,
+      I1 => mmcm_lock_reclocked_reg,
+      I2 => \out\(3),
+      I3 => \FSM_sequential_rx_state_reg[0]_0\,
+      I4 => \FSM_sequential_rx_state_reg[1]\,
+      I5 => reset_time_out_reg_0,
+      O => reset_time_out_reg
+    );
+\reset_time_out_i_2__0\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"BA"
+    )
+        port map (
+      I0 => \out\(2),
+      I1 => qplllock_sync,
+      I2 => \out\(1),
+      O => \reset_time_out_i_2__0_n_0\
     );
 end STRUCTURE;
 library IEEE;
@@ -2504,7 +2252,7 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_6 is
   port (
     data_out : out STD_LOGIC;
     data_in : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_sync_block_6 : entity is "gtwizard_0_sync_block";
@@ -2550,7 +2298,7 @@ data_sync_reg1: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_in,
       Q => data_sync1,
@@ -2561,7 +2309,7 @@ data_sync_reg2: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync1,
       Q => data_sync2,
@@ -2572,7 +2320,7 @@ data_sync_reg3: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync2,
       Q => data_sync3,
@@ -2583,7 +2331,7 @@ data_sync_reg4: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync3,
       Q => data_sync4,
@@ -2594,7 +2342,7 @@ data_sync_reg5: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync4,
       Q => data_sync5,
@@ -2605,7 +2353,7 @@ data_sync_reg6: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync5,
       Q => data_out,
@@ -2620,7 +2368,7 @@ entity main_gt_core_0_0_gtwizard_0_sync_block_7 is
   port (
     data_out : out STD_LOGIC;
     gt0_rx_fsm_reset_done_out : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_sync_block_7 : entity is "gtwizard_0_sync_block";
@@ -2666,7 +2414,7 @@ data_sync_reg1: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => gt0_rx_fsm_reset_done_out,
       Q => data_sync1,
@@ -2677,7 +2425,7 @@ data_sync_reg2: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync1,
       Q => data_sync2,
@@ -2688,7 +2436,7 @@ data_sync_reg3: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync2,
       Q => data_sync3,
@@ -2699,7 +2447,7 @@ data_sync_reg4: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync3,
       Q => data_sync4,
@@ -2710,7 +2458,7 @@ data_sync_reg5: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync4,
       Q => data_sync5,
@@ -2721,7 +2469,7 @@ data_sync_reg6: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => data_sync5,
       Q => data_out,
@@ -2848,83 +2596,23 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
-  port (
-    gt0_tx_mmcm_lock_out : out STD_LOGIC;
-    gt0_txusrclk2_out : out STD_LOGIC;
-    gt0_txusrclk_out : out STD_LOGIC;
-    gt0_rx_mmcm_lock_out : out STD_LOGIC;
-    gt0_rxusrclk2_out : out STD_LOGIC;
-    GT0_RXUSRCLK_OUT : out STD_LOGIC;
-    Q3_CLK0_GTREFCLK_OUT : out STD_LOGIC;
-    GT0_TXOUTCLK_IN : in STD_LOGIC;
-    GT0_TX_MMCM_RESET_IN : in STD_LOGIC;
-    GT0_RXOUTCLK_IN : in STD_LOGIC;
-    GT0_RX_MMCM_RESET_IN : in STD_LOGIC;
-    q3_clk0_gtrefclk_pad_p_in : in STD_LOGIC;
-    q3_clk0_gtrefclk_pad_n_in : in STD_LOGIC
-  );
-end main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE;
-
-architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE is
-  signal NLW_ibufds_instQ3_CLK0_ODIV2_UNCONNECTED : STD_LOGIC;
-  attribute BOX_TYPE : string;
-  attribute BOX_TYPE of ibufds_instQ3_CLK0 : label is "PRIMITIVE";
-  attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of rxoutclk_mmcm1_i : label is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
-  attribute X_CORE_INFO of txoutclk_mmcm0_i : label is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
-begin
-ibufds_instQ3_CLK0: unisim.vcomponents.IBUFDS_GTE2
-    generic map(
-      CLKCM_CFG => true,
-      CLKRCV_TRST => true,
-      CLKSWING_CFG => B"11"
-    )
-        port map (
-      CEB => '0',
-      I => q3_clk0_gtrefclk_pad_p_in,
-      IB => q3_clk0_gtrefclk_pad_n_in,
-      O => Q3_CLK0_GTREFCLK_OUT,
-      ODIV2 => NLW_ibufds_instQ3_CLK0_ODIV2_UNCONNECTED
-    );
-rxoutclk_mmcm1_i: entity work.main_gt_core_0_0_gtwizard_0_CLOCK_MODULE
-     port map (
-      GT0_RXOUTCLK_IN => GT0_RXOUTCLK_IN,
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
-      GT0_RX_MMCM_RESET_IN => GT0_RX_MMCM_RESET_IN,
-      gt0_rx_mmcm_lock_out => gt0_rx_mmcm_lock_out,
-      gt0_rxusrclk2_out => gt0_rxusrclk2_out
-    );
-txoutclk_mmcm0_i: entity work.main_gt_core_0_0_gtwizard_0_CLOCK_MODULE_9
-     port map (
-      GT0_TXOUTCLK_IN => GT0_TXOUTCLK_IN,
-      GT0_TX_MMCM_RESET_IN => GT0_TX_MMCM_RESET_IN,
-      gt0_tx_mmcm_lock_out => gt0_tx_mmcm_lock_out,
-      gt0_txusrclk2_out => gt0_txusrclk2_out,
-      gt0_txusrclk_out => gt0_txusrclk_out
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
 entity main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   port (
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    GT0_RX_MMCM_RESET_IN : out STD_LOGIC;
     gt0_rx_fsm_reset_done_out : out STD_LOGIC;
     gt0_rxuserrdy_i : out STD_LOGIC;
     gt0_rxdfelfhold_i : out STD_LOGIC;
     sysclk_in : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC;
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC;
     soft_reset_rx_in : in STD_LOGIC;
     gt0_rx_cdrlocked_reg : in STD_LOGIC;
     dont_reset_on_data_error_in : in STD_LOGIC;
     gt0_rxresetdone_out : in STD_LOGIC;
-    gt0_rx_mmcm_lock_out : in STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM : entity is "gtwizard_0_RX_STARTUP_FSM";
 end main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
@@ -2934,10 +2622,9 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal \FSM_sequential_rx_state[2]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_rx_state[3]_i_10_n_0\ : STD_LOGIC;
   signal \FSM_sequential_rx_state[3]_i_4_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_rx_state[3]_i_5_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_rx_state[3]_i_6_n_0\ : STD_LOGIC;
   signal \FSM_sequential_rx_state[3]_i_8_n_0\ : STD_LOGIC;
   signal \FSM_sequential_rx_state[3]_i_9_n_0\ : STD_LOGIC;
-  signal \^gt0_rx_mmcm_reset_in\ : STD_LOGIC;
   signal RXDFEAGCHOLD_i_1_n_0 : STD_LOGIC;
   signal RXUSERRDY_i_1_n_0 : STD_LOGIC;
   signal \^sr\ : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -3033,14 +2720,10 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal \mmcm_lock_count[7]_i_4__0_n_0\ : STD_LOGIC;
   signal \mmcm_lock_count_reg__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal mmcm_lock_reclocked : STD_LOGIC;
-  signal \mmcm_lock_reclocked_i_2__0_n_0\ : STD_LOGIC;
-  signal mmcm_reset_i_i_1_n_0 : STD_LOGIC;
   signal \p_0_in__1\ : STD_LOGIC_VECTOR ( 7 downto 1 );
   signal \p_0_in__2\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal qplllock_sync : STD_LOGIC;
   signal recclk_mon_count_reset : STD_LOGIC;
-  signal \reset_time_out_i_2__0_n_0\ : STD_LOGIC;
-  signal reset_time_out_i_4_n_0 : STD_LOGIC;
+  signal \reset_time_out_i_3__0_n_0\ : STD_LOGIC;
   signal reset_time_out_i_5_n_0 : STD_LOGIC;
   signal reset_time_out_reg_n_0 : STD_LOGIC;
   signal run_phase_alignment_int_i_1_n_0 : STD_LOGIC;
@@ -3063,6 +2746,7 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal sync_mmcm_lock_reclocked_n_0 : STD_LOGIC;
   signal sync_mmcm_lock_reclocked_n_1 : STD_LOGIC;
   signal sync_qplllock_n_0 : STD_LOGIC;
+  signal sync_qplllock_n_1 : STD_LOGIC;
   signal sync_qplllock_n_2 : STD_LOGIC;
   signal time_out_100us_i_1_n_0 : STD_LOGIC;
   signal time_out_100us_i_2_n_0 : STD_LOGIC;
@@ -3076,9 +2760,8 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal time_out_1us_reg_n_0 : STD_LOGIC;
   signal time_out_2ms_i_1_n_0 : STD_LOGIC;
   signal \time_out_2ms_i_2__0_n_0\ : STD_LOGIC;
-  signal \time_out_2ms_i_3__0_n_0\ : STD_LOGIC;
+  signal time_out_2ms_i_3_n_0 : STD_LOGIC;
   signal time_out_2ms_i_4_n_0 : STD_LOGIC;
-  signal time_out_2ms_i_5_n_0 : STD_LOGIC;
   signal time_out_2ms_reg_n_0 : STD_LOGIC;
   signal time_out_adapt_i_1_n_0 : STD_LOGIC;
   signal time_out_adapt_reg_n_0 : STD_LOGIC;
@@ -3086,7 +2769,6 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal \time_out_counter[0]_i_3_n_0\ : STD_LOGIC;
   signal \time_out_counter[0]_i_4__0_n_0\ : STD_LOGIC;
   signal \time_out_counter[0]_i_5_n_0\ : STD_LOGIC;
-  signal \time_out_counter[0]_i_6_n_0\ : STD_LOGIC;
   signal time_out_counter_reg : STD_LOGIC_VECTOR ( 17 downto 0 );
   signal \time_out_counter_reg[0]_i_2__0_n_0\ : STD_LOGIC;
   signal \time_out_counter_reg[0]_i_2__0_n_1\ : STD_LOGIC;
@@ -3132,6 +2814,7 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   signal time_tlock_max_i_2_n_0 : STD_LOGIC;
   signal time_tlock_max_i_3_n_0 : STD_LOGIC;
   signal time_tlock_max_i_4_n_0 : STD_LOGIC;
+  signal time_tlock_max_i_5_n_0 : STD_LOGIC;
   signal \wait_bypass_count[0]_i_2_n_0\ : STD_LOGIC;
   signal \wait_bypass_count[0]_i_4_n_0\ : STD_LOGIC;
   signal \wait_bypass_count[0]_i_5_n_0\ : STD_LOGIC;
@@ -3234,32 +2917,27 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM is
   attribute FSM_ENCODED_STATES of \FSM_sequential_rx_state_reg[3]\ : label is "RELEASE_PLL_RESET:0011,VERIFY_RECCLK_STABLE:0100,WAIT_FOR_PLL_LOCK:0010,FSM_DONE:1010,ASSERT_ALL_RESETS:0001,INIT:0000,WAIT_RESET_DONE:0111,MONITOR_DATA_VALID:1001,WAIT_FOR_RXUSRCLK:0110,DO_PHASE_ALIGNMENT:1000,RELEASE_MMCM_RESET:0101";
   attribute KEEP of \FSM_sequential_rx_state_reg[3]\ : label is "yes";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1__1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1__1\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1__1\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1__1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1__1\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1__1\ : label is "soft_lutpair13";
   attribute SOFT_HLUTNM of \init_wait_count[4]_i_1__1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \init_wait_count[7]_i_3__1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \init_wait_count[7]_i_4__1\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[0]_i_1__0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[1]_i_1__0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[2]_i_1__0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[3]_i_1__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[4]_i_1__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[6]_i_1__0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_3__0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_4__0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of time_out_100us_i_2 : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of time_out_100us_i_3 : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of time_out_1us_i_2 : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of time_out_1us_i_3 : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of time_out_1us_i_4 : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \time_out_2ms_i_3__0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of time_out_2ms_i_4 : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of time_out_2ms_i_5 : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \time_out_counter[0]_i_6\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of time_tlock_max_i_2 : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \init_wait_count[7]_i_4__1\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[0]_i_1__0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[1]_i_1__0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[2]_i_1__0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[3]_i_1__0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[4]_i_1__0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[6]_i_1__0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_3__0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_4__0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of time_out_100us_i_3 : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of time_out_100us_i_4 : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of time_out_2ms_i_3 : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of time_out_2ms_i_4 : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \time_out_counter[0]_i_3\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of time_tlock_max_i_2 : label is "soft_lutpair8";
 begin
-  GT0_RX_MMCM_RESET_IN <= \^gt0_rx_mmcm_reset_in\;
   SR(0) <= \^sr\(0);
   gt0_rx_fsm_reset_done_out <= \^gt0_rx_fsm_reset_done_out\;
   gt0_rxdfelfhold_i <= \^gt0_rxdfelfhold_i\;
@@ -3341,18 +3019,18 @@ begin
       I5 => \FSM_sequential_rx_state[3]_i_10_n_0\,
       O => \FSM_sequential_rx_state[3]_i_4_n_0\
     );
-\FSM_sequential_rx_state[3]_i_5\: unisim.vcomponents.LUT6
+\FSM_sequential_rx_state[3]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"5555775700000000"
+      INIT => X"FF1FFFFFFF1FFF1F"
     )
         port map (
-      I0 => rx_state(0),
-      I1 => \FSM_sequential_rx_state[3]_i_8_n_0\,
-      I2 => time_out_2ms_reg_n_0,
-      I3 => reset_time_out_reg_n_0,
-      I4 => rxresetdone_s3,
-      I5 => rx_state(1),
-      O => \FSM_sequential_rx_state[3]_i_5_n_0\
+      I0 => rx_state(3),
+      I1 => rx_state(2),
+      I2 => rx_state(1),
+      I3 => rxresetdone_s3,
+      I4 => reset_time_out_reg_n_0,
+      I5 => time_out_2ms_reg_n_0,
+      O => \FSM_sequential_rx_state[3]_i_6_n_0\
     );
 \FSM_sequential_rx_state[3]_i_8\: unisim.vcomponents.LUT3
     generic map(
@@ -3383,7 +3061,7 @@ begin
     )
         port map (
       C => sysclk_in,
-      CE => sync_data_valid_n_3,
+      CE => sync_data_valid_n_4,
       D => sync_data_valid_n_2,
       Q => rx_state(0),
       R => soft_reset_rx_in
@@ -3394,7 +3072,7 @@ begin
     )
         port map (
       C => sysclk_in,
-      CE => sync_data_valid_n_3,
+      CE => sync_data_valid_n_4,
       D => sync_data_valid_n_1,
       Q => rx_state(1),
       R => soft_reset_rx_in
@@ -3405,7 +3083,7 @@ begin
     )
         port map (
       C => sysclk_in,
-      CE => sync_data_valid_n_3,
+      CE => sync_data_valid_n_4,
       D => \FSM_sequential_rx_state[2]_i_1_n_0\,
       Q => rx_state(2),
       R => soft_reset_rx_in
@@ -3416,7 +3094,7 @@ begin
     )
         port map (
       C => sysclk_in,
-      CE => sync_data_valid_n_3,
+      CE => sync_data_valid_n_4,
       D => sync_data_valid_n_0,
       Q => rx_state(3),
       R => soft_reset_rx_in
@@ -4161,15 +3839,15 @@ gtrxreset_i_reg: unisim.vcomponents.FDRE
     );
 \init_wait_count[5]_i_1__1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7FFFFFFF80000000"
+      INIT => X"6AAAAAAAAAAAAAAA"
     )
         port map (
-      I0 => \init_wait_count_reg__0\(2),
-      I1 => \init_wait_count_reg__0\(1),
-      I2 => \init_wait_count_reg__0\(0),
-      I3 => \init_wait_count_reg__0\(4),
-      I4 => \init_wait_count_reg__0\(3),
-      I5 => \init_wait_count_reg__0\(5),
+      I0 => \init_wait_count_reg__0\(5),
+      I1 => \init_wait_count_reg__0\(3),
+      I2 => \init_wait_count_reg__0\(4),
+      I3 => \init_wait_count_reg__0\(0),
+      I4 => \init_wait_count_reg__0\(1),
+      I5 => \init_wait_count_reg__0\(2),
       O => \p_0_in__1\(5)
     );
 \init_wait_count[6]_i_1__1\: unisim.vcomponents.LUT5
@@ -4371,13 +4049,13 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     );
 \mmcm_lock_count[3]_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7F80"
+      INIT => X"6AAA"
     )
         port map (
-      I0 => \mmcm_lock_count_reg__0\(1),
-      I1 => \mmcm_lock_count_reg__0\(0),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(3),
+      I0 => \mmcm_lock_count_reg__0\(3),
+      I1 => \mmcm_lock_count_reg__0\(1),
+      I2 => \mmcm_lock_count_reg__0\(0),
+      I3 => \mmcm_lock_count_reg__0\(2),
       O => \p_0_in__2\(3)
     );
 \mmcm_lock_count[4]_i_1__0\: unisim.vcomponents.LUT5
@@ -4386,9 +4064,9 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(4),
-      I1 => \mmcm_lock_count_reg__0\(1),
+      I1 => \mmcm_lock_count_reg__0\(2),
       I2 => \mmcm_lock_count_reg__0\(0),
-      I3 => \mmcm_lock_count_reg__0\(2),
+      I3 => \mmcm_lock_count_reg__0\(1),
       I4 => \mmcm_lock_count_reg__0\(3),
       O => \p_0_in__2\(4)
     );
@@ -4398,57 +4076,55 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(5),
-      I1 => \mmcm_lock_count_reg__0\(3),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(0),
-      I4 => \mmcm_lock_count_reg__0\(1),
+      I1 => \mmcm_lock_count_reg__0\(2),
+      I2 => \mmcm_lock_count_reg__0\(0),
+      I3 => \mmcm_lock_count_reg__0\(1),
+      I4 => \mmcm_lock_count_reg__0\(3),
       I5 => \mmcm_lock_count_reg__0\(4),
       O => \p_0_in__2\(5)
     );
-\mmcm_lock_count[6]_i_1__0\: unisim.vcomponents.LUT4
+\mmcm_lock_count[6]_i_1__0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"6AAA"
+      INIT => X"6A"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(6),
-      I1 => \mmcm_lock_count_reg__0\(4),
-      I2 => \mmcm_lock_count[7]_i_4__0_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(5),
+      I1 => \mmcm_lock_count[7]_i_4__0_n_0\,
+      I2 => \mmcm_lock_count_reg__0\(5),
       O => \p_0_in__2\(6)
     );
-\mmcm_lock_count[7]_i_2__0\: unisim.vcomponents.LUT5
+\mmcm_lock_count[7]_i_2__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7FFFFFFF"
+      INIT => X"7FFF"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(6),
-      I1 => \mmcm_lock_count_reg__0\(4),
-      I2 => \mmcm_lock_count[7]_i_4__0_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(5),
-      I4 => \mmcm_lock_count_reg__0\(7),
+      I1 => \mmcm_lock_count[7]_i_4__0_n_0\,
+      I2 => \mmcm_lock_count_reg__0\(5),
+      I3 => \mmcm_lock_count_reg__0\(7),
       O => \mmcm_lock_count[7]_i_2__0_n_0\
     );
-\mmcm_lock_count[7]_i_3__0\: unisim.vcomponents.LUT5
+\mmcm_lock_count[7]_i_3__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"6AAAAAAA"
+      INIT => X"6AAA"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(7),
       I1 => \mmcm_lock_count_reg__0\(5),
       I2 => \mmcm_lock_count[7]_i_4__0_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(4),
-      I4 => \mmcm_lock_count_reg__0\(6),
+      I3 => \mmcm_lock_count_reg__0\(6),
       O => \p_0_in__2\(7)
     );
-\mmcm_lock_count[7]_i_4__0\: unisim.vcomponents.LUT4
+\mmcm_lock_count[7]_i_4__0\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8000"
+      INIT => X"80000000"
     )
         port map (
-      I0 => \mmcm_lock_count_reg__0\(3),
-      I1 => \mmcm_lock_count_reg__0\(2),
-      I2 => \mmcm_lock_count_reg__0\(0),
-      I3 => \mmcm_lock_count_reg__0\(1),
+      I0 => \mmcm_lock_count_reg__0\(4),
+      I1 => \mmcm_lock_count_reg__0\(3),
+      I2 => \mmcm_lock_count_reg__0\(1),
+      I3 => \mmcm_lock_count_reg__0\(0),
+      I4 => \mmcm_lock_count_reg__0\(2),
       O => \mmcm_lock_count[7]_i_4__0_n_0\
     );
 \mmcm_lock_count_reg[0]\: unisim.vcomponents.FDRE
@@ -4539,19 +4215,6 @@ init_wait_done_reg: unisim.vcomponents.FDCE
       Q => \mmcm_lock_count_reg__0\(7),
       R => sync_mmcm_lock_reclocked_n_0
     );
-\mmcm_lock_reclocked_i_2__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8000000000000000"
-    )
-        port map (
-      I0 => \mmcm_lock_count_reg__0\(5),
-      I1 => \mmcm_lock_count_reg__0\(3),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(0),
-      I4 => \mmcm_lock_count_reg__0\(1),
-      I5 => \mmcm_lock_count_reg__0\(4),
-      O => \mmcm_lock_reclocked_i_2__0_n_0\
-    );
 mmcm_lock_reclocked_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -4563,51 +4226,7 @@ mmcm_lock_reclocked_reg: unisim.vcomponents.FDRE
       Q => mmcm_lock_reclocked,
       R => '0'
     );
-mmcm_reset_i_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFDF0010"
-    )
-        port map (
-      I0 => rx_state(2),
-      I1 => rx_state(1),
-      I2 => rx_state(0),
-      I3 => rx_state(3),
-      I4 => \^gt0_rx_mmcm_reset_in\,
-      O => mmcm_reset_i_i_1_n_0
-    );
-mmcm_reset_i_reg: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk_in,
-      CE => '1',
-      D => mmcm_reset_i_i_1_n_0,
-      Q => \^gt0_rx_mmcm_reset_in\,
-      R => soft_reset_rx_in
-    );
-\reset_time_out_i_2__0\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => rx_state(0),
-      I1 => rx_state(1),
-      O => \reset_time_out_i_2__0_n_0\
-    );
-reset_time_out_i_4: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"07DC07CC"
-    )
-        port map (
-      I0 => rx_state(1),
-      I1 => rx_state(0),
-      I2 => rx_state(2),
-      I3 => rx_state(3),
-      I4 => gt0_rx_cdrlocked_reg,
-      O => reset_time_out_i_4_n_0
-    );
-reset_time_out_i_5: unisim.vcomponents.LUT6
+\reset_time_out_i_3__0\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FF00B8000000B800"
     )
@@ -4618,6 +4237,18 @@ reset_time_out_i_5: unisim.vcomponents.LUT6
       I3 => rx_state(2),
       I4 => rx_state(1),
       I5 => rxresetdone_s3,
+      O => \reset_time_out_i_3__0_n_0\
+    );
+reset_time_out_i_5: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"07DC07CC"
+    )
+        port map (
+      I0 => rx_state(1),
+      I1 => rx_state(0),
+      I2 => rx_state(2),
+      I3 => rx_state(3),
+      I4 => gt0_rx_cdrlocked_reg,
       O => reset_time_out_i_5_n_0
     );
 reset_time_out_reg: unisim.vcomponents.FDSE
@@ -4627,7 +4258,7 @@ reset_time_out_reg: unisim.vcomponents.FDSE
         port map (
       C => sysclk_in,
       CE => '1',
-      D => sync_data_valid_n_4,
+      D => sync_qplllock_n_1,
       Q => reset_time_out_reg_n_0,
       S => soft_reset_rx_in
     );
@@ -4659,7 +4290,7 @@ run_phase_alignment_int_s3_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => run_phase_alignment_int_s2,
       Q => run_phase_alignment_int_s3_reg_n_0,
@@ -4681,7 +4312,7 @@ rx_fsm_reset_done_int_s3_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => rx_fsm_reset_done_int_s2,
       Q => rx_fsm_reset_done_int_s3,
@@ -4709,37 +4340,32 @@ sync_data_valid: entity work.main_gt_core_0_0_gtwizard_0_sync_block_3
       D(2) => sync_data_valid_n_0,
       D(1) => sync_data_valid_n_1,
       D(0) => sync_data_valid_n_2,
-      E(0) => sync_data_valid_n_3,
+      E(0) => sync_data_valid_n_4,
       \FSM_sequential_rx_state_reg[0]\ => \FSM_sequential_rx_state[1]_i_3_n_0\,
-      \FSM_sequential_rx_state_reg[0]_0\ => \FSM_sequential_rx_state[3]_i_5_n_0\,
+      \FSM_sequential_rx_state_reg[0]_0\ => sync_qplllock_n_0,
       \FSM_sequential_rx_state_reg[0]_1\ => \FSM_sequential_rx_state[3]_i_9_n_0\,
-      \FSM_sequential_rx_state_reg[0]_2\ => \reset_time_out_i_2__0_n_0\,
       \FSM_sequential_rx_state_reg[1]\ => \FSM_sequential_rx_state[0]_i_2_n_0\,
       \FSM_sequential_rx_state_reg[1]_0\ => \FSM_sequential_rx_state[3]_i_4_n_0\,
-      \FSM_sequential_rx_state_reg[1]_1\ => reset_time_out_i_4_n_0,
-      \FSM_sequential_rx_state_reg[2]\ => sync_qplllock_n_0,
-      \FSM_sequential_rx_state_reg[2]_0\ => \FSM_sequential_rx_state[3]_i_8_n_0\,
-      data_out => qplllock_sync,
+      \FSM_sequential_rx_state_reg[2]\ => \FSM_sequential_rx_state[3]_i_8_n_0\,
+      \FSM_sequential_rx_state_reg[3]\ => \FSM_sequential_rx_state[3]_i_6_n_0\,
       dont_reset_on_data_error_in => dont_reset_on_data_error_in,
       gt0_data_valid_in => gt0_data_valid_in,
       gt0_rx_fsm_reset_done_out => \^gt0_rx_fsm_reset_done_out\,
-      mmcm_lock_reclocked_reg => reset_time_out_i_5_n_0,
       \out\(3 downto 0) => rx_state(3 downto 0),
-      reset_time_out_reg => sync_data_valid_n_4,
+      reset_time_out_reg => sync_data_valid_n_3,
       reset_time_out_reg_0 => reset_time_out_reg_n_0,
       rx_fsm_reset_done_int_reg => sync_data_valid_n_5,
       sysclk_in => sysclk_in,
       time_out_100us_reg => time_out_100us_reg_n_0,
       time_out_1us_reg => time_out_1us_reg_n_0,
       time_out_wait_bypass_s3 => time_out_wait_bypass_s3,
-      \wait_time_cnt_reg[0]\ => \wait_time_cnt[0]_i_2__0_n_0\
+      \wait_time_cnt_reg[15]\ => \wait_time_cnt[0]_i_2__0_n_0\
     );
 sync_mmcm_lock_reclocked: entity work.main_gt_core_0_0_gtwizard_0_sync_block_4
      port map (
-      Q(1 downto 0) => \mmcm_lock_count_reg__0\(7 downto 6),
+      Q(2 downto 0) => \mmcm_lock_count_reg__0\(7 downto 5),
       SR(0) => sync_mmcm_lock_reclocked_n_0,
-      gt0_rx_mmcm_lock_out => gt0_rx_mmcm_lock_out,
-      \mmcm_lock_count_reg[5]\ => \mmcm_lock_reclocked_i_2__0_n_0\,
+      \mmcm_lock_count_reg[4]\ => \mmcm_lock_count[7]_i_4__0_n_0\,
       mmcm_lock_reclocked => mmcm_lock_reclocked,
       mmcm_lock_reclocked_reg => sync_mmcm_lock_reclocked_n_1,
       sysclk_in => sysclk_in
@@ -4747,23 +4373,27 @@ sync_mmcm_lock_reclocked: entity work.main_gt_core_0_0_gtwizard_0_sync_block_4
 sync_qplllock: entity work.main_gt_core_0_0_gtwizard_0_sync_block_5
      port map (
       \FSM_sequential_rx_state_reg[0]\ => sync_qplllock_n_0,
+      \FSM_sequential_rx_state_reg[0]_0\ => sync_data_valid_n_3,
+      \FSM_sequential_rx_state_reg[1]\ => reset_time_out_i_5_n_0,
       adapt_count_reset_reg => sync_qplllock_n_2,
-      data_out => qplllock_sync,
       gt0_qplllock_out => gt0_qplllock_out,
+      mmcm_lock_reclocked_reg => \reset_time_out_i_3__0_n_0\,
       \out\(3 downto 0) => rx_state(3 downto 0),
       recclk_mon_count_reset => recclk_mon_count_reset,
+      reset_time_out_reg => sync_qplllock_n_1,
+      reset_time_out_reg_0 => reset_time_out_reg_n_0,
       sysclk_in => sysclk_in,
       time_out_2ms_reg => time_out_2ms_reg_n_0
     );
 sync_run_phase_alignment_int: entity work.main_gt_core_0_0_gtwizard_0_sync_block_6
      port map (
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
+      GT0_RXUSRCLK2_OUT => GT0_RXUSRCLK2_OUT,
       data_in => run_phase_alignment_int_reg_n_0,
       data_out => run_phase_alignment_int_s2
     );
 sync_rx_fsm_reset_done_int: entity work.main_gt_core_0_0_gtwizard_0_sync_block_7
      port map (
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
+      GT0_RXUSRCLK2_OUT => GT0_RXUSRCLK2_OUT,
       data_out => rx_fsm_reset_done_int_s2,
       gt0_rx_fsm_reset_done_out => \^gt0_rx_fsm_reset_done_out\
     );
@@ -4775,48 +4405,48 @@ sync_time_out_wait_bypass: entity work.main_gt_core_0_0_gtwizard_0_sync_block_8
     );
 time_out_100us_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF0200"
+      INIT => X"FFFF0100"
     )
         port map (
       I0 => time_out_100us_i_2_n_0,
       I1 => time_out_100us_i_3_n_0,
-      I2 => time_tlock_max_i_4_n_0,
-      I3 => time_out_100us_i_4_n_0,
+      I2 => time_out_100us_i_4_n_0,
+      I3 => time_tlock_max_i_3_n_0,
       I4 => time_out_100us_reg_n_0,
       O => time_out_100us_i_1_n_0
     );
-time_out_100us_i_2: unisim.vcomponents.LUT4
+time_out_100us_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0001"
+      INIT => X"FFFEFFFFFFFFFFFF"
+    )
+        port map (
+      I0 => time_out_counter_reg(14),
+      I1 => time_out_counter_reg(15),
+      I2 => time_out_counter_reg(17),
+      I3 => time_out_counter_reg(16),
+      I4 => time_out_counter_reg(4),
+      I5 => time_out_counter_reg(13),
+      O => time_out_100us_i_2_n_0
+    );
+time_out_100us_i_3: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"7F"
+    )
+        port map (
+      I0 => time_out_counter_reg(8),
+      I1 => time_out_counter_reg(10),
+      I2 => time_out_counter_reg(9),
+      O => time_out_100us_i_3_n_0
+    );
+time_out_100us_i_4: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
     )
         port map (
       I0 => time_out_counter_reg(1),
       I1 => time_out_counter_reg(2),
       I2 => time_out_counter_reg(3),
       I3 => time_out_counter_reg(0),
-      O => time_out_100us_i_2_n_0
-    );
-time_out_100us_i_3: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"FE"
-    )
-        port map (
-      I0 => time_out_counter_reg(5),
-      I1 => time_out_counter_reg(7),
-      I2 => time_out_counter_reg(6),
-      O => time_out_100us_i_3_n_0
-    );
-time_out_100us_i_4: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000080"
-    )
-        port map (
-      I0 => time_out_counter_reg(9),
-      I1 => time_out_counter_reg(4),
-      I2 => time_out_counter_reg(13),
-      I3 => time_out_counter_reg(12),
-      I4 => time_out_counter_reg(11),
-      I5 => time_out_2ms_i_5_n_0,
       O => time_out_100us_i_4_n_0
     );
 time_out_100us_reg: unisim.vcomponents.FDRE
@@ -4848,7 +4478,7 @@ time_out_1us_i_2: unisim.vcomponents.LUT4
     )
         port map (
       I0 => time_out_counter_reg(5),
-      I1 => time_out_counter_reg(1),
+      I1 => time_out_counter_reg(11),
       I2 => time_out_counter_reg(2),
       I3 => time_out_counter_reg(8),
       O => time_out_1us_i_2_n_0
@@ -4871,7 +4501,7 @@ time_out_1us_i_4: unisim.vcomponents.LUT4
         port map (
       I0 => time_out_counter_reg(6),
       I1 => time_out_counter_reg(9),
-      I2 => time_out_counter_reg(11),
+      I2 => time_out_counter_reg(1),
       I3 => time_out_counter_reg(10),
       O => time_out_1us_i_4_n_0
     );
@@ -4886,17 +4516,16 @@ time_out_1us_reg: unisim.vcomponents.FDRE
       Q => time_out_1us_reg_n_0,
       R => reset_time_out_reg_n_0
     );
-time_out_2ms_i_1: unisim.vcomponents.LUT6
+time_out_2ms_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFF00010000"
+      INIT => X"FFFF0100"
     )
         port map (
       I0 => \time_out_2ms_i_2__0_n_0\,
-      I1 => \time_out_2ms_i_3__0_n_0\,
+      I1 => time_out_2ms_i_3_n_0,
       I2 => time_out_2ms_i_4_n_0,
-      I3 => time_out_2ms_i_5_n_0,
-      I4 => \time_out_counter[0]_i_4__0_n_0\,
-      I5 => time_out_2ms_reg_n_0,
+      I3 => \time_out_counter[0]_i_4__0_n_0\,
+      I4 => time_out_2ms_reg_n_0,
       O => time_out_2ms_i_1_n_0
     );
 \time_out_2ms_i_2__0\: unisim.vcomponents.LUT4
@@ -4904,40 +4533,33 @@ time_out_2ms_i_1: unisim.vcomponents.LUT6
       INIT => X"DFFF"
     )
         port map (
-      I0 => time_out_counter_reg(17),
+      I0 => time_out_counter_reg(16),
       I1 => time_out_counter_reg(5),
       I2 => time_out_counter_reg(11),
-      I3 => time_out_counter_reg(16),
+      I3 => time_out_counter_reg(17),
       O => \time_out_2ms_i_2__0_n_0\
     );
-\time_out_2ms_i_3__0\: unisim.vcomponents.LUT4
+time_out_2ms_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FFFD"
+      INIT => X"FF7F"
     )
         port map (
-      I0 => time_out_counter_reg(6),
-      I1 => time_out_counter_reg(9),
+      I0 => time_out_counter_reg(8),
+      I1 => time_out_counter_reg(10),
+      I2 => time_out_counter_reg(6),
+      I3 => time_out_counter_reg(9),
+      O => time_out_2ms_i_3_n_0
+    );
+time_out_2ms_i_4: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => time_out_counter_reg(1),
+      I1 => time_out_counter_reg(2),
       I2 => time_out_counter_reg(4),
       I3 => time_out_counter_reg(7),
-      O => \time_out_2ms_i_3__0_n_0\
-    );
-time_out_2ms_i_4: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => time_out_counter_reg(2),
-      I1 => time_out_counter_reg(1),
       O => time_out_2ms_i_4_n_0
-    );
-time_out_2ms_i_5: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"7"
-    )
-        port map (
-      I0 => time_out_counter_reg(10),
-      I1 => time_out_counter_reg(8),
-      O => time_out_2ms_i_5_n_0
     );
 time_out_2ms_reg: unisim.vcomponents.FDRE
     generic map(
@@ -4979,25 +4601,24 @@ time_out_adapt_reg: unisim.vcomponents.FDRE
       INIT => X"FFFFF7FFFFFFFFFF"
     )
         port map (
-      I0 => time_out_counter_reg(16),
+      I0 => time_out_counter_reg(17),
       I1 => time_out_counter_reg(11),
       I2 => time_out_counter_reg(5),
-      I3 => time_out_counter_reg(17),
+      I3 => time_out_counter_reg(16),
       I4 => \time_out_counter[0]_i_3_n_0\,
       I5 => \time_out_counter[0]_i_4__0_n_0\,
       O => time_out_counter
     );
-\time_out_counter[0]_i_3\: unisim.vcomponents.LUT6
+\time_out_counter[0]_i_3\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFFFFFEFFFFFFFF"
+      INIT => X"FFFFFFFE"
     )
         port map (
-      I0 => time_out_2ms_i_5_n_0,
-      I1 => time_out_counter_reg(2),
-      I2 => time_out_counter_reg(1),
-      I3 => \time_out_counter[0]_i_6_n_0\,
-      I4 => time_out_counter_reg(9),
-      I5 => time_out_counter_reg(6),
+      I0 => time_out_counter_reg(7),
+      I1 => time_out_counter_reg(4),
+      I2 => time_out_counter_reg(2),
+      I3 => time_out_counter_reg(1),
+      I4 => time_out_2ms_i_3_n_0,
       O => \time_out_counter[0]_i_3_n_0\
     );
 \time_out_counter[0]_i_4__0\: unisim.vcomponents.LUT6
@@ -5005,12 +4626,12 @@ time_out_adapt_reg: unisim.vcomponents.FDRE
       INIT => X"0000000000000001"
     )
         port map (
-      I0 => time_out_counter_reg(12),
-      I1 => time_out_counter_reg(13),
-      I2 => time_out_counter_reg(0),
-      I3 => time_out_counter_reg(3),
-      I4 => time_out_counter_reg(15),
-      I5 => time_out_counter_reg(14),
+      I0 => time_out_counter_reg(15),
+      I1 => time_out_counter_reg(14),
+      I2 => time_out_counter_reg(12),
+      I3 => time_out_counter_reg(13),
+      I4 => time_out_counter_reg(0),
+      I5 => time_out_counter_reg(3),
       O => \time_out_counter[0]_i_4__0_n_0\
     );
 \time_out_counter[0]_i_5\: unisim.vcomponents.LUT1
@@ -5020,15 +4641,6 @@ time_out_adapt_reg: unisim.vcomponents.FDRE
         port map (
       I0 => time_out_counter_reg(0),
       O => \time_out_counter[0]_i_5_n_0\
-    );
-\time_out_counter[0]_i_6\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => time_out_counter_reg(7),
-      I1 => time_out_counter_reg(4),
-      O => \time_out_counter[0]_i_6_n_0\
     );
 \time_out_counter_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -5318,7 +4930,7 @@ time_out_wait_bypass_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => '1',
       D => time_out_wait_bypass_i_1_n_0,
       Q => time_out_wait_bypass_reg_n_0,
@@ -5337,49 +4949,64 @@ time_out_wait_bypass_s3_reg: unisim.vcomponents.FDRE
     );
 time_tlock_max_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFFA20000"
+      INIT => X"FFFFFFFFFF070000"
     )
         port map (
-      I0 => time_out_counter_reg(13),
-      I1 => time_tlock_max_i_2_n_0,
-      I2 => time_tlock_max_i_3_n_0,
-      I3 => time_tlock_max_i_4_n_0,
+      I0 => time_tlock_max_i_2_n_0,
+      I1 => time_tlock_max_i_3_n_0,
+      I2 => time_tlock_max_i_4_n_0,
+      I3 => time_tlock_max_i_5_n_0,
       I4 => check_tlock_max_reg_n_0,
       I5 => time_tlock_max,
       O => time_tlock_max_i_1_n_0
     );
-time_tlock_max_i_2: unisim.vcomponents.LUT2
+time_tlock_max_i_2: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"1"
+      INIT => X"55555557"
     )
         port map (
-      I0 => time_out_counter_reg(12),
-      I1 => time_out_counter_reg(11),
+      I0 => time_out_counter_reg(4),
+      I1 => time_out_counter_reg(0),
+      I2 => time_out_counter_reg(3),
+      I3 => time_out_counter_reg(2),
+      I4 => time_out_counter_reg(1),
       O => time_tlock_max_i_2_n_0
     );
-time_tlock_max_i_3: unisim.vcomponents.LUT6
+time_tlock_max_i_3: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"AE00000000000000"
+      INIT => X"00000001"
     )
         port map (
-      I0 => time_out_100us_i_3_n_0,
-      I1 => time_out_counter_reg(4),
-      I2 => time_out_100us_i_2_n_0,
-      I3 => time_out_counter_reg(9),
-      I4 => time_out_counter_reg(10),
-      I5 => time_out_counter_reg(8),
+      I0 => time_out_counter_reg(11),
+      I1 => time_out_counter_reg(12),
+      I2 => time_out_counter_reg(6),
+      I3 => time_out_counter_reg(7),
+      I4 => time_out_counter_reg(5),
       O => time_tlock_max_i_3_n_0
     );
-time_tlock_max_i_4: unisim.vcomponents.LUT4
+time_tlock_max_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"5555555555557FFF"
+    )
+        port map (
+      I0 => time_out_counter_reg(13),
+      I1 => time_out_counter_reg(8),
+      I2 => time_out_counter_reg(10),
+      I3 => time_out_counter_reg(9),
+      I4 => time_out_counter_reg(12),
+      I5 => time_out_counter_reg(11),
+      O => time_tlock_max_i_4_n_0
+    );
+time_tlock_max_i_5: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => time_out_counter_reg(15),
-      I1 => time_out_counter_reg(14),
-      I2 => time_out_counter_reg(16),
-      I3 => time_out_counter_reg(17),
-      O => time_tlock_max_i_4_n_0
+      I0 => time_out_counter_reg(16),
+      I1 => time_out_counter_reg(17),
+      I2 => time_out_counter_reg(15),
+      I3 => time_out_counter_reg(14),
+      O => time_tlock_max_i_5_n_0
     );
 time_tlock_max_reg: unisim.vcomponents.FDRE
     generic map(
@@ -5458,7 +5085,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[0]_i_3_n_7\,
       Q => wait_bypass_count_reg(0),
@@ -5485,7 +5112,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[8]_i_1_n_5\,
       Q => wait_bypass_count_reg(10),
@@ -5496,7 +5123,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[8]_i_1_n_4\,
       Q => wait_bypass_count_reg(11),
@@ -5507,7 +5134,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[12]_i_1_n_7\,
       Q => wait_bypass_count_reg(12),
@@ -5529,7 +5156,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[0]_i_3_n_6\,
       Q => wait_bypass_count_reg(1),
@@ -5540,7 +5167,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[0]_i_3_n_5\,
       Q => wait_bypass_count_reg(2),
@@ -5551,7 +5178,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[0]_i_3_n_4\,
       Q => wait_bypass_count_reg(3),
@@ -5562,7 +5189,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[4]_i_1_n_7\,
       Q => wait_bypass_count_reg(4),
@@ -5588,7 +5215,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[4]_i_1_n_6\,
       Q => wait_bypass_count_reg(5),
@@ -5599,7 +5226,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[4]_i_1_n_5\,
       Q => wait_bypass_count_reg(6),
@@ -5610,7 +5237,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[4]_i_1_n_4\,
       Q => wait_bypass_count_reg(7),
@@ -5621,7 +5248,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[8]_i_1_n_7\,
       Q => wait_bypass_count_reg(8),
@@ -5647,7 +5274,7 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => '0'
     )
         port map (
-      C => GT0_RXUSRCLK_OUT,
+      C => GT0_RXUSRCLK2_OUT,
       CE => \wait_bypass_count[0]_i_2_n_0\,
       D => \wait_bypass_count_reg[8]_i_1_n_6\,
       Q => wait_bypass_count_reg(9),
@@ -5695,10 +5322,10 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(0),
-      I1 => wait_time_cnt_reg(3),
-      I2 => wait_time_cnt_reg(15),
-      I3 => wait_time_cnt_reg(13),
+      I0 => wait_time_cnt_reg(15),
+      I1 => wait_time_cnt_reg(13),
+      I2 => wait_time_cnt_reg(14),
+      I3 => wait_time_cnt_reg(12),
       O => \wait_time_cnt[0]_i_4__0_n_0\
     );
 \wait_time_cnt[0]_i_5__0\: unisim.vcomponents.LUT4
@@ -5706,10 +5333,10 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(9),
-      I1 => wait_time_cnt_reg(10),
-      I2 => wait_time_cnt_reg(14),
-      I3 => wait_time_cnt_reg(12),
+      I0 => wait_time_cnt_reg(0),
+      I1 => wait_time_cnt_reg(1),
+      I2 => wait_time_cnt_reg(2),
+      I3 => wait_time_cnt_reg(3),
       O => \wait_time_cnt[0]_i_5__0_n_0\
     );
 \wait_time_cnt[0]_i_6__0\: unisim.vcomponents.LUT4
@@ -5717,10 +5344,10 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(1),
-      I1 => wait_time_cnt_reg(2),
-      I2 => wait_time_cnt_reg(8),
-      I3 => wait_time_cnt_reg(11),
+      I0 => wait_time_cnt_reg(9),
+      I1 => wait_time_cnt_reg(10),
+      I2 => wait_time_cnt_reg(11),
+      I3 => wait_time_cnt_reg(6),
       O => \wait_time_cnt[0]_i_6__0_n_0\
     );
 \wait_time_cnt[0]_i_7__0\: unisim.vcomponents.LUT4
@@ -5728,9 +5355,9 @@ time_tlock_max_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(6),
+      I0 => wait_time_cnt_reg(7),
       I1 => wait_time_cnt_reg(5),
-      I2 => wait_time_cnt_reg(7),
+      I2 => wait_time_cnt_reg(8),
       I3 => wait_time_cnt_reg(4),
       O => \wait_time_cnt[0]_i_7__0_n_0\
     );
@@ -6054,7 +5681,6 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
   port (
     gt0_gttxreset_i : out STD_LOGIC;
-    GT0_TX_MMCM_RESET_IN : out STD_LOGIC;
     gt0_qpllreset_i : out STD_LOGIC;
     gt0_tx_fsm_reset_done_out : out STD_LOGIC;
     gt0_txuserrdy_i : out STD_LOGIC;
@@ -6062,9 +5688,10 @@ entity main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
     soft_reset_tx_in : in STD_LOGIC;
     gt0_qpllrefclklost_out : in STD_LOGIC;
     gt0_txresetdone_out : in STD_LOGIC;
-    gt0_tx_mmcm_lock_out : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM : entity is "gtwizard_0_TX_STARTUP_FSM";
 end main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
@@ -6075,10 +5702,7 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
   signal \FSM_sequential_tx_state[2]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_tx_state[3]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_tx_state[3]_i_4_n_0\ : STD_LOGIC;
-  signal \^gt0_tx_mmcm_reset_in\ : STD_LOGIC;
-  signal MMCM_RESET_i_1_n_0 : STD_LOGIC;
   signal QPLL_RESET_i_1_n_0 : STD_LOGIC;
-  signal QPLL_RESET_i_2_n_0 : STD_LOGIC;
   signal TXUSERRDY_i_1_n_0 : STD_LOGIC;
   signal \^gt0_gttxreset_i\ : STD_LOGIC;
   signal \^gt0_qpllreset_i\ : STD_LOGIC;
@@ -6096,7 +5720,6 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
   signal \mmcm_lock_count[7]_i_4_n_0\ : STD_LOGIC;
   signal \mmcm_lock_count_reg__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal mmcm_lock_reclocked : STD_LOGIC;
-  signal mmcm_lock_reclocked_i_2_n_0 : STD_LOGIC;
   signal p_0_in : STD_LOGIC_VECTOR ( 7 downto 1 );
   signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal pll_reset_asserted_i_1_n_0 : STD_LOGIC;
@@ -6110,9 +5733,9 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
   signal sync_qplllock_n_1 : STD_LOGIC;
   signal \time_out_2ms_i_1__0_n_0\ : STD_LOGIC;
   signal time_out_2ms_i_2_n_0 : STD_LOGIC;
-  signal time_out_2ms_i_3_n_0 : STD_LOGIC;
+  signal \time_out_2ms_i_3__0_n_0\ : STD_LOGIC;
   signal \time_out_2ms_i_4__0_n_0\ : STD_LOGIC;
-  signal \time_out_2ms_i_5__0_n_0\ : STD_LOGIC;
+  signal time_out_2ms_i_5_n_0 : STD_LOGIC;
   signal time_out_2ms_reg_n_0 : STD_LOGIC;
   signal time_out_500us_i_1_n_0 : STD_LOGIC;
   signal time_out_500us_i_2_n_0 : STD_LOGIC;
@@ -6236,26 +5859,25 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM is
   attribute FSM_ENCODED_STATES of \FSM_sequential_tx_state_reg[3]\ : label is "WAIT_FOR_TXOUTCLK:0100,RELEASE_PLL_RESET:0011,WAIT_FOR_PLL_LOCK:0010,ASSERT_ALL_RESETS:0001,INIT:0000,WAIT_RESET_DONE:0111,RESET_FSM_DONE:1001,WAIT_FOR_TXUSRCLK:0110,DO_PHASE_ALIGNMENT:1000,RELEASE_MMCM_RESET:0101";
   attribute KEEP of \FSM_sequential_tx_state_reg[3]\ : label is "yes";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1__0\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1__0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1__0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \init_wait_count[4]_i_1__0\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \init_wait_count[7]_i_3__0\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \init_wait_count[7]_i_4__0\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[0]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[1]_i_1\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[2]_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \init_wait_count[1]_i_1__0\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \init_wait_count[2]_i_1__0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \init_wait_count[3]_i_1__0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \init_wait_count[4]_i_1__0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \init_wait_count[7]_i_3__0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \init_wait_count[7]_i_4__0\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[0]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[1]_i_1\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[2]_i_1\ : label is "soft_lutpair20";
   attribute SOFT_HLUTNM of \mmcm_lock_count[3]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[4]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[6]_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_3\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_4\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of time_out_2ms_i_2 : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \time_out_2ms_i_4__0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of time_out_500us_i_3 : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \time_tlock_max_i_2__0\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[4]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[6]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_3\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \mmcm_lock_count[7]_i_4\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of time_out_2ms_i_2 : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \time_out_2ms_i_4__0\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of time_out_500us_i_3 : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \time_tlock_max_i_2__0\ : label is "soft_lutpair23";
 begin
-  GT0_TX_MMCM_RESET_IN <= \^gt0_tx_mmcm_reset_in\;
   gt0_gttxreset_i <= \^gt0_gttxreset_i\;
   gt0_qpllreset_i <= \^gt0_qpllreset_i\;
   gt0_tx_fsm_reset_done_out <= \^gt0_tx_fsm_reset_done_out\;
@@ -6288,13 +5910,13 @@ begin
     );
 \FSM_sequential_tx_state[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"000007F0"
+      INIT => X"0000552A"
     )
         port map (
-      I0 => tx_state(2),
+      I0 => tx_state(0),
       I1 => \FSM_sequential_tx_state[2]_i_2_n_0\,
-      I2 => tx_state(1),
-      I3 => tx_state(0),
+      I2 => tx_state(2),
+      I3 => tx_state(1),
       I4 => tx_state(3),
       O => \FSM_sequential_tx_state[1]_i_1_n_0\
     );
@@ -6387,50 +6009,18 @@ begin
       Q => tx_state(3),
       R => soft_reset_tx_in
     );
-MMCM_RESET_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFDF0010"
-    )
-        port map (
-      I0 => tx_state(2),
-      I1 => tx_state(1),
-      I2 => tx_state(0),
-      I3 => tx_state(3),
-      I4 => \^gt0_tx_mmcm_reset_in\,
-      O => MMCM_RESET_i_1_n_0
-    );
-MMCM_RESET_reg: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => sysclk_in,
-      CE => '1',
-      D => MMCM_RESET_i_1_n_0,
-      Q => \^gt0_tx_mmcm_reset_in\,
-      R => soft_reset_tx_in
-    );
 QPLL_RESET_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFF1F00000010"
+      INIT => X"F1FFFFFF01000000"
     )
         port map (
       I0 => pll_reset_asserted_reg_n_0,
       I1 => gt0_qpllrefclklost_out,
-      I2 => QPLL_RESET_i_2_n_0,
-      I3 => tx_state(1),
-      I4 => tx_state(2),
+      I2 => tx_state(3),
+      I3 => tx_state(0),
+      I4 => \FSM_sequential_tx_state[3]_i_4_n_0\,
       I5 => \^gt0_qpllreset_i\,
       O => QPLL_RESET_i_1_n_0
-    );
-QPLL_RESET_i_2: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => tx_state(0),
-      I1 => tx_state(3),
-      O => QPLL_RESET_i_2_n_0
     );
 QPLL_RESET_reg: unisim.vcomponents.FDRE
     generic map(
@@ -6541,15 +6131,15 @@ gttxreset_i_reg: unisim.vcomponents.FDRE
     );
 \init_wait_count[5]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7FFFFFFF80000000"
+      INIT => X"6AAAAAAAAAAAAAAA"
     )
         port map (
-      I0 => \init_wait_count_reg__0\(2),
-      I1 => \init_wait_count_reg__0\(1),
-      I2 => \init_wait_count_reg__0\(0),
-      I3 => \init_wait_count_reg__0\(4),
-      I4 => \init_wait_count_reg__0\(3),
-      I5 => \init_wait_count_reg__0\(5),
+      I0 => \init_wait_count_reg__0\(5),
+      I1 => \init_wait_count_reg__0\(3),
+      I2 => \init_wait_count_reg__0\(4),
+      I3 => \init_wait_count_reg__0\(0),
+      I4 => \init_wait_count_reg__0\(1),
+      I5 => \init_wait_count_reg__0\(2),
       O => p_0_in(5)
     );
 \init_wait_count[6]_i_1__0\: unisim.vcomponents.LUT5
@@ -6751,13 +6341,13 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     );
 \mmcm_lock_count[3]_i_1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7F80"
+      INIT => X"6AAA"
     )
         port map (
-      I0 => \mmcm_lock_count_reg__0\(1),
-      I1 => \mmcm_lock_count_reg__0\(0),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(3),
+      I0 => \mmcm_lock_count_reg__0\(3),
+      I1 => \mmcm_lock_count_reg__0\(1),
+      I2 => \mmcm_lock_count_reg__0\(0),
+      I3 => \mmcm_lock_count_reg__0\(2),
       O => \p_0_in__0\(3)
     );
 \mmcm_lock_count[4]_i_1\: unisim.vcomponents.LUT5
@@ -6766,9 +6356,9 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(4),
-      I1 => \mmcm_lock_count_reg__0\(1),
+      I1 => \mmcm_lock_count_reg__0\(2),
       I2 => \mmcm_lock_count_reg__0\(0),
-      I3 => \mmcm_lock_count_reg__0\(2),
+      I3 => \mmcm_lock_count_reg__0\(1),
       I4 => \mmcm_lock_count_reg__0\(3),
       O => \p_0_in__0\(4)
     );
@@ -6778,57 +6368,55 @@ init_wait_done_reg: unisim.vcomponents.FDCE
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(5),
-      I1 => \mmcm_lock_count_reg__0\(3),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(0),
-      I4 => \mmcm_lock_count_reg__0\(1),
+      I1 => \mmcm_lock_count_reg__0\(2),
+      I2 => \mmcm_lock_count_reg__0\(0),
+      I3 => \mmcm_lock_count_reg__0\(1),
+      I4 => \mmcm_lock_count_reg__0\(3),
       I5 => \mmcm_lock_count_reg__0\(4),
       O => \p_0_in__0\(5)
     );
-\mmcm_lock_count[6]_i_1\: unisim.vcomponents.LUT4
+\mmcm_lock_count[6]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"6AAA"
+      INIT => X"6A"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(6),
-      I1 => \mmcm_lock_count_reg__0\(4),
-      I2 => \mmcm_lock_count[7]_i_4_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(5),
+      I1 => \mmcm_lock_count[7]_i_4_n_0\,
+      I2 => \mmcm_lock_count_reg__0\(5),
       O => \p_0_in__0\(6)
     );
-\mmcm_lock_count[7]_i_2\: unisim.vcomponents.LUT5
+\mmcm_lock_count[7]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"7FFFFFFF"
+      INIT => X"7FFF"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(6),
-      I1 => \mmcm_lock_count_reg__0\(4),
-      I2 => \mmcm_lock_count[7]_i_4_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(5),
-      I4 => \mmcm_lock_count_reg__0\(7),
+      I1 => \mmcm_lock_count[7]_i_4_n_0\,
+      I2 => \mmcm_lock_count_reg__0\(5),
+      I3 => \mmcm_lock_count_reg__0\(7),
       O => \mmcm_lock_count[7]_i_2_n_0\
     );
-\mmcm_lock_count[7]_i_3\: unisim.vcomponents.LUT5
+\mmcm_lock_count[7]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"6AAAAAAA"
+      INIT => X"6AAA"
     )
         port map (
       I0 => \mmcm_lock_count_reg__0\(7),
       I1 => \mmcm_lock_count_reg__0\(5),
       I2 => \mmcm_lock_count[7]_i_4_n_0\,
-      I3 => \mmcm_lock_count_reg__0\(4),
-      I4 => \mmcm_lock_count_reg__0\(6),
+      I3 => \mmcm_lock_count_reg__0\(6),
       O => \p_0_in__0\(7)
     );
-\mmcm_lock_count[7]_i_4\: unisim.vcomponents.LUT4
+\mmcm_lock_count[7]_i_4\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8000"
+      INIT => X"80000000"
     )
         port map (
-      I0 => \mmcm_lock_count_reg__0\(3),
-      I1 => \mmcm_lock_count_reg__0\(2),
-      I2 => \mmcm_lock_count_reg__0\(0),
-      I3 => \mmcm_lock_count_reg__0\(1),
+      I0 => \mmcm_lock_count_reg__0\(4),
+      I1 => \mmcm_lock_count_reg__0\(3),
+      I2 => \mmcm_lock_count_reg__0\(1),
+      I3 => \mmcm_lock_count_reg__0\(0),
+      I4 => \mmcm_lock_count_reg__0\(2),
       O => \mmcm_lock_count[7]_i_4_n_0\
     );
 \mmcm_lock_count_reg[0]\: unisim.vcomponents.FDRE
@@ -6919,19 +6507,6 @@ init_wait_done_reg: unisim.vcomponents.FDCE
       Q => \mmcm_lock_count_reg__0\(7),
       R => sync_mmcm_lock_reclocked_n_0
     );
-mmcm_lock_reclocked_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"8000000000000000"
-    )
-        port map (
-      I0 => \mmcm_lock_count_reg__0\(5),
-      I1 => \mmcm_lock_count_reg__0\(3),
-      I2 => \mmcm_lock_count_reg__0\(2),
-      I3 => \mmcm_lock_count_reg__0\(0),
-      I4 => \mmcm_lock_count_reg__0\(1),
-      I5 => \mmcm_lock_count_reg__0\(4),
-      O => mmcm_lock_reclocked_i_2_n_0
-    );
 mmcm_lock_reclocked_reg: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -6969,13 +6544,13 @@ pll_reset_asserted_reg: unisim.vcomponents.FDRE
     );
 reset_time_out_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"88F3"
+      INIT => X"B833"
     )
         port map (
       I0 => txresetdone_s3,
-      I1 => tx_state(2),
+      I1 => tx_state(1),
       I2 => mmcm_lock_reclocked,
-      I3 => tx_state(1),
+      I3 => tx_state(2),
       O => reset_time_out_i_3_n_0
     );
 reset_time_out_reg: unisim.vcomponents.FDRE
@@ -6997,10 +6572,9 @@ sync_TXRESETDONE: entity work.main_gt_core_0_0_gtwizard_0_sync_block
     );
 sync_mmcm_lock_reclocked: entity work.main_gt_core_0_0_gtwizard_0_sync_block_0
      port map (
-      Q(1 downto 0) => \mmcm_lock_count_reg__0\(7 downto 6),
+      Q(2 downto 0) => \mmcm_lock_count_reg__0\(7 downto 5),
       SR(0) => sync_mmcm_lock_reclocked_n_0,
-      gt0_tx_mmcm_lock_out => gt0_tx_mmcm_lock_out,
-      \mmcm_lock_count_reg[5]\ => mmcm_lock_reclocked_i_2_n_0,
+      \mmcm_lock_count_reg[4]\ => \mmcm_lock_count[7]_i_4_n_0\,
       mmcm_lock_reclocked => mmcm_lock_reclocked,
       mmcm_lock_reclocked_reg => sync_mmcm_lock_reclocked_n_1,
       sysclk_in => sysclk_in
@@ -7031,9 +6605,9 @@ sync_qplllock: entity work.main_gt_core_0_0_gtwizard_0_sync_block_1
         port map (
       I0 => time_out_2ms_reg_n_0,
       I1 => time_out_2ms_i_2_n_0,
-      I2 => time_out_2ms_i_3_n_0,
+      I2 => \time_out_2ms_i_3__0_n_0\,
       I3 => \time_out_2ms_i_4__0_n_0\,
-      I4 => \time_out_2ms_i_5__0_n_0\,
+      I4 => time_out_2ms_i_5_n_0,
       I5 => reset_time_out,
       O => \time_out_2ms_i_1__0_n_0\
     );
@@ -7048,7 +6622,7 @@ time_out_2ms_i_2: unisim.vcomponents.LUT4
       I3 => time_out_counter_reg(2),
       O => time_out_2ms_i_2_n_0
     );
-time_out_2ms_i_3: unisim.vcomponents.LUT4
+\time_out_2ms_i_3__0\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
@@ -7057,7 +6631,7 @@ time_out_2ms_i_3: unisim.vcomponents.LUT4
       I1 => time_out_counter_reg(0),
       I2 => time_out_counter_reg(13),
       I3 => time_out_counter_reg(12),
-      O => time_out_2ms_i_3_n_0
+      O => \time_out_2ms_i_3__0_n_0\
     );
 \time_out_2ms_i_4__0\: unisim.vcomponents.LUT4
     generic map(
@@ -7070,7 +6644,7 @@ time_out_2ms_i_3: unisim.vcomponents.LUT4
       I3 => time_out_counter_reg(7),
       O => \time_out_2ms_i_4__0_n_0\
     );
-\time_out_2ms_i_5__0\: unisim.vcomponents.LUT6
+time_out_2ms_i_5: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFFFFFFFFFEFF"
     )
@@ -7081,7 +6655,7 @@ time_out_2ms_i_3: unisim.vcomponents.LUT4
       I3 => time_out_counter_reg(16),
       I4 => time_out_counter_reg(9),
       I5 => time_out_counter_reg(3),
-      O => \time_out_2ms_i_5__0_n_0\
+      O => time_out_2ms_i_5_n_0
     );
 time_out_2ms_reg: unisim.vcomponents.FDRE
     generic map(
@@ -7102,7 +6676,7 @@ time_out_500us_i_1: unisim.vcomponents.LUT6
       I0 => time_out_500us_reg_n_0,
       I1 => time_out_500us_i_2_n_0,
       I2 => time_out_500us_i_3_n_0,
-      I3 => time_out_2ms_i_3_n_0,
+      I3 => \time_out_2ms_i_3__0_n_0\,
       I4 => \time_tlock_max_i_2__0_n_0\,
       I5 => reset_time_out,
       O => time_out_500us_i_1_n_0
@@ -7167,12 +6741,12 @@ time_out_500us_reg: unisim.vcomponents.FDRE
       INIT => X"FFFFFFFFFFFFBFFF"
     )
         port map (
-      I0 => \time_out_2ms_i_5__0_n_0\,
+      I0 => time_out_2ms_i_5_n_0,
       I1 => time_out_counter_reg(6),
       I2 => time_out_counter_reg(11),
       I3 => time_out_counter_reg(17),
       I4 => time_out_counter_reg(7),
-      I5 => time_out_2ms_i_3_n_0,
+      I5 => \time_out_2ms_i_3__0_n_0\,
       O => \time_out_counter[0]_i_3__0_n_0\
     );
 \time_out_counter[0]_i_4\: unisim.vcomponents.LUT1
@@ -7591,10 +7165,10 @@ txresetdone_s3_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(0),
-      I1 => wait_time_cnt_reg(1),
-      I2 => wait_time_cnt_reg(6),
-      I3 => wait_time_cnt_reg(2),
+      I0 => wait_time_cnt_reg(1),
+      I1 => wait_time_cnt_reg(4),
+      I2 => wait_time_cnt_reg(12),
+      I3 => wait_time_cnt_reg(11),
       O => \wait_time_cnt[0]_i_4_n_0\
     );
 \wait_time_cnt[0]_i_5\: unisim.vcomponents.LUT4
@@ -7602,10 +7176,10 @@ txresetdone_s3_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(14),
-      I1 => wait_time_cnt_reg(12),
-      I2 => wait_time_cnt_reg(11),
-      I3 => wait_time_cnt_reg(3),
+      I0 => wait_time_cnt_reg(15),
+      I1 => wait_time_cnt_reg(10),
+      I2 => wait_time_cnt_reg(14),
+      I3 => wait_time_cnt_reg(8),
       O => \wait_time_cnt[0]_i_5_n_0\
     );
 \wait_time_cnt[0]_i_6\: unisim.vcomponents.LUT4
@@ -7613,10 +7187,10 @@ txresetdone_s3_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(7),
-      I1 => wait_time_cnt_reg(4),
-      I2 => wait_time_cnt_reg(10),
-      I3 => wait_time_cnt_reg(5),
+      I0 => wait_time_cnt_reg(6),
+      I1 => wait_time_cnt_reg(7),
+      I2 => wait_time_cnt_reg(9),
+      I3 => wait_time_cnt_reg(2),
       O => \wait_time_cnt[0]_i_6_n_0\
     );
 \wait_time_cnt[0]_i_7\: unisim.vcomponents.LUT4
@@ -7624,10 +7198,10 @@ txresetdone_s3_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => wait_time_cnt_reg(15),
-      I1 => wait_time_cnt_reg(13),
-      I2 => wait_time_cnt_reg(8),
-      I3 => wait_time_cnt_reg(9),
+      I0 => wait_time_cnt_reg(3),
+      I1 => wait_time_cnt_reg(5),
+      I2 => wait_time_cnt_reg(0),
+      I3 => wait_time_cnt_reg(13),
       O => \wait_time_cnt[0]_i_7_n_0\
     );
 \wait_time_cnt[0]_i_8\: unisim.vcomponents.LUT1
@@ -7963,7 +7537,7 @@ entity main_gt_core_0_0_gtwizard_0_multi_gt is
     gt0_txresetdone_out : out STD_LOGIC;
     gt0_drpdo_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxbufstatus_out : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_rxmonitorout_out : out STD_LOGIC_VECTOR ( 6 downto 0 );
     gt0_dmonitorout_out : out STD_LOGIC_VECTOR ( 7 downto 0 );
     sysclk_in : in STD_LOGIC;
@@ -7984,21 +7558,21 @@ entity main_gt_core_0_0_gtwizard_0_multi_gt is
     gt0_rxpmareset_in : in STD_LOGIC;
     gt0_rxprbscntreset_in : in STD_LOGIC;
     gt0_rxuserrdy_i : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC;
-    gt0_rxusrclk2_out : in STD_LOGIC;
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC;
     gt0_txpcsreset_in : in STD_LOGIC;
     gt0_txprbsforceerr_in : in STD_LOGIC;
     gt0_txuserrdy_i : in STD_LOGIC;
     gt0_txusrclk_out : in STD_LOGIC;
-    gt0_txusrclk2_out : in STD_LOGIC;
     gt0_drpdi_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxmonitorsel_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gt0_loopback_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_rxprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_txprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_txdata_in : in STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_drpaddr_in : in STD_LOGIC_VECTOR ( 8 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_multi_gt : entity is "gtwizard_0_multi_gt";
 end main_gt_core_0_0_gtwizard_0_multi_gt;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_multi_gt is
@@ -8006,7 +7580,7 @@ begin
 gt0_gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_GT
      port map (
       GT0_RXOUTCLK_IN => GT0_RXOUTCLK_IN,
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
+      GT0_RXUSRCLK2_OUT => GT0_RXUSRCLK2_OUT,
       GT0_TXOUTCLK_IN => GT0_TXOUTCLK_IN,
       SR(0) => SR(0),
       gt0_dmonitorout_out(7 downto 0) => gt0_dmonitorout_out(7 downto 0),
@@ -8029,7 +7603,7 @@ gt0_gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_GT
       gt0_qplloutrefclk_out => gt0_qplloutrefclk_out,
       gt0_rxbufreset_in => gt0_rxbufreset_in,
       gt0_rxbufstatus_out(2 downto 0) => gt0_rxbufstatus_out(2 downto 0),
-      gt0_rxdata_out(79 downto 0) => gt0_rxdata_out(79 downto 0),
+      gt0_rxdata_out(19 downto 0) => gt0_rxdata_out(19 downto 0),
       gt0_rxdfelfhold_i => gt0_rxdfelfhold_i,
       gt0_rxdfelpmreset_in => gt0_rxdfelpmreset_in,
       gt0_rxmonitorout_out(6 downto 0) => gt0_rxmonitorout_out(6 downto 0),
@@ -8042,8 +7616,7 @@ gt0_gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_GT
       gt0_rxprbssel_in(2 downto 0) => gt0_rxprbssel_in(2 downto 0),
       gt0_rxresetdone_out => gt0_rxresetdone_out,
       gt0_rxuserrdy_i => gt0_rxuserrdy_i,
-      gt0_rxusrclk2_out => gt0_rxusrclk2_out,
-      gt0_txdata_in(79 downto 0) => gt0_txdata_in(79 downto 0),
+      gt0_txdata_in(19 downto 0) => gt0_txdata_in(19 downto 0),
       gt0_txoutclkfabric_out => gt0_txoutclkfabric_out,
       gt0_txoutclkpcs_out => gt0_txoutclkpcs_out,
       gt0_txpcsreset_in => gt0_txpcsreset_in,
@@ -8051,7 +7624,6 @@ gt0_gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_GT
       gt0_txprbssel_in(2 downto 0) => gt0_txprbssel_in(2 downto 0),
       gt0_txresetdone_out => gt0_txresetdone_out,
       gt0_txuserrdy_i => gt0_txuserrdy_i,
-      gt0_txusrclk2_out => gt0_txusrclk2_out,
       gt0_txusrclk_out => gt0_txusrclk_out,
       sysclk_in => sysclk_in
     );
@@ -8076,13 +7648,11 @@ entity main_gt_core_0_0_gtwizard_0_init is
     gt0_txresetdone_out : out STD_LOGIC;
     gt0_drpdo_out : out STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxbufstatus_out : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_rxmonitorout_out : out STD_LOGIC_VECTOR ( 6 downto 0 );
     gt0_dmonitorout_out : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    GT0_TX_MMCM_RESET_IN : out STD_LOGIC;
     gt0_qpllreset_i : out STD_LOGIC;
     gt0_tx_fsm_reset_done_out : out STD_LOGIC;
-    GT0_RX_MMCM_RESET_IN : out STD_LOGIC;
     gt0_rx_fsm_reset_done_out : out STD_LOGIC;
     sysclk_in : in STD_LOGIC;
     gt0_drpen_in : in STD_LOGIC;
@@ -8098,28 +7668,26 @@ entity main_gt_core_0_0_gtwizard_0_init is
     gt0_rxpcsreset_in : in STD_LOGIC;
     gt0_rxpmareset_in : in STD_LOGIC;
     gt0_rxprbscntreset_in : in STD_LOGIC;
-    GT0_RXUSRCLK_OUT : in STD_LOGIC;
-    gt0_rxusrclk2_out : in STD_LOGIC;
+    GT0_RXUSRCLK2_OUT : in STD_LOGIC;
     gt0_txpcsreset_in : in STD_LOGIC;
     gt0_txprbsforceerr_in : in STD_LOGIC;
     gt0_txusrclk_out : in STD_LOGIC;
-    gt0_txusrclk2_out : in STD_LOGIC;
     gt0_drpdi_in : in STD_LOGIC_VECTOR ( 15 downto 0 );
     gt0_rxmonitorsel_in : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gt0_loopback_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_rxprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_txprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_txdata_in : in STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_drpaddr_in : in STD_LOGIC_VECTOR ( 8 downto 0 );
     soft_reset_tx_in : in STD_LOGIC;
     soft_reset_rx_in : in STD_LOGIC;
     dont_reset_on_data_error_in : in STD_LOGIC;
     gt0_qpllrefclklost_out : in STD_LOGIC;
-    gt0_tx_mmcm_lock_out : in STD_LOGIC;
     gt0_qplllock_out : in STD_LOGIC;
-    gt0_rx_mmcm_lock_out : in STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_init : entity is "gtwizard_0_init";
 end main_gt_core_0_0_gtwizard_0_init;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_init is
@@ -9126,15 +8694,13 @@ gt0_rx_cdrlocked_reg: unisim.vcomponents.FDRE
     );
 gt0_rxresetfsm_i: entity work.main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM
      port map (
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
-      GT0_RX_MMCM_RESET_IN => GT0_RX_MMCM_RESET_IN,
+      GT0_RXUSRCLK2_OUT => GT0_RXUSRCLK2_OUT,
       SR(0) => gt0_gtrxreset_i,
       dont_reset_on_data_error_in => dont_reset_on_data_error_in,
       gt0_data_valid_in => gt0_data_valid_in,
       gt0_qplllock_out => gt0_qplllock_out,
       gt0_rx_cdrlocked_reg => gt0_rx_cdrlocked_reg_n_0,
       gt0_rx_fsm_reset_done_out => gt0_rx_fsm_reset_done_out,
-      gt0_rx_mmcm_lock_out => gt0_rx_mmcm_lock_out,
       gt0_rxdfelfhold_i => gt0_rxdfelfhold_i,
       gt0_rxresetdone_out => \^gt0_rxresetdone_out\,
       gt0_rxuserrdy_i => gt0_rxuserrdy_i,
@@ -9143,13 +8709,11 @@ gt0_rxresetfsm_i: entity work.main_gt_core_0_0_gtwizard_0_RX_STARTUP_FSM
     );
 gt0_txresetfsm_i: entity work.main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM
      port map (
-      GT0_TX_MMCM_RESET_IN => GT0_TX_MMCM_RESET_IN,
       gt0_gttxreset_i => gt0_gttxreset_i,
       gt0_qplllock_out => gt0_qplllock_out,
       gt0_qpllrefclklost_out => gt0_qpllrefclklost_out,
       gt0_qpllreset_i => gt0_qpllreset_i,
       gt0_tx_fsm_reset_done_out => gt0_tx_fsm_reset_done_out,
-      gt0_tx_mmcm_lock_out => gt0_tx_mmcm_lock_out,
       gt0_txresetdone_out => \^gt0_txresetdone_out\,
       gt0_txuserrdy_i => gt0_txuserrdy_i,
       soft_reset_tx_in => soft_reset_tx_in,
@@ -9158,7 +8722,7 @@ gt0_txresetfsm_i: entity work.main_gt_core_0_0_gtwizard_0_TX_STARTUP_FSM
 gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_multi_gt
      port map (
       GT0_RXOUTCLK_IN => GT0_RXOUTCLK_IN,
-      GT0_RXUSRCLK_OUT => GT0_RXUSRCLK_OUT,
+      GT0_RXUSRCLK2_OUT => GT0_RXUSRCLK2_OUT,
       GT0_TXOUTCLK_IN => GT0_TXOUTCLK_IN,
       SR(0) => gt0_gtrxreset_i,
       gt0_dmonitorout_out(7 downto 0) => gt0_dmonitorout_out(7 downto 0),
@@ -9181,7 +8745,7 @@ gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_multi_gt
       gt0_qplloutrefclk_out => gt0_qplloutrefclk_out,
       gt0_rxbufreset_in => gt0_rxbufreset_in,
       gt0_rxbufstatus_out(2 downto 0) => gt0_rxbufstatus_out(2 downto 0),
-      gt0_rxdata_out(79 downto 0) => gt0_rxdata_out(79 downto 0),
+      gt0_rxdata_out(19 downto 0) => gt0_rxdata_out(19 downto 0),
       gt0_rxdfelfhold_i => gt0_rxdfelfhold_i,
       gt0_rxdfelpmreset_in => gt0_rxdfelpmreset_in,
       gt0_rxmonitorout_out(6 downto 0) => gt0_rxmonitorout_out(6 downto 0),
@@ -9194,8 +8758,7 @@ gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_multi_gt
       gt0_rxprbssel_in(2 downto 0) => gt0_rxprbssel_in(2 downto 0),
       gt0_rxresetdone_out => \^gt0_rxresetdone_out\,
       gt0_rxuserrdy_i => gt0_rxuserrdy_i,
-      gt0_rxusrclk2_out => gt0_rxusrclk2_out,
-      gt0_txdata_in(79 downto 0) => gt0_txdata_in(79 downto 0),
+      gt0_txdata_in(19 downto 0) => gt0_txdata_in(19 downto 0),
       gt0_txoutclkfabric_out => gt0_txoutclkfabric_out,
       gt0_txoutclkpcs_out => gt0_txoutclkpcs_out,
       gt0_txpcsreset_in => gt0_txpcsreset_in,
@@ -9203,7 +8766,6 @@ gtwizard_0_i: entity work.main_gt_core_0_0_gtwizard_0_multi_gt
       gt0_txprbssel_in(2 downto 0) => gt0_txprbssel_in(2 downto 0),
       gt0_txresetdone_out => \^gt0_txresetdone_out\,
       gt0_txuserrdy_i => gt0_txuserrdy_i,
-      gt0_txusrclk2_out => gt0_txusrclk2_out,
       gt0_txusrclk_out => gt0_txusrclk_out,
       sysclk_in => sysclk_in
     );
@@ -9219,8 +8781,6 @@ entity main_gt_core_0_0_gtwizard_0_support is
     dont_reset_on_data_error_in : in STD_LOGIC;
     q3_clk0_gtrefclk_pad_n_in : in STD_LOGIC;
     q3_clk0_gtrefclk_pad_p_in : in STD_LOGIC;
-    gt0_tx_mmcm_lock_out : out STD_LOGIC;
-    gt0_rx_mmcm_lock_out : out STD_LOGIC;
     gt0_tx_fsm_reset_done_out : out STD_LOGIC;
     gt0_rx_fsm_reset_done_out : out STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC;
@@ -9240,7 +8800,7 @@ entity main_gt_core_0_0_gtwizard_0_support is
     gt0_rxuserrdy_in : in STD_LOGIC;
     gt0_eyescandataerror_out : out STD_LOGIC;
     gt0_eyescantrigger_in : in STD_LOGIC;
-    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_rxprbserr_out : out STD_LOGIC;
     gt0_rxprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_rxprbscntreset_in : in STD_LOGIC;
@@ -9259,7 +8819,7 @@ entity main_gt_core_0_0_gtwizard_0_support is
     gt0_gttxreset_in : in STD_LOGIC;
     gt0_txuserrdy_in : in STD_LOGIC;
     gt0_txprbsforceerr_in : in STD_LOGIC;
-    gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_txdata_in : in STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_gtxtxn_out : out STD_LOGIC;
     gt0_gtxtxp_out : out STD_LOGIC;
     gt0_txoutclkfabric_out : out STD_LOGIC;
@@ -9277,6 +8837,8 @@ entity main_gt_core_0_0_gtwizard_0_support is
   attribute DowngradeIPIdentifiedWarnings of main_gt_core_0_0_gtwizard_0_support : entity is "yes";
   attribute EXAMPLE_SIM_GTRESET_SPEEDUP : string;
   attribute EXAMPLE_SIM_GTRESET_SPEEDUP of main_gt_core_0_0_gtwizard_0_support : entity is "TRUE";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_support : entity is "gtwizard_0_support";
   attribute STABLE_CLOCK_PERIOD : integer;
   attribute STABLE_CLOCK_PERIOD of main_gt_core_0_0_gtwizard_0_support : entity is 10;
 end main_gt_core_0_0_gtwizard_0_support;
@@ -9288,15 +8850,9 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_support is
   signal \^gt0_qpllrefclklost_out\ : STD_LOGIC;
   signal gt0_qpllreset_i : STD_LOGIC;
   signal gt0_qpllreset_t : STD_LOGIC;
-  signal \^gt0_rx_mmcm_lock_out\ : STD_LOGIC;
-  signal gt0_rxmmcm_reset_i : STD_LOGIC;
   signal gt0_rxoutclk_i : STD_LOGIC;
-  signal \^gt0_rxusrclk2_out\ : STD_LOGIC;
   signal \^gt0_rxusrclk_out\ : STD_LOGIC;
-  signal \^gt0_tx_mmcm_lock_out\ : STD_LOGIC;
-  signal gt0_txmmcm_reset_i : STD_LOGIC;
   signal gt0_txoutclk_i : STD_LOGIC;
-  signal \^gt0_txusrclk2_out\ : STD_LOGIC;
   signal \^gt0_txusrclk_out\ : STD_LOGIC;
   signal q3_clk0_refclk_i : STD_LOGIC;
 begin
@@ -9304,11 +8860,9 @@ begin
   gt0_qplloutclk_out <= \^gt0_qplloutclk_out\;
   gt0_qplloutrefclk_out <= \^gt0_qplloutrefclk_out\;
   gt0_qpllrefclklost_out <= \^gt0_qpllrefclklost_out\;
-  gt0_rx_mmcm_lock_out <= \^gt0_rx_mmcm_lock_out\;
-  gt0_rxusrclk2_out <= \^gt0_rxusrclk2_out\;
+  gt0_rxusrclk2_out <= \^gt0_rxusrclk_out\;
   gt0_rxusrclk_out <= \^gt0_rxusrclk_out\;
-  gt0_tx_mmcm_lock_out <= \^gt0_tx_mmcm_lock_out\;
-  gt0_txusrclk2_out <= \^gt0_txusrclk2_out\;
+  gt0_txusrclk2_out <= \^gt0_txusrclk_out\;
   gt0_txusrclk_out <= \^gt0_txusrclk_out\;
 common0_i: entity work.main_gt_core_0_0_gtwizard_0_common
      port map (
@@ -9330,15 +8884,9 @@ common_reset_i: entity work.main_gt_core_0_0_gtwizard_0_common_reset
 gt_usrclk_source: entity work.main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE
      port map (
       GT0_RXOUTCLK_IN => gt0_rxoutclk_i,
-      GT0_RXUSRCLK_OUT => \^gt0_rxusrclk_out\,
-      GT0_RX_MMCM_RESET_IN => gt0_rxmmcm_reset_i,
+      GT0_RXUSRCLK2_OUT => \^gt0_rxusrclk_out\,
       GT0_TXOUTCLK_IN => gt0_txoutclk_i,
-      GT0_TX_MMCM_RESET_IN => gt0_txmmcm_reset_i,
       Q3_CLK0_GTREFCLK_OUT => q3_clk0_refclk_i,
-      gt0_rx_mmcm_lock_out => \^gt0_rx_mmcm_lock_out\,
-      gt0_rxusrclk2_out => \^gt0_rxusrclk2_out\,
-      gt0_tx_mmcm_lock_out => \^gt0_tx_mmcm_lock_out\,
-      gt0_txusrclk2_out => \^gt0_txusrclk2_out\,
       gt0_txusrclk_out => \^gt0_txusrclk_out\,
       q3_clk0_gtrefclk_pad_n_in => q3_clk0_gtrefclk_pad_n_in,
       q3_clk0_gtrefclk_pad_p_in => q3_clk0_gtrefclk_pad_p_in
@@ -9346,10 +8894,8 @@ gt_usrclk_source: entity work.main_gt_core_0_0_gtwizard_0_GT_USRCLK_SOURCE
 gtwizard_0_init_i: entity work.main_gt_core_0_0_gtwizard_0_init
      port map (
       GT0_RXOUTCLK_IN => gt0_rxoutclk_i,
-      GT0_RXUSRCLK_OUT => \^gt0_rxusrclk_out\,
-      GT0_RX_MMCM_RESET_IN => gt0_rxmmcm_reset_i,
+      GT0_RXUSRCLK2_OUT => \^gt0_rxusrclk_out\,
       GT0_TXOUTCLK_IN => gt0_txoutclk_i,
-      GT0_TX_MMCM_RESET_IN => gt0_txmmcm_reset_i,
       dont_reset_on_data_error_in => dont_reset_on_data_error_in,
       gt0_data_valid_in => gt0_data_valid_in,
       gt0_dmonitorout_out(7 downto 0) => gt0_dmonitorout_out(7 downto 0),
@@ -9373,10 +8919,9 @@ gtwizard_0_init_i: entity work.main_gt_core_0_0_gtwizard_0_init
       gt0_qpllrefclklost_out => \^gt0_qpllrefclklost_out\,
       gt0_qpllreset_i => gt0_qpllreset_i,
       gt0_rx_fsm_reset_done_out => gt0_rx_fsm_reset_done_out,
-      gt0_rx_mmcm_lock_out => \^gt0_rx_mmcm_lock_out\,
       gt0_rxbufreset_in => gt0_rxbufreset_in,
       gt0_rxbufstatus_out(2 downto 0) => gt0_rxbufstatus_out(2 downto 0),
-      gt0_rxdata_out(79 downto 0) => gt0_rxdata_out(79 downto 0),
+      gt0_rxdata_out(19 downto 0) => gt0_rxdata_out(19 downto 0),
       gt0_rxdfelpmreset_in => gt0_rxdfelpmreset_in,
       gt0_rxmonitorout_out(6 downto 0) => gt0_rxmonitorout_out(6 downto 0),
       gt0_rxmonitorsel_in(1 downto 0) => gt0_rxmonitorsel_in(1 downto 0),
@@ -9387,17 +8932,14 @@ gtwizard_0_init_i: entity work.main_gt_core_0_0_gtwizard_0_init
       gt0_rxprbserr_out => gt0_rxprbserr_out,
       gt0_rxprbssel_in(2 downto 0) => gt0_rxprbssel_in(2 downto 0),
       gt0_rxresetdone_out => gt0_rxresetdone_out,
-      gt0_rxusrclk2_out => \^gt0_rxusrclk2_out\,
       gt0_tx_fsm_reset_done_out => gt0_tx_fsm_reset_done_out,
-      gt0_tx_mmcm_lock_out => \^gt0_tx_mmcm_lock_out\,
-      gt0_txdata_in(79 downto 0) => gt0_txdata_in(79 downto 0),
+      gt0_txdata_in(19 downto 0) => gt0_txdata_in(19 downto 0),
       gt0_txoutclkfabric_out => gt0_txoutclkfabric_out,
       gt0_txoutclkpcs_out => gt0_txoutclkpcs_out,
       gt0_txpcsreset_in => gt0_txpcsreset_in,
       gt0_txprbsforceerr_in => gt0_txprbsforceerr_in,
       gt0_txprbssel_in(2 downto 0) => gt0_txprbssel_in(2 downto 0),
       gt0_txresetdone_out => gt0_txresetdone_out,
-      gt0_txusrclk2_out => \^gt0_txusrclk2_out\,
       gt0_txusrclk_out => \^gt0_txusrclk_out\,
       soft_reset_rx_in => soft_reset_rx_in,
       soft_reset_tx_in => soft_reset_tx_in,
@@ -9415,8 +8957,6 @@ entity main_gt_core_0_0_gtwizard_0 is
     dont_reset_on_data_error_in : in STD_LOGIC;
     q3_clk0_gtrefclk_pad_n_in : in STD_LOGIC;
     q3_clk0_gtrefclk_pad_p_in : in STD_LOGIC;
-    gt0_tx_mmcm_lock_out : out STD_LOGIC;
-    gt0_rx_mmcm_lock_out : out STD_LOGIC;
     gt0_tx_fsm_reset_done_out : out STD_LOGIC;
     gt0_rx_fsm_reset_done_out : out STD_LOGIC;
     gt0_data_valid_in : in STD_LOGIC;
@@ -9436,7 +8976,7 @@ entity main_gt_core_0_0_gtwizard_0 is
     gt0_rxuserrdy_in : in STD_LOGIC;
     gt0_eyescandataerror_out : out STD_LOGIC;
     gt0_eyescantrigger_in : in STD_LOGIC;
-    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_rxdata_out : out STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_rxprbserr_out : out STD_LOGIC;
     gt0_rxprbssel_in : in STD_LOGIC_VECTOR ( 2 downto 0 );
     gt0_rxprbscntreset_in : in STD_LOGIC;
@@ -9455,7 +8995,7 @@ entity main_gt_core_0_0_gtwizard_0 is
     gt0_gttxreset_in : in STD_LOGIC;
     gt0_txuserrdy_in : in STD_LOGIC;
     gt0_txprbsforceerr_in : in STD_LOGIC;
-    gt0_txdata_in : in STD_LOGIC_VECTOR ( 79 downto 0 );
+    gt0_txdata_in : in STD_LOGIC_VECTOR ( 19 downto 0 );
     gt0_gtxtxn_out : out STD_LOGIC;
     gt0_gtxtxp_out : out STD_LOGIC;
     gt0_txoutclkfabric_out : out STD_LOGIC;
@@ -9471,6 +9011,8 @@ entity main_gt_core_0_0_gtwizard_0 is
   );
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of main_gt_core_0_0_gtwizard_0 : entity is "yes";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0 : entity is "gtwizard_0";
   attribute X_CORE_INFO : string;
   attribute X_CORE_INFO of main_gt_core_0_0_gtwizard_0 : entity is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
 end main_gt_core_0_0_gtwizard_0;
@@ -9508,10 +9050,9 @@ inst: entity work.main_gt_core_0_0_gtwizard_0_support
       gt0_qplloutrefclk_out => gt0_qplloutrefclk_out,
       gt0_qpllrefclklost_out => gt0_qpllrefclklost_out,
       gt0_rx_fsm_reset_done_out => gt0_rx_fsm_reset_done_out,
-      gt0_rx_mmcm_lock_out => gt0_rx_mmcm_lock_out,
       gt0_rxbufreset_in => gt0_rxbufreset_in,
       gt0_rxbufstatus_out(2 downto 0) => gt0_rxbufstatus_out(2 downto 0),
-      gt0_rxdata_out(79 downto 0) => gt0_rxdata_out(79 downto 0),
+      gt0_rxdata_out(19 downto 0) => gt0_rxdata_out(19 downto 0),
       gt0_rxdfelpmreset_in => gt0_rxdfelpmreset_in,
       gt0_rxmonitorout_out(6 downto 0) => gt0_rxmonitorout_out(6 downto 0),
       gt0_rxmonitorsel_in(1 downto 0) => gt0_rxmonitorsel_in(1 downto 0),
@@ -9526,8 +9067,7 @@ inst: entity work.main_gt_core_0_0_gtwizard_0_support
       gt0_rxusrclk2_out => gt0_rxusrclk2_out,
       gt0_rxusrclk_out => gt0_rxusrclk_out,
       gt0_tx_fsm_reset_done_out => gt0_tx_fsm_reset_done_out,
-      gt0_tx_mmcm_lock_out => gt0_tx_mmcm_lock_out,
-      gt0_txdata_in(79 downto 0) => gt0_txdata_in(79 downto 0),
+      gt0_txdata_in(19 downto 0) => gt0_txdata_in(19 downto 0),
       gt0_txoutclkfabric_out => gt0_txoutclkfabric_out,
       gt0_txoutclkpcs_out => gt0_txoutclkpcs_out,
       gt0_txpcsreset_in => gt0_txpcsreset_in,
@@ -9565,24 +9105,22 @@ entity main_gt_core_0_0_gtwizard_0_exdes is
     TX_RESET : out STD_LOGIC;
     RX_RESET : out STD_LOGIC;
     DATA_VALID : in STD_LOGIC;
-    TX_MMCM_LOCK : out STD_LOGIC;
     TX_RESET_DONE : out STD_LOGIC;
     TX_FSM_RESET_DONE : out STD_LOGIC;
-    RX_MMCM_LOCK : out STD_LOGIC;
     RX_RESET_DONE : out STD_LOGIC;
     RX_FSM_RESET_DONE : out STD_LOGIC;
-    TX_DATA : in STD_LOGIC_VECTOR ( 79 downto 0 );
-    RX_DATA : out STD_LOGIC_VECTOR ( 79 downto 0 )
+    TX_DATA : in STD_LOGIC_VECTOR ( 19 downto 0 );
+    RX_DATA : out STD_LOGIC_VECTOR ( 19 downto 0 )
   );
   attribute LOOPBACK : integer;
   attribute LOOPBACK of main_gt_core_0_0_gtwizard_0_exdes : entity is 0;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of main_gt_core_0_0_gtwizard_0_exdes : entity is "gtwizard_0_exdes";
 end main_gt_core_0_0_gtwizard_0_exdes;
 
 architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_exdes is
-  signal \^rx_mmcm_lock\ : STD_LOGIC;
   signal \^rx_reset_done\ : STD_LOGIC;
   signal \^tx_fsm_reset_done\ : STD_LOGIC;
-  signal \^tx_mmcm_lock\ : STD_LOGIC;
   signal \^tx_reset_done\ : STD_LOGIC;
   signal \^tx_usr_clk2\ : STD_LOGIC;
   signal gt0_txfsmresetdone_r : STD_LOGIC;
@@ -9606,29 +9144,25 @@ architecture STRUCTURE of main_gt_core_0_0_gtwizard_0_exdes is
   attribute X_CORE_INFO : string;
   attribute X_CORE_INFO of gtwizard_0_support_i : label is "gtwizard_0,gtwizard_v3_6_9,{protocol_file=interlaken}";
 begin
-  RX_MMCM_LOCK <= \^rx_mmcm_lock\;
   RX_RESET_DONE <= \^rx_reset_done\;
   TX_FSM_RESET_DONE <= \^tx_fsm_reset_done\;
-  TX_MMCM_LOCK <= \^tx_mmcm_lock\;
   TX_RESET_DONE <= \^tx_reset_done\;
   TX_USR_CLK2 <= \^tx_usr_clk2\;
-RX_RESET_INST_0: unisim.vcomponents.LUT2
+RX_RESET_INST_0: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => \^rx_reset_done\,
+      O => RX_RESET
+    );
+TX_RESET_INST_0: unisim.vcomponents.LUT2
     generic map(
       INIT => X"7"
     )
         port map (
-      I0 => \^rx_mmcm_lock\,
-      I1 => \^rx_reset_done\,
-      O => RX_RESET
-    );
-TX_RESET_INST_0: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"7F"
-    )
-        port map (
-      I0 => \^tx_mmcm_lock\,
-      I1 => \^tx_reset_done\,
-      I2 => gt0_txfsmresetdone_r2,
+      I0 => \^tx_reset_done\,
+      I1 => gt0_txfsmresetdone_r2,
       O => TX_RESET
     );
 gt0_txfsmresetdone_r2_reg: unisim.vcomponents.FDRE
@@ -9673,10 +9207,9 @@ gtwizard_0_support_i: entity work.main_gt_core_0_0_gtwizard_0
       gt0_qplloutrefclk_out => NLW_gtwizard_0_support_i_gt0_qplloutrefclk_out_UNCONNECTED,
       gt0_qpllrefclklost_out => NLW_gtwizard_0_support_i_gt0_qpllrefclklost_out_UNCONNECTED,
       gt0_rx_fsm_reset_done_out => RX_FSM_RESET_DONE,
-      gt0_rx_mmcm_lock_out => \^rx_mmcm_lock\,
       gt0_rxbufreset_in => '0',
       gt0_rxbufstatus_out(2 downto 0) => NLW_gtwizard_0_support_i_gt0_rxbufstatus_out_UNCONNECTED(2 downto 0),
-      gt0_rxdata_out(79 downto 0) => RX_DATA(79 downto 0),
+      gt0_rxdata_out(19 downto 0) => RX_DATA(19 downto 0),
       gt0_rxdfelpmreset_in => '0',
       gt0_rxmonitorout_out(6 downto 0) => NLW_gtwizard_0_support_i_gt0_rxmonitorout_out_UNCONNECTED(6 downto 0),
       gt0_rxmonitorsel_in(1 downto 0) => B"00",
@@ -9691,8 +9224,7 @@ gtwizard_0_support_i: entity work.main_gt_core_0_0_gtwizard_0
       gt0_rxusrclk2_out => RX_USR_CLK2,
       gt0_rxusrclk_out => RX_USR_CLK,
       gt0_tx_fsm_reset_done_out => \^tx_fsm_reset_done\,
-      gt0_tx_mmcm_lock_out => \^tx_mmcm_lock\,
-      gt0_txdata_in(79 downto 0) => TX_DATA(79 downto 0),
+      gt0_txdata_in(19 downto 0) => TX_DATA(19 downto 0),
       gt0_txoutclkfabric_out => NLW_gtwizard_0_support_i_gt0_txoutclkfabric_out_UNCONNECTED,
       gt0_txoutclkpcs_out => NLW_gtwizard_0_support_i_gt0_txoutclkpcs_out_UNCONNECTED,
       gt0_txpcsreset_in => '0',
@@ -9730,14 +9262,12 @@ entity main_gt_core_0_0 is
     SOFT_RESET : in STD_LOGIC;
     TX_RESET : out STD_LOGIC;
     RX_RESET : out STD_LOGIC;
-    TX_MMCM_LOCK : out STD_LOGIC;
     TX_RESET_DONE : out STD_LOGIC;
     TX_FSM_RESET_DONE : out STD_LOGIC;
-    RX_MMCM_LOCK : out STD_LOGIC;
     RX_RESET_DONE : out STD_LOGIC;
     RX_FSM_RESET_DONE : out STD_LOGIC;
-    RX_DATA : out STD_LOGIC_VECTOR ( 79 downto 0 );
-    TX_DATA : in STD_LOGIC_VECTOR ( 79 downto 0 )
+    RX_DATA : out STD_LOGIC_VECTOR ( 19 downto 0 );
+    TX_DATA : in STD_LOGIC_VECTOR ( 19 downto 0 )
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of main_gt_core_0_0 : entity is true;
@@ -9785,9 +9315,8 @@ inst: entity work.main_gt_core_0_0_gtwizard_0_exdes
       Q3_CLK0_GTREFCLK_PAD_P_IN => Q3_CLK0_GTREFCLK_PAD_P_IN,
       RXN_IN => RXN_IN,
       RXP_IN => RXP_IN,
-      RX_DATA(79 downto 0) => RX_DATA(79 downto 0),
+      RX_DATA(19 downto 0) => RX_DATA(19 downto 0),
       RX_FSM_RESET_DONE => RX_FSM_RESET_DONE,
-      RX_MMCM_LOCK => RX_MMCM_LOCK,
       RX_RESET => RX_RESET,
       RX_RESET_DONE => RX_RESET_DONE,
       RX_USR_CLK => RX_USR_CLK,
@@ -9795,9 +9324,8 @@ inst: entity work.main_gt_core_0_0_gtwizard_0_exdes
       SOFT_RESET => SOFT_RESET,
       TXN_OUT => TXN_OUT,
       TXP_OUT => TXP_OUT,
-      TX_DATA(79 downto 0) => TX_DATA(79 downto 0),
+      TX_DATA(19 downto 0) => TX_DATA(19 downto 0),
       TX_FSM_RESET_DONE => TX_FSM_RESET_DONE,
-      TX_MMCM_LOCK => TX_MMCM_LOCK,
       TX_RESET => TX_RESET,
       TX_RESET_DONE => TX_RESET_DONE,
       TX_USR_CLK => TX_USR_CLK,

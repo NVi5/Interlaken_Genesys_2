@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sat Nov 21 22:38:59 2020
+-- Date        : Sun Nov 22 20:33:06 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top main_gt_core_0_0 -prefix
---               main_gt_core_0_0_ main_gt_core_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_gt_core_0_0/main_gt_core_0_0_stub.vhdl
 -- Design      : main_gt_core_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7k325tffg900-2
@@ -29,14 +29,12 @@ entity main_gt_core_0_0 is
     SOFT_RESET : in STD_LOGIC;
     TX_RESET : out STD_LOGIC;
     RX_RESET : out STD_LOGIC;
-    TX_MMCM_LOCK : out STD_LOGIC;
     TX_RESET_DONE : out STD_LOGIC;
     TX_FSM_RESET_DONE : out STD_LOGIC;
-    RX_MMCM_LOCK : out STD_LOGIC;
     RX_RESET_DONE : out STD_LOGIC;
     RX_FSM_RESET_DONE : out STD_LOGIC;
-    RX_DATA : out STD_LOGIC_VECTOR ( 79 downto 0 );
-    TX_DATA : in STD_LOGIC_VECTOR ( 79 downto 0 )
+    RX_DATA : out STD_LOGIC_VECTOR ( 19 downto 0 );
+    TX_DATA : in STD_LOGIC_VECTOR ( 19 downto 0 )
   );
 
 end main_gt_core_0_0;
@@ -45,7 +43,7 @@ architecture stub of main_gt_core_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "Q3_CLK0_GTREFCLK_PAD_N_IN,Q3_CLK0_GTREFCLK_PAD_P_IN,DRP_CLK_IN,DATA_VALID,RXN_IN,RXP_IN,TXN_OUT,TXP_OUT,TX_USR_CLK,TX_USR_CLK2,RX_USR_CLK,RX_USR_CLK2,SOFT_RESET,TX_RESET,RX_RESET,TX_MMCM_LOCK,TX_RESET_DONE,TX_FSM_RESET_DONE,RX_MMCM_LOCK,RX_RESET_DONE,RX_FSM_RESET_DONE,RX_DATA[79:0],TX_DATA[79:0]";
+attribute black_box_pad_pin of stub : architecture is "Q3_CLK0_GTREFCLK_PAD_N_IN,Q3_CLK0_GTREFCLK_PAD_P_IN,DRP_CLK_IN,DATA_VALID,RXN_IN,RXP_IN,TXN_OUT,TXP_OUT,TX_USR_CLK,TX_USR_CLK2,RX_USR_CLK,RX_USR_CLK2,SOFT_RESET,TX_RESET,RX_RESET,TX_RESET_DONE,TX_FSM_RESET_DONE,RX_RESET_DONE,RX_FSM_RESET_DONE,RX_DATA[19:0],TX_DATA[19:0]";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "gtwizard_0_exdes,Vivado 2018.2";
 begin

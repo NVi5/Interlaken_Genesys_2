@@ -61,7 +61,7 @@ module main_gearbox_tx_0_0 (
 );
 
 input wire [66 : 0] DATA_IN;
-output wire [79 : 0] DATA_OUT;
+output wire [19 : 0] DATA_OUT;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;

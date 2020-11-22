@@ -76,5 +76,5 @@ set_property -dict { PACKAGE_PIN AD12  IOSTANDARD LVDS     } [get_ports { DRP_CL
 
 ## LEDs
 set_property -dict { PACKAGE_PIN T28   IOSTANDARD LVCMOS33 } [get_ports { TRACK_DATA_OUT }]; #IO_L11N_T1_SRCC_14 Sch=led[0]
-set_output_delay -clock clkout0 -max 5 [get_ports { TRACK_DATA_OUT }];
-set_output_delay -clock clkout0 -min -5 [get_ports { TRACK_DATA_OUT }];
+#set_output_delay -clock clkout0 -max 5 [get_ports { TRACK_DATA_OUT }];
+#set_output_delay -clock clkout0 -min -5 [get_ports { TRACK_DATA_OUT }];

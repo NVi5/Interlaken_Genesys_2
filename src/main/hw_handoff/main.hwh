@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 19:10:29 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Nov 22 20:28:25 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -908,7 +908,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="79" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
+        <PORT DIR="I" LEFT="19" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="DATA_OUT"/>
           </CONNECTIONS>
@@ -944,7 +944,7 @@
             <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
+        <PORT DIR="O" LEFT="19" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe2"/>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_DATA"/>
@@ -1017,8 +1017,8 @@
             <CONNECTION INSTANCE="frame_gen" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_scrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK">
@@ -1030,10 +1030,10 @@
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK2" SIGIS="clk" SIGNAME="interlaken_gt_core_0_RX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_check" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_gearbox_rx" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_gearbox_rx" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="SOFT_RESET" SIGIS="rst" SIGNAME="interlaken_vio_0_probe_out0">
@@ -1056,14 +1056,10 @@
             <CONNECTION INSTANCE="interlaken_decode_64B_67B" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="TX_MMCM_LOCK" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_MMCM_LOCK">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe3"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="TX_RESET_DONE" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_RESET_DONE">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe4"/>
+            <CONNECTION INSTANCE="interlaken_ila_1" PORT="probe3"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="TX_FSM_RESET_DONE" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_FSM_RESET_DONE">
@@ -1071,14 +1067,10 @@
             <CONNECTION INSTANCE="interlaken_ila_2" PORT="probe0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="RX_MMCM_LOCK" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_MMCM_LOCK">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe8"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" NAME="RX_RESET_DONE" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe9"/>
+            <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe8"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_FSM_RESET_DONE" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_FSM_RESET_DONE">
@@ -1086,13 +1078,13 @@
             <CONNECTION INSTANCE="interlaken_ila_2" PORT="probe1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
+        <PORT DIR="O" LEFT="19" NAME="RX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe11"/>
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="DATA_IN"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
+        <PORT DIR="I" LEFT="19" NAME="TX_DATA" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="DATA_OUT"/>
           </CONNECTIONS>
@@ -1154,8 +1146,8 @@
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE9_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="80"/>
-        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="80"/>
+        <PARAMETER NAME="C_PROBE10_WIDTH" VALUE="20"/>
+        <PARAMETER NAME="C_PROBE11_WIDTH" VALUE="20"/>
         <PARAMETER NAME="C_PROBE12_WIDTH" VALUE="7"/>
         <PARAMETER NAME="C_PROBE13_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE14_WIDTH" VALUE="1"/>
@@ -4285,9 +4277,9 @@
             <CONNECTION INSTANCE="interlaken_descrambler" PORT="UNSCRAMBLED_DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_MMCM_LOCK">
+        <PORT DIR="I" LEFT="0" NAME="probe8" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_MMCM_LOCK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_RESET_DONE"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe9" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_RESET_DONE">
@@ -4295,12 +4287,12 @@
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_RESET_DONE"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
+        <PORT DIR="I" LEFT="19" NAME="probe10" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
+        <PORT DIR="I" LEFT="19" NAME="probe11" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
@@ -4359,7 +4351,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_BUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="64"/>
-        <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="80"/>
+        <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="20"/>
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="67"/>
@@ -7468,14 +7460,14 @@
             <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
+        <PORT DIR="I" LEFT="19" NAME="probe2" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gearbox_tx_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="DATA_OUT"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_MMCM_LOCK">
+        <PORT DIR="I" LEFT="0" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_RESET_DONE">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_MMCM_LOCK"/>
+            <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_RESET_DONE"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_TX_RESET_DONE">
@@ -10700,17 +10692,17 @@
     <MODULE FULLNAME="/interlaken/stream_manipulator" HWVERSION="1.0" INSTANCE="interlaken_stream_manipulator" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="stream_manipulator" VLNV="xilinx.com:module_ref:stream_manipulator:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="DATA_WIDTH" VALUE="80"/>
+        <PARAMETER NAME="DATA_WIDTH" VALUE="20"/>
         <PARAMETER NAME="Component_Name" VALUE="main_stream_manipulator_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="79" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
+        <PORT DIR="I" LEFT="19" NAME="DATA_IN" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_gt_core_0_RX_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="RX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
+        <PORT DIR="O" LEFT="19" NAME="DATA_OUT" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_stream_manipulator_DATA_OUT">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_ila_0" PORT="probe10"/>
             <CONNECTION INSTANCE="interlaken_gearbox_rx" PORT="DATA_IN"/>
@@ -10721,7 +10713,7 @@
             <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out2"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="79" NAME="MASK" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
+        <PORT DIR="I" LEFT="19" NAME="MASK" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_vio_2" PORT="probe_out3"/>
           </CONNECTIONS>
@@ -12729,7 +12721,7 @@
         <PARAMETER NAME="C_PROBE_OUT0_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT2_WIDTH" VALUE="3"/>
-        <PARAMETER NAME="C_PROBE_OUT3_WIDTH" VALUE="80"/>
+        <PARAMETER NAME="C_PROBE_OUT3_WIDTH" VALUE="20"/>
         <PARAMETER NAME="C_PROBE_OUT4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT5_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE_OUT6_WIDTH" VALUE="1"/>
@@ -12985,7 +12977,7 @@
         <PARAMETER NAME="C_PROBE_OUT0_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT1_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT2_INIT_VAL" VALUE="0x0"/>
-        <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x00000000000000000000"/>
+        <PARAMETER NAME="C_PROBE_OUT3_INIT_VAL" VALUE="0x00000"/>
         <PARAMETER NAME="C_PROBE_OUT4_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT5_INIT_VAL" VALUE="0x0"/>
         <PARAMETER NAME="C_PROBE_OUT6_INIT_VAL" VALUE="0x0"/>
@@ -13282,7 +13274,7 @@
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="OFFSET"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="79" NAME="probe_out3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
+        <PORT DIR="O" LEFT="19" NAME="probe_out3" RIGHT="0" SIGIS="undef" SIGNAME="interlaken_vio_2_probe_out3">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_stream_manipulator" PORT="MASK"/>
           </CONNECTIONS>

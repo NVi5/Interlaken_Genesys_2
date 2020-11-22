@@ -27,7 +27,7 @@
 module gearbox_tx(
     // User Interface
     input  wire  [66:0]  DATA_IN,
-    output reg   [79:0]  DATA_OUT,
+    output reg   [19:0]  DATA_OUT,
 
     // System Interface
     input  wire          USER_CLK
@@ -36,7 +36,7 @@ module gearbox_tx(
 //*********************************Main Body of Code**********************************
 
     always @(posedge USER_CLK)
-        DATA_OUT <= `DLY {{13{1'b0}}, DATA_IN};
+        DATA_OUT <= `DLY DATA_IN;
 
 
 endmodule
