@@ -25,7 +25,7 @@
 
 module decode_64B_67B(
     // User Interface
-    input  wire  [79:0]  DATA_IN,
+    input  wire  [66:0]  DATA_IN,
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
     output wire          LOCKED,
@@ -48,9 +48,9 @@ module decode_64B_67B(
     reg     [0:0]   state;
     reg     [5:0]   good_sync_ctr;
     reg     [3:0]   error_sync_ctr;
-    reg     [79:0]  rx_data_r;
     reg     [66:0]  rx_aligned;
-    reg     [159:0] rx_data_common;
+    reg     [66:0]  rx_data_r;
+    reg     [133:0] rx_data_common;
 
 //*********************************Main Body of Code**********************************
 
@@ -79,7 +79,7 @@ module decode_64B_67B(
                 end
                 else begin
                     good_sync_ctr <= `DLY  6'd0;
-                    if (candidate == 7'd79)
+                    if (candidate == 7'd66)
                     begin
                         candidate <= `DLY 7'd0;
                     end

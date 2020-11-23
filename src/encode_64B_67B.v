@@ -28,6 +28,8 @@ module encode_64B_67B(
     input  wire  [63:0]  DATA_IN,
     output reg   [66:0]  DATA_OUT,
     input  wire  [1:0]   HEADER_IN,
+    input  wire          DATA_IN_VALID,
+    output reg           DATA_OUT_VALID,
 
     // System Interface
     input  wire          USER_CLK,
@@ -63,7 +65,8 @@ module encode_64B_67B(
             DATA_OUT <= `DLY  {1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
             disparity = 0;
         end
-        else begin
+        else if (DATA_IN_VALID)
+        begin
             if ((disparity >= 0 && word_disparity >= 0) || ((disparity < 0 && word_disparity < 0)))     // Same sign
             begin
                 disparity = disparity - word_disparity;
@@ -75,4 +78,9 @@ module encode_64B_67B(
             end
         end
     end
+
+    always @(posedge USER_CLK)
+        begin
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID;
+        end
 endmodule

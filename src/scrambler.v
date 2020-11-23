@@ -35,6 +35,8 @@ module scrambler #
 
     input  wire  [1:0]                  HEADER_IN,
     output reg   [1:0]                  HEADER_OUT,
+    input  wire                         DATA_IN_VALID,
+    output reg                          DATA_OUT_VALID,
 
     // System Interface
     input  wire                         USER_CLK,
@@ -78,24 +80,30 @@ module scrambler #
             scrambler          <= `DLY  {58{1'b1}};
             state              <= `DLY  STATE_IDLE;
         end
-        else if(state == STATE_SYNC)
+        else if (DATA_IN_VALID)
         begin
-            SCRAMBLED_DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
-            state              <= `DLY  STATE_IDLE;
-        end
-        else if(UNSCRAMBLED_DATA_IN == SYNC_WORD && HEADER_IN == 2'b10)
-        begin
-            SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
-            state              <= `DLY  STATE_SYNC;
-        end
-        else
-        begin
-            SCRAMBLED_DATA_OUT <= `DLY  tempData;
-            scrambler          <= `DLY  poly;
+            if(state == STATE_SYNC)
+            begin
+                SCRAMBLED_DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
+                state              <= `DLY  STATE_IDLE;
+            end
+            else if(UNSCRAMBLED_DATA_IN == SYNC_WORD && HEADER_IN == 2'b10)
+            begin
+                SCRAMBLED_DATA_OUT <= `DLY  UNSCRAMBLED_DATA_IN;
+                state              <= `DLY  STATE_SYNC;
+            end
+            else
+            begin
+                SCRAMBLED_DATA_OUT <= `DLY  tempData;
+                scrambler          <= `DLY  poly;
+            end
         end
     end
 
     always @(posedge USER_CLK)
-        HEADER_OUT           <= `DLY  HEADER_IN;
+        begin
+            HEADER_OUT           <= `DLY  HEADER_IN;
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID;
+        end
 
 endmodule

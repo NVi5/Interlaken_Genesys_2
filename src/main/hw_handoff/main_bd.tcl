@@ -261,7 +261,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_PROBE1_WIDTH {1} \
    CONFIG.C_PROBE2_WIDTH {8} \
    CONFIG.C_PROBE3_WIDTH {1} \
-   CONFIG.C_PROBE4_WIDTH {80} \
+   CONFIG.C_PROBE4_WIDTH {67} \
    CONFIG.C_PROBE5_WIDTH {2} \
    CONFIG.C_PROBE6_WIDTH {1} \
    CONFIG.C_PROBE7_WIDTH {64} \
@@ -403,17 +403,20 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe1] [get_bd_pins scrambler/UNSCRAMBLED_DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
   connect_bd_net -net TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe3] [get_bd_pins ila_1/probe4]
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
+  connect_bd_net -net encode_64B_67B_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_OUT_VALID] [get_bd_pins gearbox_tx/DATA_IN_VALID]
   connect_bd_net -net gearbox_rx_0_LOCKED [get_bd_pins decode_64B_67B/DATA_VALID] [get_bd_pins gearbox_rx/LOCKED]
-  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
+  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
   connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK] [get_bd_pins gt_core_0/RX_USR_CLK2] [get_bd_pins stream_manipulator/USER_CLK]
   connect_bd_net -net gt_core_0_TXN_OUT [get_bd_pins TXN_OUT] [get_bd_pins gt_core_0/TXN_OUT]
   connect_bd_net -net gt_core_0_TXP_OUT [get_bd_pins TXP_OUT] [get_bd_pins gt_core_0/TXP_OUT]
-  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_RESET] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
+  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gearbox_tx/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_RESET] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
   connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins gt_core_0/TX_USR_CLK] [get_bd_pins ila_1/clk] [get_bd_pins vio_1/clk]
   connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins TX_DATA_IN] [get_bd_pins tx_interface_0/DATA_IN]
   connect_bd_net -net scrambler_0_HEADER_OUT [get_bd_pins encode_64B_67B/HEADER_IN] [get_bd_pins scrambler/HEADER_OUT]
+  connect_bd_net -net scrambler_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_IN_VALID] [get_bd_pins scrambler/DATA_OUT_VALID]
   connect_bd_net -net tx_interface_0_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins tx_interface_0/DATA_IN_READY]
+  connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_VALID]
   connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
 
   # Restore current instance

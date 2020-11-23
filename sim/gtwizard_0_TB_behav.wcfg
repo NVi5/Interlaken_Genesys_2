@@ -11,25 +11,25 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="339277448131fs"></ZoomStartTime>
-      <ZoomEndTime time="403677448132fs"></ZoomEndTime>
-      <Cursor1Time time="361580631000fs"></Cursor1Time>
+      <ZoomStartTime time="457675720000fs"></ZoomStartTime>
+      <ZoomEndTime time="470685720001fs"></ZoomEndTime>
+      <Cursor1Time time="459965720000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="199"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="98"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="group82" type="group">
       <obj_property name="label">Generic</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/RX_DATA" type="array">
-         <obj_property name="ElementShortName">RX_DATA[79:0]</obj_property>
-         <obj_property name="ObjectShortName">RX_DATA[79:0]</obj_property>
+         <obj_property name="ElementShortName">RX_DATA[19:0]</obj_property>
+         <obj_property name="ObjectShortName">RX_DATA[19:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/TX_DATA" type="array">
-         <obj_property name="ElementShortName">TX_DATA[79:0]</obj_property>
-         <obj_property name="ObjectShortName">TX_DATA[79:0]</obj_property>
+         <obj_property name="ElementShortName">TX_DATA[19:0]</obj_property>
+         <obj_property name="ObjectShortName">TX_DATA[19:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/tx_refclk_n_r" type="logic">
          <obj_property name="ElementShortName">tx_refclk_n_r</obj_property>
@@ -99,11 +99,6 @@
    <wvobject fp_name="group83" type="group">
       <obj_property name="label">GT Status</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/TX_MMCM_LOCK" type="logic">
-         <obj_property name="ElementShortName">TX_MMCM_LOCK</obj_property>
-         <obj_property name="ObjectShortName">TX_MMCM_LOCK</obj_property>
-      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/TX_RESET_DONE" type="logic">
          <obj_property name="ElementShortName">TX_RESET_DONE</obj_property>
          <obj_property name="ObjectShortName">TX_RESET_DONE</obj_property>
@@ -111,10 +106,6 @@
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/TX_FSM_RESET_DONE" type="logic">
          <obj_property name="ElementShortName">TX_FSM_RESET_DONE</obj_property>
          <obj_property name="ObjectShortName">TX_FSM_RESET_DONE</obj_property>
-      </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/RX_MMCM_LOCK" type="logic">
-         <obj_property name="ElementShortName">RX_MMCM_LOCK</obj_property>
-         <obj_property name="ObjectShortName">RX_MMCM_LOCK</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/RX_RESET_DONE" type="logic">
          <obj_property name="ElementShortName">RX_RESET_DONE</obj_property>
@@ -140,6 +131,7 @@
    <wvobject fp_name="group85" type="group">
       <obj_property name="label">Decoder</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/decode_64B_67B/inst/candidate" type="array">
          <obj_property name="ElementShortName">candidate[6:0]</obj_property>
          <obj_property name="ObjectShortName">candidate[6:0]</obj_property>
@@ -153,6 +145,10 @@
          <obj_property name="ElementShortName">error_sync_ctr[3:0]</obj_property>
          <obj_property name="ObjectShortName">error_sync_ctr[3:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/decode_64B_67B/LOCKED" type="logic">
+         <obj_property name="ElementShortName">LOCKED</obj_property>
+         <obj_property name="ObjectShortName">LOCKED</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group86" type="group">
@@ -170,6 +166,10 @@
    <wvobject fp_name="group87" type="group">
       <obj_property name="label">Descrambler</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/scrambler/UNSCRAMBLED_DATA_IN" type="array">
+         <obj_property name="ElementShortName">UNSCRAMBLED_DATA_IN[63:0]</obj_property>
+         <obj_property name="ObjectShortName">UNSCRAMBLED_DATA_IN[63:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/scrambler/SCRAMBLED_DATA_OUT" type="array">
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">SCRAMBLED_DATA_OUT[63:0]</obj_property>
@@ -221,6 +221,11 @@
    <wvobject fp_name="group88" type="group">
       <obj_property name="label">TX Interface</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/USER_CLK" type="logic">
+         <obj_property name="ElementShortName">USER_CLK</obj_property>
+         <obj_property name="ObjectShortName">USER_CLK</obj_property>
+      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_gen/TX_DATA_OUT" type="array">
          <obj_property name="ElementShortName">TX_DATA_OUT[63:0]</obj_property>
          <obj_property name="ObjectShortName">TX_DATA_OUT[63:0]</obj_property>
@@ -233,27 +238,44 @@
          <obj_property name="ElementShortName">DATA_IN_READY</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_READY</obj_property>
       </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/DATA_VALID" type="logic">
+         <obj_property name="ElementShortName">DATA_VALID</obj_property>
+         <obj_property name="ObjectShortName">DATA_VALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/send_payload" type="logic">
+         <obj_property name="ElementShortName">send_payload</obj_property>
+         <obj_property name="ObjectShortName">send_payload</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/frame_ctr" type="array">
+         <obj_property name="ElementShortName">frame_ctr[3:0]</obj_property>
+         <obj_property name="ObjectShortName">frame_ctr[3:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="group81" type="group">
       <obj_property name="label">Bit manipulation test</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/decode_64B_67B/inst/candidate" type="array">
+         <obj_property name="ElementShortName">candidate[6:0]</obj_property>
+         <obj_property name="ObjectShortName">candidate[6:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/stream_manipulator/OFFSET" type="array">
          <obj_property name="ElementShortName">OFFSET[2:0]</obj_property>
          <obj_property name="ObjectShortName">OFFSET[2:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/stream_manipulator/MASK" type="array">
-         <obj_property name="ElementShortName">MASK[79:0]</obj_property>
-         <obj_property name="ObjectShortName">MASK[79:0]</obj_property>
+         <obj_property name="ElementShortName">MASK[19:0]</obj_property>
+         <obj_property name="ObjectShortName">MASK[19:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/stream_manipulator/DATA_IN" type="array">
-         <obj_property name="ElementShortName">DATA_IN[79:0]</obj_property>
-         <obj_property name="ObjectShortName">DATA_IN[79:0]</obj_property>
+         <obj_property name="ElementShortName">DATA_IN[19:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[19:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/stream_manipulator/DATA_OUT" type="array">
-         <obj_property name="ElementShortName">DATA_OUT[79:0]</obj_property>
-         <obj_property name="ObjectShortName">DATA_OUT[79:0]</obj_property>
+         <obj_property name="ElementShortName">DATA_OUT[19:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[19:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/track_data_i" type="logic">
          <obj_property name="ElementShortName">track_data_i</obj_property>
@@ -263,9 +285,47 @@
          <obj_property name="ElementShortName">OVERRIDE_DATA_VALID[0:0]</obj_property>
          <obj_property name="ObjectShortName">OVERRIDE_DATA_VALID[0:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/decode_64B_67B/inst/candidate" type="array">
-         <obj_property name="ElementShortName">candidate[6:0]</obj_property>
-         <obj_property name="ObjectShortName">candidate[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group176" type="group">
+      <obj_property name="label">Gearbox</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_tx/DATA_IN_VALID" type="logic">
+         <obj_property name="ElementShortName">DATA_IN_VALID</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN_VALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_tx/DATA_IN" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">DATA_IN[66:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[66:0]</obj_property>
+         <obj_property name="label">DATA_IN_TX[66:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_tx/DATA_OUT" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">DATA_OUT[19:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[19:0]</obj_property>
+         <obj_property name="label">DATA_OUT_TX[19:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_rx/DATA_IN" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">DATA_IN[19:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[19:0]</obj_property>
+         <obj_property name="label">DATA_IN_RX[19:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_rx/DATA_OUT" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">DATA_OUT[66:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[66:0]</obj_property>
+         <obj_property name="label">DATA_OUT_RX[66:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_rx/DATA_OUT_VALID" type="logic">
+         <obj_property name="ElementShortName">DATA_OUT_VALID</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT_VALID</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

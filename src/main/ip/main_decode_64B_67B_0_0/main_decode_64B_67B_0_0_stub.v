@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sun Nov 22 19:12:29 2020
+// Date        : Sun Nov 22 23:37:24 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_stub.v
@@ -16,8 +16,8 @@
 (* X_CORE_INFO = "decode_64B_67B,Vivado 2018.2" *)
 module main_decode_64B_67B_0_0(DATA_IN, DATA_OUT, HEADER_OUT, LOCKED, CANDIDATE, 
   USER_CLK, SYSTEM_RESET, DATA_VALID, PASSTHROUGH)
-/* synthesis syn_black_box black_box_pad_pin="DATA_IN[79:0],DATA_OUT[63:0],HEADER_OUT[1:0],LOCKED,CANDIDATE[6:0],USER_CLK,SYSTEM_RESET,DATA_VALID,PASSTHROUGH" */;
-  input [79:0]DATA_IN;
+/* synthesis syn_black_box black_box_pad_pin="DATA_IN[66:0],DATA_OUT[63:0],HEADER_OUT[1:0],LOCKED,CANDIDATE[6:0],USER_CLK,SYSTEM_RESET,DATA_VALID,PASSTHROUGH" */;
+  input [66:0]DATA_IN;
   output [63:0]DATA_OUT;
   output [1:0]HEADER_OUT;
   output LOCKED;

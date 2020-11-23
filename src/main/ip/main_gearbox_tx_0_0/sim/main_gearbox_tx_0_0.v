@@ -57,18 +57,26 @@
 module main_gearbox_tx_0_0 (
   DATA_IN,
   DATA_OUT,
-  USER_CLK
+  DATA_IN_VALID,
+  USER_CLK,
+  SYSTEM_RESET
 );
 
 input wire [66 : 0] DATA_IN;
 output wire [19 : 0] DATA_OUT;
+input wire DATA_IN_VALID;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
+input wire SYSTEM_RESET;
 
   gearbox_tx inst (
     .DATA_IN(DATA_IN),
     .DATA_OUT(DATA_OUT),
-    .USER_CLK(USER_CLK)
+    .DATA_IN_VALID(DATA_IN_VALID),
+    .USER_CLK(USER_CLK),
+    .SYSTEM_RESET(SYSTEM_RESET)
   );
 endmodule

@@ -34,7 +34,8 @@ module tx_interface #
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
     input  wire          DATA_TO_SEND,
-    output reg           DATA_IN_READY,
+    output wire          DATA_IN_READY,
+    output wire          DATA_VALID,
 
     // System Interface
     input  wire          USER_CLK,
@@ -44,24 +45,37 @@ module tx_interface #
 //***************************Declarations********************
     localparam CONTROL_LEN = 2;
     localparam CLOCK_OFFSET = 2;
-    reg     [$clog2(META_FRAME_LEN)-1:0]      frame_ctr;
+    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr;
+    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r;
+    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r2;
+    reg     [66:0]                              schedule;
+    reg                                         send_payload;
 
 //*********************************Main Body of Code**********************************
 
 always @(posedge USER_CLK)
-    if (frame_ctr == (META_FRAME_LEN - 1) || SYSTEM_RESET)
+	if (SYSTEM_RESET)
     begin
-        frame_ctr       <= `DLY     'h0;
+        schedule <= 67'b1001001000100100100010010010001001001000100100100010010010001001000;
     end
     else begin
-        frame_ctr       <= `DLY     frame_ctr + 1'b1;
+	    schedule <= {schedule[65:0],schedule[66]};
     end
 
+
 always @(posedge USER_CLK)
-    if (frame_ctr > (META_FRAME_LEN - CLOCK_OFFSET - 1) || frame_ctr < (CONTROL_LEN - CLOCK_OFFSET))    //Software clock offset
-            DATA_IN_READY  <=  `DLY    1'b0;
-    else
-            DATA_IN_READY  <=  `DLY    1'b1;
+    if ((frame_ctr == (META_FRAME_LEN - 1) && schedule[66]) || SYSTEM_RESET)
+    begin
+        frame_ctr       <= `DLY     'h0;
+        frame_ctr_r     <= `DLY     'h0;
+        frame_ctr_r2    <= `DLY     'h0;
+    end
+    else if (schedule[66])
+    begin
+        frame_ctr       <= `DLY     frame_ctr + 1'b1;
+        frame_ctr_r     <= `DLY     frame_ctr;
+        frame_ctr_r2    <= `DLY     frame_ctr_r;
+    end
 
 always @(posedge USER_CLK)
     case(frame_ctr)
@@ -73,5 +87,14 @@ always @(posedge USER_CLK)
             else
                     {HEADER_OUT, DATA_OUT}  <=  `DLY    {33{2'b10}}; // Idle word
     endcase
+
+always @(posedge USER_CLK)
+    if (frame_ctr < 2)
+            send_payload  <=  `DLY   1'b0;
+    else
+            send_payload  <=  `DLY   1'b1;
+
+assign DATA_IN_READY = schedule[66] && send_payload;
+assign DATA_VALID    = schedule[66];
 
 endmodule

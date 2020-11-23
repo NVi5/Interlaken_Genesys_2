@@ -3,106 +3,109 @@
    PinnedBlocks: "",
    guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 non-TLS
 #  -string -flagsOSRD
-preplace port Q3_CLK0_GTREFCLK_PAD_P_IN -pg 1 -y 130 -defaultsOSRD
-preplace port DRP_CLK_IN_N -pg 1 -y 450 -defaultsOSRD
-preplace port Q3_CLK0_GTREFCLK_PAD_N_IN -pg 1 -y 110 -defaultsOSRD
-preplace port DRP_CLK_IN_P -pg 1 -y 470 -defaultsOSRD
-preplace port TXP_OUT -pg 1 -y 220 -defaultsOSRD
-preplace port TRACK_DATA_OUT -pg 1 -y 110 -defaultsOSRD
-preplace port RXN_IN -pg 1 -y 170 -defaultsOSRD
-preplace port TXN_OUT -pg 1 -y 200 -defaultsOSRD
-preplace port RXP_IN -pg 1 -y 190 -defaultsOSRD
-preplace inst interlaken|vio_0 -pg 1 -lvl 3 -y 634 -defaultsOSRD
-preplace inst interlaken|gearbox_rx -pg 1 -lvl 8 -y 384 -defaultsOSRD
-preplace inst interlaken|tx_interface_0 -pg 1 -lvl 1 -y 754 -defaultsOSRD
-preplace inst interlaken|vio_1 -pg 1 -lvl 1 -y 1014 -defaultsOSRD
-preplace inst interlaken|scrambler -pg 1 -lvl 2 -y 774 -defaultsOSRD
-preplace inst clk_wiz -pg 1 -lvl 1 -y 450 -defaultsOSRD
-preplace inst interlaken|gt_core_0 -pg 1 -lvl 5 -y 584 -defaultsOSRD
-preplace inst interlaken|stream_manipulator -pg 1 -lvl 7 -y 434 -defaultsOSRD
-preplace inst interlaken|vio_2 -pg 1 -lvl 6 -y 414 -defaultsOSRD
-preplace inst interlaken|ila_0 -pg 1 -lvl 11 -y 344 -defaultsOSRD
-preplace inst interlaken|gearbox_tx -pg 1 -lvl 4 -y 814 -defaultsOSRD
-preplace inst interlaken|ila_1 -pg 1 -lvl 7 -y 734 -defaultsOSRD
-preplace inst frame_gen -pg 1 -lvl 1 -y 270 -defaultsOSRD
-preplace inst interlaken|ila_2 -pg 1 -lvl 7 -y 934 -defaultsOSRD
-preplace inst interlaken|decode_64B_67B -pg 1 -lvl 9 -y 174 -defaultsOSRD
-preplace inst interlaken|util_vector_logic_0 -pg 1 -lvl 4 -y 674 -defaultsOSRD
-preplace inst frame_check -pg 1 -lvl 3 -y 100 -defaultsOSRD
-preplace inst interlaken|descrambler -pg 1 -lvl 10 -y 194 -defaultsOSRD
-preplace inst interlaken|encode_64B_67B -pg 1 -lvl 3 -y 804 -defaultsOSRD
-preplace inst interlaken -pg 1 -lvl 2 -y 194 -defaultsOSRD
-preplace netloc interlaken|DECODER_DATA_OUT 1 9 2 4340 84 4860
-preplace netloc interlaken|TRACK_DATA 1 0 11 NJ 944 NJ 944 NJ 944 1940 394 NJ 394 2920 264 NJ 264 NJ 264 3970J 314 NJ 314 4890J
-preplace netloc descrambler_UNSCRAMBLED_DATA_OUT 1 2 1 5380
-preplace netloc interlaken|CANDIDATE 1 5 6 2930 274 NJ 274 NJ 274 NJ 274 4350 474 NJ
-preplace netloc interlaken|SOFT_RESET 1 3 2 1930J 584 2330
-preplace netloc interlaken|gt_core_0_TXN_OUT 1 5 7 2900 554 NJ 554 NJ 554 NJ 554 NJ 554 NJ 554 NJ
-preplace netloc interlaken|gt_core_0_TXP_OUT 1 5 7 2890 574 NJ 574 NJ 574 NJ 574 NJ 574 NJ 574 NJ
-preplace netloc interlaken|gt_core_0_TX_USR_CLK 1 0 7 700 934 NJ 934 NJ 934 NJ 934 NJ 934 2860 674 NJ
-preplace netloc interlaken|tx_interface_0_HEADER_OUT 1 1 1 N
-preplace netloc interlaken|PASSTHROUGH_DESCRAMBLER 1 6 4 3250 344 3590J 474 NJ 474 4330J
-preplace netloc gt_core_0_RX_USR_CLK2 1 2 1 5410
-preplace netloc interlaken|gt_core_0_RX_USR_CLK 1 5 6 2850 534 NJ 534 NJ 534 NJ 534 NJ 534 4920
-preplace netloc gt_core_0_TXP_OUT 1 2 2 5440J 220 NJ
-preplace netloc interlaken|DESCRAMBLER_HEADER_OUT_ILA 1 10 2 4900 544 5150J
-preplace netloc DRP_CLK_IN 1 1 1 420
-preplace netloc interlaken|MANIPULATOR_DATA_OUT 1 7 4 3630 464 3970J 444 NJ 444 4970
-preplace netloc interlaken|decode_64B_67B_HEADER_OUT 1 9 1 N
-preplace netloc interlaken|DATA_VALID 1 4 1 2340
-preplace netloc interlaken|Net1 1 0 12 700 664 1050 664 1590 904 1990 744 2290J 784 2810 594 NJ 594 NJ 594 NJ 594 NJ 594 NJ 594 NJ
-preplace netloc interlaken|TX_RESET_DONE 1 5 2 NJ 624 3260
-preplace netloc interlaken|DESCRAMBLER_DATA_OUT 1 10 2 4940 144 5170J
+preplace port Q3_CLK0_GTREFCLK_PAD_P_IN -pg 1 -y 370 -defaultsOSRD
+preplace port DRP_CLK_IN_N -pg 1 -y 1200 -defaultsOSRD
+preplace port Q3_CLK0_GTREFCLK_PAD_N_IN -pg 1 -y 350 -defaultsOSRD
+preplace port DRP_CLK_IN_P -pg 1 -y 1220 -defaultsOSRD
+preplace port TXP_OUT -pg 1 -y 530 -defaultsOSRD
+preplace port TRACK_DATA_OUT -pg 1 -y 420 -defaultsOSRD
+preplace port RXN_IN -pg 1 -y 700 -defaultsOSRD
+preplace port TXN_OUT -pg 1 -y 510 -defaultsOSRD
+preplace port RXP_IN -pg 1 -y 720 -defaultsOSRD
+preplace inst interlaken|vio_0 -pg 1 -lvl 3 -y 780 -defaultsOSRD
+preplace inst interlaken|gearbox_rx -pg 1 -lvl 8 -y 310 -defaultsOSRD
+preplace inst interlaken|tx_interface_0 -pg 1 -lvl 1 -y 610 -defaultsOSRD
+preplace inst interlaken|scrambler -pg 1 -lvl 2 -y 560 -defaultsOSRD
+preplace inst interlaken|vio_1 -pg 1 -lvl 1 -y 440 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -y 1200 -defaultsOSRD
+preplace inst interlaken|gt_core_0 -pg 1 -lvl 5 -y 470 -defaultsOSRD
+preplace inst interlaken|stream_manipulator -pg 1 -lvl 7 -y 310 -defaultsOSRD
+preplace inst interlaken|vio_2 -pg 1 -lvl 6 -y 290 -defaultsOSRD
+preplace inst interlaken|ila_0 -pg 1 -lvl 11 -y 230 -defaultsOSRD
+preplace inst interlaken|gearbox_tx -pg 1 -lvl 4 -y 550 -defaultsOSRD
+preplace inst interlaken|ila_1 -pg 1 -lvl 7 -y 610 -defaultsOSRD
+preplace inst frame_gen -pg 1 -lvl 1 -y 1060 -defaultsOSRD
+preplace inst interlaken|ila_2 -pg 1 -lvl 7 -y 810 -defaultsOSRD
+preplace inst interlaken|decode_64B_67B -pg 1 -lvl 9 -y 300 -defaultsOSRD
+preplace inst interlaken|util_vector_logic_0 -pg 1 -lvl 4 -y 780 -defaultsOSRD
+preplace inst frame_check -pg 1 -lvl 3 -y 410 -defaultsOSRD
+preplace inst interlaken|encode_64B_67B -pg 1 -lvl 3 -y 530 -defaultsOSRD
+preplace inst interlaken|descrambler -pg 1 -lvl 10 -y 350 -defaultsOSRD
+preplace inst interlaken -pg 1 -lvl 2 -y 150 -defaultsOSRD
+preplace netloc interlaken|DECODER_DATA_OUT 1 9 2 4450 130 5020J
+preplace netloc interlaken|TRACK_DATA 1 0 11 NJ 780 NJ 780 1660J 700 2020 290 NJ 290 2910 450 NJ 450 NJ 450 NJ 450 4430J 140 NJ
+preplace netloc descrambler_UNSCRAMBLED_DATA_OUT 1 2 1 5430
+preplace netloc interlaken|CANDIDATE 1 5 6 2930 140 NJ 140 NJ 140 NJ 140 4370 220 4960J
+preplace netloc interlaken|SOFT_RESET 1 3 2 2040J 700 2370J
+preplace netloc interlaken|gt_core_0_TXN_OUT 1 5 7 2880 180 NJ 180 NJ 180 NJ 180 NJ 180 4970J 430 NJ
+preplace netloc interlaken|gt_core_0_TXP_OUT 1 5 7 2850 120 NJ 120 NJ 120 NJ 120 NJ 120 4980J 450 NJ
+preplace netloc interlaken|gt_core_0_TX_USR_CLK 1 0 7 690 280 NJ 280 NJ 280 NJ 280 NJ 280 2920 410 3280
+preplace netloc interlaken|tx_interface_0_HEADER_OUT 1 1 1 1040
+preplace netloc interlaken|PASSTHROUGH_DESCRAMBLER 1 6 4 3330 440 NJ 440 NJ 440 4450J
+preplace netloc gt_core_0_RX_USR_CLK2 1 2 1 5470
+preplace netloc interlaken|gt_core_0_RX_USR_CLK 1 5 6 2840 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ
+preplace netloc gt_core_0_TXP_OUT 1 2 2 5420J 530 NJ
+preplace netloc interlaken|DESCRAMBLER_HEADER_OUT_ILA 1 10 2 5020 440 5200J
+preplace netloc DRP_CLK_IN 1 1 1 410
+preplace netloc interlaken|MANIPULATOR_DATA_OUT 1 7 4 3640 190 NJ 190 NJ 190 5000J
+preplace netloc interlaken|decode_64B_67B_HEADER_OUT 1 9 1 4390
+preplace netloc interlaken|DATA_VALID 1 4 1 2410
+preplace netloc interlaken|Net1 1 0 12 680 510 1060 680 1640 680 2030 680 NJ 680 2880 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ
+preplace netloc interlaken|TX_RESET_DONE 1 5 2 NJ 510 3270
+preplace netloc interlaken|DESCRAMBLER_DATA_OUT 1 10 2 5010 510 NJ
 preplace netloc interlaken|MASK 1 6 1 N
-preplace netloc RXP_IN_1 1 0 2 NJ 190 430J
-preplace netloc interlaken|OVERRIDE_DATA_VALID 1 3 1 1950
-preplace netloc interlaken|RXP_IN_1 1 0 5 NJ 544 NJ 544 NJ 544 NJ 544 2350
-preplace netloc interlaken|GT_RX_DATA 1 5 6 2870 314 3270 334 3620J 454 NJ 454 NJ 454 N
-preplace netloc interlaken|gt_core_0_RX_USR_CLK2 1 5 7 2880J 544 3290 544 3610 494 3950 324 4360 324 4880J 84 NJ
-preplace netloc interlaken|PASSTHROUGH_SCRAMBLER 1 1 1 1050
-preplace netloc gt_core_0_TXN_OUT 1 2 2 NJ 554 10040J
-preplace netloc interlaken|RX_RESET_DONE 1 5 6 2820J 524 NJ 524 NJ 524 3980J 434 NJ 434 4960
-preplace netloc interlaken|DESCRAMBLER_LOCKED_ILA 1 5 7 2950 304 NJ 304 NJ 304 3940J 334 NJ 334 4870 154 5160J
-preplace netloc interlaken|tx_interface_0_DATA_IN_READY 1 1 11 1040 674 1560J 1014 NJ 1014 NJ 1014 NJ 1014 NJ 1014 NJ 1014 NJ 1014 NJ 1014 NJ 1014 NJ
-preplace netloc interlaken|SCRAMBLED_DATA_OUT 1 2 5 1600 704 1960J 604 2300J 764 NJ 764 3280
-preplace netloc interlaken_LOCKED 1 2 1 5450
-preplace netloc frame_gen_TX_DATA_TO_SEND 1 1 1 400
-preplace netloc interlaken_HEADER_OUT 1 2 1 5430
-preplace netloc interlaken|gt_core_0_TX_SYSTEM_RESET 1 0 12 690 654 1060 654 1580 924 NJ 924 NJ 924 2830 614 NJ 614 NJ 614 NJ 614 NJ 614 NJ 614 NJ
-preplace netloc interlaken|GEARBOX_RX_DATA_OUT 1 8 3 3930 344 NJ 344 4930
-preplace netloc interlaken|gt_frame_gen_0_TX_DATA_OUT 1 0 1 680
-preplace netloc interlaken|GEARBOX_TX_DATA_OUT 1 4 3 2380 804 2940J 784 3290
-preplace netloc Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 2 NJ 130 450J
-preplace netloc interlaken_DATA_IN_READY 1 0 3 30 1104 NJ 1104 5360
-preplace netloc gt_frame_gen_0_TX_DATA_OUT 1 1 1 410
-preplace netloc interlaken|DEBUG_ERROR_COUNT 1 0 11 670J 284 NJ 284 NJ 284 NJ 284 NJ 284 NJ 284 3290J 324 3600J 484 NJ 484 NJ 484 4950
+preplace netloc RXP_IN_1 1 0 2 NJ 720 NJ
+preplace netloc interlaken|OVERRIDE_DATA_VALID 1 3 1 N
+preplace netloc interlaken|RXP_IN_1 1 0 5 NJ 720 NJ 720 1670J 710 NJ 710 2360
+preplace netloc interlaken|GT_RX_DATA 1 5 6 2950 440 3320 430 NJ 430 NJ 430 4440J 230 4950
+preplace netloc interlaken|gt_core_0_RX_USR_CLK2 1 5 7 2900J 430 3300 420 3650 390 4020 420 4380 40 NJ 40 NJ
+preplace netloc interlaken|PASSTHROUGH_SCRAMBLER 1 1 1 1090
+preplace netloc gt_core_0_TXN_OUT 1 2 2 5440J 510 NJ
+preplace netloc interlaken|RX_RESET_DONE 1 5 6 2890J 190 NJ 190 3630J 200 NJ 200 4390J 210 4990
+preplace netloc interlaken|DESCRAMBLER_LOCKED_ILA 1 5 7 2950 170 NJ 170 NJ 170 NJ 170 NJ 170 4940 530 NJ
+preplace netloc interlaken|tx_interface_0_DATA_IN_READY 1 1 11 1040 850 NJ 850 NJ 850 2420J 730 NJ 730 NJ 730 3640J 890 NJ 890 NJ 890 NJ 890 NJ
+preplace netloc interlaken|SCRAMBLED_DATA_OUT 1 2 5 1620 650 NJ 650 2400J 670 2920J 630 3240
+preplace netloc interlaken_LOCKED 1 2 1 5460
+preplace netloc frame_gen_TX_DATA_TO_SEND 1 1 1 420
+preplace netloc interlaken_HEADER_OUT 1 2 1 5450
+preplace netloc interlaken|gt_core_0_TX_SYSTEM_RESET 1 0 12 690 520 1050 670 1600 660 2040 660 NJ 660 2860 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ 490 NJ
+preplace netloc interlaken|GEARBOX_RX_DATA_OUT 1 8 3 4010 400 4400J 200 NJ
+preplace netloc interlaken|gt_frame_gen_0_TX_DATA_OUT 1 0 1 650
+preplace netloc interlaken|GEARBOX_TX_DATA_OUT 1 4 3 2420 650 NJ 650 3250J
+preplace netloc Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 2 NJ 370 NJ
+preplace netloc interlaken_DATA_IN_READY 1 0 3 40 960 NJ 960 5390
+preplace netloc gt_frame_gen_0_TX_DATA_OUT 1 1 1 400
+preplace netloc interlaken|DEBUG_ERROR_COUNT 1 0 11 640J 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 5020
 preplace netloc DRP_CLK_IN_N_1 1 0 1 NJ
-preplace netloc interlaken|TX_FSM_RESET_DONE 1 5 2 2840 664 3250J
-preplace netloc interlaken|gearbox_rx_0_LOCKED 1 8 1 3960
-preplace netloc interlaken|DECODER_LOCKED 1 5 6 2940 294 NJ 294 NJ 294 NJ 294 4340 304 4910
-preplace netloc interlaken|ENCODER_PASSTHROUGH 1 1 2 1070J 924 1570
-preplace netloc interlaken|DECODER_PASSTHROUGH 1 6 3 3230 214 NJ 214 NJ
-preplace netloc RXN_IN_1 1 0 2 NJ 170 440J
-preplace netloc Net1 1 0 3 20 14 NJ 14 5370
-preplace netloc gt_core_0_RX_SYSTEM_RESET 1 2 1 5390
+preplace netloc interlaken|TX_FSM_RESET_DONE 1 5 2 NJ 530 3260
+preplace netloc interlaken|gearbox_rx_0_LOCKED 1 8 1 4000
+preplace netloc interlaken|scrambler_DATA_OUT_VALID 1 2 1 1590
+preplace netloc interlaken|DECODER_LOCKED 1 5 6 2940 160 NJ 160 NJ 160 NJ 160 4410 160 5000J
+preplace netloc interlaken|ENCODER_PASSTHROUGH 1 1 2 NJ 450 1610
+preplace netloc interlaken|DECODER_PASSTHROUGH 1 6 3 3310 400 NJ 400 4000J
+preplace netloc RXN_IN_1 1 0 2 NJ 700 NJ
+preplace netloc Net1 1 0 3 20 940 NJ 940 5410
+preplace netloc gt_core_0_RX_SYSTEM_RESET 1 2 1 5460
 preplace netloc DRP_CLK_IN_P_1 1 0 1 NJ
-preplace netloc interlaken|ENCODER_DATA_OUT 1 3 4 1970 574 2320J 794 NJ 794 N
+preplace netloc interlaken|ENCODER_DATA_OUT 1 3 4 2010 460 2380J 710 NJ 710 3320J
+preplace netloc interlaken|encode_64B_67B_DATA_OUT_VALID 1 3 1 N
 preplace netloc interlaken|OFFSET 1 6 1 N
-preplace netloc frame_check_ERROR_COUNT_OUT 1 1 3 470 24 5420J 200 10020
-preplace netloc interlaken|RX_FSM_RESET_DONE 1 5 2 2820 754 3230J
-preplace netloc interlaken|scrambler_0_HEADER_OUT 1 2 1 N
-preplace netloc interlaken|Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 5 NJ 464 NJ 464 NJ 464 NJ 464 2390
+preplace netloc frame_check_ERROR_COUNT_OUT 1 1 3 430 930 NJ 930 5880
+preplace netloc interlaken|tx_interface_0_DATA_VALID 1 1 1 1080
+preplace netloc interlaken|RX_FSM_RESET_DONE 1 5 2 2870 620 3230J
+preplace netloc interlaken|scrambler_0_HEADER_OUT 1 2 1 1580
+preplace netloc interlaken|Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 5 NJ 350 NJ 350 NJ 350 NJ 350 2420
 preplace netloc interlaken|DATA_TO_SEND_1 1 0 1 670
-preplace netloc gt_core_0_TX_SYSTEM_RESET 1 0 3 40 1114 NJ 1114 5370
-preplace netloc interlaken|RXN_IN_1 1 0 5 NJ 524 NJ 524 NJ 524 NJ 524 2360
-preplace netloc gt_frame_check_0_TRACK_DATA_OUT 1 1 3 480 34 5400J 210 10030
-preplace netloc interlaken|TX_INTERFACE_DATA_OUT 1 1 6 1070 644 1610J 914 1980J 594 2310J 774 NJ 774 3240
-preplace netloc interlaken|DRP_CLK_IN 1 0 7 NJ 504 NJ 504 1610 514 NJ 514 2380 404 2910J 514 3270J
-preplace netloc Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 2 NJ 110 460J
-preplace netloc interlaken|Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 5 NJ 484 NJ 484 NJ 484 NJ 484 2370
-preplace netloc interlaken|gt_core_0_RX_SYSTEM_RESET 1 5 7 2840J 254 NJ 254 NJ 254 3980 284 4370 524 4960J 534 NJ
-levelinfo -pg 1 0 220 850 9812 10060 -top 0 -bot 1890
-levelinfo -hier interlaken * 870 1320 1770 2140 2600 3090 3440 3780 4160 4620 5060 *
+preplace netloc gt_core_0_TX_SYSTEM_RESET 1 0 3 30 950 NJ 950 5400
+preplace netloc interlaken|RXN_IN_1 1 0 5 630J 710 NJ 710 1630J 640 NJ 640 2400
+preplace netloc gt_frame_check_0_TRACK_DATA_OUT 1 1 3 440 920 5470J 520 5890
+preplace netloc interlaken|TX_INTERFACE_DATA_OUT 1 1 6 1070 690 NJ 690 NJ 690 NJ 690 2940J 640 3310
+preplace netloc interlaken|DRP_CLK_IN 1 0 7 660J 700 NJ 700 1650 670 NJ 670 2390 700 NJ 700 3250J
+preplace netloc Q3_CLK0_GTREFCLK_PAD_N_IN_1 1 0 2 NJ 350 NJ
+preplace netloc interlaken|Q3_CLK0_GTREFCLK_PAD_P_IN_1 1 0 5 NJ 370 NJ 370 NJ 370 NJ 370 2360
+preplace netloc interlaken|gt_core_0_RX_SYSTEM_RESET 1 5 7 2850J 420 3290J 410 3660 410 4030 410 4420 240 4930J 420 5200J
+levelinfo -pg 1 0 220 790 5680 5910 -top -10 -bot 1280
+levelinfo -hier interlaken * 870 1340 1840 2200 2630 3090 3480 3830 4200 4690 5110 *
 ",
 }
 0

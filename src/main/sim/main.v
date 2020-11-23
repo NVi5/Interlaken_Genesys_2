@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sun Nov 22 20:28:25 2020
+//Date        : Mon Nov 23 21:44:03 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -62,7 +62,7 @@ module interlaken_imp_1RYIMTC
   wire DRP_CLK_IN;
   wire [66:0]ENCODER_DATA_OUT;
   wire [0:0]ENCODER_PASSTHROUGH;
-  wire [79:0]GEARBOX_RX_DATA_OUT;
+  wire [66:0]GEARBOX_RX_DATA_OUT;
   wire [19:0]GEARBOX_TX_DATA_OUT;
   wire [19:0]GT_RX_DATA;
   wire [19:0]MANIPULATOR_DATA_OUT;
@@ -85,6 +85,7 @@ module interlaken_imp_1RYIMTC
   wire [63:0]TX_INTERFACE_DATA_OUT;
   wire TX_RESET_DONE;
   wire [1:0]decode_64B_67B_HEADER_OUT;
+  wire encode_64B_67B_DATA_OUT_VALID;
   wire gearbox_rx_0_LOCKED;
   wire gt_core_0_RX_SYSTEM_RESET;
   wire gt_core_0_RX_USR_CLK;
@@ -95,7 +96,9 @@ module interlaken_imp_1RYIMTC
   wire gt_core_0_TX_USR_CLK;
   wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
   wire [1:0]scrambler_0_HEADER_OUT;
+  wire scrambler_DATA_OUT_VALID;
   wire tx_interface_0_DATA_IN_READY;
+  wire tx_interface_0_DATA_VALID;
   wire [1:0]tx_interface_0_HEADER_OUT;
 
   assign DATA_IN_READY = tx_interface_0_DATA_IN_READY;
@@ -136,7 +139,9 @@ module interlaken_imp_1RYIMTC
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_encode_64B_67B_0_0 encode_64B_67B
        (.DATA_IN(SCRAMBLED_DATA_OUT),
+        .DATA_IN_VALID(scrambler_DATA_OUT_VALID),
         .DATA_OUT(ENCODER_DATA_OUT),
+        .DATA_OUT_VALID(encode_64B_67B_DATA_OUT_VALID),
         .HEADER_IN(scrambler_0_HEADER_OUT),
         .PASSTHROUGH(ENCODER_PASSTHROUGH),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
@@ -145,10 +150,13 @@ module interlaken_imp_1RYIMTC
        (.DATA_IN(MANIPULATOR_DATA_OUT),
         .DATA_OUT(GEARBOX_RX_DATA_OUT),
         .LOCKED(gearbox_rx_0_LOCKED),
+        .SYSTEM_RESET(gt_core_0_RX_SYSTEM_RESET),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_gearbox_tx_0_0 gearbox_tx
        (.DATA_IN(ENCODER_DATA_OUT),
+        .DATA_IN_VALID(encode_64B_67B_DATA_OUT_VALID),
         .DATA_OUT(GEARBOX_TX_DATA_OUT),
+        .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));
   main_gt_core_0_0 gt_core_0
        (.DATA_VALID(DATA_VALID),
@@ -200,7 +208,9 @@ module interlaken_imp_1RYIMTC
         .probe0(TX_FSM_RESET_DONE),
         .probe1(RX_FSM_RESET_DONE));
   main_scrambler_0_0 scrambler
-       (.HEADER_IN(tx_interface_0_HEADER_OUT),
+       (.DATA_IN_VALID(tx_interface_0_DATA_VALID),
+        .DATA_OUT_VALID(scrambler_DATA_OUT_VALID),
+        .HEADER_IN(tx_interface_0_HEADER_OUT),
         .HEADER_OUT(scrambler_0_HEADER_OUT),
         .PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
         .SCRAMBLED_DATA_OUT(SCRAMBLED_DATA_OUT),
@@ -218,6 +228,7 @@ module interlaken_imp_1RYIMTC
         .DATA_IN_READY(tx_interface_0_DATA_IN_READY),
         .DATA_OUT(TX_INTERFACE_DATA_OUT),
         .DATA_TO_SEND(DATA_TO_SEND_1),
+        .DATA_VALID(tx_interface_0_DATA_VALID),
         .HEADER_OUT(tx_interface_0_HEADER_OUT),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));

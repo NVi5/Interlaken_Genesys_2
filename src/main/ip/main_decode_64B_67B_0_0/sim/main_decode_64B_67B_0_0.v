@@ -66,7 +66,7 @@ module main_decode_64B_67B_0_0 (
   PASSTHROUGH
 );
 
-input wire [79 : 0] DATA_IN;
+input wire [66 : 0] DATA_IN;
 output wire [63 : 0] DATA_OUT;
 output wire [1 : 0] HEADER_OUT;
 output wire LOCKED;
