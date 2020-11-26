@@ -33,15 +33,16 @@ module descrambler #
     // User Interface
     input  wire [(RX_DATA_WIDTH-1):0] SCRAMBLED_DATA_IN,
     output reg  [(RX_DATA_WIDTH-1):0] UNSCRAMBLED_DATA_OUT,
-    output wire                       LOCKED,
 
     input  wire [1:0]                 HEADER_IN,
     output reg  [1:0]                 HEADER_OUT,
+    input  wire                       DATA_IN_VALID,
+    output reg                        DATA_OUT_VALID,
+    output wire                       LOCKED,
 
     // System Interface
     input  wire         USER_CLK,
     input  wire         SYSTEM_RESET,
-    input  wire         DATA_VALID,
     input  wire         PASSTHROUGH
 );
 
@@ -88,112 +89,118 @@ module descrambler #
     begin
         UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
 
-        if (SYSTEM_RESET || PASSTHROUGH || (DATA_VALID == 0))
+        if (SYSTEM_RESET || PASSTHROUGH)
             state           <= `DLY     STATE_RESET;
         else
-        case(state)
-            STATE_RESET:
-                if (SCRAMBLED_DATA_IN == SYNC_WORD)
-                begin
-                    descrambler     <= `DLY     {58{1'b1}};
-                    state           <= `DLY     STATE_WAIT_FOR_WORD;
-                    good_sync_ctr   <= `DLY     3'd0;
-                    bad_sync_ctr    <= `DLY     3'd0;
-                    mismatch_ctr    <= `DLY     3'd0;
-                    frame_ctr       <= `DLY     'h0;
-                end
-            STATE_WAIT_FOR_WORD:
-                if (frame_ctr == (META_FRAME_LEN - 2))
-                begin
-                    frame_ctr       <= `DLY     'h0;
-                    state           <= `DLY     STATE_SYNC_WORD;
-                end
-                else begin
-                    frame_ctr       <= `DLY     frame_ctr + 1'b1;
-                end
-            STATE_SYNC_WORD:
-                if (SCRAMBLED_DATA_IN == SYNC_WORD)
-                begin
-                    if (good_sync_ctr == 2'd3)
+        if (DATA_IN_VALID)
+        begin
+            case(state)
+                STATE_RESET:
+                    if (SCRAMBLED_DATA_IN == SYNC_WORD)
                     begin
-                        good_sync_ctr   <= `DLY     3'd0;
-                        state           <= `DLY     STATE_ADVANCE;
-                    end
-                    else begin
-                        good_sync_ctr   <= `DLY     good_sync_ctr + 3'b1;
+                        descrambler     <= `DLY     {58{1'b1}};
                         state           <= `DLY     STATE_WAIT_FOR_WORD;
+                        good_sync_ctr   <= `DLY     3'd0;
+                        bad_sync_ctr    <= `DLY     3'd0;
+                        mismatch_ctr    <= `DLY     3'd0;
+                        frame_ctr       <= `DLY     'h0;
                     end
-                end
-                else begin
-                    state               <= `DLY     STATE_RESET;
-                end
-            STATE_ADVANCE:
-                begin
-                    descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
-                    state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
-                    good_sync_ctr   <= `DLY     3'd0;
-                    bad_sync_ctr    <= `DLY     3'd0;
-                    mismatch_ctr    <= `DLY     3'd0;
-                    frame_ctr       <= `DLY     'h0;
-                end
-            STATE_LOCKED_WAIT_FOR_WORD:
-                begin
-                    UNSCRAMBLED_DATA_OUT <= `DLY  tempData;
-                    descrambler          <= `DLY  poly;
-                    if (frame_ctr == (META_FRAME_LEN - 3))
+                STATE_WAIT_FOR_WORD:
+                    if (frame_ctr == (META_FRAME_LEN - 2))
                     begin
                         frame_ctr       <= `DLY     'h0;
-                        state           <= `DLY     STATE_LOCKED_SYNC_WORD;
+                        state           <= `DLY     STATE_SYNC_WORD;
                     end
                     else begin
                         frame_ctr       <= `DLY     frame_ctr + 1'b1;
                     end
-                end
-            STATE_LOCKED_SYNC_WORD:
-                begin
-                    UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
+                STATE_SYNC_WORD:
                     if (SCRAMBLED_DATA_IN == SYNC_WORD)
                     begin
-                        bad_sync_ctr    <= `DLY     3'd0;
-                        state           <= `DLY     STATE_LOCKED_SYNC_STATE;
-                    end
-                    else begin
-                        if (bad_sync_ctr == 3'd4)
+                        if (good_sync_ctr == 2'd3)
                         begin
-                            state           <= `DLY     STATE_RESET;
+                            good_sync_ctr   <= `DLY     3'd0;
+                            state           <= `DLY     STATE_ADVANCE;
                         end
                         else begin
-                            bad_sync_ctr    <= `DLY     bad_sync_ctr + 3'b1;
+                            good_sync_ctr   <= `DLY     good_sync_ctr + 3'b1;
+                            state           <= `DLY     STATE_WAIT_FOR_WORD;
+                        end
+                    end
+                    else begin
+                        state               <= `DLY     STATE_RESET;
+                    end
+                STATE_ADVANCE:
+                    begin
+                        descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
+                        state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
+                        good_sync_ctr   <= `DLY     3'd0;
+                        bad_sync_ctr    <= `DLY     3'd0;
+                        mismatch_ctr    <= `DLY     3'd0;
+                        frame_ctr       <= `DLY     'h0;
+                    end
+                STATE_LOCKED_WAIT_FOR_WORD:
+                    begin
+                        UNSCRAMBLED_DATA_OUT <= `DLY  tempData;
+                        descrambler          <= `DLY  poly;
+                        if (frame_ctr == (META_FRAME_LEN - 3))
+                        begin
+                            frame_ctr       <= `DLY     'h0;
+                            state           <= `DLY     STATE_LOCKED_SYNC_WORD;
+                        end
+                        else begin
+                            frame_ctr       <= `DLY     frame_ctr + 1'b1;
+                        end
+                    end
+                STATE_LOCKED_SYNC_WORD:
+                    begin
+                        UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
+                        if (SCRAMBLED_DATA_IN == SYNC_WORD)
+                        begin
+                            bad_sync_ctr    <= `DLY     3'd0;
                             state           <= `DLY     STATE_LOCKED_SYNC_STATE;
                         end
-                    end
-                end
-            STATE_LOCKED_SYNC_STATE:
-                begin
-                    UNSCRAMBLED_DATA_OUT <= `DLY  64'h2800000000000000;
-                    if (descrambler == SCRAMBLED_DATA_IN[57:0])
-                    begin
-                        mismatch_ctr    <= `DLY     3'd0;
-                        state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
-                    end
-                    else begin
-                        if (mismatch_ctr == 2'd3)
-                        begin
-                            state           <= `DLY     STATE_RESET;
-                        end
                         else begin
-                            descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
-                            mismatch_ctr    <= `DLY     mismatch_ctr + 3'b1;
+                            if (bad_sync_ctr == 3'd4)
+                            begin
+                                state           <= `DLY     STATE_RESET;
+                            end
+                            else begin
+                                bad_sync_ctr    <= `DLY     bad_sync_ctr + 3'b1;
+                                state           <= `DLY     STATE_LOCKED_SYNC_STATE;
+                            end
+                        end
+                    end
+                STATE_LOCKED_SYNC_STATE:
+                    begin
+                        UNSCRAMBLED_DATA_OUT <= `DLY  64'h2800000000000000;
+                        if (descrambler == SCRAMBLED_DATA_IN[57:0])
+                        begin
+                            mismatch_ctr    <= `DLY     3'd0;
                             state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
                         end
+                        else begin
+                            if (mismatch_ctr == 2'd3)
+                            begin
+                                state           <= `DLY     STATE_RESET;
+                            end
+                            else begin
+                                descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
+                                mismatch_ctr    <= `DLY     mismatch_ctr + 3'b1;
+                                state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
+                            end
+                        end
                     end
-                end
-        endcase
+            endcase
+        end
     end
 
     always @(posedge USER_CLK)
-        HEADER_OUT <= `DLY  HEADER_IN;
+        if (DATA_IN_VALID)
+            HEADER_OUT <= `DLY  HEADER_IN;
 
-    assign  LOCKED = state[2];
+    always @(posedge USER_CLK)
+        DATA_OUT_VALID <= state[2] && DATA_IN_VALID;
 
+    assign LOCKED = state[2];
 endmodule

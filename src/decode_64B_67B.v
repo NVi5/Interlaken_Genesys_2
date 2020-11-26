@@ -28,13 +28,14 @@ module decode_64B_67B(
     input  wire  [66:0]  DATA_IN,
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
-    output wire          LOCKED,
+    output reg           DATA_OUT_VALID,
     output wire  [6:0]   CANDIDATE,
+    input  wire          DATA_IN_VALID,
+    output wire          LOCKED,
 
     // System Interface
     input  wire          USER_CLK,
     input  wire          SYSTEM_RESET,
-    input  wire          DATA_VALID,
     input  wire          PASSTHROUGH
     );
 
@@ -56,7 +57,7 @@ module decode_64B_67B(
 
     always @(posedge USER_CLK)
     begin
-        if (SYSTEM_RESET || PASSTHROUGH || (DATA_VALID == 0))
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             candidate       <= `DLY     7'd0;
             state           <= `DLY     STATE_SYNCING;
@@ -64,56 +65,60 @@ module decode_64B_67B(
             error_sync_ctr  <= `DLY     4'd0;
         end
         else
-        case(state)
-            STATE_SYNCING:
-                if (rx_aligned[65] != rx_aligned[64])
-                begin
-                    if (good_sync_ctr == 6'd63)
+        if (DATA_IN_VALID)
+        begin
+            case(state)
+                STATE_SYNCING:
+                    if (rx_aligned[65] != rx_aligned[64])
                     begin
-                        good_sync_ctr <= `DLY 6'd0;
-                        state <= `DLY STATE_LOCKED;
+                        if (good_sync_ctr == 6'd63)
+                        begin
+                            good_sync_ctr <= `DLY 6'd0;
+                            state <= `DLY STATE_LOCKED;
+                        end
+                        else begin
+                            good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
+                        end
                     end
                     else begin
-                        good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
-                    end
-                end
-                else begin
-                    good_sync_ctr <= `DLY  6'd0;
-                    if (candidate == 7'd66)
-                    begin
-                        candidate <= `DLY 7'd0;
-                    end
-                    else begin
-                        candidate <= `DLY candidate + 7'd1;
-                    end
-                end
-            STATE_LOCKED:
-                if (rx_aligned[65] !=  rx_aligned[64])
-                begin
-                    if (good_sync_ctr == 6'd63)
-                    begin
                         good_sync_ctr <= `DLY  6'd0;
-                        error_sync_ctr <= `DLY  4'd0;
+                        if (candidate == 7'd66)
+                        begin
+                            candidate <= `DLY 7'd0;
+                        end
+                        else begin
+                            candidate <= `DLY candidate + 7'd1;
+                        end
                     end
-                    else begin
-                        good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
-                    end
-                end
-                else begin
-                    if (error_sync_ctr == 4'd15)
+                STATE_LOCKED:
+                    if (rx_aligned[65] !=  rx_aligned[64])
                     begin
-                        good_sync_ctr <= `DLY  6'd0;
-                        error_sync_ctr <= `DLY  4'd0;
-                        state <= `DLY STATE_SYNCING;
+                        if (good_sync_ctr == 6'd63)
+                        begin
+                            good_sync_ctr <= `DLY  6'd0;
+                            error_sync_ctr <= `DLY  4'd0;
+                        end
+                        else begin
+                            good_sync_ctr <= `DLY good_sync_ctr + 6'd1;
+                        end
                     end
                     else begin
-                        error_sync_ctr <= `DLY error_sync_ctr + 4'd1;
+                        if (error_sync_ctr == 4'd15)
+                        begin
+                            good_sync_ctr <= `DLY  6'd0;
+                            error_sync_ctr <= `DLY  4'd0;
+                            state <= `DLY STATE_SYNCING;
+                        end
+                        else begin
+                            error_sync_ctr <= `DLY error_sync_ctr + 4'd1;
+                        end
                     end
-                end
-        endcase
+            endcase
+        end
     end
 
     always @(posedge USER_CLK)
+    if (DATA_IN_VALID)
     begin
         rx_data_r       <= `DLY     DATA_IN;
         rx_data_common  <= `DLY     {DATA_IN,rx_data_r};
@@ -133,6 +138,9 @@ module decode_64B_67B(
 
     always @*
         rx_aligned = rx_data_common >> candidate;
+
+    always @(posedge USER_CLK)
+        DATA_OUT_VALID <= state && DATA_IN_VALID;
 
     assign  LOCKED = state;
     assign  CANDIDATE = candidate;

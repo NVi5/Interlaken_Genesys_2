@@ -57,7 +57,6 @@
 module main_gearbox_rx_0_0 (
   DATA_IN,
   DATA_OUT,
-  LOCKED,
   DATA_OUT_VALID,
   USER_CLK,
   SYSTEM_RESET
@@ -65,7 +64,6 @@ module main_gearbox_rx_0_0 (
 
 input wire [19 : 0] DATA_IN;
 output wire [66 : 0] DATA_OUT;
-output wire LOCKED;
 output wire DATA_OUT_VALID;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
@@ -77,7 +75,6 @@ input wire SYSTEM_RESET;
   gearbox_rx inst (
     .DATA_IN(DATA_IN),
     .DATA_OUT(DATA_OUT),
-    .LOCKED(LOCKED),
     .DATA_OUT_VALID(DATA_OUT_VALID),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET)

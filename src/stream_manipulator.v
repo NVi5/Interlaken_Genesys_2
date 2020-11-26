@@ -32,7 +32,7 @@ module stream_manipulator #
     // User Interface
     input  wire  [(DATA_WIDTH-1):0]  DATA_IN,
     output reg   [(DATA_WIDTH-1):0]  DATA_OUT,
-    input  wire  [2:0]               OFFSET,
+    input  wire  [5:0]               OFFSET,
     input  wire  [(DATA_WIDTH-1):0]  MASK,
 
     // System Interface

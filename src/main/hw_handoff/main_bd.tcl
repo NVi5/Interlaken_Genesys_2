@@ -165,11 +165,11 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
 
   # Create pins
   create_bd_pin -dir O DATA_IN_READY
+  create_bd_pin -dir O DATA_OUT_VALID
   create_bd_pin -dir I DATA_TO_SEND
   create_bd_pin -dir I -from 7 -to 0 DEBUG_ERROR_COUNT
   create_bd_pin -dir I -type clk DRP_CLK_IN
   create_bd_pin -dir O -from 1 -to 0 HEADER_OUT
-  create_bd_pin -dir O LOCKED
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_N_IN
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_P_IN
   create_bd_pin -dir I RXN_IN
@@ -253,7 +253,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   set_property -dict [ list \
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {13} \
+   CONFIG.C_NUM_OF_PROBES {14} \
    CONFIG.C_PROBE0_WIDTH {64} \
    CONFIG.C_PROBE10_WIDTH {20} \
    CONFIG.C_PROBE11_WIDTH {20} \
@@ -281,14 +281,6 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_PROBE4_WIDTH {1} \
    CONFIG.C_PROBE5_WIDTH {67} \
  ] $ila_1
-
-  # Create instance: ila_2, and set properties
-  set ila_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_2 ]
-  set_property -dict [ list \
-   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
-   CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {2} \
- ] $ila_2
 
   # Create instance: scrambler, and set properties
   set block_name scrambler
@@ -340,7 +332,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
    CONFIG.C_NUM_PROBE_IN {0} \
    CONFIG.C_NUM_PROBE_OUT {2} \
-   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x1} \
  ] $vio_0
 
   # Create instance: vio_1, and set properties
@@ -362,7 +354,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
    CONFIG.C_NUM_PROBE_OUT {4} \
    CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
    CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT2_WIDTH {3} \
+   CONFIG.C_PROBE_OUT2_WIDTH {6} \
    CONFIG.C_PROBE_OUT3_WIDTH {20} \
  ] $vio_2
 
@@ -372,12 +364,12 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net DATA_VALID [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net DEBUG_ERROR_COUNT [get_bd_pins DEBUG_ERROR_COUNT] [get_bd_pins ila_0/probe2]
   connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/SCRAMBLED_DATA_IN] [get_bd_pins ila_0/probe0]
-  connect_bd_net -net DECODER_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins descrambler/DATA_VALID] [get_bd_pins ila_0/probe3] [get_bd_pins vio_2/probe_in0]
+  connect_bd_net -net DECODER_LOCKED [get_bd_pins decode_64B_67B/DATA_OUT_VALID] [get_bd_pins descrambler/DATA_IN_VALID] [get_bd_pins ila_0/probe3] [get_bd_pins vio_2/probe_in0]
   connect_bd_net -net DECODER_PASSTHROUGH [get_bd_pins decode_64B_67B/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
   connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins RX_DATA_OUT] [get_bd_pins descrambler/UNSCRAMBLED_DATA_OUT] [get_bd_pins ila_0/probe7]
   connect_bd_net -net DESCRAMBLER_HEADER_OUT_ILA [get_bd_pins HEADER_OUT] [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5]
-  connect_bd_net -net DESCRAMBLER_LOCKED_ILA [get_bd_pins LOCKED] [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in1]
-  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins ila_2/clk] [get_bd_pins vio_0/clk]
+  connect_bd_net -net DESCRAMBLER_LOCKED_ILA [get_bd_pins DATA_OUT_VALID] [get_bd_pins descrambler/DATA_OUT_VALID] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in1]
+  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
   connect_bd_net -net ENCODER_DATA_OUT [get_bd_pins encode_64B_67B/DATA_OUT] [get_bd_pins gearbox_tx/DATA_IN] [get_bd_pins ila_1/probe5]
   connect_bd_net -net ENCODER_PASSTHROUGH [get_bd_pins encode_64B_67B/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
   connect_bd_net -net GEARBOX_RX_DATA_OUT [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gearbox_rx/DATA_OUT] [get_bd_pins ila_0/probe4]
@@ -394,17 +386,16 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_P_IN]
   connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins gt_core_0/RXN_IN]
   connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
-  connect_bd_net -net RX_FSM_RESET_DONE [get_bd_pins gt_core_0/RX_FSM_RESET_DONE] [get_bd_pins ila_2/probe1]
-  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe8] [get_bd_pins ila_0/probe9]
+  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe8]
   connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins ila_1/probe0] [get_bd_pins scrambler/SCRAMBLED_DATA_OUT]
   connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET] [get_bd_pins vio_0/probe_out0]
   connect_bd_net -net TRACK_DATA [get_bd_pins TRACK_DATA] [get_bd_pins ila_0/probe1] [get_bd_pins util_vector_logic_0/Op1] [get_bd_pins vio_2/probe_in3]
-  connect_bd_net -net TX_FSM_RESET_DONE [get_bd_pins gt_core_0/TX_FSM_RESET_DONE] [get_bd_pins ila_2/probe0]
   connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe1] [get_bd_pins scrambler/UNSCRAMBLED_DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
   connect_bd_net -net TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe3] [get_bd_pins ila_1/probe4]
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
-  connect_bd_net -net encode_64B_67B_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_OUT_VALID] [get_bd_pins gearbox_tx/DATA_IN_VALID]
-  connect_bd_net -net gearbox_rx_0_LOCKED [get_bd_pins decode_64B_67B/DATA_VALID] [get_bd_pins gearbox_rx/LOCKED]
+  connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe9]
+  connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe13]
+  connect_bd_net -net gearbox_rx_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_IN_VALID] [get_bd_pins gearbox_rx/DATA_OUT_VALID]
   connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
   connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK] [get_bd_pins gt_core_0/RX_USR_CLK2] [get_bd_pins stream_manipulator/USER_CLK]
@@ -417,6 +408,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net scrambler_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_IN_VALID] [get_bd_pins scrambler/DATA_OUT_VALID]
   connect_bd_net -net tx_interface_0_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins tx_interface_0/DATA_IN_READY]
   connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_VALID]
+  connect_bd_net -net tx_interface_0_GEARBOX_VALID [get_bd_pins gearbox_tx/DATA_IN_VALID] [get_bd_pins tx_interface_0/GEARBOX_VALID]
   connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
 
   # Restore current instance
@@ -531,8 +523,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net gt_frame_check_0_TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins frame_check/TRACK_DATA_OUT] [get_bd_pins interlaken/TRACK_DATA]
   connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins frame_gen/TX_DATA_OUT] [get_bd_pins interlaken/TX_DATA_IN]
   connect_bd_net -net interlaken_DATA_IN_READY [get_bd_pins frame_gen/DATA_IN_READY] [get_bd_pins interlaken/DATA_IN_READY]
+  connect_bd_net -net interlaken_DATA_OUT_VALID [get_bd_pins frame_check/DATA_IN_VALID] [get_bd_pins interlaken/DATA_OUT_VALID]
   connect_bd_net -net interlaken_HEADER_OUT [get_bd_pins frame_check/RX_HEADER_IN] [get_bd_pins interlaken/HEADER_OUT]
-  connect_bd_net -net interlaken_LOCKED [get_bd_pins frame_check/DATA_VALID] [get_bd_pins interlaken/LOCKED]
 
   # Create address segments
 

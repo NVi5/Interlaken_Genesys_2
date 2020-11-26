@@ -61,6 +61,7 @@ module main_tx_interface_0_0 (
   DATA_TO_SEND,
   DATA_IN_READY,
   DATA_VALID,
+  GEARBOX_VALID,
   USER_CLK,
   SYSTEM_RESET
 );
@@ -71,6 +72,7 @@ output wire [1 : 0] HEADER_OUT;
 input wire DATA_TO_SEND;
 output wire DATA_IN_READY;
 output wire DATA_VALID;
+output wire GEARBOX_VALID;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
@@ -87,6 +89,7 @@ input wire SYSTEM_RESET;
     .DATA_TO_SEND(DATA_TO_SEND),
     .DATA_IN_READY(DATA_IN_READY),
     .DATA_VALID(DATA_VALID),
+    .GEARBOX_VALID(GEARBOX_VALID),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET)
   );

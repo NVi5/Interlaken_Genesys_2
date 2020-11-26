@@ -61,7 +61,7 @@ module main_frame_check_0_0 (
   TRACK_DATA_OUT,
   USER_CLK,
   SYSTEM_RESET,
-  DATA_VALID
+  DATA_IN_VALID
 );
 
 input wire [63 : 0] RX_DATA_IN;
@@ -74,7 +74,7 @@ input wire USER_CLK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
-input wire DATA_VALID;
+input wire DATA_IN_VALID;
 
   frame_check #(
     .START_OF_PACKET_CHAR(64'H0E0D0C0B0A090800),
@@ -86,6 +86,6 @@ input wire DATA_VALID;
     .TRACK_DATA_OUT(TRACK_DATA_OUT),
     .USER_CLK(USER_CLK),
     .SYSTEM_RESET(SYSTEM_RESET),
-    .DATA_VALID(DATA_VALID)
+    .DATA_IN_VALID(DATA_IN_VALID)
   );
 endmodule

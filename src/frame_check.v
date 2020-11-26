@@ -85,7 +85,7 @@ module frame_check #
     // System Interface
     input  wire         USER_CLK,
     input  wire         SYSTEM_RESET,
-    input  wire         DATA_VALID
+    input  wire         DATA_IN_VALID
 );
 
 //***************************Declarations********************
@@ -120,9 +120,9 @@ wire            next_track_data_c;
 //________________________________ State machine __________________________
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET || (DATA_VALID == 0))
+        if(SYSTEM_RESET)
             {begin_r,track_data_r,data_error_detected_r}  <=  `DLY    3'b100;
-        else
+        else if (DATA_IN_VALID)
         begin
             begin_r                <=  `DLY    next_begin_c;
             track_data_r           <=  `DLY    next_track_data_c;
@@ -134,19 +134,19 @@ wire            next_track_data_c;
     assign  next_data_error_detected_c  =   (track_data_r && error_detected_r);
 
     always @(posedge USER_CLK)
-        start_of_packet_detected_r    <=   `DLY  (RX_DATA_IN == START_OF_PACKET_CHAR);
+        if (DATA_IN_VALID)
+            start_of_packet_detected_r    <=   `DLY  (RX_DATA_IN == START_OF_PACKET_CHAR);
 
     // Registering for timing
     always @(posedge USER_CLK)
-        begin
+        if (DATA_IN_VALID)
             track_data_r2    <=   `DLY  track_data_r;
-        end
 
 //______________________________ Capture incoming data ____________________
 
     always @(posedge USER_CLK)
     begin
-        if(SYSTEM_RESET || (DATA_VALID == 0))
+        if(SYSTEM_RESET)
         begin
             rx_data_r           <=  `DLY   'h0;
             rx_data_r2          <=  `DLY   'h0;
@@ -155,7 +155,7 @@ wire            next_track_data_c;
             rx_header_r2        <=  `DLY   'h0;
             rx_header_r_track   <=  `DLY   'h0;
         end
-        else
+        else if (DATA_IN_VALID)
         begin
             rx_data_r           <=  `DLY    RX_DATA_IN;
             rx_data_r2          <=  `DLY    rx_data_r;
@@ -173,17 +173,18 @@ wire            next_track_data_c;
 
     //We register the error_detected signal for use with the error counter logic
     always @(posedge USER_CLK)
-        if(!track_data_r)
-            error_detected_r    <=  `DLY    1'b0;
-        else
-            error_detected_r    <=  `DLY    error_detected_c;
+        if (DATA_IN_VALID)
+            if(!track_data_r)
+                error_detected_r    <=  `DLY    1'b0;
+            else
+                error_detected_r    <=  `DLY    error_detected_c;
 
     //We count the total number of errors we detect. By keeping a count we make it less likely that we will miss
     //errors we did not directly observe.
     always @(posedge USER_CLK)
         if(SYSTEM_RESET)
             error_count_r       <=  `DLY    'h0;
-        else if(error_detected_r)
+        else if(error_detected_r && DATA_IN_VALID)
             error_count_r       <=  `DLY    error_count_r + 1;
 
     //Here we connect the lower 8 bits of the count (the MSbit is used only to check when the counter reaches
@@ -195,13 +196,20 @@ wire            next_track_data_c;
 //____________________________ Counter to read from BRAM __________________________
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET || (read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r) || (DATA_VALID == 0))
+        if(SYSTEM_RESET)
         begin
             read_counter_i  <=  `DLY    'h0;
         end
-        else if (rx_header_r2 == 2'b01)
+        else if (DATA_IN_VALID)
         begin
-            read_counter_i  <=  `DLY    read_counter_i + 1'b1;
+            if ((read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r))
+            begin
+                read_counter_i  <=  `DLY    'h0;
+            end
+            else if (rx_header_r2 == 2'b01)
+            begin
+                read_counter_i  <=  `DLY    read_counter_i + 1'b1;
+            end
         end
 
     initial

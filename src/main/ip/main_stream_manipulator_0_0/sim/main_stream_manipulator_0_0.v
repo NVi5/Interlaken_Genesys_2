@@ -64,7 +64,7 @@ module main_stream_manipulator_0_0 (
 
 input wire [19 : 0] DATA_IN;
 output wire [19 : 0] DATA_OUT;
-input wire [2 : 0] OFFSET;
+input wire [5 : 0] OFFSET;
 input wire [19 : 0] MASK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)

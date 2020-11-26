@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sun Nov 22 19:11:47 2020
+// Date        : Tue Nov 24 22:02:23 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_descrambler_0_0/main_descrambler_0_0_stub.v
@@ -15,15 +15,17 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "descrambler,Vivado 2018.2" *)
 module main_descrambler_0_0(SCRAMBLED_DATA_IN, UNSCRAMBLED_DATA_OUT, 
-  LOCKED, HEADER_IN, HEADER_OUT, USER_CLK, SYSTEM_RESET, DATA_VALID, PASSTHROUGH)
-/* synthesis syn_black_box black_box_pad_pin="SCRAMBLED_DATA_IN[63:0],UNSCRAMBLED_DATA_OUT[63:0],LOCKED,HEADER_IN[1:0],HEADER_OUT[1:0],USER_CLK,SYSTEM_RESET,DATA_VALID,PASSTHROUGH" */;
+  HEADER_IN, HEADER_OUT, DATA_IN_VALID, DATA_OUT_VALID, LOCKED, USER_CLK, SYSTEM_RESET, 
+  PASSTHROUGH)
+/* synthesis syn_black_box black_box_pad_pin="SCRAMBLED_DATA_IN[63:0],UNSCRAMBLED_DATA_OUT[63:0],HEADER_IN[1:0],HEADER_OUT[1:0],DATA_IN_VALID,DATA_OUT_VALID,LOCKED,USER_CLK,SYSTEM_RESET,PASSTHROUGH" */;
   input [63:0]SCRAMBLED_DATA_IN;
   output [63:0]UNSCRAMBLED_DATA_OUT;
-  output LOCKED;
   input [1:0]HEADER_IN;
   output [1:0]HEADER_OUT;
+  input DATA_IN_VALID;
+  output DATA_OUT_VALID;
+  output LOCKED;
   input USER_CLK;
   input SYSTEM_RESET;
-  input DATA_VALID;
   input PASSTHROUGH;
 endmodule

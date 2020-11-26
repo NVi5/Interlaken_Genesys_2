@@ -27,8 +27,7 @@
 module gearbox_rx(
     // User Interface
     input  wire  [19:0] DATA_IN,
-    output reg   [66:0] DATA_OUT,
-    output wire         LOCKED,
+    output wire  [66:0] DATA_OUT,
     output reg          DATA_OUT_VALID,
 
     // System Interface
@@ -76,7 +75,6 @@ always @(posedge USER_CLK)
         mv_hi <= schedule[0];
         mv_md <= schedule[1];
         DATA_OUT_VALID <= schedule[2] & enough_bits;
-        if (schedule[2] & enough_bits) DATA_OUT <= {hiword,midword,loword};
         if (loword_valid && mv_hi) hiword <= loword[22:1];
         if (loword_valid && mv_md) midword <= loword[22:1];
 
@@ -112,9 +110,12 @@ always @(posedge USER_CLK)
 
         // when successful advance to next word
         if (enough_bits) schedule <= {schedule[1:0],schedule[2]};
+
+        if (loword_valid & mv_hi & (~loword[21] ^ loword[20]))
+			schedule <= 3'b001;
     end
 
     assign enough_bits = (top_ptr > 6'd22) || (!schedule[2] && top_ptr == 6'd22);
-    assign LOCKED = 1'b1;
+    assign DATA_OUT = {hiword,midword,loword};
 
 endmodule

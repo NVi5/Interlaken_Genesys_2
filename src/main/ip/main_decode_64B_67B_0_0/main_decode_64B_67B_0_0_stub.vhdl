@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 22 23:37:24 2020
+-- Date        : Tue Nov 24 22:04:10 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_decode_64B_67B_0_0/main_decode_64B_67B_0_0_stub.vhdl
@@ -17,11 +17,12 @@ entity main_decode_64B_67B_0_0 is
     DATA_IN : in STD_LOGIC_VECTOR ( 66 downto 0 );
     DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    LOCKED : out STD_LOGIC;
+    DATA_OUT_VALID : out STD_LOGIC;
     CANDIDATE : out STD_LOGIC_VECTOR ( 6 downto 0 );
+    DATA_IN_VALID : in STD_LOGIC;
+    LOCKED : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
-    DATA_VALID : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC
   );
 
@@ -31,7 +32,7 @@ architecture stub of main_decode_64B_67B_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "DATA_IN[66:0],DATA_OUT[63:0],HEADER_OUT[1:0],LOCKED,CANDIDATE[6:0],USER_CLK,SYSTEM_RESET,DATA_VALID,PASSTHROUGH";
+attribute black_box_pad_pin of stub : architecture is "DATA_IN[66:0],DATA_OUT[63:0],HEADER_OUT[1:0],DATA_OUT_VALID,CANDIDATE[6:0],DATA_IN_VALID,LOCKED,USER_CLK,SYSTEM_RESET,PASSTHROUGH";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "decode_64B_67B,Vivado 2018.2";
 begin
