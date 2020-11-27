@@ -65,13 +65,13 @@ always @(posedge USER_CLK)
 
 
 always @(posedge USER_CLK)
-    if ((frame_ctr == (META_FRAME_LEN - 1) && schedule[63]) || SYSTEM_RESET)
+    if ((frame_ctr == (META_FRAME_LEN - 1) && schedule[64]) || SYSTEM_RESET)
     begin
         frame_ctr       <= `DLY     'h0;
         frame_ctr_r     <= `DLY     'h0;
         frame_ctr_r2    <= `DLY     'h0;
     end
-    else if (schedule[63])
+    else if (schedule[64])
     begin
         frame_ctr       <= `DLY     frame_ctr + 1'b1;
         frame_ctr_r     <= `DLY     frame_ctr;
@@ -95,8 +95,8 @@ always @(posedge USER_CLK)
     else
             send_payload  <=  `DLY   1'b1;
 
-assign DATA_IN_READY = schedule[63] && send_payload;
-assign DATA_VALID    = schedule[63];
+assign DATA_IN_READY = schedule[64] && send_payload;
+assign DATA_VALID    = schedule[64];
 assign GEARBOX_VALID = schedule[66];
 
 endmodule

@@ -105,6 +105,7 @@ reg             track_data_r2;
 reg     [63:0]  rx_data_r;
 reg     [63:0]  rx_data_r2;
 reg     [63:0]  rx_data_r_track;
+wire    [63:0]  bram_data;
 
 reg     [1:0]   rx_header_r;
 reg     [1:0]   rx_header_r2;
@@ -134,12 +135,16 @@ wire            next_track_data_c;
     assign  next_data_error_detected_c  =   (track_data_r && error_detected_r);
 
     always @(posedge USER_CLK)
-        if (DATA_IN_VALID)
+        if(SYSTEM_RESET)
+            start_of_packet_detected_r    <=   `DLY    1'b0;
+        else if (DATA_IN_VALID)
             start_of_packet_detected_r    <=   `DLY  (RX_DATA_IN == START_OF_PACKET_CHAR);
 
     // Registering for timing
     always @(posedge USER_CLK)
-        if (DATA_IN_VALID)
+        if(SYSTEM_RESET)
+            track_data_r2    <=   `DLY    1'b0;
+        else if (DATA_IN_VALID)
             track_data_r2    <=   `DLY  track_data_r;
 
 //______________________________ Capture incoming data ____________________
@@ -169,15 +174,14 @@ wire            next_track_data_c;
 //___________________________ Check incoming data for errors ______________
 
     //An error is detected when data read for the BRAM does not match the incoming data
-    assign  error_detected_c    =  track_data_r2 && (rx_data_r_track != rom[read_counter_i]) && (rx_header_r_track == 2'b01);
+    assign  error_detected_c    =  track_data_r2 && (rx_data_r_track != bram_data) && (rx_header_r_track == 2'b01);
 
     //We register the error_detected signal for use with the error counter logic
     always @(posedge USER_CLK)
-        if (DATA_IN_VALID)
-            if(!track_data_r)
-                error_detected_r    <=  `DLY    1'b0;
-            else
-                error_detected_r    <=  `DLY    error_detected_c;
+        if(!track_data_r)
+            error_detected_r    <=  `DLY    1'b0;
+        else if (DATA_IN_VALID)
+            error_detected_r    <=  `DLY    error_detected_c;
 
     //We count the total number of errors we detect. By keeping a count we make it less likely that we will miss
     //errors we did not directly observe.
@@ -217,5 +221,6 @@ wire            next_track_data_c;
            $readmemh("gt_rom_data.dat",rom,0,(WORDS_IN_BRAM - 1));
     end
 
+    assign bram_data = rom[read_counter_i];
 
 endmodule

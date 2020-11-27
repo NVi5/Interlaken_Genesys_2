@@ -121,7 +121,7 @@ module decode_64B_67B(
     if (DATA_IN_VALID)
     begin
         rx_data_r       <= `DLY     DATA_IN;
-        rx_data_common  <= `DLY     {DATA_IN,rx_data_r};
+        rx_data_common  <= `DLY     {rx_data_r,DATA_IN};
     end
 
     always @(posedge USER_CLK)
