@@ -88,7 +88,7 @@ module gtwizard_0_TB;
     wire            rxp_in_i;
     wire            txn_out_i;
     wire            txp_out_i;
-    
+
     reg [20*670-1:0] data_stream_rx = 'h0;
     reg [67-1:0] data_formatted_rx = 'h0;
     reg [20*670-1:0] data_stream_tx = 'h0;
@@ -167,39 +167,37 @@ module gtwizard_0_TB;
     wire gearbox_rx_clk;
     wire [19:0] gearbox_tx_out;
     wire gearbox_tx_clk;
-    assign gearbox_rx_in = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gearbox_rx.DATA_IN;
-    assign gearbox_rx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gearbox_rx.USER_CLK;
-    assign gearbox_tx_out = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gearbox_tx.DATA_OUT;
-    assign gearbox_tx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gearbox_tx.USER_CLK;
-    
+    assign gearbox_rx_in = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.RX_DATA;
+    assign gearbox_rx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.RX_USR_CLK2;
+    assign gearbox_tx_out = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.TX_DATA;
+    assign gearbox_tx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.TX_USR_CLK2;
+
     integer n = 0;
     always begin
         @(posedge gearbox_rx_in[0]);
         for (n=0;n<670;n=n+1) begin
-            @(negedge gearbox_rx_clk);
-            data_stream_rx = {data_stream_rx[20*670-1-20:0],gearbox_rx_in};
+            @(posedge gearbox_rx_clk);
+            // data_stream_rx = {data_stream_rx[20*670-1-20:0],gearbox_rx_in};
+            data_stream_rx = {gearbox_rx_in,data_stream_rx[20*670-1:20]};
         end
         for (n=0;n<200;n=n+1) begin
             @(negedge gearbox_rx_clk);
             data_formatted_rx = data_stream_rx[67*n +: 67];
         end
-        #1000;
-        $stop;
     end
-    
+
     integer n2 = 0;
     always begin
         @(posedge gearbox_rx_in[0]);
         for (n2=0;n2<670;n2=n2+1) begin
-            @(negedge gearbox_tx_clk);
-            data_stream_tx = {data_stream_tx[20*670-1-20:0],gearbox_tx_out};
+            @(posedge gearbox_tx_clk);
+            // data_stream_tx = {data_stream_tx[20*670-1-20:0],gearbox_tx_out};
+            data_stream_tx = {gearbox_tx_out,data_stream_tx[20*670-1:20]};
         end
         for (n2=0;n2<200;n2=n2+1) begin
             @(negedge gearbox_tx_clk);
             data_formatted_tx = data_stream_tx[67*n2 +: 67];
         end
-        #1000;
-        $stop;
     end
 
     //----------------- Instantiate an main_wrapper module  -----------------

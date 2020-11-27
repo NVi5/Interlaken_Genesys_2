@@ -39,6 +39,7 @@ module gearbox_rx(
 
 reg loword_valid;
 reg [22:0] loword;
+reg [19:0] data_in_i;
 
 // worst case : want 23 bits, have 22, need to take on 20 more
 // therefore we need a 42 bit buffer
@@ -50,7 +51,12 @@ reg mv_hi, mv_md;
 wire enough_bits;
 reg [21:0] hiword,midword;
 
+integer i;
+
 //*********************************Main Body of Code**********************************
+always@*
+    for (i=0;i<20;i=i+1)
+        data_in_i[i] = DATA_IN[(20-1)-i];
 
 always @(posedge USER_CLK)
     if (SYSTEM_RESET) begin
@@ -68,7 +74,7 @@ always @(posedge USER_CLK)
     else begin
 
         // always take in new data - 20 bits
-        storage <= {storage[21:0], DATA_IN};
+        storage <= {storage[21:0], data_in_i};
         loword_valid <= enough_bits;
 
         // read 22 to hi, 22 to mid, 23 to low to form 67
@@ -111,8 +117,7 @@ always @(posedge USER_CLK)
         // when successful advance to next word
         if (enough_bits) schedule <= {schedule[1:0],schedule[2]};
 
-        if (loword_valid & mv_hi & (~loword[21] ^ loword[20]))
-			schedule <= 3'b001;
+        // if (schedule[2] & enough_bits) DATA_OUT <= {hiword,midword,loword};
     end
 
     assign enough_bits = (top_ptr > 6'd22) || (!schedule[2] && top_ptr == 6'd22);

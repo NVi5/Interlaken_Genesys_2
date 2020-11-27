@@ -55,8 +55,8 @@
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_descrambler_0_0 (
-  SCRAMBLED_DATA_IN,
-  UNSCRAMBLED_DATA_OUT,
+  DATA_IN,
+  DATA_OUT,
   HEADER_IN,
   HEADER_OUT,
   DATA_IN_VALID,
@@ -67,8 +67,8 @@ module main_descrambler_0_0 (
   PASSTHROUGH
 );
 
-input wire [63 : 0] SCRAMBLED_DATA_IN;
-output wire [63 : 0] UNSCRAMBLED_DATA_OUT;
+input wire [63 : 0] DATA_IN;
+output wire [63 : 0] DATA_OUT;
 input wire [1 : 0] HEADER_IN;
 output wire [1 : 0] HEADER_OUT;
 input wire DATA_IN_VALID;
@@ -87,8 +87,8 @@ input wire PASSTHROUGH;
     .SYNC_WORD(64'H78F678F678F678F6),
     .META_FRAME_LEN(16)
   ) inst (
-    .SCRAMBLED_DATA_IN(SCRAMBLED_DATA_IN),
-    .UNSCRAMBLED_DATA_OUT(UNSCRAMBLED_DATA_OUT),
+    .DATA_IN(DATA_IN),
+    .DATA_OUT(DATA_OUT),
     .HEADER_IN(HEADER_IN),
     .HEADER_OUT(HEADER_OUT),
     .DATA_IN_VALID(DATA_IN_VALID),

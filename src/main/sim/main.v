@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Thu Nov 26 17:22:30 2020
+//Date        : Fri Nov 27 01:18:51 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -129,15 +129,15 @@ module interlaken_imp_1RYIMTC
         .SYSTEM_RESET(gt_core_0_RX_SYSTEM_RESET),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_descrambler_0_0 descrambler
-       (.DATA_IN_VALID(DECODER_LOCKED),
+       (.DATA_IN(DECODER_DATA_OUT),
+        .DATA_IN_VALID(DECODER_LOCKED),
+        .DATA_OUT(DESCRAMBLER_DATA_OUT),
         .DATA_OUT_VALID(DESCRAMBLER_LOCKED_ILA),
         .HEADER_IN(decode_64B_67B_HEADER_OUT),
         .HEADER_OUT(DESCRAMBLER_HEADER_OUT_ILA),
         .LOCKED(descrambler_LOCKED),
         .PASSTHROUGH(PASSTHROUGH_DESCRAMBLER),
-        .SCRAMBLED_DATA_IN(DECODER_DATA_OUT),
         .SYSTEM_RESET(gt_core_0_RX_SYSTEM_RESET),
-        .UNSCRAMBLED_DATA_OUT(DESCRAMBLER_DATA_OUT),
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_encode_64B_67B_0_0 encode_64B_67B
        (.DATA_IN(SCRAMBLED_DATA_OUT),
@@ -204,14 +204,14 @@ module interlaken_imp_1RYIMTC
         .probe4(TX_RESET_DONE),
         .probe5(ENCODER_DATA_OUT));
   main_scrambler_0_0 scrambler
-       (.DATA_IN_VALID(tx_interface_0_DATA_VALID),
+       (.DATA_IN(TX_INTERFACE_DATA_OUT),
+        .DATA_IN_VALID(tx_interface_0_DATA_VALID),
+        .DATA_OUT(SCRAMBLED_DATA_OUT),
         .DATA_OUT_VALID(scrambler_DATA_OUT_VALID),
         .HEADER_IN(tx_interface_0_HEADER_OUT),
         .HEADER_OUT(scrambler_0_HEADER_OUT),
         .PASSTHROUGH(PASSTHROUGH_SCRAMBLER),
-        .SCRAMBLED_DATA_OUT(SCRAMBLED_DATA_OUT),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
-        .UNSCRAMBLED_DATA_IN(TX_INTERFACE_DATA_OUT),
         .USER_CLK(Net1));
   main_stream_manipulator_0_0 stream_manipulator
        (.DATA_IN(GT_RX_DATA),

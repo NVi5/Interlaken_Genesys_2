@@ -31,8 +31,8 @@ module descrambler #
 )
 (
     // User Interface
-    input  wire [(RX_DATA_WIDTH-1):0] SCRAMBLED_DATA_IN,
-    output reg  [(RX_DATA_WIDTH-1):0] UNSCRAMBLED_DATA_OUT,
+    input  wire [(RX_DATA_WIDTH-1):0] DATA_IN,
+    output reg  [(RX_DATA_WIDTH-1):0] DATA_OUT,
 
     input  wire [1:0]                 HEADER_IN,
     output reg  [1:0]                 HEADER_OUT,
@@ -72,13 +72,13 @@ module descrambler #
 
 //*********************************Scrambling Logic***************************
 
-    always @(descrambler,SCRAMBLED_DATA_IN)
+    always @(descrambler,DATA_IN)
     begin
         poly = descrambler;
         for (i=0;i<=(RX_DATA_WIDTH-1);i=i+1)
         begin
-            xorBit = SCRAMBLED_DATA_IN[i] ^ poly[38] ^ poly[57];
-            poly = {poly[56:0],SCRAMBLED_DATA_IN[i]};
+            xorBit = DATA_IN[i] ^ poly[38] ^ poly[57];
+            poly = {poly[56:0],DATA_IN[i]};
             tempData[i] = xorBit;
         end
     end
@@ -87,7 +87,7 @@ module descrambler #
 
     always @(posedge USER_CLK)
     begin
-        UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
+        DATA_OUT <= `DLY  DATA_IN;
 
         if (SYSTEM_RESET || PASSTHROUGH)
             state           <= `DLY     STATE_RESET;
@@ -96,14 +96,14 @@ module descrambler #
         begin
             case(state)
                 STATE_RESET:
-                    if (SCRAMBLED_DATA_IN == SYNC_WORD)
                     begin
                         descrambler     <= `DLY     {58{1'b1}};
-                        state           <= `DLY     STATE_WAIT_FOR_WORD;
                         good_sync_ctr   <= `DLY     3'd0;
                         bad_sync_ctr    <= `DLY     3'd0;
                         mismatch_ctr    <= `DLY     3'd0;
                         frame_ctr       <= `DLY     'h0;
+                        if (DATA_IN == SYNC_WORD)
+                            state           <= `DLY     STATE_WAIT_FOR_WORD;
                     end
                 STATE_WAIT_FOR_WORD:
                     if (frame_ctr == (META_FRAME_LEN - 2))
@@ -115,7 +115,7 @@ module descrambler #
                         frame_ctr       <= `DLY     frame_ctr + 1'b1;
                     end
                 STATE_SYNC_WORD:
-                    if (SCRAMBLED_DATA_IN == SYNC_WORD)
+                    if (DATA_IN == SYNC_WORD)
                     begin
                         if (good_sync_ctr == 2'd3)
                         begin
@@ -132,7 +132,7 @@ module descrambler #
                     end
                 STATE_ADVANCE:
                     begin
-                        descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
+                        descrambler     <= `DLY     DATA_IN[57:0];
                         state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
                         good_sync_ctr   <= `DLY     3'd0;
                         bad_sync_ctr    <= `DLY     3'd0;
@@ -141,7 +141,7 @@ module descrambler #
                     end
                 STATE_LOCKED_WAIT_FOR_WORD:
                     begin
-                        UNSCRAMBLED_DATA_OUT <= `DLY  tempData;
+                        DATA_OUT <= `DLY  tempData;
                         descrambler          <= `DLY  poly;
                         if (frame_ctr == (META_FRAME_LEN - 3))
                         begin
@@ -154,8 +154,8 @@ module descrambler #
                     end
                 STATE_LOCKED_SYNC_WORD:
                     begin
-                        UNSCRAMBLED_DATA_OUT <= `DLY  SCRAMBLED_DATA_IN;
-                        if (SCRAMBLED_DATA_IN == SYNC_WORD)
+                        DATA_OUT <= `DLY  DATA_IN;
+                        if (DATA_IN == SYNC_WORD)
                         begin
                             bad_sync_ctr    <= `DLY     3'd0;
                             state           <= `DLY     STATE_LOCKED_SYNC_STATE;
@@ -173,8 +173,8 @@ module descrambler #
                     end
                 STATE_LOCKED_SYNC_STATE:
                     begin
-                        UNSCRAMBLED_DATA_OUT <= `DLY  64'h2800000000000000;
-                        if (descrambler == SCRAMBLED_DATA_IN[57:0])
+                        DATA_OUT <= `DLY  64'h2800000000000000;
+                        if (descrambler == DATA_IN[57:0])
                         begin
                             mismatch_ctr    <= `DLY     3'd0;
                             state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
@@ -185,7 +185,7 @@ module descrambler #
                                 state           <= `DLY     STATE_RESET;
                             end
                             else begin
-                                descrambler     <= `DLY     SCRAMBLED_DATA_IN[57:0];
+                                descrambler     <= `DLY     DATA_IN[57:0];
                                 mismatch_ctr    <= `DLY     mismatch_ctr + 3'b1;
                                 state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
                             end

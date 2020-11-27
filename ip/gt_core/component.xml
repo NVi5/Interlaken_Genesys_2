@@ -649,11 +649,11 @@
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>31</xilinx:coreRevision>
+      <xilinx:coreRevision>35</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:user:gtwizard_0_exdes:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2020-11-26T16:22:04Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2020-11-26T20:02:23Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="xilinx.com:user:gtwizard_0_exdes:1.0_ARCHIVE_LOCATION">d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/ip/gt_core</xilinx:tag>
         <xilinx:tag xilinx:name="xilinx.com:user:gt_core:1.0_ARCHIVE_LOCATION">d:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/ip/gt_core</xilinx:tag>

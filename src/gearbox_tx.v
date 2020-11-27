@@ -27,7 +27,7 @@
 module gearbox_tx(
     // User Interface
     input  wire  [66:0] DATA_IN,
-    output wire  [19:0] DATA_OUT,
+    output reg   [19:0] DATA_OUT,
     input  wire         DATA_IN_VALID,
 
     // System Interface
@@ -38,10 +38,12 @@ module gearbox_tx(
 //***************************Declarations***************************
 
 // worst case : 19 bits surplus, and 67 arriving = 86 bits
-reg [85:0] storage;
-reg [4:0] wr_ptr;
-reg [4:0] next_wr_ptr;
-reg [85:0] aligned_din;
+reg  [85:0] storage;
+reg  [4:0] wr_ptr;
+reg  [4:0] next_wr_ptr;
+reg  [85:0] aligned_din;
+wire [19:0] data_out_i;
+integer i;
 
 //*********************************Main Body of Code**********************************
 
@@ -112,6 +114,10 @@ always @(posedge USER_CLK)
         end
     end
 
-    assign DATA_OUT = storage [85:85-19];
+    assign data_out_i = storage [85:85-19];
+
+always@*
+    for (i=0;i<20;i=i+1)
+        DATA_OUT[i] = data_out_i[(20-1)-i];
 
 endmodule
