@@ -1101,8 +1101,8 @@
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe13"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>encode_64B_67B_DATA_OUT_VALID</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="DATA_OUT_VALID"/>
+        <spirit:name>tx_interface_0_GEARBOX_VALID</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="GEARBOX_VALID"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_IN_VALID"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>

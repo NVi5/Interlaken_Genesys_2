@@ -152,7 +152,6 @@ module gtwizard_0_TB;
         begin
             $display("####### ERROR: TEST FAILED ! #######");
         end
-        $stop;
     end
 
     initial

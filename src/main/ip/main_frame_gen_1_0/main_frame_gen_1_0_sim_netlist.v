@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Fri Nov 27 22:23:05 2020
+// Date        : Sat Nov 28 01:39:20 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_gen_1_0/main_frame_gen_1_0_sim_netlist.v
@@ -46,25 +46,25 @@ module main_frame_gen_1_0_frame_gen
    (TX_DATA_OUT,
     TX_DATA_TO_SEND,
     SYSTEM_RESET,
-    USER_CLK,
-    DATA_IN_READY);
+    DATA_IN_READY,
+    USER_CLK);
   output [63:0]TX_DATA_OUT;
   output TX_DATA_TO_SEND;
   input SYSTEM_RESET;
-  input USER_CLK;
   input DATA_IN_READY;
+  input USER_CLK;
 
   wire DATA_IN_READY;
   wire SYSTEM_RESET;
   wire [63:0]TX_DATA_OUT;
   wire TX_DATA_TO_SEND;
   wire USER_CLK;
-  wire [8:0]p_0_in;
-  wire \read_counter_i[8]_i_1_n_0 ;
-  wire [8:0]read_counter_i_reg__0;
+  wire [8:0]read_counter_i;
+  wire [8:0]read_counter_i_0;
   wire read_counter_i_reg_rep_1_i_10_n_0;
   wire read_counter_i_reg_rep_1_i_11_n_0;
   wire read_counter_i_reg_rep_1_i_12_n_0;
+  wire read_counter_i_reg_rep_1_i_13_n_0;
   wire read_counter_i_reg_rep_1_i_1_n_0;
   wire read_counter_i_reg_rep_1_i_2_n_0;
   wire read_counter_i_reg_rep_1_i_3_n_0;
@@ -87,147 +87,135 @@ module main_frame_gen_1_0_frame_gen
   LUT1 #(
     .INIT(2'h1)) 
     \read_counter_i[0]_i_1 
-       (.I0(read_counter_i_reg__0[0]),
-        .O(p_0_in[0]));
+       (.I0(read_counter_i[0]),
+        .O(read_counter_i_0[0]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \read_counter_i[1]_i_1 
-       (.I0(read_counter_i_reg__0[0]),
-        .I1(read_counter_i_reg__0[1]),
-        .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+       (.I0(read_counter_i[0]),
+        .I1(read_counter_i[1]),
+        .O(read_counter_i_0[1]));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
-    .INIT(8'h78)) 
+    .INIT(8'h6A)) 
     \read_counter_i[2]_i_1 
-       (.I0(read_counter_i_reg__0[1]),
-        .I1(read_counter_i_reg__0[0]),
-        .I2(read_counter_i_reg__0[2]),
-        .O(p_0_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+       (.I0(read_counter_i[2]),
+        .I1(read_counter_i[0]),
+        .I2(read_counter_i[1]),
+        .O(read_counter_i_0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'h6AAA)) 
     \read_counter_i[3]_i_1 
-       (.I0(read_counter_i_reg__0[2]),
-        .I1(read_counter_i_reg__0[0]),
-        .I2(read_counter_i_reg__0[1]),
-        .I3(read_counter_i_reg__0[3]),
-        .O(p_0_in[3]));
+       (.I0(read_counter_i[3]),
+        .I1(read_counter_i[0]),
+        .I2(read_counter_i[1]),
+        .I3(read_counter_i[2]),
+        .O(read_counter_i_0[3]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h7FFF8000)) 
+    .INIT(32'h6AAAAAAA)) 
     \read_counter_i[4]_i_1 
-       (.I0(read_counter_i_reg__0[3]),
-        .I1(read_counter_i_reg__0[1]),
-        .I2(read_counter_i_reg__0[0]),
-        .I3(read_counter_i_reg__0[2]),
-        .I4(read_counter_i_reg__0[4]),
-        .O(p_0_in[4]));
+       (.I0(read_counter_i[4]),
+        .I1(read_counter_i[2]),
+        .I2(read_counter_i[1]),
+        .I3(read_counter_i[0]),
+        .I4(read_counter_i[3]),
+        .O(read_counter_i_0[4]));
   LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \read_counter_i[5]_i_1 
-       (.I0(read_counter_i_reg__0[4]),
-        .I1(read_counter_i_reg__0[2]),
-        .I2(read_counter_i_reg__0[0]),
-        .I3(read_counter_i_reg__0[1]),
-        .I4(read_counter_i_reg__0[3]),
-        .I5(read_counter_i_reg__0[5]),
-        .O(p_0_in[5]));
-  LUT2 #(
-    .INIT(4'h9)) 
+       (.I0(read_counter_i[5]),
+        .I1(read_counter_i[3]),
+        .I2(read_counter_i[0]),
+        .I3(read_counter_i[1]),
+        .I4(read_counter_i[2]),
+        .I5(read_counter_i[4]),
+        .O(read_counter_i_0[5]));
+  LUT6 #(
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \read_counter_i[6]_i_1 
-       (.I0(read_counter_i_reg_rep_1_i_11_n_0),
-        .I1(read_counter_i_reg__0[6]),
-        .O(p_0_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'hD2)) 
-    \read_counter_i[7]_i_1 
-       (.I0(read_counter_i_reg__0[6]),
-        .I1(read_counter_i_reg_rep_1_i_11_n_0),
-        .I2(read_counter_i_reg__0[7]),
-        .O(p_0_in[7]));
-  LUT5 #(
-    .INIT(32'hFFFF2000)) 
-    \read_counter_i[8]_i_1 
-       (.I0(read_counter_i_reg__0[6]),
-        .I1(read_counter_i_reg_rep_1_i_11_n_0),
-        .I2(read_counter_i_reg__0[7]),
-        .I3(read_counter_i_reg__0[8]),
-        .I4(SYSTEM_RESET),
-        .O(\read_counter_i[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+       (.I0(read_counter_i[6]),
+        .I1(read_counter_i[4]),
+        .I2(read_counter_i[2]),
+        .I3(read_counter_i_reg_rep_1_i_13_n_0),
+        .I4(read_counter_i[3]),
+        .I5(read_counter_i[5]),
+        .O(read_counter_i_0[6]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'hDF20)) 
-    \read_counter_i[8]_i_2 
-       (.I0(read_counter_i_reg__0[7]),
-        .I1(read_counter_i_reg_rep_1_i_11_n_0),
-        .I2(read_counter_i_reg__0[6]),
-        .I3(read_counter_i_reg__0[8]),
-        .O(p_0_in[8]));
-  (* equivalent_register_removal = "no" *) 
+    .INIT(16'hB8CC)) 
+    \read_counter_i[7]_i_1 
+       (.I0(read_counter_i_reg_rep_1_i_12_n_0),
+        .I1(read_counter_i[7]),
+        .I2(read_counter_i_reg_rep_1_i_11_n_0),
+        .I3(read_counter_i[6]),
+        .O(read_counter_i_0[7]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'hBC8CCCCC)) 
+    \read_counter_i[8]_i_1 
+       (.I0(read_counter_i_reg_rep_1_i_12_n_0),
+        .I1(read_counter_i[8]),
+        .I2(read_counter_i[6]),
+        .I3(read_counter_i_reg_rep_1_i_11_n_0),
+        .I4(read_counter_i[7]),
+        .O(read_counter_i_0[8]));
   FDRE \read_counter_i_reg[0] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[0]),
-        .Q(read_counter_i_reg__0[0]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[0]),
+        .Q(read_counter_i[0]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[1] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[1]),
-        .Q(read_counter_i_reg__0[1]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[1]),
+        .Q(read_counter_i[1]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[2] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[2]),
-        .Q(read_counter_i_reg__0[2]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[2]),
+        .Q(read_counter_i[2]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[3] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[3]),
-        .Q(read_counter_i_reg__0[3]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[3]),
+        .Q(read_counter_i[3]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[4] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[4]),
-        .Q(read_counter_i_reg__0[4]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[4]),
+        .Q(read_counter_i[4]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[5] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[5]),
-        .Q(read_counter_i_reg__0[5]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[5]),
+        .Q(read_counter_i[5]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[6] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[6]),
-        .Q(read_counter_i_reg__0[6]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[6]),
+        .Q(read_counter_i[6]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[7] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[7]),
-        .Q(read_counter_i_reg__0[7]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
-  (* equivalent_register_removal = "no" *) 
+        .D(read_counter_i_0[7]),
+        .Q(read_counter_i[7]),
+        .R(SYSTEM_RESET));
   FDRE \read_counter_i_reg[8] 
        (.C(USER_CLK),
         .CE(DATA_IN_READY),
-        .D(p_0_in[8]),
-        .Q(read_counter_i_reg__0[8]),
-        .R(\read_counter_i[8]_i_1_n_0 ));
+        .D(read_counter_i_0[8]),
+        .Q(read_counter_i[8]),
+        .R(SYSTEM_RESET));
   (* \MEM.PORTA.DATA_BIT_LAYOUT  = "p2_d16" *) 
   (* \MEM.PORTB.DATA_BIT_LAYOUT  = "p2_d16" *) 
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-6 {cell *THIS*}}" *) 
@@ -478,116 +466,115 @@ module main_frame_gen_1_0_frame_gen
         .RSTREGB(SYSTEM_RESET),
         .WEA({1'b0,1'b0}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0}));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFAAEAAAAA)) 
+  LUT2 #(
+    .INIT(4'hE)) 
     read_counter_i_reg_rep_1_i_1
        (.I0(SYSTEM_RESET),
-        .I1(read_counter_i_reg__0[8]),
-        .I2(read_counter_i_reg__0[7]),
-        .I3(read_counter_i_reg_rep_1_i_11_n_0),
-        .I4(read_counter_i_reg__0[6]),
-        .I5(DATA_IN_READY),
+        .I1(DATA_IN_READY),
         .O(read_counter_i_reg_rep_1_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h1111011111111111)) 
+  LUT2 #(
+    .INIT(4'h1)) 
     read_counter_i_reg_rep_1_i_10
-       (.I0(read_counter_i_reg__0[0]),
+       (.I0(read_counter_i[0]),
         .I1(SYSTEM_RESET),
-        .I2(read_counter_i_reg__0[8]),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg_rep_1_i_11_n_0),
-        .I5(read_counter_i_reg__0[6]),
         .O(read_counter_i_reg_rep_1_i_10_n_0));
   LUT6 #(
-    .INIT(64'h7FFFFFFFFFFFFFFF)) 
+    .INIT(64'h8000000000000000)) 
     read_counter_i_reg_rep_1_i_11
-       (.I0(read_counter_i_reg__0[4]),
-        .I1(read_counter_i_reg__0[2]),
-        .I2(read_counter_i_reg__0[0]),
-        .I3(read_counter_i_reg__0[1]),
-        .I4(read_counter_i_reg__0[3]),
-        .I5(read_counter_i_reg__0[5]),
+       (.I0(read_counter_i[4]),
+        .I1(read_counter_i[2]),
+        .I2(read_counter_i[1]),
+        .I3(read_counter_i[0]),
+        .I4(read_counter_i[3]),
+        .I5(read_counter_i[5]),
         .O(read_counter_i_reg_rep_1_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
+  LUT6 #(
+    .INIT(64'h7FFFFFFFFFFFFFFF)) 
     read_counter_i_reg_rep_1_i_12
-       (.I0(read_counter_i_reg__0[3]),
-        .I1(read_counter_i_reg__0[1]),
-        .I2(read_counter_i_reg__0[0]),
-        .I3(read_counter_i_reg__0[2]),
-        .I4(read_counter_i_reg__0[4]),
+       (.I0(read_counter_i[4]),
+        .I1(read_counter_i[2]),
+        .I2(read_counter_i[0]),
+        .I3(read_counter_i[1]),
+        .I4(read_counter_i[3]),
+        .I5(read_counter_i[5]),
         .O(read_counter_i_reg_rep_1_i_12_n_0));
-  LUT5 #(
-    .INIT(32'h44144444)) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    read_counter_i_reg_rep_1_i_13
+       (.I0(read_counter_i[1]),
+        .I1(read_counter_i[0]),
+        .O(read_counter_i_reg_rep_1_i_13_n_0));
+  LUT6 #(
+    .INIT(64'h00000000FF805F80)) 
     read_counter_i_reg_rep_1_i_2
-       (.I0(SYSTEM_RESET),
-        .I1(read_counter_i_reg__0[8]),
-        .I2(read_counter_i_reg__0[7]),
-        .I3(read_counter_i_reg_rep_1_i_11_n_0),
-        .I4(read_counter_i_reg__0[6]),
-        .O(read_counter_i_reg_rep_1_i_2_n_0));
-  LUT4 #(
-    .INIT(16'h4144)) 
-    read_counter_i_reg_rep_1_i_3
-       (.I0(SYSTEM_RESET),
-        .I1(read_counter_i_reg__0[7]),
-        .I2(read_counter_i_reg_rep_1_i_11_n_0),
-        .I3(read_counter_i_reg__0[6]),
-        .O(read_counter_i_reg_rep_1_i_3_n_0));
-  LUT3 #(
-    .INIT(8'h41)) 
-    read_counter_i_reg_rep_1_i_4
-       (.I0(SYSTEM_RESET),
+       (.I0(read_counter_i[7]),
         .I1(read_counter_i_reg_rep_1_i_11_n_0),
-        .I2(read_counter_i_reg__0[6]),
-        .O(read_counter_i_reg_rep_1_i_4_n_0));
-  LUT3 #(
-    .INIT(8'h41)) 
-    read_counter_i_reg_rep_1_i_5
-       (.I0(SYSTEM_RESET),
-        .I1(read_counter_i_reg__0[5]),
+        .I2(read_counter_i[6]),
+        .I3(read_counter_i[8]),
+        .I4(read_counter_i_reg_rep_1_i_12_n_0),
+        .I5(SYSTEM_RESET),
+        .O(read_counter_i_reg_rep_1_i_2_n_0));
+  LUT5 #(
+    .INIT(32'h0000F858)) 
+    read_counter_i_reg_rep_1_i_3
+       (.I0(read_counter_i[6]),
+        .I1(read_counter_i_reg_rep_1_i_11_n_0),
+        .I2(read_counter_i[7]),
+        .I3(read_counter_i_reg_rep_1_i_12_n_0),
+        .I4(SYSTEM_RESET),
+        .O(read_counter_i_reg_rep_1_i_3_n_0));
+  LUT4 #(
+    .INIT(16'h00E2)) 
+    read_counter_i_reg_rep_1_i_4
+       (.I0(read_counter_i_reg_rep_1_i_11_n_0),
+        .I1(read_counter_i[6]),
         .I2(read_counter_i_reg_rep_1_i_12_n_0),
+        .I3(SYSTEM_RESET),
+        .O(read_counter_i_reg_rep_1_i_4_n_0));
+  LUT6 #(
+    .INIT(64'h000000007FFF8000)) 
+    read_counter_i_reg_rep_1_i_5
+       (.I0(read_counter_i[4]),
+        .I1(read_counter_i[2]),
+        .I2(read_counter_i_reg_rep_1_i_13_n_0),
+        .I3(read_counter_i[3]),
+        .I4(read_counter_i[5]),
+        .I5(SYSTEM_RESET),
         .O(read_counter_i_reg_rep_1_i_5_n_0));
   LUT6 #(
-    .INIT(64'h2222022222222222)) 
+    .INIT(64'h000000007FFF8000)) 
     read_counter_i_reg_rep_1_i_6
-       (.I0(p_0_in[4]),
-        .I1(SYSTEM_RESET),
-        .I2(read_counter_i_reg__0[8]),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg_rep_1_i_11_n_0),
-        .I5(read_counter_i_reg__0[6]),
+       (.I0(read_counter_i[3]),
+        .I1(read_counter_i[0]),
+        .I2(read_counter_i[1]),
+        .I3(read_counter_i[2]),
+        .I4(read_counter_i[4]),
+        .I5(SYSTEM_RESET),
         .O(read_counter_i_reg_rep_1_i_6_n_0));
-  LUT6 #(
-    .INIT(64'h2222022222222222)) 
+  LUT5 #(
+    .INIT(32'h00007F80)) 
     read_counter_i_reg_rep_1_i_7
-       (.I0(p_0_in[3]),
-        .I1(SYSTEM_RESET),
-        .I2(read_counter_i_reg__0[8]),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg_rep_1_i_11_n_0),
-        .I5(read_counter_i_reg__0[6]),
+       (.I0(read_counter_i[2]),
+        .I1(read_counter_i[1]),
+        .I2(read_counter_i[0]),
+        .I3(read_counter_i[3]),
+        .I4(SYSTEM_RESET),
         .O(read_counter_i_reg_rep_1_i_7_n_0));
-  LUT6 #(
-    .INIT(64'h2222022222222222)) 
+  LUT4 #(
+    .INIT(16'h0078)) 
     read_counter_i_reg_rep_1_i_8
-       (.I0(p_0_in[2]),
-        .I1(SYSTEM_RESET),
-        .I2(read_counter_i_reg__0[8]),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg_rep_1_i_11_n_0),
-        .I5(read_counter_i_reg__0[6]),
+       (.I0(read_counter_i[1]),
+        .I1(read_counter_i[0]),
+        .I2(read_counter_i[2]),
+        .I3(SYSTEM_RESET),
         .O(read_counter_i_reg_rep_1_i_8_n_0));
-  LUT6 #(
-    .INIT(64'h2222022222222222)) 
+  LUT3 #(
+    .INIT(8'h06)) 
     read_counter_i_reg_rep_1_i_9
-       (.I0(p_0_in[1]),
-        .I1(SYSTEM_RESET),
-        .I2(read_counter_i_reg__0[8]),
-        .I3(read_counter_i_reg__0[7]),
-        .I4(read_counter_i_reg_rep_1_i_11_n_0),
-        .I5(read_counter_i_reg__0[6]),
+       (.I0(read_counter_i[1]),
+        .I1(read_counter_i[0]),
+        .I2(SYSTEM_RESET),
         .O(read_counter_i_reg_rep_1_i_9_n_0));
 endmodule
 `ifndef GLBL

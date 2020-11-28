@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Fri Nov 27 23:14:54 2020
+//Date        : Sat Nov 28 02:03:06 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -85,7 +85,6 @@ module interlaken_imp_1RYIMTC
   wire [1:0]decode_64B_67B_HEADER_OUT;
   wire decode_64B_67B_LOCKED;
   wire descrambler_LOCKED;
-  wire encode_64B_67B_DATA_OUT_VALID;
   wire gearbox_rx_DATA_OUT_VALID;
   wire gt_core_0_RX_SYSTEM_RESET;
   wire gt_core_0_RX_USR_CLK;
@@ -99,6 +98,7 @@ module interlaken_imp_1RYIMTC
   wire scrambler_DATA_OUT_VALID;
   wire tx_interface_0_DATA_IN_READY;
   wire tx_interface_0_DATA_VALID;
+  wire tx_interface_0_GEARBOX_VALID;
   wire [1:0]tx_interface_0_HEADER_OUT;
 
   assign DATA_IN_READY = tx_interface_0_DATA_IN_READY;
@@ -143,7 +143,6 @@ module interlaken_imp_1RYIMTC
        (.DATA_IN(SCRAMBLED_DATA_OUT),
         .DATA_IN_VALID(scrambler_DATA_OUT_VALID),
         .DATA_OUT(ENCODER_DATA_OUT),
-        .DATA_OUT_VALID(encode_64B_67B_DATA_OUT_VALID),
         .HEADER_IN(scrambler_0_HEADER_OUT),
         .PASSTHROUGH(ENCODER_PASSTHROUGH),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
@@ -156,7 +155,7 @@ module interlaken_imp_1RYIMTC
         .USER_CLK(gt_core_0_RX_USR_CLK2));
   main_gearbox_tx_0_0 gearbox_tx
        (.DATA_IN(ENCODER_DATA_OUT),
-        .DATA_IN_VALID(encode_64B_67B_DATA_OUT_VALID),
+        .DATA_IN_VALID(tx_interface_0_GEARBOX_VALID),
         .DATA_OUT(GEARBOX_TX_DATA_OUT),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));
@@ -226,6 +225,7 @@ module interlaken_imp_1RYIMTC
         .DATA_OUT(TX_INTERFACE_DATA_OUT),
         .DATA_TO_SEND(DATA_TO_SEND_1),
         .DATA_VALID(tx_interface_0_DATA_VALID),
+        .GEARBOX_VALID(tx_interface_0_GEARBOX_VALID),
         .HEADER_OUT(tx_interface_0_HEADER_OUT),
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));

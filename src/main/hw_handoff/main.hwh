@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Nov 27 23:14:54 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Nov 28 02:03:07 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -897,11 +897,7 @@
             <CONNECTION INSTANCE="interlaken_scrambler" PORT="DATA_OUT_VALID"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="DATA_OUT_VALID" SIGIS="undef" SIGNAME="interlaken_encode_64B_67B_DATA_OUT_VALID">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="DATA_IN_VALID"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="DATA_OUT_VALID" SIGIS="undef"/>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>
@@ -974,9 +970,9 @@
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_DATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="DATA_IN_VALID" SIGIS="undef" SIGNAME="interlaken_encode_64B_67B_DATA_OUT_VALID">
+        <PORT DIR="I" NAME="DATA_IN_VALID" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_GEARBOX_VALID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="interlaken_encode_64B_67B" PORT="DATA_OUT_VALID"/>
+            <CONNECTION INSTANCE="interlaken_tx_interface_0" PORT="GEARBOX_VALID"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
@@ -7649,7 +7645,11 @@
             <CONNECTION INSTANCE="interlaken_scrambler" PORT="DATA_IN_VALID"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="GEARBOX_VALID" SIGIS="undef"/>
+        <PORT DIR="O" NAME="GEARBOX_VALID" SIGIS="undef" SIGNAME="interlaken_tx_interface_0_GEARBOX_VALID">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="interlaken_gearbox_tx" PORT="DATA_IN_VALID"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="USER_CLK" SIGIS="clk" SIGNAME="interlaken_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="interlaken_gt_core_0" PORT="TX_USR_CLK2"/>

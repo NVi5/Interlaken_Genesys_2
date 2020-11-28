@@ -395,7 +395,6 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
   connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe9]
   connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe13]
-  connect_bd_net -net encode_64B_67B_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_OUT_VALID] [get_bd_pins gearbox_tx/DATA_IN_VALID]
   connect_bd_net -net gearbox_rx_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_IN_VALID] [get_bd_pins gearbox_rx/DATA_OUT_VALID]
   connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
@@ -409,6 +408,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net scrambler_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_IN_VALID] [get_bd_pins scrambler/DATA_OUT_VALID]
   connect_bd_net -net tx_interface_0_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins tx_interface_0/DATA_IN_READY]
   connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_VALID]
+  connect_bd_net -net tx_interface_0_GEARBOX_VALID [get_bd_pins gearbox_tx/DATA_IN_VALID] [get_bd_pins tx_interface_0/GEARBOX_VALID]
   connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
 
   # Restore current instance

@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="34969268667fs"></ZoomStartTime>
-      <ZoomEndTime time="35620768668fs"></ZoomEndTime>
-      <Cursor1Time time="33852852000fs"></Cursor1Time>
+      <ZoomStartTime time="462037726000fs"></ZoomStartTime>
+      <ZoomEndTime time="462382726001fs"></ZoomEndTime>
+      <Cursor1Time time="462987726000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="194"></NameColumnWidth>
-      <ValueColumnWidth column_width="101"></ValueColumnWidth>
+      <ValueColumnWidth column_width="93"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
    <wvobject fp_name="group82" type="group">
@@ -87,7 +87,6 @@
    <wvobject fp_name="group83" type="group">
       <obj_property name="label">GT Status</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gt_core_0/SOFT_RESET" type="logic">
          <obj_property name="ElementShortName">SOFT_RESET</obj_property>
          <obj_property name="ObjectShortName">SOFT_RESET</obj_property>
@@ -178,6 +177,7 @@
    <wvobject fp_name="group86" type="group">
       <obj_property name="label">Frame Checker</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/inst/rx_data_r_track" type="array">
          <obj_property name="ElementShortName">rx_data_r_track[63:0]</obj_property>
          <obj_property name="ObjectShortName">rx_data_r_track[63:0]</obj_property>
@@ -185,6 +185,19 @@
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/inst/bram_data" type="array">
          <obj_property name="ElementShortName">bram_data[63:0]</obj_property>
          <obj_property name="ObjectShortName">bram_data[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/inst/rx_header_r_track" type="array">
+         <obj_property name="ElementShortName">rx_header_r_track[1:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_header_r_track[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/inst/read_counter_i" type="array">
+         <obj_property name="ElementShortName">read_counter_i[8:0]</obj_property>
+         <obj_property name="ObjectShortName">read_counter_i[8:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/DATA_IN_VALID" type="logic">
+         <obj_property name="ElementShortName">DATA_IN_VALID</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN_VALID</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/TRACK_DATA_OUT" type="logic">
          <obj_property name="ElementShortName">TRACK_DATA_OUT</obj_property>
@@ -201,10 +214,6 @@
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/SYSTEM_RESET" type="logic">
          <obj_property name="ElementShortName">SYSTEM_RESET</obj_property>
          <obj_property name="ObjectShortName">SYSTEM_RESET</obj_property>
-      </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/DATA_IN_VALID" type="logic">
-         <obj_property name="ElementShortName">DATA_IN_VALID</obj_property>
-         <obj_property name="ObjectShortName">DATA_IN_VALID</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group31074" type="group">
@@ -273,13 +282,14 @@
    <wvobject fp_name="group88" type="group">
       <obj_property name="label">TX Interface</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/USER_CLK" type="logic">
          <obj_property name="ElementShortName">USER_CLK</obj_property>
          <obj_property name="ObjectShortName">USER_CLK</obj_property>
       </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_gen/TX_DATA_OUT" type="array">
-         <obj_property name="ElementShortName">TX_DATA_OUT[63:0]</obj_property>
-         <obj_property name="ObjectShortName">TX_DATA_OUT[63:0]</obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/DATA_IN" type="array">
+         <obj_property name="ElementShortName">DATA_IN[63:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[63:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/DATA_OUT" type="array">
          <obj_property name="ElementShortName">DATA_OUT[63:0]</obj_property>
@@ -339,7 +349,6 @@
    <wvobject fp_name="group176" type="group">
       <obj_property name="label">Gearbox</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/gearbox_tx/DATA_IN_VALID" type="logic">
          <obj_property name="ElementShortName">DATA_IN_VALID</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_VALID</obj_property>

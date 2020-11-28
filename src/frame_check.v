@@ -204,13 +204,13 @@ wire            next_track_data_c;
         begin
             read_counter_i  <=  `DLY    'h0;
         end
-        else if (DATA_IN_VALID)
+        else if (DATA_IN_VALID && (rx_header_r2 == 2'b01))
         begin
             if ((read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r))
             begin
                 read_counter_i  <=  `DLY    'h0;
             end
-            else if (rx_header_r2 == 2'b01)
+            else
             begin
                 read_counter_i  <=  `DLY    read_counter_i + 1'b1;
             end

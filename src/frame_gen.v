@@ -46,17 +46,24 @@ reg     [63:0]  rom [0:(WORDS_IN_BRAM - 1)];
 //*********************************Main Body of Code**********************************
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET || (read_counter_i == (WORDS_IN_BRAM - 1)))
+        if (SYSTEM_RESET)
         begin
             read_counter_i   <=  `DLY    'h0;
         end
         else if (DATA_IN_READY)
         begin
-            read_counter_i   <=  `DLY    read_counter_i + 1'b1;
+            if (read_counter_i == (WORDS_IN_BRAM - 1))
+            begin
+                read_counter_i   <=  `DLY    'h0;
+            end
+            else
+            begin
+                read_counter_i   <=  `DLY    read_counter_i + 1'b1;
+            end
         end
 
     always @(posedge USER_CLK)
-        if(SYSTEM_RESET)
+        if (SYSTEM_RESET)
         begin
             TX_DATA_OUT <= `DLY 64'd0;
             TX_DATA_TO_SEND <= `DLY 1'b0;

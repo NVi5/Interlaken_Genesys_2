@@ -47,46 +47,51 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:frame_check:1.0
+// IP VLNV: xilinx.com:module_ref:tx_interface:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "frame_check,Vivado 2018.2" *)
-(* CHECK_LICENSE_TYPE = "main_frame_check_0_0,frame_check,{}" *)
-(* CORE_GENERATION_INFO = "main_frame_check_0_0,frame_check,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=frame_check,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,START_OF_PACKET_CHAR=0x0E0D0C0B0A090800,WORDS_IN_BRAM=512}" *)
+(* X_CORE_INFO = "tx_interface,Vivado 2018.2" *)
+(* CHECK_LICENSE_TYPE = "main_tx_interface_0_0,tx_interface,{}" *)
+(* CORE_GENERATION_INFO = "main_tx_interface_0_0,tx_interface,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=tx_interface,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,META_FRAME_LEN=16}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module main_frame_check_0_0 (
-  RX_DATA_IN,
-  RX_HEADER_IN,
-  ERROR_COUNT_OUT,
-  TRACK_DATA_OUT,
+module main_tx_interface_0_0 (
+  DATA_IN,
+  DATA_OUT,
+  HEADER_OUT,
+  DATA_TO_SEND,
+  DATA_IN_READY,
+  DATA_VALID,
+  GEARBOX_VALID,
   USER_CLK,
-  SYSTEM_RESET,
-  DATA_IN_VALID
+  SYSTEM_RESET
 );
 
-input wire [63 : 0] RX_DATA_IN;
-input wire [1 : 0] RX_HEADER_IN;
-output wire [7 : 0] ERROR_COUNT_OUT;
-output wire TRACK_DATA_OUT;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)
+input wire [63 : 0] DATA_IN;
+output wire [63 : 0] DATA_OUT;
+output wire [1 : 0] HEADER_OUT;
+input wire DATA_TO_SEND;
+output wire DATA_IN_READY;
+output wire DATA_VALID;
+output wire GEARBOX_VALID;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
-input wire DATA_IN_VALID;
 
-  frame_check #(
-    .START_OF_PACKET_CHAR(64'H0E0D0C0B0A090800),
-    .WORDS_IN_BRAM(512)
+  tx_interface #(
+    .META_FRAME_LEN(16)
   ) inst (
-    .RX_DATA_IN(RX_DATA_IN),
-    .RX_HEADER_IN(RX_HEADER_IN),
-    .ERROR_COUNT_OUT(ERROR_COUNT_OUT),
-    .TRACK_DATA_OUT(TRACK_DATA_OUT),
+    .DATA_IN(DATA_IN),
+    .DATA_OUT(DATA_OUT),
+    .HEADER_OUT(HEADER_OUT),
+    .DATA_TO_SEND(DATA_TO_SEND),
+    .DATA_IN_READY(DATA_IN_READY),
+    .DATA_VALID(DATA_VALID),
+    .GEARBOX_VALID(GEARBOX_VALID),
     .USER_CLK(USER_CLK),
-    .SYSTEM_RESET(SYSTEM_RESET),
-    .DATA_IN_VALID(DATA_IN_VALID)
+    .SYSTEM_RESET(SYSTEM_RESET)
   );
 endmodule
