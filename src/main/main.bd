@@ -574,16 +574,6 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>TRACK_DATA</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
           <spirit:name>RX_DATA_OUT</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
@@ -619,6 +609,12 @@
           <spirit:name>DATA_OUT_VALID</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>TRACK_DATA</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
           </spirit:wire>
         </spirit:port>
       </spirit:ports>
@@ -676,7 +672,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">64</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">67</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
@@ -1030,11 +1026,6 @@
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>DATA_VALID</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Res"/>
-        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="DATA_VALID"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>OVERRIDE_DATA_VALID</spirit:name>
         <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_out1"/>
         <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Op2"/>
@@ -1096,6 +1087,11 @@
         <spirit:name>gt_core_0_TX_RESET_DONE</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_RESET_DONE"/>
         <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe2"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>util_vector_logic_0_Res</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="util_vector_logic_0" spirit:portRef="Res"/>
+        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="DATA_VALID"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>

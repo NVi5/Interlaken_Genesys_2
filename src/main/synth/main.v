@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov 28 02:03:06 2020
+//Date        : Sat Nov 28 19:58:02 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -81,7 +81,6 @@ module interlaken_imp_1RYIMTC
   wire [0:0]SOFT_RESET;
   wire [0:0]TRACK_DATA;
   wire [63:0]TX_INTERFACE_DATA_OUT;
-  wire TX_RESET_DONE;
   wire [1:0]decode_64B_67B_HEADER_OUT;
   wire decode_64B_67B_LOCKED;
   wire descrambler_LOCKED;
@@ -91,6 +90,7 @@ module interlaken_imp_1RYIMTC
   wire gt_core_0_RX_USR_CLK2;
   wire gt_core_0_TXN_OUT;
   wire gt_core_0_TXP_OUT;
+  wire gt_core_0_TX_RESET_DONE;
   wire gt_core_0_TX_SYSTEM_RESET;
   wire gt_core_0_TX_USR_CLK;
   wire [63:0]gt_frame_gen_0_TX_DATA_OUT;
@@ -176,33 +176,25 @@ module interlaken_imp_1RYIMTC
         .TXP_OUT(gt_core_0_TXP_OUT),
         .TX_DATA(GEARBOX_TX_DATA_OUT),
         .TX_RESET(gt_core_0_TX_SYSTEM_RESET),
-        .TX_RESET_DONE(TX_RESET_DONE),
+        .TX_RESET_DONE(gt_core_0_TX_RESET_DONE),
         .TX_USR_CLK(gt_core_0_TX_USR_CLK),
         .TX_USR_CLK2(Net1));
   main_ila_0_1 ila_0
        (.clk(gt_core_0_RX_USR_CLK),
-        .probe0(DECODER_DATA_OUT),
+        .probe0(DESCRAMBLER_DATA_OUT),
         .probe1(TRACK_DATA),
-        .probe10(MANIPULATOR_DATA_OUT),
-        .probe11(GT_RX_DATA),
-        .probe12(CANDIDATE),
-        .probe13(descrambler_LOCKED),
         .probe2(DEBUG_ERROR_COUNT),
-        .probe3(DECODER_DATA_OUT_VALID),
-        .probe4(GEARBOX_RX_DATA_OUT),
+        .probe3(DESCRAMBLER_DATA_OUT_VALID),
+        .probe4(CANDIDATE),
         .probe5(DESCRAMBLER_HEADER_OUT_ILA),
-        .probe6(DESCRAMBLER_DATA_OUT_VALID),
-        .probe7(DESCRAMBLER_DATA_OUT),
-        .probe8(RX_RESET_DONE),
-        .probe9(decode_64B_67B_LOCKED));
+        .probe6(descrambler_LOCKED),
+        .probe7(decode_64B_67B_LOCKED),
+        .probe8(RX_RESET_DONE));
   main_ila_1_1 ila_1
        (.clk(gt_core_0_TX_USR_CLK),
-        .probe0(SCRAMBLED_DATA_OUT),
-        .probe1(TX_INTERFACE_DATA_OUT),
-        .probe2(GEARBOX_TX_DATA_OUT),
-        .probe3(TX_RESET_DONE),
-        .probe4(TX_RESET_DONE),
-        .probe5(ENCODER_DATA_OUT));
+        .probe0(TX_INTERFACE_DATA_OUT),
+        .probe1(ENCODER_DATA_OUT),
+        .probe2(gt_core_0_TX_RESET_DONE));
   main_scrambler_0_0 scrambler
        (.DATA_IN(TX_INTERFACE_DATA_OUT),
         .DATA_IN_VALID(tx_interface_0_DATA_VALID),
@@ -243,8 +235,8 @@ module interlaken_imp_1RYIMTC
         .probe_out1(ENCODER_PASSTHROUGH));
   main_vio_2_0 vio_2
        (.clk(gt_core_0_RX_USR_CLK),
-        .probe_in0(DECODER_DATA_OUT_VALID),
-        .probe_in1(DESCRAMBLER_DATA_OUT_VALID),
+        .probe_in0(decode_64B_67B_LOCKED),
+        .probe_in1(descrambler_LOCKED),
         .probe_in2(CANDIDATE),
         .probe_in3(TRACK_DATA),
         .probe_out0(PASSTHROUGH_DESCRAMBLER),

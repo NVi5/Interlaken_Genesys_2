@@ -49,6 +49,7 @@ module tx_interface #
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr;
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r;
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r2;
+    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r3;
     reg     [66:0]                              schedule;
     reg                                         send_payload;
 
@@ -65,37 +66,54 @@ always @(posedge USER_CLK)
 
 
 always @(posedge USER_CLK)
-    if ((frame_ctr == (META_FRAME_LEN - 1) && schedule[64]) || SYSTEM_RESET)
+    if (SYSTEM_RESET)
     begin
         frame_ctr       <= `DLY     'h0;
         frame_ctr_r     <= `DLY     'h0;
         frame_ctr_r2    <= `DLY     'h0;
+        frame_ctr_r3    <= `DLY     'h0;
     end
-    else if (schedule[64])
+    else if (schedule[60])
     begin
-        frame_ctr       <= `DLY     frame_ctr + 1'b1;
-        frame_ctr_r     <= `DLY     frame_ctr;
-        frame_ctr_r2    <= `DLY     frame_ctr_r;
+        if (frame_ctr == (META_FRAME_LEN - 1))
+        begin
+            frame_ctr       <= `DLY     'h0;
+            frame_ctr_r     <= `DLY     'h0;
+            frame_ctr_r2    <= `DLY     'h0;
+            frame_ctr_r3    <= `DLY     'h0;
+        end
+        else
+        begin
+            frame_ctr       <= `DLY     frame_ctr + 1'b1;
+            frame_ctr_r     <= `DLY     frame_ctr;
+            frame_ctr_r2    <= `DLY     frame_ctr_r;
+            frame_ctr_r3    <= `DLY     frame_ctr_r2;
+        end
     end
 
 always @(posedge USER_CLK)
-    case(frame_ctr)
-        0:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h78f678f678f678f6};
-        1:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h2800000000000000};
-        default:
-            if (DATA_TO_SEND)
-                    {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b01, DATA_IN};
-            else
-                    {HEADER_OUT, DATA_OUT}  <=  `DLY    {33{2'b10}}; // Idle word
-    endcase
-
-always @(posedge USER_CLK)
-    if (frame_ctr < 2)
-            send_payload  <=  `DLY   1'b0;
+    if (schedule[63])
+        case(frame_ctr)
+            0:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h78f678f678f678f6};
+            1:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h2800000000000000};
+            default:
+                if (DATA_TO_SEND)
+                        {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b01, DATA_IN};
+                else
+                        {HEADER_OUT, DATA_OUT}  <=  `DLY    {33{2'b10}}; // Idle word
+        endcase
     else
-            send_payload  <=  `DLY   1'b1;
+    begin
+                        {HEADER_OUT, DATA_OUT}  <=  `DLY    {66{1'b0}};
+    end
+always @(posedge USER_CLK)
+    if (schedule[61])
+        if (frame_ctr < 2)
+                send_payload  <=  `DLY   1'b0;
+        else
+                send_payload  <=  `DLY   1'b1;
 
-assign DATA_IN_READY = schedule[64] && send_payload;
+assign DATA_IN_READY = schedule[61] && send_payload;
 assign DATA_VALID    = schedule[64];
 assign GEARBOX_VALID = schedule[66];
 

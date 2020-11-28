@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="462037726000fs"></ZoomStartTime>
-      <ZoomEndTime time="462382726001fs"></ZoomEndTime>
-      <Cursor1Time time="462987726000fs"></Cursor1Time>
+      <ZoomStartTime time="267193291000fs"></ZoomStartTime>
+      <ZoomEndTime time="267457891001fs"></ZoomEndTime>
+      <Cursor1Time time="267863791000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="194"></NameColumnWidth>
-      <ValueColumnWidth column_width="93"></ValueColumnWidth>
+      <ValueColumnWidth column_width="81"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
    <wvobject fp_name="group82" type="group">
@@ -195,6 +195,10 @@
          <obj_property name="ObjectShortName">read_counter_i[8:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/RX_DATA_IN" type="array">
+         <obj_property name="ElementShortName">RX_DATA_IN[63:0]</obj_property>
+         <obj_property name="ObjectShortName">RX_DATA_IN[63:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/DATA_IN_VALID" type="logic">
          <obj_property name="ElementShortName">DATA_IN_VALID</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_VALID</obj_property>
@@ -307,10 +311,18 @@
          <obj_property name="ElementShortName">send_payload</obj_property>
          <obj_property name="ObjectShortName">send_payload</obj_property>
       </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_gen/inst/read_counter_i" type="array">
+         <obj_property name="ElementShortName">read_counter_i[8:0]</obj_property>
+         <obj_property name="ObjectShortName">read_counter_i[8:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/frame_ctr" type="array">
          <obj_property name="ElementShortName">frame_ctr[3:0]</obj_property>
          <obj_property name="ObjectShortName">frame_ctr[3:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/send_payload" type="logic">
+         <obj_property name="ElementShortName">send_payload</obj_property>
+         <obj_property name="ObjectShortName">send_payload</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group81" type="group">
