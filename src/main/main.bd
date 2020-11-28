@@ -672,13 +672,13 @@
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_1_1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE5_WIDTH">67</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE5_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">20</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">6</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -688,19 +688,19 @@
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_ila_0_1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE12_WIDTH">7</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE11_WIDTH">20</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">20</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE12_WIDTH">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE11_WIDTH">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE10_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE9_WIDTH">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE7_WIDTH">64</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE7_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE6_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE5_WIDTH">2</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">67</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE4_WIDTH">7</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE3_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE2_WIDTH">8</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE1_WIDTH">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_PROBE0_WIDTH">64</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">14</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_OF_PROBES">9</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_ENABLE_ILA_AXI_MON">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_MONITOR_TYPE">Native</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -833,13 +833,11 @@
       <spirit:adHocConnection>
         <spirit:name>GEARBOX_TX_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe2"/>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_DATA"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>SCRAMBLED_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="scrambler" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe0"/>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
@@ -866,13 +864,11 @@
       <spirit:adHocConnection>
         <spirit:name>GEARBOX_RX_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe4"/>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DECODER_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe0"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
@@ -966,15 +962,13 @@
       <spirit:adHocConnection>
         <spirit:name>DECODER_DATA_OUT_VALID</spirit:name>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="DATA_OUT_VALID"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe3"/>
-        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in0"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_IN_VALID"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DESCRAMBLER_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_OUT"/>
         <spirit:externalPortReference spirit:portRef="RX_DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe7"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe0"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>decode_64B_67B_HEADER_OUT</spirit:name>
@@ -996,14 +990,13 @@
         <spirit:name>DESCRAMBLER_DATA_OUT_VALID</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_OUT_VALID"/>
         <spirit:externalPortReference spirit:portRef="DATA_OUT_VALID"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe6"/>
-        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in1"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe3"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_INTERFACE_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe1"/>
         <spirit:internalPortReference spirit:componentRef="scrambler" spirit:portRef="DATA_IN"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe0"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>tx_interface_0_HEADER_OUT</spirit:name>
@@ -1021,27 +1014,19 @@
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe8"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>TX_RESET_DONE</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_RESET_DONE"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe4"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe3"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>ENCODER_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe5"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_IN"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe1"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>GT_RX_DATA</spirit:name>
         <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="RX_DATA"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe11"/>
         <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>MANIPULATOR_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="stream_manipulator" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe10"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
@@ -1072,8 +1057,8 @@
       <spirit:adHocConnection>
         <spirit:name>CANDIDATE</spirit:name>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="CANDIDATE"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe12"/>
         <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in2"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe4"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>tx_interface_0_DATA_VALID</spirit:name>
@@ -1093,17 +1078,24 @@
       <spirit:adHocConnection>
         <spirit:name>decode_64B_67B_LOCKED</spirit:name>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="LOCKED"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe9"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in0"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe7"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>descrambler_LOCKED</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="LOCKED"/>
-        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe13"/>
+        <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in1"/>
+        <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe6"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>tx_interface_0_GEARBOX_VALID</spirit:name>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="GEARBOX_VALID"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_IN_VALID"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>gt_core_0_TX_RESET_DONE</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="gt_core_0" spirit:portRef="TX_RESET_DONE"/>
+        <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe2"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>
