@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# frame_check, frame_gen, decode_64B_67B, descrambler, gearbox_rx, stream_manipulator, encode_64B_67B, gearbox_tx, scrambler, tx_interface
+# frame_check, frame_gen, decode_64B_67B, descrambler, gearbox_rx, rx_interface, stream_manipulator, encode_64B_67B, gearbox_tx, scrambler, tx_interface
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -382,7 +382,6 @@ proc create_hier_cell_RX { parentCell nameHier } {
   create_bd_pin -dir I -from 19 -to 0 DATA_IN
   create_bd_pin -dir O -from 63 -to 0 DATA_OUT
   create_bd_pin -dir O DATA_OUT_VALID
-  create_bd_pin -dir O -from 1 -to 0 HEADER_OUT
   create_bd_pin -dir I -type rst RX_SYSTEM_RESET
   create_bd_pin -dir I -type clk RX_USR_CLK
   create_bd_pin -dir I -type clk RX_USR_CLK2
@@ -443,6 +442,17 @@ proc create_hier_cell_RX { parentCell nameHier } {
    CONFIG.C_PROBE9_WIDTH {1} \
  ] $ila_0
 
+  # Create instance: rx_interface, and set properties
+  set block_name rx_interface
+  set block_cell_name rx_interface
+  if { [catch {set rx_interface [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $rx_interface eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: vio_2, and set properties
   set vio_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_2 ]
   set_property -dict [ list \
@@ -460,19 +470,21 @@ proc create_hier_cell_RX { parentCell nameHier } {
   connect_bd_net -net DATA_IN_1 [get_bd_pins DATA_IN] [get_bd_pins gearbox_rx/DATA_IN]
   connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/DATA_IN]
   connect_bd_net -net DECODER_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_OUT_VALID] [get_bd_pins descrambler/DATA_IN_VALID]
-  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins descrambler/DATA_OUT] [get_bd_pins ila_0/probe0]
-  connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins descrambler/DATA_OUT_VALID] [get_bd_pins ila_0/probe3]
-  connect_bd_net -net DESCRAMBLER_HEADER_OUT [get_bd_pins HEADER_OUT] [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins descrambler/DATA_OUT] [get_bd_pins ila_0/probe0] [get_bd_pins rx_interface/DATA_IN]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins descrambler/DATA_OUT_VALID] [get_bd_pins ila_0/probe3] [get_bd_pins rx_interface/DATA_IN_VALID]
+  connect_bd_net -net DESCRAMBLER_HEADER_OUT [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5] [get_bd_pins rx_interface/HEADER_IN]
   connect_bd_net -net GEARBOX_RX_DATA_OUT [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gearbox_rx/DATA_OUT]
   connect_bd_net -net PASSTHROUGH_DECODER [get_bd_pins decode_64B_67B/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
   connect_bd_net -net PASSTHROUGH_DESCRAMBLER [get_bd_pins descrambler/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
-  connect_bd_net -net RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins ila_0/probe1]
+  connect_bd_net -net RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins ila_0/probe1]
   connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
-  connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in0]
-  connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe4] [get_bd_pins vio_2/probe_in1]
+  connect_bd_net -net decode_64B_67B_NOT_LOCKED [get_bd_pins decode_64B_67B/NOT_LOCKED] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in0]
+  connect_bd_net -net descrambler_NOT_LOCKED [get_bd_pins descrambler/NOT_LOCKED] [get_bd_pins ila_0/probe4] [get_bd_pins rx_interface/SYSTEM_RESET] [get_bd_pins vio_2/probe_in1]
   connect_bd_net -net gearbox_rx_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_IN_VALID] [get_bd_pins gearbox_rx/DATA_OUT_VALID]
   connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
-  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK]
+  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK] [get_bd_pins rx_interface/USER_CLK]
+  connect_bd_net -net rx_interface_0_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins rx_interface/DATA_OUT]
+  connect_bd_net -net rx_interface_0_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins rx_interface/DATA_OUT_VALID]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -625,7 +637,6 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   create_bd_pin -dir O DATA_OUT_VALID
   create_bd_pin -dir I DATA_TO_SEND
   create_bd_pin -dir I -type clk DRP_CLK_IN
-  create_bd_pin -dir O -from 1 -to 0 HEADER_OUT
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_N_IN
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_P_IN
   create_bd_pin -dir I RXN_IN
@@ -657,7 +668,6 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins TX/DATA_TO_SEND]
   connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins RX/DATA_OUT]
   connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins RX/DATA_OUT_VALID]
-  connect_bd_net -net DESCRAMBLER_HEADER_OUT_ILA [get_bd_pins HEADER_OUT] [get_bd_pins RX/HEADER_OUT]
   connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins CORE/DRP_CLK_IN]
   connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins CORE/TX_USR_CLK2] [get_bd_pins TX/TX_USR_CLK2]
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins CORE/Q3_CLK0_GTREFCLK_PAD_N_IN]
@@ -794,7 +804,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net gt_core_0_TXP_OUT [get_bd_ports TXP_OUT] [get_bd_pins interlaken/TXP_OUT]
   connect_bd_net -net interlaken_DATA_IN_READY [get_bd_pins frame_gen/DATA_IN_READY] [get_bd_pins interlaken/DATA_IN_READY]
   connect_bd_net -net interlaken_DATA_OUT_VALID [get_bd_pins frame_check/DATA_IN_VALID] [get_bd_pins interlaken/DATA_OUT_VALID]
-  connect_bd_net -net interlaken_HEADER_OUT [get_bd_pins frame_check/RX_HEADER_IN] [get_bd_pins interlaken/HEADER_OUT]
   connect_bd_net -net interlaken_RX_SYSTEM_RESET [get_bd_pins frame_check/SYSTEM_RESET] [get_bd_pins interlaken/RX_SYSTEM_RESET]
   connect_bd_net -net interlaken_RX_USR_CLK [get_bd_pins interlaken/RX_USR_CLK] [get_bd_pins vio_0/clk]
   connect_bd_net -net interlaken_TX_SYSTEM_RESET [get_bd_pins frame_gen/SYSTEM_RESET] [get_bd_pins interlaken/TX_SYSTEM_RESET]

@@ -38,7 +38,7 @@ module descrambler #
     output reg  [1:0]                 HEADER_OUT,
     input  wire                       DATA_IN_VALID,
     output reg                        DATA_OUT_VALID,
-    output wire                       LOCKED,
+    output wire                       NOT_LOCKED,
 
     // System Interface
     input  wire         USER_CLK,
@@ -196,7 +196,7 @@ module descrambler #
     end
 
     always @(posedge USER_CLK)
-        if (SYSTEM_RESET)
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             HEADER_OUT           <= `DLY  2'b00;
             DATA_OUT_VALID       <= `DLY  1'b0;
@@ -204,8 +204,8 @@ module descrambler #
         else
         begin
             HEADER_OUT           <= `DLY  HEADER_IN;
-            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && LOCKED;
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state[2];
         end
 
-    assign LOCKED = state[2];
+    assign NOT_LOCKED = !state[2];
 endmodule

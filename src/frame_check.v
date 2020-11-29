@@ -74,7 +74,7 @@ module frame_check #
 (
     // User Interface
     input  wire [63:0]  RX_DATA_IN,
-    input  wire [1:0]   RX_HEADER_IN,
+    input  wire         DATA_IN_VALID,
 
     // Error Monitoring
     output wire [7:0]   ERROR_COUNT_OUT,
@@ -84,8 +84,7 @@ module frame_check #
 
     // System Interface
     input  wire         USER_CLK,
-    input  wire         SYSTEM_RESET,
-    input  wire         DATA_IN_VALID
+    input  wire         SYSTEM_RESET
 );
 
 //***************************Declarations********************
@@ -106,10 +105,6 @@ reg     [63:0]  rx_data_r;
 reg     [63:0]  rx_data_r2;
 reg     [63:0]  rx_data_r_track;
 wire    [63:0]  bram_data;
-
-reg     [1:0]   rx_header_r;
-reg     [1:0]   rx_header_r2;
-reg     [1:0]   rx_header_r_track;
 
 wire            error_detected_c;
 wire            next_begin_c;
@@ -156,25 +151,19 @@ wire            next_track_data_c;
             rx_data_r           <=  `DLY   'h0;
             rx_data_r2          <=  `DLY   'h0;
             rx_data_r_track     <=  `DLY   'h0;
-            rx_header_r         <=  `DLY   'h0;
-            rx_header_r2        <=  `DLY   'h0;
-            rx_header_r_track   <=  `DLY   'h0;
         end
         else if (DATA_IN_VALID)
         begin
             rx_data_r           <=  `DLY    RX_DATA_IN;
             rx_data_r2          <=  `DLY    rx_data_r;
             rx_data_r_track     <=  `DLY    rx_data_r2;
-            rx_header_r         <=  `DLY    RX_HEADER_IN;
-            rx_header_r2        <=  `DLY    rx_header_r;
-            rx_header_r_track   <=  `DLY    rx_header_r2;
         end
     end
 
 //___________________________ Check incoming data for errors ______________
 
     //An error is detected when data read for the BRAM does not match the incoming data
-    assign  error_detected_c    =  track_data_r2 && (rx_data_r_track != bram_data) && (rx_header_r_track == 2'b01);
+    assign  error_detected_c    =  track_data_r2 && (rx_data_r_track != bram_data);
 
     //We register the error_detected signal for use with the error counter logic
     always @(posedge USER_CLK)
@@ -204,7 +193,7 @@ wire            next_track_data_c;
         begin
             read_counter_i  <=  `DLY    'h0;
         end
-        else if (DATA_IN_VALID && (rx_header_r2 == 2'b01))
+        else if (DATA_IN_VALID)
         begin
             if ((read_counter_i == (WORDS_IN_BRAM - 1)) || (start_of_packet_detected_r && !track_data_r))
             begin

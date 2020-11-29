@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -43,8 +42,6 @@ module tx_interface #
     );
 
 //***************************Declarations********************
-    localparam CONTROL_LEN = 2;
-    localparam CLOCK_OFFSET = 2;
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr;
     reg     [66:0]                              schedule;
     reg                                         send_payload;

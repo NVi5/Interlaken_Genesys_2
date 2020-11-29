@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 29 15:14:02 2020
+-- Date        : Sun Nov 29 18:59:44 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_frame_check_0_0/main_frame_check_0_0_sim_netlist.vhdl
@@ -19,10 +19,9 @@ entity main_frame_check_0_0_frame_check is
     TRACK_DATA_OUT : out STD_LOGIC;
     ERROR_COUNT_OUT : out STD_LOGIC_VECTOR ( 7 downto 0 );
     DATA_IN_VALID : in STD_LOGIC;
-    RX_DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
     SYSTEM_RESET : in STD_LOGIC;
-    USER_CLK : in STD_LOGIC;
-    RX_HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 )
+    RX_DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    USER_CLK : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_frame_check_0_0_frame_check : entity is "frame_check";
@@ -35,51 +34,50 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal data_error_detected_r : STD_LOGIC;
   signal error_count_r0 : STD_LOGIC;
   signal \error_count_r[7]_i_3_n_0\ : STD_LOGIC;
-  signal error_detected_c1 : STD_LOGIC;
-  signal \error_detected_c1_carry__0_i_1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_i_2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_i_3_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_i_4_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_n_1\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_n_2\ : STD_LOGIC;
-  signal \error_detected_c1_carry__0_n_3\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_i_1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_i_2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_i_3_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_i_4_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_n_1\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_n_2\ : STD_LOGIC;
-  signal \error_detected_c1_carry__1_n_3\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_i_1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_i_2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_i_3_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_i_4_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_n_1\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_n_2\ : STD_LOGIC;
-  signal \error_detected_c1_carry__2_n_3\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_i_1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_i_2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_i_3_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_i_4_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_n_1\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_n_2\ : STD_LOGIC;
-  signal \error_detected_c1_carry__3_n_3\ : STD_LOGIC;
-  signal \error_detected_c1_carry__4_i_1_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__4_i_2_n_0\ : STD_LOGIC;
-  signal \error_detected_c1_carry__4_n_3\ : STD_LOGIC;
-  signal error_detected_c1_carry_i_1_n_0 : STD_LOGIC;
-  signal error_detected_c1_carry_i_2_n_0 : STD_LOGIC;
-  signal error_detected_c1_carry_i_3_n_0 : STD_LOGIC;
-  signal error_detected_c1_carry_i_4_n_0 : STD_LOGIC;
-  signal error_detected_c1_carry_n_0 : STD_LOGIC;
-  signal error_detected_c1_carry_n_1 : STD_LOGIC;
-  signal error_detected_c1_carry_n_2 : STD_LOGIC;
-  signal error_detected_c1_carry_n_3 : STD_LOGIC;
-  signal error_detected_c_n_0 : STD_LOGIC;
+  signal error_detected_c0 : STD_LOGIC;
+  signal \error_detected_c0_carry__0_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_i_2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_i_3_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_i_4_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_n_1\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_n_2\ : STD_LOGIC;
+  signal \error_detected_c0_carry__0_n_3\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_i_2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_i_3_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_i_4_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_n_1\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_n_2\ : STD_LOGIC;
+  signal \error_detected_c0_carry__1_n_3\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_i_2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_i_3_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_i_4_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_n_1\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_n_2\ : STD_LOGIC;
+  signal \error_detected_c0_carry__2_n_3\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_i_2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_i_3_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_i_4_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_n_1\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_n_2\ : STD_LOGIC;
+  signal \error_detected_c0_carry__3_n_3\ : STD_LOGIC;
+  signal \error_detected_c0_carry__4_i_1_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__4_i_2_n_0\ : STD_LOGIC;
+  signal \error_detected_c0_carry__4_n_3\ : STD_LOGIC;
+  signal error_detected_c0_carry_i_1_n_0 : STD_LOGIC;
+  signal error_detected_c0_carry_i_2_n_0 : STD_LOGIC;
+  signal error_detected_c0_carry_i_3_n_0 : STD_LOGIC;
+  signal error_detected_c0_carry_i_4_n_0 : STD_LOGIC;
+  signal error_detected_c0_carry_n_0 : STD_LOGIC;
+  signal error_detected_c0_carry_n_1 : STD_LOGIC;
+  signal error_detected_c0_carry_n_2 : STD_LOGIC;
+  signal error_detected_c0_carry_n_3 : STD_LOGIC;
   signal error_detected_r : STD_LOGIC;
   signal error_detected_r_i_1_n_0 : STD_LOGIC;
   signal next_begin_c : STD_LOGIC;
@@ -87,7 +85,6 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal next_track_data_c : STD_LOGIC;
   signal p_0_in : STD_LOGIC_VECTOR ( 8 downto 0 );
   signal \p_0_in__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal read_counter_i0 : STD_LOGIC;
   signal \read_counter_i[8]_i_1_n_0\ : STD_LOGIC;
   signal \read_counter_i_reg__0\ : STD_LOGIC_VECTOR ( 8 downto 0 );
   signal read_counter_i_reg_rep_0_i_10_n_0 : STD_LOGIC;
@@ -95,7 +92,6 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal read_counter_i_reg_rep_0_i_12_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_0_i_13_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_0_i_14_n_0 : STD_LOGIC;
-  signal read_counter_i_reg_rep_0_i_15_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_0_i_1_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_0_i_2_n_0 : STD_LOGIC;
   signal read_counter_i_reg_rep_0_i_3_n_0 : STD_LOGIC;
@@ -172,9 +168,6 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal rx_data_r : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal rx_data_r2 : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal rx_data_r_track : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal rx_header_r : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal rx_header_r2 : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal rx_header_r_track : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal start_of_packet_detected_r : STD_LOGIC;
   signal start_of_packet_detected_r_i_11_n_0 : STD_LOGIC;
   signal start_of_packet_detected_r_i_12_n_0 : STD_LOGIC;
@@ -221,13 +214,13 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal start_of_packet_detected_r_reg_i_5_n_2 : STD_LOGIC;
   signal start_of_packet_detected_r_reg_i_5_n_3 : STD_LOGIC;
   signal track_data_r2 : STD_LOGIC;
-  signal NLW_error_detected_c1_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_error_detected_c1_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_error_detected_c1_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_error_detected_c1_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_error_detected_c1_carry__3_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal \NLW_error_detected_c1_carry__4_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
-  signal \NLW_error_detected_c1_carry__4_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal NLW_error_detected_c0_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_error_detected_c0_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_error_detected_c0_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_error_detected_c0_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_error_detected_c0_carry__3_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \NLW_error_detected_c0_carry__4_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
+  signal \NLW_error_detected_c0_carry__4_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_read_counter_i_reg_rep_1_DOBDO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 10 );
   signal NLW_read_counter_i_reg_rep_1_DOPBDOP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_start_of_packet_detected_r_reg_i_1_CO_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 2 );
@@ -238,21 +231,19 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   signal NLW_start_of_packet_detected_r_reg_i_20_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_start_of_packet_detected_r_reg_i_5_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of data_error_detected_r_i_1 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \error_count_r[1]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \error_count_r[2]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of data_error_detected_r_i_1 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \error_count_r[1]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \error_count_r[2]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \error_count_r[3]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \error_count_r[4]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \error_count_r[6]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \error_count_r[7]_i_2\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \read_counter_i[0]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \read_counter_i[1]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \read_counter_i[2]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \read_counter_i[3]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \error_count_r[6]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \error_count_r[7]_i_2\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \read_counter_i[1]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \read_counter_i[2]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \read_counter_i[3]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \read_counter_i[4]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \read_counter_i[6]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \read_counter_i[7]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \read_counter_i[8]_i_3\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \read_counter_i[7]_i_1\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \read_counter_i[8]_i_2\ : label is "soft_lutpair2";
   attribute equivalent_register_removal : string;
   attribute equivalent_register_removal of \read_counter_i_reg[0]\ : label is "no";
   attribute equivalent_register_removal of \read_counter_i_reg[1]\ : label is "no";
@@ -285,8 +276,8 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   attribute bram_slice_begin of read_counter_i_reg_rep_0 : label is 0;
   attribute bram_slice_end : integer;
   attribute bram_slice_end of read_counter_i_reg_rep_0 : label is 17;
-  attribute SOFT_HLUTNM of read_counter_i_reg_rep_0_i_12 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of read_counter_i_reg_rep_0_i_14 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of read_counter_i_reg_rep_0_i_11 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of read_counter_i_reg_rep_0_i_14 : label is "soft_lutpair2";
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ of read_counter_i_reg_rep_1 : label is "p2_d16";
   attribute \MEM.PORTB.DATA_BIT_LAYOUT\ of read_counter_i_reg_rep_1 : label is "p0_d10";
   attribute METHODOLOGY_DRC_VIOS of read_counter_i_reg_rep_1 : label is "{SYNTH-6 {cell *THIS*}}";
@@ -298,7 +289,7 @@ architecture STRUCTURE of main_frame_check_0_0_frame_check is
   attribute bram_ext_slice_end of read_counter_i_reg_rep_1 : label is 63;
   attribute bram_slice_begin of read_counter_i_reg_rep_1 : label is 36;
   attribute bram_slice_end of read_counter_i_reg_rep_1 : label is 53;
-  attribute SOFT_HLUTNM of track_data_r_i_1 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of track_data_r_i_1 : label is "soft_lutpair3";
 begin
   ERROR_COUNT_OUT(7 downto 0) <= \^error_count_out\(7 downto 0);
   TRACK_DATA_OUT <= \^track_data_out\;
@@ -505,46 +496,37 @@ data_error_detected_r_reg: unisim.vcomponents.FDRE
       Q => \^error_count_out\(7),
       R => SYSTEM_RESET
     );
-error_detected_c: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => rx_header_r_track(0),
-      I1 => rx_header_r_track(1),
-      O => error_detected_c_n_0
-    );
-error_detected_c1_carry: unisim.vcomponents.CARRY4
+error_detected_c0_carry: unisim.vcomponents.CARRY4
      port map (
       CI => '0',
-      CO(3) => error_detected_c1_carry_n_0,
-      CO(2) => error_detected_c1_carry_n_1,
-      CO(1) => error_detected_c1_carry_n_2,
-      CO(0) => error_detected_c1_carry_n_3,
+      CO(3) => error_detected_c0_carry_n_0,
+      CO(2) => error_detected_c0_carry_n_1,
+      CO(1) => error_detected_c0_carry_n_2,
+      CO(0) => error_detected_c0_carry_n_3,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => NLW_error_detected_c1_carry_O_UNCONNECTED(3 downto 0),
-      S(3) => error_detected_c1_carry_i_1_n_0,
-      S(2) => error_detected_c1_carry_i_2_n_0,
-      S(1) => error_detected_c1_carry_i_3_n_0,
-      S(0) => error_detected_c1_carry_i_4_n_0
+      O(3 downto 0) => NLW_error_detected_c0_carry_O_UNCONNECTED(3 downto 0),
+      S(3) => error_detected_c0_carry_i_1_n_0,
+      S(2) => error_detected_c0_carry_i_2_n_0,
+      S(1) => error_detected_c0_carry_i_3_n_0,
+      S(0) => error_detected_c0_carry_i_4_n_0
     );
-\error_detected_c1_carry__0\: unisim.vcomponents.CARRY4
+\error_detected_c0_carry__0\: unisim.vcomponents.CARRY4
      port map (
-      CI => error_detected_c1_carry_n_0,
-      CO(3) => \error_detected_c1_carry__0_n_0\,
-      CO(2) => \error_detected_c1_carry__0_n_1\,
-      CO(1) => \error_detected_c1_carry__0_n_2\,
-      CO(0) => \error_detected_c1_carry__0_n_3\,
+      CI => error_detected_c0_carry_n_0,
+      CO(3) => \error_detected_c0_carry__0_n_0\,
+      CO(2) => \error_detected_c0_carry__0_n_1\,
+      CO(1) => \error_detected_c0_carry__0_n_2\,
+      CO(0) => \error_detected_c0_carry__0_n_3\,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => \NLW_error_detected_c1_carry__0_O_UNCONNECTED\(3 downto 0),
-      S(3) => \error_detected_c1_carry__0_i_1_n_0\,
-      S(2) => \error_detected_c1_carry__0_i_2_n_0\,
-      S(1) => \error_detected_c1_carry__0_i_3_n_0\,
-      S(0) => \error_detected_c1_carry__0_i_4_n_0\
+      O(3 downto 0) => \NLW_error_detected_c0_carry__0_O_UNCONNECTED\(3 downto 0),
+      S(3) => \error_detected_c0_carry__0_i_1_n_0\,
+      S(2) => \error_detected_c0_carry__0_i_2_n_0\,
+      S(1) => \error_detected_c0_carry__0_i_3_n_0\,
+      S(0) => \error_detected_c0_carry__0_i_4_n_0\
     );
-\error_detected_c1_carry__0_i_1\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__0_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -555,9 +537,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(23),
       I4 => read_counter_i_reg_rep_0_n_27,
       I5 => rx_data_r_track(22),
-      O => \error_detected_c1_carry__0_i_1_n_0\
+      O => \error_detected_c0_carry__0_i_1_n_0\
     );
-\error_detected_c1_carry__0_i_2\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__0_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -568,9 +550,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(20),
       I4 => read_counter_i_reg_rep_0_n_30,
       I5 => rx_data_r_track(19),
-      O => \error_detected_c1_carry__0_i_2_n_0\
+      O => \error_detected_c0_carry__0_i_2_n_0\
     );
-\error_detected_c1_carry__0_i_3\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__0_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -581,9 +563,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(17),
       I4 => read_counter_i_reg_rep_0_n_33,
       I5 => rx_data_r_track(16),
-      O => \error_detected_c1_carry__0_i_3_n_0\
+      O => \error_detected_c0_carry__0_i_3_n_0\
     );
-\error_detected_c1_carry__0_i_4\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__0_i_4\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -594,24 +576,24 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(14),
       I4 => read_counter_i_reg_rep_0_n_2,
       I5 => rx_data_r_track(13),
-      O => \error_detected_c1_carry__0_i_4_n_0\
+      O => \error_detected_c0_carry__0_i_4_n_0\
     );
-\error_detected_c1_carry__1\: unisim.vcomponents.CARRY4
+\error_detected_c0_carry__1\: unisim.vcomponents.CARRY4
      port map (
-      CI => \error_detected_c1_carry__0_n_0\,
-      CO(3) => \error_detected_c1_carry__1_n_0\,
-      CO(2) => \error_detected_c1_carry__1_n_1\,
-      CO(1) => \error_detected_c1_carry__1_n_2\,
-      CO(0) => \error_detected_c1_carry__1_n_3\,
+      CI => \error_detected_c0_carry__0_n_0\,
+      CO(3) => \error_detected_c0_carry__1_n_0\,
+      CO(2) => \error_detected_c0_carry__1_n_1\,
+      CO(1) => \error_detected_c0_carry__1_n_2\,
+      CO(0) => \error_detected_c0_carry__1_n_3\,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => \NLW_error_detected_c1_carry__1_O_UNCONNECTED\(3 downto 0),
-      S(3) => \error_detected_c1_carry__1_i_1_n_0\,
-      S(2) => \error_detected_c1_carry__1_i_2_n_0\,
-      S(1) => \error_detected_c1_carry__1_i_3_n_0\,
-      S(0) => \error_detected_c1_carry__1_i_4_n_0\
+      O(3 downto 0) => \NLW_error_detected_c0_carry__1_O_UNCONNECTED\(3 downto 0),
+      S(3) => \error_detected_c0_carry__1_i_1_n_0\,
+      S(2) => \error_detected_c0_carry__1_i_2_n_0\,
+      S(1) => \error_detected_c0_carry__1_i_3_n_0\,
+      S(0) => \error_detected_c0_carry__1_i_4_n_0\
     );
-\error_detected_c1_carry__1_i_1\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__1_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -622,9 +604,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(35),
       I4 => read_counter_i_reg_rep_0_n_35,
       I5 => rx_data_r_track(34),
-      O => \error_detected_c1_carry__1_i_1_n_0\
+      O => \error_detected_c0_carry__1_i_1_n_0\
     );
-\error_detected_c1_carry__1_i_2\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__1_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -635,9 +617,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(32),
       I4 => read_counter_i_reg_rep_0_n_18,
       I5 => rx_data_r_track(31),
-      O => \error_detected_c1_carry__1_i_2_n_0\
+      O => \error_detected_c0_carry__1_i_2_n_0\
     );
-\error_detected_c1_carry__1_i_3\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__1_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -648,9 +630,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(29),
       I4 => read_counter_i_reg_rep_0_n_21,
       I5 => rx_data_r_track(28),
-      O => \error_detected_c1_carry__1_i_3_n_0\
+      O => \error_detected_c0_carry__1_i_3_n_0\
     );
-\error_detected_c1_carry__1_i_4\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__1_i_4\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -661,24 +643,24 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(26),
       I4 => read_counter_i_reg_rep_0_n_24,
       I5 => rx_data_r_track(25),
-      O => \error_detected_c1_carry__1_i_4_n_0\
+      O => \error_detected_c0_carry__1_i_4_n_0\
     );
-\error_detected_c1_carry__2\: unisim.vcomponents.CARRY4
+\error_detected_c0_carry__2\: unisim.vcomponents.CARRY4
      port map (
-      CI => \error_detected_c1_carry__1_n_0\,
-      CO(3) => \error_detected_c1_carry__2_n_0\,
-      CO(2) => \error_detected_c1_carry__2_n_1\,
-      CO(1) => \error_detected_c1_carry__2_n_2\,
-      CO(0) => \error_detected_c1_carry__2_n_3\,
+      CI => \error_detected_c0_carry__1_n_0\,
+      CO(3) => \error_detected_c0_carry__2_n_0\,
+      CO(2) => \error_detected_c0_carry__2_n_1\,
+      CO(1) => \error_detected_c0_carry__2_n_2\,
+      CO(0) => \error_detected_c0_carry__2_n_3\,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => \NLW_error_detected_c1_carry__2_O_UNCONNECTED\(3 downto 0),
-      S(3) => \error_detected_c1_carry__2_i_1_n_0\,
-      S(2) => \error_detected_c1_carry__2_i_2_n_0\,
-      S(1) => \error_detected_c1_carry__2_i_3_n_0\,
-      S(0) => \error_detected_c1_carry__2_i_4_n_0\
+      O(3 downto 0) => \NLW_error_detected_c0_carry__2_O_UNCONNECTED\(3 downto 0),
+      S(3) => \error_detected_c0_carry__2_i_1_n_0\,
+      S(2) => \error_detected_c0_carry__2_i_2_n_0\,
+      S(1) => \error_detected_c0_carry__2_i_3_n_0\,
+      S(0) => \error_detected_c0_carry__2_i_4_n_0\
     );
-\error_detected_c1_carry__2_i_1\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__2_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -689,9 +671,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(47),
       I4 => read_counter_i_reg_rep_1_n_5,
       I5 => rx_data_r_track(46),
-      O => \error_detected_c1_carry__2_i_1_n_0\
+      O => \error_detected_c0_carry__2_i_1_n_0\
     );
-\error_detected_c1_carry__2_i_2\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__2_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -702,9 +684,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(44),
       I4 => read_counter_i_reg_rep_1_n_8,
       I5 => rx_data_r_track(43),
-      O => \error_detected_c1_carry__2_i_2_n_0\
+      O => \error_detected_c0_carry__2_i_2_n_0\
     );
-\error_detected_c1_carry__2_i_3\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__2_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -715,9 +697,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(41),
       I4 => read_counter_i_reg_rep_1_n_11,
       I5 => rx_data_r_track(40),
-      O => \error_detected_c1_carry__2_i_3_n_0\
+      O => \error_detected_c0_carry__2_i_3_n_0\
     );
-\error_detected_c1_carry__2_i_4\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__2_i_4\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -728,24 +710,24 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(38),
       I4 => read_counter_i_reg_rep_1_n_14,
       I5 => rx_data_r_track(37),
-      O => \error_detected_c1_carry__2_i_4_n_0\
+      O => \error_detected_c0_carry__2_i_4_n_0\
     );
-\error_detected_c1_carry__3\: unisim.vcomponents.CARRY4
+\error_detected_c0_carry__3\: unisim.vcomponents.CARRY4
      port map (
-      CI => \error_detected_c1_carry__2_n_0\,
-      CO(3) => \error_detected_c1_carry__3_n_0\,
-      CO(2) => \error_detected_c1_carry__3_n_1\,
-      CO(1) => \error_detected_c1_carry__3_n_2\,
-      CO(0) => \error_detected_c1_carry__3_n_3\,
+      CI => \error_detected_c0_carry__2_n_0\,
+      CO(3) => \error_detected_c0_carry__3_n_0\,
+      CO(2) => \error_detected_c0_carry__3_n_1\,
+      CO(1) => \error_detected_c0_carry__3_n_2\,
+      CO(0) => \error_detected_c0_carry__3_n_3\,
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
-      O(3 downto 0) => \NLW_error_detected_c1_carry__3_O_UNCONNECTED\(3 downto 0),
-      S(3) => \error_detected_c1_carry__3_i_1_n_0\,
-      S(2) => \error_detected_c1_carry__3_i_2_n_0\,
-      S(1) => \error_detected_c1_carry__3_i_3_n_0\,
-      S(0) => \error_detected_c1_carry__3_i_4_n_0\
+      O(3 downto 0) => \NLW_error_detected_c0_carry__3_O_UNCONNECTED\(3 downto 0),
+      S(3) => \error_detected_c0_carry__3_i_1_n_0\,
+      S(2) => \error_detected_c0_carry__3_i_2_n_0\,
+      S(1) => \error_detected_c0_carry__3_i_3_n_0\,
+      S(0) => \error_detected_c0_carry__3_i_4_n_0\
     );
-\error_detected_c1_carry__3_i_1\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__3_i_1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -756,9 +738,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(59),
       I4 => read_counter_i_reg_rep_1_n_27,
       I5 => rx_data_r_track(58),
-      O => \error_detected_c1_carry__3_i_1_n_0\
+      O => \error_detected_c0_carry__3_i_1_n_0\
     );
-\error_detected_c1_carry__3_i_2\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__3_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -769,9 +751,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(56),
       I4 => read_counter_i_reg_rep_1_n_30,
       I5 => rx_data_r_track(55),
-      O => \error_detected_c1_carry__3_i_2_n_0\
+      O => \error_detected_c0_carry__3_i_2_n_0\
     );
-\error_detected_c1_carry__3_i_3\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__3_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -782,9 +764,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(53),
       I4 => read_counter_i_reg_rep_1_n_33,
       I5 => rx_data_r_track(52),
-      O => \error_detected_c1_carry__3_i_3_n_0\
+      O => \error_detected_c0_carry__3_i_3_n_0\
     );
-\error_detected_c1_carry__3_i_4\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__3_i_4\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -795,31 +777,31 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(50),
       I4 => read_counter_i_reg_rep_1_n_2,
       I5 => rx_data_r_track(49),
-      O => \error_detected_c1_carry__3_i_4_n_0\
+      O => \error_detected_c0_carry__3_i_4_n_0\
     );
-\error_detected_c1_carry__4\: unisim.vcomponents.CARRY4
+\error_detected_c0_carry__4\: unisim.vcomponents.CARRY4
      port map (
-      CI => \error_detected_c1_carry__3_n_0\,
-      CO(3 downto 2) => \NLW_error_detected_c1_carry__4_CO_UNCONNECTED\(3 downto 2),
-      CO(1) => error_detected_c1,
-      CO(0) => \error_detected_c1_carry__4_n_3\,
+      CI => \error_detected_c0_carry__3_n_0\,
+      CO(3 downto 2) => \NLW_error_detected_c0_carry__4_CO_UNCONNECTED\(3 downto 2),
+      CO(1) => error_detected_c0,
+      CO(0) => \error_detected_c0_carry__4_n_3\,
       CYINIT => '0',
       DI(3 downto 0) => B"0011",
-      O(3 downto 0) => \NLW_error_detected_c1_carry__4_O_UNCONNECTED\(3 downto 0),
+      O(3 downto 0) => \NLW_error_detected_c0_carry__4_O_UNCONNECTED\(3 downto 0),
       S(3 downto 2) => B"00",
-      S(1) => \error_detected_c1_carry__4_i_1_n_0\,
-      S(0) => \error_detected_c1_carry__4_i_2_n_0\
+      S(1) => \error_detected_c0_carry__4_i_1_n_0\,
+      S(0) => \error_detected_c0_carry__4_i_2_n_0\
     );
-\error_detected_c1_carry__4_i_1\: unisim.vcomponents.LUT2
+\error_detected_c0_carry__4_i_1\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"9"
     )
         port map (
       I0 => read_counter_i_reg_rep_1_n_22,
       I1 => rx_data_r_track(63),
-      O => \error_detected_c1_carry__4_i_1_n_0\
+      O => \error_detected_c0_carry__4_i_1_n_0\
     );
-\error_detected_c1_carry__4_i_2\: unisim.vcomponents.LUT6
+\error_detected_c0_carry__4_i_2\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -830,9 +812,9 @@ error_detected_c1_carry: unisim.vcomponents.CARRY4
       I3 => rx_data_r_track(62),
       I4 => read_counter_i_reg_rep_1_n_24,
       I5 => rx_data_r_track(61),
-      O => \error_detected_c1_carry__4_i_2_n_0\
+      O => \error_detected_c0_carry__4_i_2_n_0\
     );
-error_detected_c1_carry_i_1: unisim.vcomponents.LUT6
+error_detected_c0_carry_i_1: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -843,9 +825,9 @@ error_detected_c1_carry_i_1: unisim.vcomponents.LUT6
       I3 => rx_data_r_track(11),
       I4 => read_counter_i_reg_rep_0_n_5,
       I5 => rx_data_r_track(10),
-      O => error_detected_c1_carry_i_1_n_0
+      O => error_detected_c0_carry_i_1_n_0
     );
-error_detected_c1_carry_i_2: unisim.vcomponents.LUT6
+error_detected_c0_carry_i_2: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -856,9 +838,9 @@ error_detected_c1_carry_i_2: unisim.vcomponents.LUT6
       I3 => rx_data_r_track(8),
       I4 => read_counter_i_reg_rep_0_n_8,
       I5 => rx_data_r_track(7),
-      O => error_detected_c1_carry_i_2_n_0
+      O => error_detected_c0_carry_i_2_n_0
     );
-error_detected_c1_carry_i_3: unisim.vcomponents.LUT6
+error_detected_c0_carry_i_3: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -869,9 +851,9 @@ error_detected_c1_carry_i_3: unisim.vcomponents.LUT6
       I3 => rx_data_r_track(5),
       I4 => read_counter_i_reg_rep_0_n_11,
       I5 => rx_data_r_track(4),
-      O => error_detected_c1_carry_i_3_n_0
+      O => error_detected_c0_carry_i_3_n_0
     );
-error_detected_c1_carry_i_4: unisim.vcomponents.LUT6
+error_detected_c0_carry_i_4: unisim.vcomponents.LUT6
     generic map(
       INIT => X"9009000000009009"
     )
@@ -882,19 +864,18 @@ error_detected_c1_carry_i_4: unisim.vcomponents.LUT6
       I3 => rx_data_r_track(2),
       I4 => read_counter_i_reg_rep_0_n_14,
       I5 => rx_data_r_track(1),
-      O => error_detected_c1_carry_i_4_n_0
+      O => error_detected_c0_carry_i_4_n_0
     );
-error_detected_r_i_1: unisim.vcomponents.LUT6
+error_detected_r_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"A808080808080808"
+      INIT => X"A8080808"
     )
         port map (
       I0 => \^track_data_out\,
       I1 => error_detected_r,
       I2 => DATA_IN_VALID,
-      I3 => error_detected_c_n_0,
-      I4 => error_detected_c1,
-      I5 => track_data_r2,
+      I3 => error_detected_c0,
+      I4 => track_data_r2,
       O => error_detected_r_i_1_n_0
     );
 error_detected_r_reg: unisim.vcomponents.FDRE
@@ -973,7 +954,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
       INIT => X"9"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_13_n_0,
+      I0 => read_counter_i_reg_rep_0_i_12_n_0,
       I1 => \read_counter_i_reg__0\(6),
       O => p_0_in(6)
     );
@@ -983,40 +964,30 @@ error_detected_r_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => \read_counter_i_reg__0\(6),
-      I1 => read_counter_i_reg_rep_0_i_13_n_0,
+      I1 => read_counter_i_reg_rep_0_i_12_n_0,
       I2 => \read_counter_i_reg__0\(7),
       O => p_0_in(7)
     );
 \read_counter_i[8]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFF10000000"
+      INIT => X"BAFFAAAABABAAAAA"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_12_n_0,
-      I1 => rx_header_r2(1),
-      I2 => rx_header_r2(0),
-      I3 => DATA_IN_VALID,
-      I4 => \read_counter_i_reg__0\(8),
-      I5 => read_counter_i_reg_rep_0_i_11_n_0,
+      I0 => SYSTEM_RESET,
+      I1 => \^track_data_out\,
+      I2 => start_of_packet_detected_r,
+      I3 => read_counter_i_reg_rep_0_i_11_n_0,
+      I4 => DATA_IN_VALID,
+      I5 => \read_counter_i_reg__0\(8),
       O => \read_counter_i[8]_i_1_n_0\
     );
-\read_counter_i[8]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"40"
-    )
-        port map (
-      I0 => rx_header_r2(1),
-      I1 => DATA_IN_VALID,
-      I2 => rx_header_r2(0),
-      O => read_counter_i0
-    );
-\read_counter_i[8]_i_3\: unisim.vcomponents.LUT4
+\read_counter_i[8]_i_2\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"DF20"
     )
         port map (
       I0 => \read_counter_i_reg__0\(7),
-      I1 => read_counter_i_reg_rep_0_i_13_n_0,
+      I1 => read_counter_i_reg_rep_0_i_12_n_0,
       I2 => \read_counter_i_reg__0\(6),
       I3 => \read_counter_i_reg__0\(8),
       O => p_0_in(8)
@@ -1024,7 +995,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(0),
       Q => \read_counter_i_reg__0\(0),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1032,7 +1003,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(1),
       Q => \read_counter_i_reg__0\(1),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1040,7 +1011,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(2),
       Q => \read_counter_i_reg__0\(2),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1048,7 +1019,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(3),
       Q => \read_counter_i_reg__0\(3),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1056,7 +1027,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(4),
       Q => \read_counter_i_reg__0\(4),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1064,7 +1035,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(5),
       Q => \read_counter_i_reg__0\(5),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1072,7 +1043,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(6),
       Q => \read_counter_i_reg__0\(6),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1080,7 +1051,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[7]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(7),
       Q => \read_counter_i_reg__0\(7),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1088,7 +1059,7 @@ error_detected_r_reg: unisim.vcomponents.FDRE
 \read_counter_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => read_counter_i0,
+      CE => DATA_IN_VALID,
       D => p_0_in(8),
       Q => \read_counter_i_reg__0\(8),
       R => \read_counter_i[8]_i_1_n_0\
@@ -1262,54 +1233,39 @@ read_counter_i_reg_rep_0: unisim.vcomponents.RAMB18E1
       WEA(1 downto 0) => B"00",
       WEBWE(3 downto 0) => B"0000"
     );
-read_counter_i_reg_rep_0_i_1: unisim.vcomponents.LUT4
+read_counter_i_reg_rep_0_i_1: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"AAEA"
+      INIT => X"E"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_11_n_0,
-      I1 => rx_header_r2(0),
-      I2 => DATA_IN_VALID,
-      I3 => rx_header_r2(1),
+      I0 => SYSTEM_RESET,
+      I1 => DATA_IN_VALID,
       O => read_counter_i_reg_rep_0_i_1_n_0
     );
 read_counter_i_reg_rep_0_i_10: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"1111011111111111"
+      INIT => X"0000000011110111"
     )
         port map (
       I0 => \read_counter_i_reg__0\(0),
-      I1 => read_counter_i_reg_rep_0_i_11_n_0,
-      I2 => read_counter_i_reg_rep_0_i_15_n_0,
-      I3 => \read_counter_i_reg__0\(7),
-      I4 => read_counter_i_reg_rep_0_i_13_n_0,
-      I5 => \read_counter_i_reg__0\(6),
+      I1 => read_counter_i_reg_rep_0_i_14_n_0,
+      I2 => DATA_IN_VALID,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_10_n_0
     );
-read_counter_i_reg_rep_0_i_11: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFF02000000"
-    )
-        port map (
-      I0 => DATA_IN_VALID,
-      I1 => \^track_data_out\,
-      I2 => rx_header_r2(1),
-      I3 => start_of_packet_detected_r,
-      I4 => rx_header_r2(0),
-      I5 => SYSTEM_RESET,
-      O => read_counter_i_reg_rep_0_i_11_n_0
-    );
-read_counter_i_reg_rep_0_i_12: unisim.vcomponents.LUT3
+read_counter_i_reg_rep_0_i_11: unisim.vcomponents.LUT3
     generic map(
       INIT => X"DF"
     )
         port map (
       I0 => \read_counter_i_reg__0\(6),
-      I1 => read_counter_i_reg_rep_0_i_13_n_0,
+      I1 => read_counter_i_reg_rep_0_i_12_n_0,
       I2 => \read_counter_i_reg__0\(7),
-      O => read_counter_i_reg_rep_0_i_12_n_0
+      O => read_counter_i_reg_rep_0_i_11_n_0
     );
-read_counter_i_reg_rep_0_i_13: unisim.vcomponents.LUT6
+read_counter_i_reg_rep_0_i_12: unisim.vcomponents.LUT6
     generic map(
       INIT => X"7FFFFFFFFFFFFFFF"
     )
@@ -1320,121 +1276,128 @@ read_counter_i_reg_rep_0_i_13: unisim.vcomponents.LUT6
       I3 => \read_counter_i_reg__0\(1),
       I4 => \read_counter_i_reg__0\(3),
       I5 => \read_counter_i_reg__0\(5),
+      O => read_counter_i_reg_rep_0_i_12_n_0
+    );
+read_counter_i_reg_rep_0_i_13: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF08"
+    )
+        port map (
+      I0 => DATA_IN_VALID,
+      I1 => start_of_packet_detected_r,
+      I2 => \^track_data_out\,
+      I3 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_13_n_0
     );
 read_counter_i_reg_rep_0_i_14: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"7FFFFFFF"
+      INIT => X"00800000"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(3),
-      I1 => \read_counter_i_reg__0\(1),
-      I2 => \read_counter_i_reg__0\(0),
-      I3 => \read_counter_i_reg__0\(2),
-      I4 => \read_counter_i_reg__0\(4),
+      I0 => \read_counter_i_reg__0\(8),
+      I1 => DATA_IN_VALID,
+      I2 => \read_counter_i_reg__0\(7),
+      I3 => read_counter_i_reg_rep_0_i_12_n_0,
+      I4 => \read_counter_i_reg__0\(6),
       O => read_counter_i_reg_rep_0_i_14_n_0
     );
-read_counter_i_reg_rep_0_i_15: unisim.vcomponents.LUT4
+read_counter_i_reg_rep_0_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"4000"
+      INIT => X"00000000A5A521A5"
     )
         port map (
-      I0 => rx_header_r2(1),
-      I1 => rx_header_r2(0),
-      I2 => DATA_IN_VALID,
-      I3 => \read_counter_i_reg__0\(8),
-      O => read_counter_i_reg_rep_0_i_15_n_0
-    );
-read_counter_i_reg_rep_0_i_2: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"41"
-    )
-        port map (
-      I0 => read_counter_i_reg_rep_0_i_11_n_0,
-      I1 => \read_counter_i_reg__0\(8),
-      I2 => read_counter_i_reg_rep_0_i_12_n_0,
+      I0 => \read_counter_i_reg__0\(8),
+      I1 => DATA_IN_VALID,
+      I2 => read_counter_i_reg_rep_0_i_11_n_0,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_2_n_0
     );
 read_counter_i_reg_rep_0_i_3: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"4144"
+      INIT => X"009A"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_11_n_0,
-      I1 => \read_counter_i_reg__0\(7),
-      I2 => read_counter_i_reg_rep_0_i_13_n_0,
-      I3 => \read_counter_i_reg__0\(6),
+      I0 => \read_counter_i_reg__0\(7),
+      I1 => read_counter_i_reg_rep_0_i_12_n_0,
+      I2 => \read_counter_i_reg__0\(6),
+      I3 => read_counter_i_reg_rep_0_i_13_n_0,
       O => read_counter_i_reg_rep_0_i_3_n_0
     );
 read_counter_i_reg_rep_0_i_4: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"41"
+      INIT => X"09"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_11_n_0,
-      I1 => read_counter_i_reg_rep_0_i_13_n_0,
-      I2 => \read_counter_i_reg__0\(6),
+      I0 => read_counter_i_reg_rep_0_i_12_n_0,
+      I1 => \read_counter_i_reg__0\(6),
+      I2 => read_counter_i_reg_rep_0_i_13_n_0,
       O => read_counter_i_reg_rep_0_i_4_n_0
     );
-read_counter_i_reg_rep_0_i_5: unisim.vcomponents.LUT3
+read_counter_i_reg_rep_0_i_5: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"41"
+      INIT => X"0000000022220222"
     )
         port map (
-      I0 => read_counter_i_reg_rep_0_i_11_n_0,
-      I1 => \read_counter_i_reg__0\(5),
-      I2 => read_counter_i_reg_rep_0_i_14_n_0,
+      I0 => p_0_in(5),
+      I1 => read_counter_i_reg_rep_0_i_14_n_0,
+      I2 => DATA_IN_VALID,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_5_n_0
     );
 read_counter_i_reg_rep_0_i_6: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2222022222222222"
+      INIT => X"0000000022220222"
     )
         port map (
       I0 => p_0_in(4),
-      I1 => read_counter_i_reg_rep_0_i_11_n_0,
-      I2 => read_counter_i_reg_rep_0_i_15_n_0,
-      I3 => \read_counter_i_reg__0\(7),
-      I4 => read_counter_i_reg_rep_0_i_13_n_0,
-      I5 => \read_counter_i_reg__0\(6),
+      I1 => read_counter_i_reg_rep_0_i_14_n_0,
+      I2 => DATA_IN_VALID,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_6_n_0
     );
 read_counter_i_reg_rep_0_i_7: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2222022222222222"
+      INIT => X"0000000022220222"
     )
         port map (
       I0 => p_0_in(3),
-      I1 => read_counter_i_reg_rep_0_i_11_n_0,
-      I2 => read_counter_i_reg_rep_0_i_15_n_0,
-      I3 => \read_counter_i_reg__0\(7),
-      I4 => read_counter_i_reg_rep_0_i_13_n_0,
-      I5 => \read_counter_i_reg__0\(6),
+      I1 => read_counter_i_reg_rep_0_i_14_n_0,
+      I2 => DATA_IN_VALID,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_7_n_0
     );
 read_counter_i_reg_rep_0_i_8: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"006A006A0000006A"
+      INIT => X"0000000022220222"
     )
         port map (
-      I0 => \read_counter_i_reg__0\(2),
-      I1 => \read_counter_i_reg__0\(0),
-      I2 => \read_counter_i_reg__0\(1),
-      I3 => read_counter_i_reg_rep_0_i_11_n_0,
-      I4 => read_counter_i_reg_rep_0_i_15_n_0,
-      I5 => read_counter_i_reg_rep_0_i_12_n_0,
+      I0 => p_0_in(2),
+      I1 => read_counter_i_reg_rep_0_i_14_n_0,
+      I2 => DATA_IN_VALID,
+      I3 => start_of_packet_detected_r,
+      I4 => \^track_data_out\,
+      I5 => SYSTEM_RESET,
       O => read_counter_i_reg_rep_0_i_8_n_0
     );
-read_counter_i_reg_rep_0_i_9: unisim.vcomponents.LUT5
+read_counter_i_reg_rep_0_i_9: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"06060006"
+      INIT => X"0000000066660666"
     )
         port map (
       I0 => \read_counter_i_reg__0\(1),
       I1 => \read_counter_i_reg__0\(0),
-      I2 => read_counter_i_reg_rep_0_i_11_n_0,
-      I3 => read_counter_i_reg_rep_0_i_15_n_0,
-      I4 => read_counter_i_reg_rep_0_i_12_n_0,
+      I2 => \read_counter_i_reg__0\(8),
+      I3 => DATA_IN_VALID,
+      I4 => read_counter_i_reg_rep_0_i_11_n_0,
+      I5 => read_counter_i_reg_rep_0_i_13_n_0,
       O => read_counter_i_reg_rep_0_i_9_n_0
     );
 read_counter_i_reg_rep_1: unisim.vcomponents.RAMB18E1
@@ -3136,54 +3099,6 @@ read_counter_i_reg_rep_1: unisim.vcomponents.RAMB18E1
       Q => rx_data_r_track(9),
       R => SYSTEM_RESET
     );
-\rx_header_r2_reg[0]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => rx_header_r(0),
-      Q => rx_header_r2(0),
-      R => SYSTEM_RESET
-    );
-\rx_header_r2_reg[1]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => rx_header_r(1),
-      Q => rx_header_r2(1),
-      R => SYSTEM_RESET
-    );
-\rx_header_r_reg[0]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => RX_HEADER_IN(0),
-      Q => rx_header_r(0),
-      R => SYSTEM_RESET
-    );
-\rx_header_r_reg[1]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => RX_HEADER_IN(1),
-      Q => rx_header_r(1),
-      R => SYSTEM_RESET
-    );
-\rx_header_r_track_reg[0]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => rx_header_r2(0),
-      Q => rx_header_r_track(0),
-      R => SYSTEM_RESET
-    );
-\rx_header_r_track_reg[1]\: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => DATA_IN_VALID,
-      D => rx_header_r2(1),
-      Q => rx_header_r_track(1),
-      R => SYSTEM_RESET
-    );
 start_of_packet_detected_r_i_11: unisim.vcomponents.LUT3
     generic map(
       INIT => X"01"
@@ -3533,12 +3448,11 @@ use UNISIM.VCOMPONENTS.ALL;
 entity main_frame_check_0_0 is
   port (
     RX_DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    RX_HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    DATA_IN_VALID : in STD_LOGIC;
     ERROR_COUNT_OUT : out STD_LOGIC_VECTOR ( 7 downto 0 );
     TRACK_DATA_OUT : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
-    SYSTEM_RESET : in STD_LOGIC;
-    DATA_IN_VALID : in STD_LOGIC
+    SYSTEM_RESET : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of main_frame_check_0_0 : entity is true;
@@ -3565,7 +3479,6 @@ inst: entity work.main_frame_check_0_0_frame_check
       DATA_IN_VALID => DATA_IN_VALID,
       ERROR_COUNT_OUT(7 downto 0) => ERROR_COUNT_OUT(7 downto 0),
       RX_DATA_IN(63 downto 0) => RX_DATA_IN(63 downto 0),
-      RX_HEADER_IN(1 downto 0) => RX_HEADER_IN(1 downto 0),
       SYSTEM_RESET => SYSTEM_RESET,
       TRACK_DATA_OUT => TRACK_DATA_OUT,
       USER_CLK => USER_CLK

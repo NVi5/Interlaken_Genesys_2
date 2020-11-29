@@ -31,7 +31,7 @@ module decode_64B_67B(
     output reg           DATA_OUT_VALID,
     output wire  [6:0]   CANDIDATE,
     input  wire          DATA_IN_VALID,
-    output wire          LOCKED,
+    output wire          NOT_LOCKED,
 
     // System Interface
     input  wire          USER_CLK,
@@ -140,16 +140,16 @@ module decode_64B_67B(
         rx_aligned = rx_data_common >> candidate;
 
     always @(posedge USER_CLK)
-        if (SYSTEM_RESET)
+        if (SYSTEM_RESET || PASSTHROUGH)
         begin
             DATA_OUT_VALID       <= `DLY  1'b0;
         end
         else
         begin
-            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && LOCKED;
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state;
         end
 
-    assign  LOCKED = state;
+    assign  NOT_LOCKED = !state;
     assign  CANDIDATE = candidate;
 
 endmodule

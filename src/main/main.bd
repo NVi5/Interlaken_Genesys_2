@@ -216,6 +216,15 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
+        <spirit:instanceName>vio_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">2</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
         <spirit:instanceName>frame_check</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="frame_check" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
@@ -224,15 +233,6 @@
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>vio_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_0_1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">2</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -276,8 +276,8 @@
         <spirit:name>TRACK_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="TRACK_DATA_OUT"/>
         <spirit:externalPortReference spirit:portRef="TRACK_DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="TRACK_DATA"/>
         <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_in1"/>
+        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="TRACK_DATA"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DRP_CLK_IN_N_1</spirit:name>
@@ -300,21 +300,6 @@
         <spirit:internalPortReference spirit:componentRef="frame_gen" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>interlaken_DATA_OUT_VALID</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="DATA_OUT_VALID"/>
-        <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="DATA_IN_VALID"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>interlaken_HEADER_OUT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="HEADER_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="RX_HEADER_IN"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>descrambler_UNSCRAMBLED_DATA_OUT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="RX_DATA_IN"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>frame_gen_TX_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="frame_gen" spirit:portRef="TX_DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="DATA_IN"/>
@@ -335,11 +320,6 @@
         <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="probe_in0"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>interlaken_RX_USR_CLK</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="RX_USR_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="clk"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>interlaken_TX_SYSTEM_RESET</spirit:name>
         <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="TX_SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="frame_gen" spirit:portRef="SYSTEM_RESET"/>
@@ -348,6 +328,21 @@
         <spirit:name>interlaken_RX_SYSTEM_RESET</spirit:name>
         <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="RX_SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="SYSTEM_RESET"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>interlaken_RX_USR_CLK</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="RX_USR_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="vio_0" spirit:portRef="clk"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>interlaken_DATA_OUT_VALID</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="DATA_OUT_VALID"/>
+        <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="DATA_IN_VALID"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>descrambler_UNSCRAMBLED_DATA_OUT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="interlaken" spirit:portRef="DATA_OUT"/>
+        <spirit:internalPortReference spirit:componentRef="frame_check" spirit:portRef="RX_DATA_IN"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>
@@ -573,32 +568,6 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>DATA_OUT_VALID</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HEADER_OUT</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>1</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>DATA_OUT</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>63</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
           <spirit:name>DATA_IN</spirit:name>
           <spirit:wire>
             <spirit:direction>in</spirit:direction>
@@ -636,6 +605,22 @@
           <spirit:name>RX_SYSTEM_RESET</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>DATA_OUT_VALID</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>DATA_OUT</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>63</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
           </spirit:wire>
         </spirit:port>
       </spirit:ports>
@@ -676,8 +661,8 @@
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_SYSTEM_RESET</spirit:name>
         <spirit:internalPortReference spirit:componentRef="CORE" spirit:portRef="RX_SYSTEM_RESET"/>
-        <spirit:externalPortReference spirit:portRef="RX_SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="RX_SYSTEM_RESET"/>
+        <spirit:externalPortReference spirit:portRef="RX_SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>Q3_CLK0_GTREFCLK_PAD_N_IN_1</spirit:name>
@@ -732,21 +717,6 @@
         <spirit:internalPortReference spirit:componentRef="CORE" spirit:portRef="TRACK_DATA"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>DESCRAMBLER_DATA_OUT_VALID</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="DATA_OUT_VALID"/>
-        <spirit:externalPortReference spirit:portRef="DATA_OUT_VALID"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>DESCRAMBLER_HEADER_OUT_ILA</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="HEADER_OUT"/>
-        <spirit:externalPortReference spirit:portRef="HEADER_OUT"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>DESCRAMBLER_DATA_OUT</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="DATA_OUT"/>
-        <spirit:externalPortReference spirit:portRef="DATA_OUT"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_USR_CLK</spirit:name>
         <spirit:internalPortReference spirit:componentRef="CORE" spirit:portRef="RX_USR_CLK"/>
         <spirit:externalPortReference spirit:portRef="RX_USR_CLK"/>
@@ -787,6 +757,16 @@
         <spirit:name>CORE_RX_DATA</spirit:name>
         <spirit:internalPortReference spirit:componentRef="CORE" spirit:portRef="RX_DATA"/>
         <spirit:internalPortReference spirit:componentRef="STREAM_MANIPULATE" spirit:portRef="DATA_IN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>DESCRAMBLER_DATA_OUT_VALID</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="DATA_OUT_VALID"/>
+        <spirit:externalPortReference spirit:portRef="DATA_OUT_VALID"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>DESCRAMBLER_DATA_OUT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="RX" spirit:portRef="DATA_OUT"/>
+        <spirit:externalPortReference spirit:portRef="DATA_OUT"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>
@@ -886,6 +866,17 @@
     <spirit:version>1.00.a</spirit:version>
     <spirit:componentInstances>
       <spirit:componentInstance>
+        <spirit:instanceName>vio_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_0_2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_WIDTH">20</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT0_WIDTH">6</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
         <spirit:instanceName>stream_manipulator</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="stream_manipulator" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
@@ -895,17 +886,6 @@
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>vio_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="vio" spirit:vendor="xilinx.com" spirit:version="3.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_vio_0_2</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT1_WIDTH">20</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_PROBE_OUT0_WIDTH">6</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_OUT">2</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_NUM_PROBE_IN">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -1074,17 +1054,6 @@
     <spirit:version>1.00.a</spirit:version>
     <spirit:componentInstances>
       <spirit:componentInstance>
-        <spirit:instanceName>gearbox_tx</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_tx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_tx_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_tx</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>encode_64B_67B</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="encode_64B_67B" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
@@ -1145,6 +1114,17 @@
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>gearbox_tx</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_tx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_tx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_tx</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
     </spirit:componentInstances>
     <spirit:adHocConnections>
       <spirit:adHocConnection>
@@ -1190,8 +1170,8 @@
       <spirit:adHocConnection>
         <spirit:name>ENCODER_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="DATA_OUT"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_IN"/>
         <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe1"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>GEARBOX_TX_DATA_OUT</spirit:name>
@@ -1203,17 +1183,17 @@
         <spirit:externalPortReference spirit:portRef="TX_USR_CLK2"/>
         <spirit:internalPortReference spirit:componentRef="scrambler" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="USER_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_SYSTEM_RESET</spirit:name>
         <spirit:externalPortReference spirit:portRef="TX_SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="scrambler" spirit:portRef="SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="encode_64B_67B" spirit:portRef="SYSTEM_RESET"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="ila_1" spirit:portRef="probe2"/>
         <spirit:internalPortReference spirit:componentRef="tx_interface_0" spirit:portRef="SYSTEM_RESET"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_tx" spirit:portRef="SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TX_INTERFACE_DATA_OUT</spirit:name>
@@ -1334,21 +1314,11 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>DATA_OUT</spirit:name>
+          <spirit:name>DATA_IN</spirit:name>
           <spirit:wire>
-            <spirit:direction>out</spirit:direction>
+            <spirit:direction>in</spirit:direction>
             <spirit:vector>
-              <spirit:left>63</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HEADER_OUT</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>1</spirit:left>
+              <spirit:left>19</spirit:left>
               <spirit:right>0</spirit:right>
             </spirit:vector>
           </spirit:wire>
@@ -1360,11 +1330,11 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>DATA_IN</spirit:name>
+          <spirit:name>DATA_OUT</spirit:name>
           <spirit:wire>
-            <spirit:direction>in</spirit:direction>
+            <spirit:direction>out</spirit:direction>
             <spirit:vector>
-              <spirit:left>19</spirit:left>
+              <spirit:left>63</spirit:left>
               <spirit:right>0</spirit:right>
             </spirit:vector>
           </spirit:wire>
@@ -1394,17 +1364,6 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>gearbox_rx</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_rx_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_rx</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>ila_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="ila" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
@@ -1427,11 +1386,11 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>decode_64B_67B</spirit:instanceName>
-        <spirit:componentRef spirit:library="module_ref" spirit:name="decode_64B_67B" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:instanceName>gearbox_rx</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="gearbox_rx" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_decode_64B_67B_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">decode_64B_67B</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_gearbox_rx_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">gearbox_rx</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -1444,6 +1403,28 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_descrambler_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="META_FRAME_LEN">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceName">descrambler</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>decode_64B_67B</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="decode_64B_67B" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_decode_64B_67B_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">decode_64B_67B</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>rx_interface</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="rx_interface" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">main_rx_interface_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">rx_interface</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
@@ -1490,8 +1471,9 @@
         <spirit:name>gt_core_0_RX_USR_CLK2</spirit:name>
         <spirit:externalPortReference spirit:portRef="RX_USR_CLK2"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="USER_CLK"/>
-        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="USER_CLK"/>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="USER_CLK"/>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="USER_CLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>gt_core_0_RX_USR_CLK</spirit:name>
@@ -1500,16 +1482,18 @@
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="clk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>decode_64B_67B_LOCKED</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="LOCKED"/>
+        <spirit:name>decode_64B_67B_NOT_LOCKED</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="NOT_LOCKED"/>
         <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in0"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe6"/>
+        <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>descrambler_LOCKED</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="LOCKED"/>
+        <spirit:name>descrambler_NOT_LOCKED</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="NOT_LOCKED"/>
         <spirit:internalPortReference spirit:componentRef="vio_2" spirit:portRef="probe_in1"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe4"/>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>CANDIDATE</spirit:name>
@@ -1520,33 +1504,42 @@
       <spirit:adHocConnection>
         <spirit:name>RX_SYSTEM_RESET</spirit:name>
         <spirit:externalPortReference spirit:portRef="RX_SYSTEM_RESET"/>
-        <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe1"/>
+        <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="SYSTEM_RESET"/>
         <spirit:internalPortReference spirit:componentRef="decode_64B_67B" spirit:portRef="SYSTEM_RESET"/>
-        <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="SYSTEM_RESET"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DESCRAMBLER_DATA_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_OUT"/>
-        <spirit:externalPortReference spirit:portRef="DATA_OUT"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe0"/>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="DATA_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DESCRAMBLER_HEADER_OUT</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="HEADER_OUT"/>
-        <spirit:externalPortReference spirit:portRef="HEADER_OUT"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe5"/>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="HEADER_IN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DESCRAMBLER_DATA_OUT_VALID</spirit:name>
         <spirit:internalPortReference spirit:componentRef="descrambler" spirit:portRef="DATA_OUT_VALID"/>
-        <spirit:externalPortReference spirit:portRef="DATA_OUT_VALID"/>
         <spirit:internalPortReference spirit:componentRef="ila_0" spirit:portRef="probe3"/>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="DATA_IN_VALID"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>DATA_IN_1</spirit:name>
         <spirit:externalPortReference spirit:portRef="DATA_IN"/>
         <spirit:internalPortReference spirit:componentRef="gearbox_rx" spirit:portRef="DATA_IN"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_interface_0_DATA_OUT_VALID</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="DATA_OUT_VALID"/>
+        <spirit:externalPortReference spirit:portRef="DATA_OUT_VALID"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>rx_interface_0_DATA_OUT</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="rx_interface" spirit:portRef="DATA_OUT"/>
+        <spirit:externalPortReference spirit:portRef="DATA_OUT"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
   </spirit:design>

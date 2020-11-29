@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 29 16:28:59 2020
+-- Date        : Sun Nov 29 18:59:47 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_descrambler_0_0/main_descrambler_0_0_sim_netlist.vhdl
@@ -18,14 +18,14 @@ entity main_descrambler_0_0_descrambler is
   port (
     DATA_OUT : out STD_LOGIC_VECTOR ( 63 downto 0 );
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    LOCKED : out STD_LOGIC;
     DATA_OUT_VALID : out STD_LOGIC;
+    NOT_LOCKED : out STD_LOGIC;
     DATA_IN : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    PASSTHROUGH : in STD_LOGIC;
-    SYSTEM_RESET : in STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     HEADER_IN : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    DATA_IN_VALID : in STD_LOGIC
+    DATA_IN_VALID : in STD_LOGIC;
+    PASSTHROUGH : in STD_LOGIC;
+    SYSTEM_RESET : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of main_descrambler_0_0_descrambler : entity is "descrambler";
@@ -36,14 +36,31 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \DATA_OUT[63]_i_2_n_0\ : STD_LOGIC;
   signal \DATA_OUT[63]_i_3_n_0\ : STD_LOGIC;
   signal DATA_OUT_VALID_i_1_n_0 : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_10_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_11_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_12_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_13_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_14_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_15_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_16_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_17_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_18_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_19_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[0]_i_1_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_20_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[0]_i_2_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_3_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_4_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_5_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_6_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_7_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_8_n_0\ : STD_LOGIC;
+  signal \FSM_sequential_state[0]_i_9_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_3_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_4_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[1]_i_5_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_state[1]_i_6_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[2]_i_10_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[2]_i_11_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[2]_i_12_n_0\ : STD_LOGIC;
@@ -59,31 +76,11 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \FSM_sequential_state[2]_i_7_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[2]_i_8_n_0\ : STD_LOGIC;
   signal \FSM_sequential_state[2]_i_9_n_0\ : STD_LOGIC;
-  signal \HEADER_OUT[0]_i_1_n_0\ : STD_LOGIC;
   signal \HEADER_OUT[1]_i_1_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[0]_i_1_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[1]_i_1_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_10_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_11_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_12_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_13_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_14_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_15_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_16_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_17_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_18_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_19_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_1_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_20_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_21_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr[2]_i_2_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_3_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_4_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_5_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_6_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_7_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_8_n_0\ : STD_LOGIC;
-  signal \bad_sync_ctr[2]_i_9_n_0\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[0]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[1]\ : STD_LOGIC;
   signal \bad_sync_ctr_reg_n_0_[2]\ : STD_LOGIC;
@@ -91,6 +88,7 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \descrambler[57]_i_1_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_3_n_0\ : STD_LOGIC;
   signal \descrambler[57]_i_4_n_0\ : STD_LOGIC;
+  signal \descrambler_reg_n_0_[38]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[39]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[40]\ : STD_LOGIC;
   signal \descrambler_reg_n_0_[41]\ : STD_LOGIC;
@@ -136,7 +134,6 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \mismatch_ctr_reg_n_0_[1]\ : STD_LOGIC;
   signal \mismatch_ctr_reg_n_0_[2]\ : STD_LOGIC;
   signal p_0_in : STD_LOGIC_VECTOR ( 63 downto 0 );
-  signal p_0_in_0 : STD_LOGIC;
   signal p_101_in : STD_LOGIC;
   signal p_105_in : STD_LOGIC;
   signal p_109_in : STD_LOGIC;
@@ -224,13 +221,15 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   signal \NLW_state1_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_state1_carry__3_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_state[1]_i_5\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_12\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_13\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_14\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_15\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_6\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_3\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_4\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_5\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[0]_i_6\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_12\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_13\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_14\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_15\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \FSM_sequential_state[2]_i_5\ : label is "soft_lutpair4";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[0]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_WAIT_FOR_WORD:001,STATE_ADVANCE:011,STATE_LOCKED_SYNC_STATE:110,STATE_LOCKED_WAIT_FOR_WORD:100,STATE_RESET:000";
   attribute KEEP : string;
@@ -239,20 +238,14 @@ architecture STRUCTURE of main_descrambler_0_0_descrambler is
   attribute KEEP of \FSM_sequential_state_reg[1]\ : label is "yes";
   attribute FSM_ENCODED_STATES of \FSM_sequential_state_reg[2]\ : label is "STATE_SYNC_WORD:010,STATE_LOCKED_SYNC_WORD:101,STATE_WAIT_FOR_WORD:001,STATE_ADVANCE:011,STATE_LOCKED_SYNC_STATE:110,STATE_LOCKED_WAIT_FOR_WORD:100,STATE_RESET:000";
   attribute KEEP of \FSM_sequential_state_reg[2]\ : label is "yes";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_1\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_4\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_5\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_6\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \bad_sync_ctr[2]_i_7\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \descrambler[57]_i_3\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \descrambler[57]_i_4\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \descrambler[57]_i_3\ : label is "soft_lutpair4";
 begin
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"FF609060"
     )
         port map (
-      I0 => p_0_in_0,
+      I0 => \descrambler_reg_n_0_[38]\,
       I1 => \descrambler_reg_n_0_[57]\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => DATA_IN(0),
@@ -373,7 +366,7 @@ begin
     )
         port map (
       I0 => p_73_in,
-      I1 => p_0_in_0,
+      I1 => \descrambler_reg_n_0_[38]\,
       I2 => \DATA_OUT[63]_i_2_n_0\,
       I3 => DATA_IN(19),
       I4 => \DATA_OUT[63]_i_3_n_0\,
@@ -1055,16 +1048,15 @@ begin
       I4 => \DATA_OUT[63]_i_3_n_0\,
       O => p_0_in(9)
     );
-DATA_OUT_VALID_i_1: unisim.vcomponents.LUT5
+DATA_OUT_VALID_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"00002A00"
+      INIT => X"40C0"
     )
         port map (
-      I0 => DATA_IN_VALID,
-      I1 => \state__0\(0),
-      I2 => \state__0\(1),
-      I3 => \state__0\(2),
-      I4 => SYSTEM_RESET,
+      I0 => \state__0\(0),
+      I1 => DATA_IN_VALID,
+      I2 => \state__0\(2),
+      I3 => \state__0\(1),
       O => DATA_OUT_VALID_i_1_n_0
     );
 DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
@@ -1073,7 +1065,7 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => DATA_OUT_VALID_i_1_n_0,
       Q => DATA_OUT_VALID,
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \DATA_OUT_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -1587,53 +1579,254 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       Q => DATA_OUT(9),
       R => '0'
     );
-\FSM_sequential_state[0]_i_1\: unisim.vcomponents.LUT5
+\FSM_sequential_state[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000000E2"
-    )
-        port map (
-      I0 => \state__0\(0),
-      I1 => \FSM_sequential_state[2]_i_2_n_0\,
-      I2 => \FSM_sequential_state[0]_i_2_n_0\,
-      I3 => PASSTHROUGH,
-      I4 => SYSTEM_RESET,
-      O => \FSM_sequential_state[0]_i_1_n_0\
-    );
-\FSM_sequential_state[0]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0507"
+      INIT => X"0507FFFF05070000"
     )
         port map (
       I0 => \state__0\(1),
-      I1 => \bad_sync_ctr[2]_i_2_n_0\,
+      I1 => \FSM_sequential_state[0]_i_2_n_0\,
       I2 => \state__0\(0),
       I3 => \state__0\(2),
+      I4 => \FSM_sequential_state[2]_i_3_n_0\,
+      I5 => \state__0\(0),
+      O => \FSM_sequential_state[0]_i_1_n_0\
+    );
+\FSM_sequential_state[0]_i_10\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => DATA_IN(29),
+      I1 => DATA_IN(28),
+      I2 => DATA_IN(30),
+      I3 => DATA_IN(31),
+      O => \FSM_sequential_state[0]_i_10_n_0\
+    );
+\FSM_sequential_state[0]_i_11\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => DATA_IN(5),
+      I1 => DATA_IN(4),
+      I2 => DATA_IN(7),
+      I3 => DATA_IN(6),
+      O => \FSM_sequential_state[0]_i_11_n_0\
+    );
+\FSM_sequential_state[0]_i_12\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => DATA_IN(13),
+      I1 => DATA_IN(12),
+      I2 => DATA_IN(14),
+      I3 => DATA_IN(15),
+      O => \FSM_sequential_state[0]_i_12_n_0\
+    );
+\FSM_sequential_state[0]_i_13\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => DATA_IN(53),
+      I1 => DATA_IN(52),
+      I2 => DATA_IN(55),
+      I3 => DATA_IN(54),
+      O => \FSM_sequential_state[0]_i_13_n_0\
+    );
+\FSM_sequential_state[0]_i_14\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => DATA_IN(49),
+      I1 => DATA_IN(48),
+      I2 => DATA_IN(50),
+      I3 => DATA_IN(51),
+      O => \FSM_sequential_state[0]_i_14_n_0\
+    );
+\FSM_sequential_state[0]_i_15\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => DATA_IN(61),
+      I1 => DATA_IN(60),
+      I2 => DATA_IN(62),
+      I3 => DATA_IN(63),
+      O => \FSM_sequential_state[0]_i_15_n_0\
+    );
+\FSM_sequential_state[0]_i_16\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFEF"
+    )
+        port map (
+      I0 => DATA_IN(57),
+      I1 => DATA_IN(56),
+      I2 => DATA_IN(59),
+      I3 => DATA_IN(58),
+      O => \FSM_sequential_state[0]_i_16_n_0\
+    );
+\FSM_sequential_state[0]_i_17\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => DATA_IN(37),
+      I1 => DATA_IN(36),
+      I2 => DATA_IN(39),
+      I3 => DATA_IN(38),
+      O => \FSM_sequential_state[0]_i_17_n_0\
+    );
+\FSM_sequential_state[0]_i_18\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFDF"
+    )
+        port map (
+      I0 => DATA_IN(33),
+      I1 => DATA_IN(32),
+      I2 => DATA_IN(34),
+      I3 => DATA_IN(35),
+      O => \FSM_sequential_state[0]_i_18_n_0\
+    );
+\FSM_sequential_state[0]_i_19\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FF7F"
+    )
+        port map (
+      I0 => DATA_IN(45),
+      I1 => DATA_IN(44),
+      I2 => DATA_IN(46),
+      I3 => DATA_IN(47),
+      O => \FSM_sequential_state[0]_i_19_n_0\
+    );
+\FSM_sequential_state[0]_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFFFFFFFFE"
+    )
+        port map (
+      I0 => \FSM_sequential_state[0]_i_3_n_0\,
+      I1 => \FSM_sequential_state[0]_i_4_n_0\,
+      I2 => \FSM_sequential_state[0]_i_5_n_0\,
+      I3 => \FSM_sequential_state[0]_i_6_n_0\,
+      I4 => \FSM_sequential_state[0]_i_7_n_0\,
+      I5 => \FSM_sequential_state[0]_i_8_n_0\,
       O => \FSM_sequential_state[0]_i_2_n_0\
+    );
+\FSM_sequential_state[0]_i_20\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFEF"
+    )
+        port map (
+      I0 => DATA_IN(41),
+      I1 => DATA_IN(40),
+      I2 => DATA_IN(43),
+      I3 => DATA_IN(42),
+      O => \FSM_sequential_state[0]_i_20_n_0\
+    );
+\FSM_sequential_state[0]_i_3\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFBFF"
+    )
+        port map (
+      I0 => DATA_IN(19),
+      I1 => DATA_IN(18),
+      I2 => DATA_IN(16),
+      I3 => DATA_IN(17),
+      I4 => \FSM_sequential_state[0]_i_9_n_0\,
+      O => \FSM_sequential_state[0]_i_3_n_0\
+    );
+\FSM_sequential_state[0]_i_4\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFFB"
+    )
+        port map (
+      I0 => DATA_IN(26),
+      I1 => DATA_IN(27),
+      I2 => DATA_IN(24),
+      I3 => DATA_IN(25),
+      I4 => \FSM_sequential_state[0]_i_10_n_0\,
+      O => \FSM_sequential_state[0]_i_4_n_0\
+    );
+\FSM_sequential_state[0]_i_5\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFBFF"
+    )
+        port map (
+      I0 => DATA_IN(3),
+      I1 => DATA_IN(2),
+      I2 => DATA_IN(0),
+      I3 => DATA_IN(1),
+      I4 => \FSM_sequential_state[0]_i_11_n_0\,
+      O => \FSM_sequential_state[0]_i_5_n_0\
+    );
+\FSM_sequential_state[0]_i_6\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFFFFFB"
+    )
+        port map (
+      I0 => DATA_IN(10),
+      I1 => DATA_IN(11),
+      I2 => DATA_IN(8),
+      I3 => DATA_IN(9),
+      I4 => \FSM_sequential_state[0]_i_12_n_0\,
+      O => \FSM_sequential_state[0]_i_6_n_0\
+    );
+\FSM_sequential_state[0]_i_7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => \FSM_sequential_state[0]_i_13_n_0\,
+      I1 => \FSM_sequential_state[0]_i_14_n_0\,
+      I2 => \FSM_sequential_state[0]_i_15_n_0\,
+      I3 => \FSM_sequential_state[0]_i_16_n_0\,
+      O => \FSM_sequential_state[0]_i_7_n_0\
+    );
+\FSM_sequential_state[0]_i_8\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FFFE"
+    )
+        port map (
+      I0 => \FSM_sequential_state[0]_i_17_n_0\,
+      I1 => \FSM_sequential_state[0]_i_18_n_0\,
+      I2 => \FSM_sequential_state[0]_i_19_n_0\,
+      I3 => \FSM_sequential_state[0]_i_20_n_0\,
+      O => \FSM_sequential_state[0]_i_8_n_0\
+    );
+\FSM_sequential_state[0]_i_9\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"7FFF"
+    )
+        port map (
+      I0 => DATA_IN(21),
+      I1 => DATA_IN(20),
+      I2 => DATA_IN(23),
+      I3 => DATA_IN(22),
+      O => \FSM_sequential_state[0]_i_9_n_0\
     );
 \FSM_sequential_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000000EEE2E2E2"
+      INIT => X"FF8CFFFFFF8C0000"
     )
         port map (
-      I0 => \state__0\(1),
-      I1 => \FSM_sequential_state[2]_i_2_n_0\,
-      I2 => \FSM_sequential_state[1]_i_2_n_0\,
-      I3 => \FSM_sequential_state[1]_i_3_n_0\,
-      I4 => \FSM_sequential_state[1]_i_4_n_0\,
-      I5 => \FSM_sequential_state[1]_i_5_n_0\,
+      I0 => \FSM_sequential_state[1]_i_2_n_0\,
+      I1 => \FSM_sequential_state[1]_i_3_n_0\,
+      I2 => \bad_sync_ctr_reg_n_0_[2]\,
+      I3 => \FSM_sequential_state[1]_i_4_n_0\,
+      I4 => \FSM_sequential_state[2]_i_3_n_0\,
+      I5 => \state__0\(1),
       O => \FSM_sequential_state[1]_i_1_n_0\
     );
-\FSM_sequential_state[1]_i_2\: unisim.vcomponents.LUT6
+\FSM_sequential_state[1]_i_2\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"222222222FFF2222"
+      INIT => X"E"
     )
         port map (
-      I0 => \FSM_sequential_state[1]_i_6_n_0\,
-      I1 => \bad_sync_ctr[2]_i_2_n_0\,
-      I2 => \state__0\(2),
-      I3 => \bad_sync_ctr_reg_n_0_[2]\,
-      I4 => \state__0\(0),
-      I5 => \state__0\(1),
+      I0 => \bad_sync_ctr_reg_n_0_[0]\,
+      I1 => \bad_sync_ctr_reg_n_0_[1]\,
       O => \FSM_sequential_state[1]_i_2_n_0\
     );
 \FSM_sequential_state[1]_i_3\: unisim.vcomponents.LUT2
@@ -1645,47 +1838,36 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       I1 => \state__0\(1),
       O => \FSM_sequential_state[1]_i_3_n_0\
     );
-\FSM_sequential_state[1]_i_4\: unisim.vcomponents.LUT2
+\FSM_sequential_state[1]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E"
+      INIT => X"00005F5F01000000"
     )
         port map (
-      I0 => \bad_sync_ctr_reg_n_0_[0]\,
-      I1 => \bad_sync_ctr_reg_n_0_[1]\,
+      I0 => \FSM_sequential_state[0]_i_2_n_0\,
+      I1 => \good_sync_ctr_reg_n_0_[2]\,
+      I2 => \state__0\(2),
+      I3 => \FSM_sequential_state[1]_i_5_n_0\,
+      I4 => \state__0\(1),
+      I5 => \state__0\(0),
       O => \FSM_sequential_state[1]_i_4_n_0\
     );
 \FSM_sequential_state[1]_i_5\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"E"
+      INIT => X"8"
     )
         port map (
-      I0 => SYSTEM_RESET,
-      I1 => PASSTHROUGH,
+      I0 => \good_sync_ctr_reg_n_0_[0]\,
+      I1 => \good_sync_ctr_reg_n_0_[1]\,
       O => \FSM_sequential_state[1]_i_5_n_0\
     );
-\FSM_sequential_state[1]_i_6\: unisim.vcomponents.LUT6
+\FSM_sequential_state[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"0000FFFF10000000"
+      INIT => X"B8"
     )
         port map (
-      I0 => \good_sync_ctr_reg_n_0_[2]\,
-      I1 => \state__0\(2),
-      I2 => \good_sync_ctr_reg_n_0_[1]\,
-      I3 => \good_sync_ctr_reg_n_0_[0]\,
-      I4 => \state__0\(1),
-      I5 => \state__0\(0),
-      O => \FSM_sequential_state[1]_i_6_n_0\
-    );
-\FSM_sequential_state[2]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"000000E2"
-    )
-        port map (
-      I0 => \state__0\(2),
-      I1 => \FSM_sequential_state[2]_i_2_n_0\,
-      I2 => \FSM_sequential_state[2]_i_3_n_0\,
-      I3 => PASSTHROUGH,
-      I4 => SYSTEM_RESET,
+      I0 => \FSM_sequential_state[2]_i_2_n_0\,
+      I1 => \FSM_sequential_state[2]_i_3_n_0\,
+      I2 => \state__0\(2),
       O => \FSM_sequential_state[2]_i_1_n_0\
     );
 \FSM_sequential_state[2]_i_10\: unisim.vcomponents.LUT4
@@ -1693,21 +1875,19 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       INIT => X"0001"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_14_n_0\,
-      I1 => \bad_sync_ctr[2]_i_15_n_0\,
-      I2 => \bad_sync_ctr[2]_i_20_n_0\,
-      I3 => \bad_sync_ctr[2]_i_21_n_0\,
+      I0 => \FSM_sequential_state[2]_i_15_n_0\,
+      I1 => \FSM_sequential_state[0]_i_11_n_0\,
+      I2 => \FSM_sequential_state[0]_i_15_n_0\,
+      I3 => \FSM_sequential_state[0]_i_16_n_0\,
       O => \FSM_sequential_state[2]_i_10_n_0\
     );
-\FSM_sequential_state[2]_i_11\: unisim.vcomponents.LUT4
+\FSM_sequential_state[2]_i_11\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"0001"
+      INIT => X"7"
     )
         port map (
-      I0 => \FSM_sequential_state[2]_i_15_n_0\,
-      I1 => \bad_sync_ctr[2]_i_12_n_0\,
-      I2 => \bad_sync_ctr[2]_i_16_n_0\,
-      I3 => \bad_sync_ctr[2]_i_17_n_0\,
+      I0 => \frame_ctr_reg_n_0_[2]\,
+      I1 => \frame_ctr_reg_n_0_[3]\,
       O => \FSM_sequential_state[2]_i_11_n_0\
     );
 \FSM_sequential_state[2]_i_12\: unisim.vcomponents.LUT4
@@ -1754,58 +1934,45 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       I3 => DATA_IN(3),
       O => \FSM_sequential_state[2]_i_15_n_0\
     );
-\FSM_sequential_state[2]_i_2\: unisim.vcomponents.LUT6
+\FSM_sequential_state[2]_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"3C0CB0B0"
+    )
+        port map (
+      I0 => \FSM_sequential_state[2]_i_4_n_0\,
+      I1 => \state__0\(0),
+      I2 => \state__0\(2),
+      I3 => \FSM_sequential_state[2]_i_5_n_0\,
+      I4 => \state__0\(1),
+      O => \FSM_sequential_state[2]_i_2_n_0\
+    );
+\FSM_sequential_state[2]_i_3\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"F3F0FCF0FFF0F1F0"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_2_n_0\,
+      I0 => \FSM_sequential_state[0]_i_2_n_0\,
       I1 => \state__0\(2),
-      I2 => \FSM_sequential_state[2]_i_4_n_0\,
+      I2 => \FSM_sequential_state[2]_i_6_n_0\,
       I3 => DATA_IN_VALID,
       I4 => \state__0\(1),
       I5 => \state__0\(0),
-      O => \FSM_sequential_state[2]_i_2_n_0\
-    );
-\FSM_sequential_state[2]_i_3\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"0FA0C0F0"
-    )
-        port map (
-      I0 => \FSM_sequential_state[2]_i_5_n_0\,
-      I1 => \FSM_sequential_state[2]_i_6_n_0\,
-      I2 => \state__0\(2),
-      I3 => \state__0\(1),
-      I4 => \state__0\(0),
       O => \FSM_sequential_state[2]_i_3_n_0\
     );
 \FSM_sequential_state[2]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0230000002000000"
-    )
-        port map (
-      I0 => \FSM_sequential_state[1]_i_3_n_0\,
-      I1 => \FSM_sequential_state[2]_i_7_n_0\,
-      I2 => \frame_ctr_reg_n_0_[0]\,
-      I3 => \frame_ctr_reg_n_0_[1]\,
-      I4 => DATA_IN_VALID,
-      I5 => \mismatch_ctr[2]_i_2_n_0\,
-      O => \FSM_sequential_state[2]_i_4_n_0\
-    );
-\FSM_sequential_state[2]_i_5\: unisim.vcomponents.LUT6
-    generic map(
       INIT => X"FBBBBBBBBBBBBBBB"
     )
         port map (
-      I0 => \FSM_sequential_state[1]_i_4_n_0\,
+      I0 => \FSM_sequential_state[1]_i_2_n_0\,
       I1 => \bad_sync_ctr_reg_n_0_[2]\,
-      I2 => \FSM_sequential_state[2]_i_8_n_0\,
-      I3 => \FSM_sequential_state[2]_i_9_n_0\,
-      I4 => \FSM_sequential_state[2]_i_10_n_0\,
-      I5 => \FSM_sequential_state[2]_i_11_n_0\,
-      O => \FSM_sequential_state[2]_i_5_n_0\
+      I2 => \FSM_sequential_state[2]_i_7_n_0\,
+      I3 => \FSM_sequential_state[2]_i_8_n_0\,
+      I4 => \FSM_sequential_state[2]_i_9_n_0\,
+      I5 => \FSM_sequential_state[2]_i_10_n_0\,
+      O => \FSM_sequential_state[2]_i_4_n_0\
     );
-\FSM_sequential_state[2]_i_6\: unisim.vcomponents.LUT4
+\FSM_sequential_state[2]_i_5\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFBF"
     )
@@ -1814,15 +1981,30 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       I1 => \mismatch_ctr_reg_n_0_[0]\,
       I2 => \mismatch_ctr_reg_n_0_[1]\,
       I3 => \state1_carry__3_n_0\,
-      O => \FSM_sequential_state[2]_i_6_n_0\
+      O => \FSM_sequential_state[2]_i_5_n_0\
     );
-\FSM_sequential_state[2]_i_7\: unisim.vcomponents.LUT2
+\FSM_sequential_state[2]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"7"
+      INIT => X"0230000002000000"
     )
         port map (
-      I0 => \frame_ctr_reg_n_0_[2]\,
-      I1 => \frame_ctr_reg_n_0_[3]\,
+      I0 => \FSM_sequential_state[1]_i_3_n_0\,
+      I1 => \FSM_sequential_state[2]_i_11_n_0\,
+      I2 => \frame_ctr_reg_n_0_[0]\,
+      I3 => \frame_ctr_reg_n_0_[1]\,
+      I4 => DATA_IN_VALID,
+      I5 => \mismatch_ctr[2]_i_2_n_0\,
+      O => \FSM_sequential_state[2]_i_6_n_0\
+    );
+\FSM_sequential_state[2]_i_7\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0001"
+    )
+        port map (
+      I0 => \FSM_sequential_state[0]_i_17_n_0\,
+      I1 => \FSM_sequential_state[0]_i_18_n_0\,
+      I2 => \FSM_sequential_state[0]_i_10_n_0\,
+      I3 => \FSM_sequential_state[2]_i_12_n_0\,
       O => \FSM_sequential_state[2]_i_7_n_0\
     );
 \FSM_sequential_state[2]_i_8\: unisim.vcomponents.LUT4
@@ -1830,10 +2012,10 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       INIT => X"0001"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_18_n_0\,
-      I1 => \bad_sync_ctr[2]_i_19_n_0\,
-      I2 => \bad_sync_ctr[2]_i_11_n_0\,
-      I3 => \FSM_sequential_state[2]_i_12_n_0\,
+      I0 => \FSM_sequential_state[0]_i_12_n_0\,
+      I1 => \FSM_sequential_state[2]_i_13_n_0\,
+      I2 => \FSM_sequential_state[0]_i_9_n_0\,
+      I3 => \FSM_sequential_state[2]_i_14_n_0\,
       O => \FSM_sequential_state[2]_i_8_n_0\
     );
 \FSM_sequential_state[2]_i_9\: unisim.vcomponents.LUT4
@@ -1841,10 +2023,10 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       INIT => X"0001"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_13_n_0\,
-      I1 => \FSM_sequential_state[2]_i_13_n_0\,
-      I2 => \bad_sync_ctr[2]_i_10_n_0\,
-      I3 => \FSM_sequential_state[2]_i_14_n_0\,
+      I0 => \FSM_sequential_state[0]_i_13_n_0\,
+      I1 => \FSM_sequential_state[0]_i_14_n_0\,
+      I2 => \FSM_sequential_state[0]_i_19_n_0\,
+      I3 => \FSM_sequential_state[0]_i_20_n_0\,
       O => \FSM_sequential_state[2]_i_9_n_0\
     );
 \FSM_sequential_state_reg[0]\: unisim.vcomponents.FDRE
@@ -1853,7 +2035,7 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => \FSM_sequential_state[0]_i_1_n_0\,
       Q => \state__0\(0),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \FSM_sequential_state_reg[1]\: unisim.vcomponents.FDRE
      port map (
@@ -1861,7 +2043,7 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => \FSM_sequential_state[1]_i_1_n_0\,
       Q => \state__0\(1),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \FSM_sequential_state_reg[2]\: unisim.vcomponents.FDRE
      port map (
@@ -1869,61 +2051,52 @@ DATA_OUT_VALID_reg: unisim.vcomponents.FDRE
       CE => '1',
       D => \FSM_sequential_state[2]_i_1_n_0\,
       Q => \state__0\(2),
-      R => '0'
-    );
-\HEADER_OUT[0]_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => HEADER_IN(0),
-      I1 => SYSTEM_RESET,
-      O => \HEADER_OUT[0]_i_1_n_0\
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \HEADER_OUT[1]_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"2"
+      INIT => X"E"
     )
         port map (
-      I0 => HEADER_IN(1),
-      I1 => SYSTEM_RESET,
+      I0 => SYSTEM_RESET,
+      I1 => PASSTHROUGH,
       O => \HEADER_OUT[1]_i_1_n_0\
     );
 \HEADER_OUT_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \HEADER_OUT[0]_i_1_n_0\,
+      D => HEADER_IN(0),
       Q => HEADER_OUT(0),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
 \HEADER_OUT_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => \HEADER_OUT[1]_i_1_n_0\,
+      D => HEADER_IN(1),
       Q => HEADER_OUT(1),
-      R => '0'
+      R => \HEADER_OUT[1]_i_1_n_0\
     );
-LOCKED_INST_0: unisim.vcomponents.LUT3
+NOT_LOCKED_INST_0: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"70"
+      INIT => X"8F"
     )
         port map (
-      I0 => \state__0\(0),
-      I1 => \state__0\(1),
+      I0 => \state__0\(1),
+      I1 => \state__0\(0),
       I2 => \state__0\(2),
-      O => LOCKED
+      O => NOT_LOCKED
     );
 \bad_sync_ctr[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00FF0800"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_2_n_0\,
+      I0 => \FSM_sequential_state[0]_i_2_n_0\,
       I1 => \state__0\(2),
       I2 => \state__0\(1),
-      I3 => \bad_sync_ctr[2]_i_3_n_0\,
+      I3 => \bad_sync_ctr[2]_i_2_n_0\,
       I4 => \bad_sync_ctr_reg_n_0_[0]\,
       O => \bad_sync_ctr[0]_i_1_n_0\
     );
@@ -1932,11 +2105,11 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       INIT => X"0020FFFF00800000"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_2_n_0\,
+      I0 => \FSM_sequential_state[0]_i_2_n_0\,
       I1 => \bad_sync_ctr_reg_n_0_[0]\,
       I2 => \state__0\(2),
       I3 => \state__0\(1),
-      I4 => \bad_sync_ctr[2]_i_3_n_0\,
+      I4 => \bad_sync_ctr[2]_i_2_n_0\,
       I5 => \bad_sync_ctr_reg_n_0_[1]\,
       O => \bad_sync_ctr[1]_i_1_n_0\
     );
@@ -1945,240 +2118,25 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       INIT => X"2A00FFFF80000000"
     )
         port map (
-      I0 => \bad_sync_ctr[2]_i_2_n_0\,
+      I0 => \FSM_sequential_state[0]_i_2_n_0\,
       I1 => \bad_sync_ctr_reg_n_0_[1]\,
       I2 => \bad_sync_ctr_reg_n_0_[0]\,
       I3 => \frame_ctr[3]_i_3_n_0\,
-      I4 => \bad_sync_ctr[2]_i_3_n_0\,
+      I4 => \bad_sync_ctr[2]_i_2_n_0\,
       I5 => \bad_sync_ctr_reg_n_0_[2]\,
       O => \bad_sync_ctr[2]_i_1_n_0\
     );
-\bad_sync_ctr[2]_i_10\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => DATA_IN(21),
-      I1 => DATA_IN(20),
-      I2 => DATA_IN(23),
-      I3 => DATA_IN(22),
-      O => \bad_sync_ctr[2]_i_10_n_0\
-    );
-\bad_sync_ctr[2]_i_11\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => DATA_IN(29),
-      I1 => DATA_IN(28),
-      I2 => DATA_IN(30),
-      I3 => DATA_IN(31),
-      O => \bad_sync_ctr[2]_i_11_n_0\
-    );
-\bad_sync_ctr[2]_i_12\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => DATA_IN(5),
-      I1 => DATA_IN(4),
-      I2 => DATA_IN(7),
-      I3 => DATA_IN(6),
-      O => \bad_sync_ctr[2]_i_12_n_0\
-    );
-\bad_sync_ctr[2]_i_13\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => DATA_IN(13),
-      I1 => DATA_IN(12),
-      I2 => DATA_IN(14),
-      I3 => DATA_IN(15),
-      O => \bad_sync_ctr[2]_i_13_n_0\
-    );
-\bad_sync_ctr[2]_i_14\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => DATA_IN(53),
-      I1 => DATA_IN(52),
-      I2 => DATA_IN(55),
-      I3 => DATA_IN(54),
-      O => \bad_sync_ctr[2]_i_14_n_0\
-    );
-\bad_sync_ctr[2]_i_15\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFDF"
-    )
-        port map (
-      I0 => DATA_IN(49),
-      I1 => DATA_IN(48),
-      I2 => DATA_IN(50),
-      I3 => DATA_IN(51),
-      O => \bad_sync_ctr[2]_i_15_n_0\
-    );
-\bad_sync_ctr[2]_i_16\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => DATA_IN(61),
-      I1 => DATA_IN(60),
-      I2 => DATA_IN(62),
-      I3 => DATA_IN(63),
-      O => \bad_sync_ctr[2]_i_16_n_0\
-    );
-\bad_sync_ctr[2]_i_17\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => DATA_IN(57),
-      I1 => DATA_IN(56),
-      I2 => DATA_IN(59),
-      I3 => DATA_IN(58),
-      O => \bad_sync_ctr[2]_i_17_n_0\
-    );
-\bad_sync_ctr[2]_i_18\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"7FFF"
-    )
-        port map (
-      I0 => DATA_IN(37),
-      I1 => DATA_IN(36),
-      I2 => DATA_IN(39),
-      I3 => DATA_IN(38),
-      O => \bad_sync_ctr[2]_i_18_n_0\
-    );
-\bad_sync_ctr[2]_i_19\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFDF"
-    )
-        port map (
-      I0 => DATA_IN(33),
-      I1 => DATA_IN(32),
-      I2 => DATA_IN(34),
-      I3 => DATA_IN(35),
-      O => \bad_sync_ctr[2]_i_19_n_0\
-    );
-\bad_sync_ctr[2]_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFFFFFFFFE"
-    )
-        port map (
-      I0 => \bad_sync_ctr[2]_i_4_n_0\,
-      I1 => \bad_sync_ctr[2]_i_5_n_0\,
-      I2 => \bad_sync_ctr[2]_i_6_n_0\,
-      I3 => \bad_sync_ctr[2]_i_7_n_0\,
-      I4 => \bad_sync_ctr[2]_i_8_n_0\,
-      I5 => \bad_sync_ctr[2]_i_9_n_0\,
-      O => \bad_sync_ctr[2]_i_2_n_0\
-    );
-\bad_sync_ctr[2]_i_20\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FF7F"
-    )
-        port map (
-      I0 => DATA_IN(45),
-      I1 => DATA_IN(44),
-      I2 => DATA_IN(46),
-      I3 => DATA_IN(47),
-      O => \bad_sync_ctr[2]_i_20_n_0\
-    );
-\bad_sync_ctr[2]_i_21\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => DATA_IN(41),
-      I1 => DATA_IN(40),
-      I2 => DATA_IN(43),
-      I3 => DATA_IN(42),
-      O => \bad_sync_ctr[2]_i_21_n_0\
-    );
-\bad_sync_ctr[2]_i_3\: unisim.vcomponents.LUT5
+\bad_sync_ctr[2]_i_2\: unisim.vcomponents.LUT5
     generic map(
       INIT => X"00003803"
     )
         port map (
-      I0 => \FSM_sequential_state[2]_i_5_n_0\,
+      I0 => \FSM_sequential_state[2]_i_4_n_0\,
       I1 => \state__0\(2),
       I2 => \state__0\(1),
       I3 => \state__0\(0),
       I4 => \descrambler[57]_i_4_n_0\,
-      O => \bad_sync_ctr[2]_i_3_n_0\
-    );
-\bad_sync_ctr[2]_i_4\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFBFF"
-    )
-        port map (
-      I0 => DATA_IN(19),
-      I1 => DATA_IN(18),
-      I2 => DATA_IN(16),
-      I3 => DATA_IN(17),
-      I4 => \bad_sync_ctr[2]_i_10_n_0\,
-      O => \bad_sync_ctr[2]_i_4_n_0\
-    );
-\bad_sync_ctr[2]_i_5\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFB"
-    )
-        port map (
-      I0 => DATA_IN(26),
-      I1 => DATA_IN(27),
-      I2 => DATA_IN(24),
-      I3 => DATA_IN(25),
-      I4 => \bad_sync_ctr[2]_i_11_n_0\,
-      O => \bad_sync_ctr[2]_i_5_n_0\
-    );
-\bad_sync_ctr[2]_i_6\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFBFF"
-    )
-        port map (
-      I0 => DATA_IN(3),
-      I1 => DATA_IN(2),
-      I2 => DATA_IN(0),
-      I3 => DATA_IN(1),
-      I4 => \bad_sync_ctr[2]_i_12_n_0\,
-      O => \bad_sync_ctr[2]_i_6_n_0\
-    );
-\bad_sync_ctr[2]_i_7\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFFFFFB"
-    )
-        port map (
-      I0 => DATA_IN(10),
-      I1 => DATA_IN(11),
-      I2 => DATA_IN(8),
-      I3 => DATA_IN(9),
-      I4 => \bad_sync_ctr[2]_i_13_n_0\,
-      O => \bad_sync_ctr[2]_i_7_n_0\
-    );
-\bad_sync_ctr[2]_i_8\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => \bad_sync_ctr[2]_i_14_n_0\,
-      I1 => \bad_sync_ctr[2]_i_15_n_0\,
-      I2 => \bad_sync_ctr[2]_i_16_n_0\,
-      I3 => \bad_sync_ctr[2]_i_17_n_0\,
-      O => \bad_sync_ctr[2]_i_8_n_0\
-    );
-\bad_sync_ctr[2]_i_9\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFFE"
-    )
-        port map (
-      I0 => \bad_sync_ctr[2]_i_18_n_0\,
-      I1 => \bad_sync_ctr[2]_i_19_n_0\,
-      I2 => \bad_sync_ctr[2]_i_20_n_0\,
-      I3 => \bad_sync_ctr[2]_i_21_n_0\,
-      O => \bad_sync_ctr[2]_i_9_n_0\
+      O => \bad_sync_ctr[2]_i_2_n_0\
     );
 \bad_sync_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -3186,7 +3144,7 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
       C => USER_CLK,
       CE => \descrambler[57]_i_1_n_0\,
       D => descrambler(38),
-      Q => p_0_in_0,
+      Q => \descrambler_reg_n_0_[38]\,
       R => '0'
     );
 \descrambler_reg[39]\: unisim.vcomponents.FDRE
@@ -3545,7 +3503,7 @@ LOCKED_INST_0: unisim.vcomponents.LUT3
     )
         port map (
       I0 => \state__0\(0),
-      I1 => \bad_sync_ctr[2]_i_2_n_0\,
+      I1 => \FSM_sequential_state[0]_i_2_n_0\,
       I2 => \state__0\(2),
       I3 => \state__0\(1),
       I4 => \descrambler[57]_i_4_n_0\,
@@ -3868,7 +3826,7 @@ state1_carry: unisim.vcomponents.CARRY4
     )
         port map (
       I0 => DATA_IN(38),
-      I1 => p_0_in_0,
+      I1 => \descrambler_reg_n_0_[38]\,
       I2 => DATA_IN(37),
       I3 => p_1_in2_in,
       I4 => p_5_in,
@@ -4003,7 +3961,7 @@ entity main_descrambler_0_0 is
     HEADER_OUT : out STD_LOGIC_VECTOR ( 1 downto 0 );
     DATA_IN_VALID : in STD_LOGIC;
     DATA_OUT_VALID : out STD_LOGIC;
-    LOCKED : out STD_LOGIC;
+    NOT_LOCKED : out STD_LOGIC;
     USER_CLK : in STD_LOGIC;
     SYSTEM_RESET : in STD_LOGIC;
     PASSTHROUGH : in STD_LOGIC
@@ -4036,7 +3994,7 @@ inst: entity work.main_descrambler_0_0_descrambler
       DATA_OUT_VALID => DATA_OUT_VALID,
       HEADER_IN(1 downto 0) => HEADER_IN(1 downto 0),
       HEADER_OUT(1 downto 0) => HEADER_OUT(1 downto 0),
-      LOCKED => LOCKED,
+      NOT_LOCKED => NOT_LOCKED,
       PASSTHROUGH => PASSTHROUGH,
       SYSTEM_RESET => SYSTEM_RESET,
       USER_CLK => USER_CLK
