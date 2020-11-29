@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 29 19:00:22 2020
+-- Date        : Sun Nov 29 22:37:14 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_tx_interface_0_0/main_tx_interface_0_0_sim_netlist.vhdl
@@ -30,6 +30,7 @@ entity main_tx_interface_0_0_tx_interface is
 end main_tx_interface_0_0_tx_interface;
 
 architecture STRUCTURE of main_tx_interface_0_0_tx_interface is
+  signal DATA_IN_READY_i_1_n_0 : STD_LOGIC;
   signal \DATA_OUT[63]_i_1_n_0\ : STD_LOGIC;
   signal \^data_out_valid\ : STD_LOGIC;
   signal \HEADER_OUT[0]_i_1_n_0\ : STD_LOGIC;
@@ -40,7 +41,6 @@ architecture STRUCTURE of main_tx_interface_0_0_tx_interface is
   signal \frame_ctr[2]_i_1_n_0\ : STD_LOGIC;
   signal \frame_ctr[3]_i_1_n_0\ : STD_LOGIC;
   signal p_0_in : STD_LOGIC;
-  signal p_0_in_0 : STD_LOGIC;
   signal p_1_in : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal \schedule_reg_n_0_[0]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[10]\ : STD_LOGIC;
@@ -100,35 +100,42 @@ architecture STRUCTURE of main_tx_interface_0_0_tx_interface is
   signal \schedule_reg_n_0_[5]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[60]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[61]\ : STD_LOGIC;
+  signal \schedule_reg_n_0_[62]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[64]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[65]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[6]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[7]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[8]\ : STD_LOGIC;
   signal \schedule_reg_n_0_[9]\ : STD_LOGIC;
-  signal send_payload_i_1_n_0 : STD_LOGIC;
-  signal send_payload_reg_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of DATA_IN_READY_INST_0 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \DATA_OUT[40]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \DATA_OUT[42]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \HEADER_OUT[0]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \frame_ctr[0]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \frame_ctr[1]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \frame_ctr[2]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \frame_ctr[3]_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of send_payload_i_1 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \DATA_OUT[3]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \DATA_OUT[8]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \HEADER_OUT[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \HEADER_OUT[1]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \frame_ctr[0]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \frame_ctr[1]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \frame_ctr[2]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \frame_ctr[3]_i_1\ : label is "soft_lutpair2";
 begin
   DATA_OUT_VALID <= \^data_out_valid\;
-DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
+DATA_IN_READY_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"8"
+      INIT => X"FE00"
     )
         port map (
-      I0 => p_0_in_0,
-      I1 => send_payload_reg_n_0,
-      O => DATA_IN_READY
+      I0 => frame_ctr(2),
+      I1 => frame_ctr(1),
+      I2 => frame_ctr(3),
+      I3 => p_0_in,
+      O => DATA_IN_READY_i_1_n_0
+    );
+DATA_IN_READY_reg: unisim.vcomponents.FDRE
+     port map (
+      C => USER_CLK,
+      CE => '1',
+      D => DATA_IN_READY_i_1_n_0,
+      Q => DATA_IN_READY,
+      R => '0'
     );
 \DATA_OUT[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -1535,7 +1542,7 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
 \frame_ctr_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => p_0_in,
+      CE => \schedule_reg_n_0_[62]\,
       D => \frame_ctr[0]_i_1_n_0\,
       Q => frame_ctr(0),
       R => SYSTEM_RESET
@@ -1543,7 +1550,7 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
 \frame_ctr_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => p_0_in,
+      CE => \schedule_reg_n_0_[62]\,
       D => \frame_ctr[1]_i_1_n_0\,
       Q => frame_ctr(1),
       R => SYSTEM_RESET
@@ -1551,7 +1558,7 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
 \frame_ctr_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => p_0_in,
+      CE => \schedule_reg_n_0_[62]\,
       D => \frame_ctr[2]_i_1_n_0\,
       Q => frame_ctr(2),
       R => SYSTEM_RESET
@@ -1559,7 +1566,7 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
 \frame_ctr_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
-      CE => p_0_in,
+      CE => \schedule_reg_n_0_[62]\,
       D => \frame_ctr[3]_i_1_n_0\,
       Q => frame_ctr(3),
       R => SYSTEM_RESET
@@ -2033,22 +2040,22 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
       C => USER_CLK,
       CE => '1',
       D => \schedule_reg_n_0_[61]\,
-      Q => p_0_in,
+      Q => \schedule_reg_n_0_[62]\,
       R => SYSTEM_RESET
     );
 \schedule_reg[63]\: unisim.vcomponents.FDSE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => p_0_in,
-      Q => p_0_in_0,
+      D => \schedule_reg_n_0_[62]\,
+      Q => p_0_in,
       S => SYSTEM_RESET
     );
 \schedule_reg[64]\: unisim.vcomponents.FDRE
      port map (
       C => USER_CLK,
       CE => '1',
-      D => p_0_in_0,
+      D => p_0_in,
       Q => \schedule_reg_n_0_[64]\,
       R => SYSTEM_RESET
     );
@@ -2099,26 +2106,6 @@ DATA_IN_READY_INST_0: unisim.vcomponents.LUT2
       D => \schedule_reg_n_0_[8]\,
       Q => \schedule_reg_n_0_[9]\,
       R => SYSTEM_RESET
-    );
-send_payload_i_1: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFCAAAA"
-    )
-        port map (
-      I0 => send_payload_reg_n_0,
-      I1 => frame_ctr(2),
-      I2 => frame_ctr(1),
-      I3 => frame_ctr(3),
-      I4 => p_0_in_0,
-      O => send_payload_i_1_n_0
-    );
-send_payload_reg: unisim.vcomponents.FDRE
-     port map (
-      C => USER_CLK,
-      CE => '1',
-      D => send_payload_i_1_n_0,
-      Q => send_payload_reg_n_0,
-      R => '0'
     );
 end STRUCTURE;
 library IEEE;

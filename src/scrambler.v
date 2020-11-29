@@ -92,8 +92,7 @@ module scrambler #
                 DATA_OUT <= `DLY  DATA_IN;
                 state              <= `DLY  STATE_SYNC;
             end
-            else
-            begin
+            else begin
                 DATA_OUT <= `DLY  tempData;
                 scrambler          <= `DLY  poly;
             end
@@ -106,8 +105,7 @@ module scrambler #
             HEADER_OUT           <= `DLY  2'b00;
             DATA_OUT_VALID       <= `DLY  1'b0;
         end
-        else
-        begin
+        else begin
             HEADER_OUT           <= `DLY  HEADER_IN;
             DATA_OUT_VALID       <= `DLY  DATA_IN_VALID;
         end

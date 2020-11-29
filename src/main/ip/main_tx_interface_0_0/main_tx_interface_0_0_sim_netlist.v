@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sun Nov 29 19:00:22 2020
+// Date        : Sun Nov 29 22:37:14 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_tx_interface_0_0/main_tx_interface_0_0_sim_netlist.v
@@ -74,6 +74,7 @@ module main_tx_interface_0_0_tx_interface
 
   wire [63:0]DATA_IN;
   wire DATA_IN_READY;
+  wire DATA_IN_READY_i_1_n_0;
   wire [63:0]DATA_OUT;
   wire \DATA_OUT[63]_i_1_n_0 ;
   wire DATA_OUT_VALID;
@@ -89,7 +90,6 @@ module main_tx_interface_0_0_tx_interface
   wire \frame_ctr[2]_i_1_n_0 ;
   wire \frame_ctr[3]_i_1_n_0 ;
   wire p_0_in;
-  wire p_0_in_0;
   wire [63:0]p_1_in;
   wire \schedule_reg_n_0_[0] ;
   wire \schedule_reg_n_0_[10] ;
@@ -149,22 +149,28 @@ module main_tx_interface_0_0_tx_interface
   wire \schedule_reg_n_0_[5] ;
   wire \schedule_reg_n_0_[60] ;
   wire \schedule_reg_n_0_[61] ;
+  wire \schedule_reg_n_0_[62] ;
   wire \schedule_reg_n_0_[64] ;
   wire \schedule_reg_n_0_[65] ;
   wire \schedule_reg_n_0_[6] ;
   wire \schedule_reg_n_0_[7] ;
   wire \schedule_reg_n_0_[8] ;
   wire \schedule_reg_n_0_[9] ;
-  wire send_payload_i_1_n_0;
-  wire send_payload_reg_n_0;
 
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    DATA_IN_READY_INST_0
-       (.I0(p_0_in_0),
-        .I1(send_payload_reg_n_0),
-        .O(DATA_IN_READY));
+  LUT4 #(
+    .INIT(16'hFE00)) 
+    DATA_IN_READY_i_1
+       (.I0(frame_ctr[2]),
+        .I1(frame_ctr[1]),
+        .I2(frame_ctr[3]),
+        .I3(p_0_in),
+        .O(DATA_IN_READY_i_1_n_0));
+  FDRE DATA_IN_READY_reg
+       (.C(USER_CLK),
+        .CE(1'b1),
+        .D(DATA_IN_READY_i_1_n_0),
+        .Q(DATA_IN_READY),
+        .R(1'b0));
   LUT5 #(
     .INIT(32'hFE000000)) 
     \DATA_OUT[0]_i_1 
@@ -484,6 +490,7 @@ module main_tx_interface_0_0_tx_interface
         .I4(frame_ctr[2]),
         .I5(frame_ctr[0]),
         .O(p_1_in[39]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'hFEFE00FE)) 
     \DATA_OUT[3]_i_1 
@@ -493,7 +500,6 @@ module main_tx_interface_0_0_tx_interface
         .I3(DATA_TO_SEND),
         .I4(DATA_IN[3]),
         .O(p_1_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'hFE000000)) 
     \DATA_OUT[40]_i_1 
@@ -512,7 +518,6 @@ module main_tx_interface_0_0_tx_interface
         .I3(DATA_TO_SEND),
         .I4(DATA_IN[41]),
         .O(p_1_in[41]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'hFE000000)) 
     \DATA_OUT[42]_i_1 
@@ -768,6 +773,7 @@ module main_tx_interface_0_0_tx_interface
         .I4(frame_ctr[2]),
         .I5(frame_ctr[0]),
         .O(p_1_in[7]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hFE000000)) 
     \DATA_OUT[8]_i_1 
@@ -1170,7 +1176,7 @@ module main_tx_interface_0_0_tx_interface
         .D(p_1_in[9]),
         .Q(DATA_OUT[9]),
         .R(\DATA_OUT[63]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'hAAA8)) 
     \HEADER_OUT[0]_i_1 
@@ -1179,7 +1185,7 @@ module main_tx_interface_0_0_tx_interface
         .I2(frame_ctr[1]),
         .I3(frame_ctr[2]),
         .O(\HEADER_OUT[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'h01FF)) 
     \HEADER_OUT[1]_i_1 
@@ -1200,20 +1206,20 @@ module main_tx_interface_0_0_tx_interface
         .D(\HEADER_OUT[1]_i_1_n_0 ),
         .Q(HEADER_OUT[1]),
         .R(\DATA_OUT[63]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \frame_ctr[0]_i_1 
        (.I0(frame_ctr[0]),
         .O(\frame_ctr[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \frame_ctr[1]_i_1 
        (.I0(frame_ctr[1]),
         .I1(frame_ctr[0]),
         .O(\frame_ctr[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \frame_ctr[2]_i_1 
@@ -1221,7 +1227,7 @@ module main_tx_interface_0_0_tx_interface
         .I1(frame_ctr[0]),
         .I2(frame_ctr[2]),
         .O(\frame_ctr[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \frame_ctr[3]_i_1 
@@ -1232,25 +1238,25 @@ module main_tx_interface_0_0_tx_interface
         .O(\frame_ctr[3]_i_1_n_0 ));
   FDRE \frame_ctr_reg[0] 
        (.C(USER_CLK),
-        .CE(p_0_in),
+        .CE(\schedule_reg_n_0_[62] ),
         .D(\frame_ctr[0]_i_1_n_0 ),
         .Q(frame_ctr[0]),
         .R(SYSTEM_RESET));
   FDRE \frame_ctr_reg[1] 
        (.C(USER_CLK),
-        .CE(p_0_in),
+        .CE(\schedule_reg_n_0_[62] ),
         .D(\frame_ctr[1]_i_1_n_0 ),
         .Q(frame_ctr[1]),
         .R(SYSTEM_RESET));
   FDRE \frame_ctr_reg[2] 
        (.C(USER_CLK),
-        .CE(p_0_in),
+        .CE(\schedule_reg_n_0_[62] ),
         .D(\frame_ctr[2]_i_1_n_0 ),
         .Q(frame_ctr[2]),
         .R(SYSTEM_RESET));
   FDRE \frame_ctr_reg[3] 
        (.C(USER_CLK),
-        .CE(p_0_in),
+        .CE(\schedule_reg_n_0_[62] ),
         .D(\frame_ctr[3]_i_1_n_0 ),
         .Q(frame_ctr[3]),
         .R(SYSTEM_RESET));
@@ -1606,18 +1612,18 @@ module main_tx_interface_0_0_tx_interface
        (.C(USER_CLK),
         .CE(1'b1),
         .D(\schedule_reg_n_0_[61] ),
-        .Q(p_0_in),
+        .Q(\schedule_reg_n_0_[62] ),
         .R(SYSTEM_RESET));
   FDSE \schedule_reg[63] 
        (.C(USER_CLK),
         .CE(1'b1),
-        .D(p_0_in),
-        .Q(p_0_in_0),
+        .D(\schedule_reg_n_0_[62] ),
+        .Q(p_0_in),
         .S(SYSTEM_RESET));
   FDRE \schedule_reg[64] 
        (.C(USER_CLK),
         .CE(1'b1),
-        .D(p_0_in_0),
+        .D(p_0_in),
         .Q(\schedule_reg_n_0_[64] ),
         .R(SYSTEM_RESET));
   FDRE \schedule_reg[65] 
@@ -1656,22 +1662,6 @@ module main_tx_interface_0_0_tx_interface
         .D(\schedule_reg_n_0_[8] ),
         .Q(\schedule_reg_n_0_[9] ),
         .R(SYSTEM_RESET));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT5 #(
-    .INIT(32'hFFFCAAAA)) 
-    send_payload_i_1
-       (.I0(send_payload_reg_n_0),
-        .I1(frame_ctr[2]),
-        .I2(frame_ctr[1]),
-        .I3(frame_ctr[3]),
-        .I4(p_0_in_0),
-        .O(send_payload_i_1_n_0));
-  FDRE send_payload_reg
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(send_payload_i_1_n_0),
-        .Q(send_payload_reg_n_0),
-        .R(1'b0));
 endmodule
 `ifndef GLBL
 `define GLBL

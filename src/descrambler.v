@@ -201,8 +201,7 @@ module descrambler #
             HEADER_OUT           <= `DLY  2'b00;
             DATA_OUT_VALID       <= `DLY  1'b0;
         end
-        else
-        begin
+        else begin
             HEADER_OUT           <= `DLY  HEADER_IN;
             DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state[2];
         end

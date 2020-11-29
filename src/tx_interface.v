@@ -33,7 +33,7 @@ module tx_interface #
     output reg   [63:0]  DATA_OUT,
     output reg   [1:0]   HEADER_OUT,
     input  wire          DATA_TO_SEND,
-    output wire          DATA_IN_READY,
+    output reg           DATA_IN_READY,
     output wire          DATA_OUT_VALID,
 
     // System Interface
@@ -44,7 +44,6 @@ module tx_interface #
 //***************************Declarations********************
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr;
     reg     [66:0]                              schedule;
-    reg                                         send_payload;
 
 //*********************************Main Body of Code**********************************
 
@@ -69,8 +68,7 @@ always @(posedge USER_CLK)
         begin
             frame_ctr       <= `DLY     'h0;
         end
-        else
-        begin
+        else begin
             frame_ctr       <= `DLY     frame_ctr + 1'b1;
         end
     end
@@ -93,12 +91,16 @@ always @(posedge USER_CLK)
 
 always @(posedge USER_CLK)
     if (schedule[63])
+    begin
         if (frame_ctr < 2)
-                send_payload  <=  `DLY   1'b0;
+                DATA_IN_READY  <=  `DLY   1'b0;
         else
-                send_payload  <=  `DLY   1'b1;
+                DATA_IN_READY  <=  `DLY   1'b1;
+    end
+    else begin
+        DATA_IN_READY  <=  `DLY   1'b0;
+    end
 
-assign DATA_IN_READY    = schedule[63] && send_payload;
 assign DATA_OUT_VALID   = schedule[66];
 
 endmodule

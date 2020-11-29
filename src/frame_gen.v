@@ -56,8 +56,7 @@ reg     [63:0]  rom [0:(WORDS_IN_BRAM - 1)];
             begin
                 read_counter_i   <=  `DLY    'h0;
             end
-            else
-            begin
+            else begin
                 read_counter_i   <=  `DLY    read_counter_i + 1'b1;
             end
         end

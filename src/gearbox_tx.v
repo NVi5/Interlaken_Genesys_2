@@ -115,8 +115,9 @@ always @(posedge USER_CLK)
         end
     end
 
-    assign data_out_i = storage [85:85-19];
+assign data_out_i = storage [85:85-19];
 
+// Reverse output data
 always@*
     for (i=0;i<20;i=i+1)
         DATA_OUT[i] = data_out_i[(20-1)-i];

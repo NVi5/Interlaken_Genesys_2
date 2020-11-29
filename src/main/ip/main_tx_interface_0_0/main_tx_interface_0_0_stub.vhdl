@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
--- Date        : Sun Nov 29 19:00:22 2020
+-- Date        : Sun Nov 29 22:37:14 2020
 -- Host        : RYZEN-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_tx_interface_0_0/main_tx_interface_0_0_stub.vhdl

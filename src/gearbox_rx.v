@@ -55,9 +55,6 @@ reg [21:0] hiword,midword;
 integer i;
 
 //*********************************Main Body of Code**********************************
-always@*
-    for (i=0;i<20;i=i+1)
-        data_in_i[i] = DATA_IN[(20-1)-i];
 
 always @(posedge USER_CLK)
     if (SYSTEM_RESET) begin
@@ -117,11 +114,13 @@ always @(posedge USER_CLK)
 
         // when successful advance to next word
         if (enough_bits) schedule <= {schedule[1:0],schedule[2]};
-
-        // if (schedule[2] & enough_bits) DATA_OUT <= {hiword,midword,loword};
     end
 
-    assign enough_bits = (top_ptr > 6'd22) || (!schedule[2] && top_ptr == 6'd22);
-    assign DATA_OUT = {hiword,midword,loword};
+assign enough_bits = (top_ptr > 6'd22) || (!schedule[2] && top_ptr == 6'd22);
+assign DATA_OUT = {hiword,midword,loword};
 
+// Reverse input data
+always@*
+    for (i=0;i<20;i=i+1)
+        data_in_i[i] = DATA_IN[(20-1)-i];
 endmodule

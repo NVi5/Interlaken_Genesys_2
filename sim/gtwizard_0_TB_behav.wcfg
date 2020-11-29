@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="373551812000fs"></ZoomStartTime>
-      <ZoomEndTime time="373691212001fs"></ZoomEndTime>
-      <Cursor1Time time="373650812000fs"></Cursor1Time>
+      <ZoomStartTime time="274452786000fs"></ZoomStartTime>
+      <ZoomEndTime time="275117786001fs"></ZoomEndTime>
+      <Cursor1Time time="274752786000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="215"></NameColumnWidth>
-      <ValueColumnWidth column_width="65"></ValueColumnWidth>
+      <NameColumnWidth column_width="210"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="12" />
    <wvobject fp_name="group82" type="group">
@@ -114,12 +114,6 @@
          <obj_property name="ElementShortName">NOT_LOCKED</obj_property>
          <obj_property name="ObjectShortName">NOT_LOCKED</obj_property>
          <obj_property name="label">DESCRAMBLER_NOT_LOCKED</obj_property>
-      </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/RX/rx_interface/NOT_LOCKED" type="logic">
-         <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="ElementShortName">NOT_LOCKED</obj_property>
-         <obj_property name="ObjectShortName">NOT_LOCKED</obj_property>
-         <obj_property name="label">RX_NOT_LOCKED</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/CORE/gt_core_0/RX_FSM_RESET_DONE" type="logic">
          <obj_property name="ElementShortName">RX_FSM_RESET_DONE</obj_property>
@@ -283,6 +277,7 @@
    <wvobject fp_name="group88" type="group">
       <obj_property name="label">TX Interface</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/USER_CLK" type="logic">
          <obj_property name="ElementShortName">USER_CLK</obj_property>
          <obj_property name="ObjectShortName">USER_CLK</obj_property>
@@ -307,18 +302,22 @@
          <obj_property name="ElementShortName">send_payload</obj_property>
          <obj_property name="ObjectShortName">send_payload</obj_property>
       </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_gen/inst/read_counter_i" type="array">
-         <obj_property name="ElementShortName">read_counter_i[8:0]</obj_property>
-         <obj_property name="ObjectShortName">read_counter_i[8:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/inst/frame_ctr" type="array">
          <obj_property name="ElementShortName">frame_ctr[3:0]</obj_property>
          <obj_property name="ObjectShortName">frame_ctr[3:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/inst/send_payload" type="logic">
-         <obj_property name="ElementShortName">send_payload</obj_property>
-         <obj_property name="ObjectShortName">send_payload</obj_property>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/inst/schedule[66]" type="logic">
+         <obj_property name="ElementShortName">[66]</obj_property>
+         <obj_property name="ObjectShortName">[66]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/inst/schedule[64]" type="logic">
+         <obj_property name="ElementShortName">[64]</obj_property>
+         <obj_property name="ObjectShortName">[64]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/TX/tx_interface_0/inst/schedule[63]" type="logic">
+         <obj_property name="ElementShortName">[63]</obj_property>
+         <obj_property name="ObjectShortName">[63]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group81" type="group">

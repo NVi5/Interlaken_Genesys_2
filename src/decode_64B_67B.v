@@ -144,8 +144,7 @@ module decode_64B_67B(
         begin
             DATA_OUT_VALID       <= `DLY  1'b0;
         end
-        else
-        begin
+        else begin
             DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state;
         end
 
