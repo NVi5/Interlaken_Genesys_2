@@ -166,10 +166,10 @@ module gtwizard_0_TB;
     wire gearbox_rx_clk;
     wire [19:0] gearbox_tx_out;
     wire gearbox_tx_clk;
-    assign gearbox_rx_in = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.RX_DATA;
-    assign gearbox_rx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.RX_USR_CLK2;
-    assign gearbox_tx_out = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.TX_DATA;
-    assign gearbox_tx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.gt_core_0.TX_USR_CLK2;
+    assign gearbox_rx_in = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.CORE.gt_core_0.RX_DATA;
+    assign gearbox_rx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.CORE.gt_core_0.RX_USR_CLK2;
+    assign gearbox_tx_out = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.CORE.gt_core_0.TX_DATA;
+    assign gearbox_tx_clk = gtwizard_0_TB.main_wrapper_i.main_i.interlaken.CORE.gt_core_0.TX_USR_CLK2;
 
     integer n = 0;
     always begin

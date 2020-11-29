@@ -35,7 +35,7 @@ module tx_interface #
     output reg   [1:0]   HEADER_OUT,
     input  wire          DATA_TO_SEND,
     output wire          DATA_IN_READY,
-    output wire          DATA_VALID,
+    output wire          DATA_OUT_VALID,
 
     // System Interface
     input  wire          USER_CLK,
@@ -101,7 +101,7 @@ always @(posedge USER_CLK)
         else
                 send_payload  <=  `DLY   1'b1;
 
-assign DATA_IN_READY = schedule[63] && send_payload;
-assign DATA_VALID    = schedule[66];
+assign DATA_IN_READY    = schedule[63] && send_payload;
+assign DATA_OUT_VALID   = schedule[66];
 
 endmodule

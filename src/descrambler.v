@@ -204,7 +204,7 @@ module descrambler #
         else
         begin
             HEADER_OUT           <= `DLY  HEADER_IN;
-            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state[2];
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && LOCKED;
         end
 
     assign LOCKED = state[2];

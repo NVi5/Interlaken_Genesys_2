@@ -146,7 +146,7 @@ module decode_64B_67B(
         end
         else
         begin
-            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state;
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && LOCKED;
         end
 
     assign  LOCKED = state;

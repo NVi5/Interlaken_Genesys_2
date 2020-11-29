@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# frame_check, frame_gen, decode_64B_67B, descrambler, encode_64B_67B, gearbox_rx, gearbox_tx, scrambler, stream_manipulator, tx_interface
+# frame_check, frame_gen, decode_64B_67B, descrambler, gearbox_rx, stream_manipulator, encode_64B_67B, gearbox_tx, scrambler, tx_interface
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -127,6 +127,461 @@ current_bd_design $design_name
 ##################################################################
 
 
+# Hierarchical cell: TX
+proc create_hier_cell_TX { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_TX() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -from 63 -to 0 DATA_IN
+  create_bd_pin -dir O DATA_IN_READY
+  create_bd_pin -dir O -from 19 -to 0 DATA_OUT
+  create_bd_pin -dir I DATA_TO_SEND
+  create_bd_pin -dir I -type rst TX_SYSTEM_RESET
+  create_bd_pin -dir I -type clk TX_USR_CLK
+  create_bd_pin -dir I -type clk TX_USR_CLK2
+
+  # Create instance: encode_64B_67B, and set properties
+  set block_name encode_64B_67B
+  set block_cell_name encode_64B_67B
+  if { [catch {set encode_64B_67B [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $encode_64B_67B eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: gearbox_tx, and set properties
+  set block_name gearbox_tx
+  set block_cell_name gearbox_tx
+  if { [catch {set gearbox_tx [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $gearbox_tx eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: ila_1, and set properties
+  set ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_1 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {3} \
+   CONFIG.C_PROBE0_WIDTH {64} \
+   CONFIG.C_PROBE1_WIDTH {67} \
+   CONFIG.C_PROBE2_WIDTH {1} \
+   CONFIG.C_PROBE3_WIDTH {1} \
+   CONFIG.C_PROBE4_WIDTH {1} \
+   CONFIG.C_PROBE5_WIDTH {1} \
+ ] $ila_1
+
+  # Create instance: scrambler, and set properties
+  set block_name scrambler
+  set block_cell_name scrambler
+  if { [catch {set scrambler [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $scrambler eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: tx_interface_0, and set properties
+  set block_name tx_interface
+  set block_cell_name tx_interface_0
+  if { [catch {set tx_interface_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $tx_interface_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: vio_1, and set properties
+  set vio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_1 ]
+  set_property -dict [ list \
+   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
+   CONFIG.C_NUM_PROBE_IN {0} \
+   CONFIG.C_NUM_PROBE_OUT {2} \
+   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT2_INIT_VAL {0x1} \
+ ] $vio_1
+
+  # Create port connections
+  connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins tx_interface_0/DATA_TO_SEND]
+  connect_bd_net -net ENCODER_DATA_OUT [get_bd_pins encode_64B_67B/DATA_OUT] [get_bd_pins gearbox_tx/DATA_IN] [get_bd_pins ila_1/probe1]
+  connect_bd_net -net GEARBOX_TX_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins gearbox_tx/DATA_OUT]
+  connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins encode_64B_67B/USER_CLK] [get_bd_pins gearbox_tx/USER_CLK] [get_bd_pins scrambler/USER_CLK] [get_bd_pins tx_interface_0/USER_CLK]
+  connect_bd_net -net PASSTHROUGH_ENCODER [get_bd_pins encode_64B_67B/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
+  connect_bd_net -net PASSTHROUGH_SCRAMBLER [get_bd_pins scrambler/PASSTHROUGH] [get_bd_pins vio_1/probe_out0]
+  connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins scrambler/DATA_OUT]
+  connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe0] [get_bd_pins scrambler/DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
+  connect_bd_net -net TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gearbox_tx/SYSTEM_RESET] [get_bd_pins ila_1/probe2] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
+  connect_bd_net -net encode_64B_67B_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_OUT_VALID] [get_bd_pins gearbox_tx/DATA_IN_VALID]
+  connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins TX_USR_CLK] [get_bd_pins ila_1/clk] [get_bd_pins vio_1/clk]
+  connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins DATA_IN] [get_bd_pins tx_interface_0/DATA_IN]
+  connect_bd_net -net scrambler_0_HEADER_OUT [get_bd_pins encode_64B_67B/HEADER_IN] [get_bd_pins scrambler/HEADER_OUT]
+  connect_bd_net -net scrambler_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_IN_VALID] [get_bd_pins scrambler/DATA_OUT_VALID]
+  connect_bd_net -net tx_interface_0_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins tx_interface_0/DATA_IN_READY]
+  connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_OUT_VALID]
+  connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: STREAM_MANIPULATE
+proc create_hier_cell_STREAM_MANIPULATE { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_STREAM_MANIPULATE() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -from 19 -to 0 DATA_IN
+  create_bd_pin -dir O -from 19 -to 0 DATA_OUT
+  create_bd_pin -dir I -type clk RX_USR_CLK
+  create_bd_pin -dir I -type clk RX_USR_CLK2
+
+  # Create instance: stream_manipulator, and set properties
+  set block_name stream_manipulator
+  set block_cell_name stream_manipulator
+  if { [catch {set stream_manipulator [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $stream_manipulator eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.DATA_WIDTH {20} \
+ ] $stream_manipulator
+
+  # Create instance: vio_0, and set properties
+  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
+  set_property -dict [ list \
+   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
+   CONFIG.C_NUM_PROBE_IN {0} \
+   CONFIG.C_NUM_PROBE_OUT {2} \
+   CONFIG.C_PROBE_OUT0_WIDTH {6} \
+   CONFIG.C_PROBE_OUT1_WIDTH {20} \
+ ] $vio_0
+
+  # Create port connections
+  connect_bd_net -net CORE_RX_DATA [get_bd_pins DATA_IN] [get_bd_pins stream_manipulator/DATA_IN]
+  connect_bd_net -net MASK [get_bd_pins stream_manipulator/MASK] [get_bd_pins vio_0/probe_out1]
+  connect_bd_net -net OFFSET [get_bd_pins stream_manipulator/OFFSET] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net RX_USR_CLK_1 [get_bd_pins RX_USR_CLK] [get_bd_pins vio_0/clk]
+  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins stream_manipulator/USER_CLK]
+  connect_bd_net -net stream_manipulator_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins stream_manipulator/DATA_OUT]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: RX
+proc create_hier_cell_RX { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_RX() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -from 19 -to 0 DATA_IN
+  create_bd_pin -dir O -from 63 -to 0 DATA_OUT
+  create_bd_pin -dir O DATA_OUT_VALID
+  create_bd_pin -dir O -from 1 -to 0 HEADER_OUT
+  create_bd_pin -dir I -type rst RX_SYSTEM_RESET
+  create_bd_pin -dir I -type clk RX_USR_CLK
+  create_bd_pin -dir I -type clk RX_USR_CLK2
+
+  # Create instance: decode_64B_67B, and set properties
+  set block_name decode_64B_67B
+  set block_cell_name decode_64B_67B
+  if { [catch {set decode_64B_67B [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $decode_64B_67B eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: descrambler, and set properties
+  set block_name descrambler
+  set block_cell_name descrambler
+  if { [catch {set descrambler [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $descrambler eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+   CONFIG.META_FRAME_LEN {16} \
+ ] $descrambler
+
+  # Create instance: gearbox_rx, and set properties
+  set block_name gearbox_rx
+  set block_cell_name gearbox_rx
+  if { [catch {set gearbox_rx [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $gearbox_rx eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: ila_0, and set properties
+  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
+  set_property -dict [ list \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {7} \
+   CONFIG.C_PROBE0_WIDTH {64} \
+   CONFIG.C_PROBE10_WIDTH {1} \
+   CONFIG.C_PROBE11_WIDTH {1} \
+   CONFIG.C_PROBE12_WIDTH {1} \
+   CONFIG.C_PROBE1_WIDTH {1} \
+   CONFIG.C_PROBE2_WIDTH {7} \
+   CONFIG.C_PROBE3_WIDTH {1} \
+   CONFIG.C_PROBE4_WIDTH {1} \
+   CONFIG.C_PROBE5_WIDTH {2} \
+   CONFIG.C_PROBE6_WIDTH {1} \
+   CONFIG.C_PROBE7_WIDTH {1} \
+   CONFIG.C_PROBE9_WIDTH {1} \
+ ] $ila_0
+
+  # Create instance: vio_2, and set properties
+  set vio_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_2 ]
+  set_property -dict [ list \
+   CONFIG.C_EN_PROBE_IN_ACTIVITY {1} \
+   CONFIG.C_NUM_PROBE_IN {3} \
+   CONFIG.C_NUM_PROBE_OUT {2} \
+   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+   CONFIG.C_PROBE_OUT2_WIDTH {6} \
+   CONFIG.C_PROBE_OUT3_WIDTH {20} \
+ ] $vio_2
+
+  # Create port connections
+  connect_bd_net -net CANDIDATE [get_bd_pins decode_64B_67B/CANDIDATE] [get_bd_pins ila_0/probe2] [get_bd_pins vio_2/probe_in2]
+  connect_bd_net -net DATA_IN_1 [get_bd_pins DATA_IN] [get_bd_pins gearbox_rx/DATA_IN]
+  connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/DATA_IN]
+  connect_bd_net -net DECODER_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_OUT_VALID] [get_bd_pins descrambler/DATA_IN_VALID]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins descrambler/DATA_OUT] [get_bd_pins ila_0/probe0]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins descrambler/DATA_OUT_VALID] [get_bd_pins ila_0/probe3]
+  connect_bd_net -net DESCRAMBLER_HEADER_OUT [get_bd_pins HEADER_OUT] [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5]
+  connect_bd_net -net GEARBOX_RX_DATA_OUT [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gearbox_rx/DATA_OUT]
+  connect_bd_net -net PASSTHROUGH_DECODER [get_bd_pins decode_64B_67B/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
+  connect_bd_net -net PASSTHROUGH_DESCRAMBLER [get_bd_pins descrambler/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
+  connect_bd_net -net RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins ila_0/probe1]
+  connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
+  connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in0]
+  connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe4] [get_bd_pins vio_2/probe_in1]
+  connect_bd_net -net gearbox_rx_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_IN_VALID] [get_bd_pins gearbox_rx/DATA_OUT_VALID]
+  connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
+  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
+# Hierarchical cell: CORE
+proc create_hier_cell_CORE { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_CORE() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -type clk DRP_CLK_IN
+  create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_N_IN
+  create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_P_IN
+  create_bd_pin -dir I RXN_IN
+  create_bd_pin -dir I RXP_IN
+  create_bd_pin -dir O -from 19 -to 0 RX_DATA
+  create_bd_pin -dir O -type rst RX_SYSTEM_RESET
+  create_bd_pin -dir O -type clk RX_USR_CLK
+  create_bd_pin -dir O -type clk RX_USR_CLK2
+  create_bd_pin -dir I -from 0 -to 0 TRACK_DATA
+  create_bd_pin -dir O TXN_OUT
+  create_bd_pin -dir O TXP_OUT
+  create_bd_pin -dir I -from 19 -to 0 TX_DATA
+  create_bd_pin -dir O -type rst TX_SYSTEM_RESET
+  create_bd_pin -dir O -type clk TX_USR_CLK
+  create_bd_pin -dir O -type clk TX_USR_CLK2
+
+  # Create instance: gt_core_0, and set properties
+  set gt_core_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gt_core:1.0 gt_core_0 ]
+  set_property -dict [ list \
+   CONFIG.LOOPBACK {"000"} \
+ ] $gt_core_0
+
+  # Create instance: util_vector_logic_0, and set properties
+  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {or} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_orgate.png} \
+ ] $util_vector_logic_0
+
+  # Create instance: vio_0, and set properties
+  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
+  set_property -dict [ list \
+   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
+   CONFIG.C_NUM_PROBE_IN {2} \
+   CONFIG.C_NUM_PROBE_OUT {2} \
+   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
+ ] $vio_0
+
+  # Create port connections
+  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
+  connect_bd_net -net GEARBOX_TX_DATA_OUT [get_bd_pins TX_DATA] [get_bd_pins gt_core_0/TX_DATA]
+  connect_bd_net -net GT_RX_DATA [get_bd_pins RX_DATA] [get_bd_pins gt_core_0/RX_DATA]
+  connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins gt_core_0/TX_USR_CLK2]
+  connect_bd_net -net OVERRIDE_DATA_VALID [get_bd_pins util_vector_logic_0/Op2] [get_bd_pins vio_0/probe_out1]
+  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_N_IN]
+  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_P_IN]
+  connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins gt_core_0/RXN_IN]
+  connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
+  connect_bd_net -net RX_FSM_RESET_DONE [get_bd_pins gt_core_0/RX_FSM_RESET_DONE] [get_bd_pins vio_0/probe_in1]
+  connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET] [get_bd_pins vio_0/probe_out0]
+  connect_bd_net -net TRACK_DATA [get_bd_pins TRACK_DATA] [get_bd_pins util_vector_logic_0/Op1]
+  connect_bd_net -net TX_FSM_RESET_DONE [get_bd_pins gt_core_0/TX_FSM_RESET_DONE] [get_bd_pins vio_0/probe_in0]
+  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
+  connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins RX_USR_CLK] [get_bd_pins gt_core_0/RX_USR_CLK]
+  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins gt_core_0/RX_USR_CLK2]
+  connect_bd_net -net gt_core_0_TXN_OUT [get_bd_pins TXN_OUT] [get_bd_pins gt_core_0/TXN_OUT]
+  connect_bd_net -net gt_core_0_TXP_OUT [get_bd_pins TXP_OUT] [get_bd_pins gt_core_0/TXP_OUT]
+  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins gt_core_0/TX_RESET]
+  connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins TX_USR_CLK] [get_bd_pins gt_core_0/TX_USR_CLK]
+  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins util_vector_logic_0/Res]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
 # Hierarchical cell: interlaken
 proc create_hier_cell_interlaken { parentCell nameHier } {
 
@@ -164,252 +619,62 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   # Create interface pins
 
   # Create pins
+  create_bd_pin -dir I -from 63 -to 0 DATA_IN
   create_bd_pin -dir O DATA_IN_READY
+  create_bd_pin -dir O -from 63 -to 0 DATA_OUT
   create_bd_pin -dir O DATA_OUT_VALID
   create_bd_pin -dir I DATA_TO_SEND
-  create_bd_pin -dir I -from 7 -to 0 DEBUG_ERROR_COUNT
   create_bd_pin -dir I -type clk DRP_CLK_IN
   create_bd_pin -dir O -from 1 -to 0 HEADER_OUT
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_N_IN
   create_bd_pin -dir I -type clk Q3_CLK0_GTREFCLK_PAD_P_IN
   create_bd_pin -dir I RXN_IN
   create_bd_pin -dir I RXP_IN
-  create_bd_pin -dir O -from 63 -to 0 RX_DATA_OUT
-  create_bd_pin -dir O -from 0 -to 0 -type rst RX_SYSTEM_RESET
+  create_bd_pin -dir O -type rst RX_SYSTEM_RESET
+  create_bd_pin -dir O -type clk RX_USR_CLK
   create_bd_pin -dir O -type clk RX_USR_CLK2
   create_bd_pin -dir I TRACK_DATA
   create_bd_pin -dir O TXN_OUT
   create_bd_pin -dir O TXP_OUT
-  create_bd_pin -dir I -from 63 -to 0 TX_DATA_IN
-  create_bd_pin -dir O -from 0 -to 0 -type rst TX_SYSTEM_RESET
+  create_bd_pin -dir O -type rst TX_SYSTEM_RESET
   create_bd_pin -dir O -type clk TX_USR_CLK2
 
-  # Create instance: decode_64B_67B, and set properties
-  set block_name decode_64B_67B
-  set block_cell_name decode_64B_67B
-  if { [catch {set decode_64B_67B [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $decode_64B_67B eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: descrambler, and set properties
-  set block_name descrambler
-  set block_cell_name descrambler
-  if { [catch {set descrambler [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $descrambler eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.META_FRAME_LEN {16} \
- ] $descrambler
+  # Create instance: CORE
+  create_hier_cell_CORE $hier_obj CORE
 
-  # Create instance: encode_64B_67B, and set properties
-  set block_name encode_64B_67B
-  set block_cell_name encode_64B_67B
-  if { [catch {set encode_64B_67B [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $encode_64B_67B eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: gearbox_rx, and set properties
-  set block_name gearbox_rx
-  set block_cell_name gearbox_rx
-  if { [catch {set gearbox_rx [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $gearbox_rx eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: gearbox_tx, and set properties
-  set block_name gearbox_tx
-  set block_cell_name gearbox_tx
-  if { [catch {set gearbox_tx [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $gearbox_tx eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: gt_core_0, and set properties
-  set gt_core_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:gt_core:1.0 gt_core_0 ]
-  set_property -dict [ list \
-   CONFIG.LOOPBACK {"000"} \
- ] $gt_core_0
+  # Create instance: RX
+  create_hier_cell_RX $hier_obj RX
 
-  # Create instance: ila_0, and set properties
-  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
-  set_property -dict [ list \
-   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
-   CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {9} \
-   CONFIG.C_PROBE0_WIDTH {64} \
-   CONFIG.C_PROBE10_WIDTH {1} \
-   CONFIG.C_PROBE11_WIDTH {1} \
-   CONFIG.C_PROBE12_WIDTH {1} \
-   CONFIG.C_PROBE1_WIDTH {1} \
-   CONFIG.C_PROBE2_WIDTH {8} \
-   CONFIG.C_PROBE3_WIDTH {1} \
-   CONFIG.C_PROBE4_WIDTH {7} \
-   CONFIG.C_PROBE5_WIDTH {2} \
-   CONFIG.C_PROBE6_WIDTH {1} \
-   CONFIG.C_PROBE7_WIDTH {1} \
-   CONFIG.C_PROBE9_WIDTH {1} \
- ] $ila_0
+  # Create instance: STREAM_MANIPULATE
+  create_hier_cell_STREAM_MANIPULATE $hier_obj STREAM_MANIPULATE
 
-  # Create instance: ila_1, and set properties
-  set ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_1 ]
-  set_property -dict [ list \
-   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
-   CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {3} \
-   CONFIG.C_PROBE0_WIDTH {64} \
-   CONFIG.C_PROBE1_WIDTH {67} \
-   CONFIG.C_PROBE2_WIDTH {1} \
-   CONFIG.C_PROBE3_WIDTH {1} \
-   CONFIG.C_PROBE4_WIDTH {1} \
-   CONFIG.C_PROBE5_WIDTH {1} \
- ] $ila_1
-
-  # Create instance: scrambler, and set properties
-  set block_name scrambler
-  set block_cell_name scrambler
-  if { [catch {set scrambler [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $scrambler eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: stream_manipulator, and set properties
-  set block_name stream_manipulator
-  set block_cell_name stream_manipulator
-  if { [catch {set stream_manipulator [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $stream_manipulator eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-    set_property -dict [ list \
-   CONFIG.DATA_WIDTH {20} \
- ] $stream_manipulator
-
-  # Create instance: tx_interface_0, and set properties
-  set block_name tx_interface
-  set block_cell_name tx_interface_0
-  if { [catch {set tx_interface_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $tx_interface_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: util_vector_logic_0, and set properties
-  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
-  set_property -dict [ list \
-   CONFIG.C_OPERATION {or} \
-   CONFIG.C_SIZE {1} \
-   CONFIG.LOGO_FILE {data/sym_orgate.png} \
- ] $util_vector_logic_0
-
-  # Create instance: vio_0, and set properties
-  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
-  set_property -dict [ list \
-   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
-   CONFIG.C_NUM_PROBE_IN {0} \
-   CONFIG.C_NUM_PROBE_OUT {2} \
-   CONFIG.C_PROBE_OUT1_INIT_VAL {0x1} \
- ] $vio_0
-
-  # Create instance: vio_1, and set properties
-  set vio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_1 ]
-  set_property -dict [ list \
-   CONFIG.C_EN_PROBE_IN_ACTIVITY {0} \
-   CONFIG.C_NUM_PROBE_IN {0} \
-   CONFIG.C_NUM_PROBE_OUT {2} \
-   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT2_INIT_VAL {0x1} \
- ] $vio_1
-
-  # Create instance: vio_2, and set properties
-  set vio_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_2 ]
-  set_property -dict [ list \
-   CONFIG.C_EN_PROBE_IN_ACTIVITY {1} \
-   CONFIG.C_NUM_PROBE_IN {4} \
-   CONFIG.C_NUM_PROBE_OUT {4} \
-   CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT1_INIT_VAL {0x0} \
-   CONFIG.C_PROBE_OUT2_WIDTH {6} \
-   CONFIG.C_PROBE_OUT3_WIDTH {20} \
- ] $vio_2
+  # Create instance: TX
+  create_hier_cell_TX $hier_obj TX
 
   # Create port connections
-  connect_bd_net -net CANDIDATE [get_bd_pins decode_64B_67B/CANDIDATE] [get_bd_pins ila_0/probe4] [get_bd_pins vio_2/probe_in2]
-  connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins tx_interface_0/DATA_TO_SEND]
-  connect_bd_net -net DEBUG_ERROR_COUNT [get_bd_pins DEBUG_ERROR_COUNT] [get_bd_pins ila_0/probe2]
-  connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/DATA_IN]
-  connect_bd_net -net DECODER_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_OUT_VALID] [get_bd_pins descrambler/DATA_IN_VALID]
-  connect_bd_net -net DECODER_PASSTHROUGH [get_bd_pins decode_64B_67B/PASSTHROUGH] [get_bd_pins vio_2/probe_out1]
-  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins RX_DATA_OUT] [get_bd_pins descrambler/DATA_OUT] [get_bd_pins ila_0/probe0]
-  connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins descrambler/DATA_OUT_VALID] [get_bd_pins ila_0/probe3]
-  connect_bd_net -net DESCRAMBLER_HEADER_OUT_ILA [get_bd_pins HEADER_OUT] [get_bd_pins descrambler/HEADER_OUT] [get_bd_pins ila_0/probe5]
-  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins gt_core_0/DRP_CLK_IN] [get_bd_pins vio_0/clk]
-  connect_bd_net -net ENCODER_DATA_OUT [get_bd_pins encode_64B_67B/DATA_OUT] [get_bd_pins gearbox_tx/DATA_IN] [get_bd_pins ila_1/probe1]
-  connect_bd_net -net ENCODER_PASSTHROUGH [get_bd_pins encode_64B_67B/PASSTHROUGH] [get_bd_pins vio_1/probe_out1]
-  connect_bd_net -net GEARBOX_RX_DATA_OUT [get_bd_pins decode_64B_67B/DATA_IN] [get_bd_pins gearbox_rx/DATA_OUT]
-  connect_bd_net -net GEARBOX_TX_DATA_OUT [get_bd_pins gearbox_tx/DATA_OUT] [get_bd_pins gt_core_0/TX_DATA]
-  connect_bd_net -net GT_RX_DATA [get_bd_pins gt_core_0/RX_DATA] [get_bd_pins stream_manipulator/DATA_IN]
-  connect_bd_net -net MANIPULATOR_DATA_OUT [get_bd_pins gearbox_rx/DATA_IN] [get_bd_pins stream_manipulator/DATA_OUT]
-  connect_bd_net -net MASK [get_bd_pins stream_manipulator/MASK] [get_bd_pins vio_2/probe_out3]
-  connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins encode_64B_67B/USER_CLK] [get_bd_pins gearbox_tx/USER_CLK] [get_bd_pins gt_core_0/TX_USR_CLK2] [get_bd_pins scrambler/USER_CLK] [get_bd_pins tx_interface_0/USER_CLK]
-  connect_bd_net -net OFFSET [get_bd_pins stream_manipulator/OFFSET] [get_bd_pins vio_2/probe_out2]
-  connect_bd_net -net OVERRIDE_DATA_VALID [get_bd_pins util_vector_logic_0/Op2] [get_bd_pins vio_0/probe_out1]
-  connect_bd_net -net PASSTHROUGH_DESCRAMBLER [get_bd_pins descrambler/PASSTHROUGH] [get_bd_pins vio_2/probe_out0]
-  connect_bd_net -net PASSTHROUGH_SCRAMBLER [get_bd_pins scrambler/PASSTHROUGH] [get_bd_pins vio_1/probe_out0]
-  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_N_IN]
-  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins gt_core_0/Q3_CLK0_GTREFCLK_PAD_P_IN]
-  connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins gt_core_0/RXN_IN]
-  connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins gt_core_0/RXP_IN]
-  connect_bd_net -net RX_RESET_DONE [get_bd_pins gt_core_0/RX_RESET_DONE] [get_bd_pins ila_0/probe8]
-  connect_bd_net -net SCRAMBLED_DATA_OUT [get_bd_pins encode_64B_67B/DATA_IN] [get_bd_pins scrambler/DATA_OUT]
-  connect_bd_net -net SOFT_RESET [get_bd_pins gt_core_0/SOFT_RESET] [get_bd_pins vio_0/probe_out0]
-  connect_bd_net -net TRACK_DATA [get_bd_pins TRACK_DATA] [get_bd_pins ila_0/probe1] [get_bd_pins util_vector_logic_0/Op1] [get_bd_pins vio_2/probe_in3]
-  connect_bd_net -net TX_INTERFACE_DATA_OUT [get_bd_pins ila_1/probe0] [get_bd_pins scrambler/DATA_IN] [get_bd_pins tx_interface_0/DATA_OUT]
-  connect_bd_net -net decode_64B_67B_HEADER_OUT [get_bd_pins decode_64B_67B/HEADER_OUT] [get_bd_pins descrambler/HEADER_IN]
-  connect_bd_net -net decode_64B_67B_LOCKED [get_bd_pins decode_64B_67B/LOCKED] [get_bd_pins ila_0/probe7] [get_bd_pins vio_2/probe_in0]
-  connect_bd_net -net descrambler_LOCKED [get_bd_pins descrambler/LOCKED] [get_bd_pins ila_0/probe6] [get_bd_pins vio_2/probe_in1]
-  connect_bd_net -net encode_64B_67B_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_OUT_VALID] [get_bd_pins gearbox_tx/DATA_IN_VALID]
-  connect_bd_net -net gearbox_rx_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_IN_VALID] [get_bd_pins gearbox_rx/DATA_OUT_VALID]
-  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins decode_64B_67B/SYSTEM_RESET] [get_bd_pins descrambler/SYSTEM_RESET] [get_bd_pins gearbox_rx/SYSTEM_RESET] [get_bd_pins gt_core_0/RX_RESET]
-  connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins gt_core_0/RX_USR_CLK] [get_bd_pins ila_0/clk] [get_bd_pins vio_2/clk]
-  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins decode_64B_67B/USER_CLK] [get_bd_pins descrambler/USER_CLK] [get_bd_pins gearbox_rx/USER_CLK] [get_bd_pins gt_core_0/RX_USR_CLK2] [get_bd_pins stream_manipulator/USER_CLK]
-  connect_bd_net -net gt_core_0_TXN_OUT [get_bd_pins TXN_OUT] [get_bd_pins gt_core_0/TXN_OUT]
-  connect_bd_net -net gt_core_0_TXP_OUT [get_bd_pins TXP_OUT] [get_bd_pins gt_core_0/TXP_OUT]
-  connect_bd_net -net gt_core_0_TX_RESET_DONE [get_bd_pins gt_core_0/TX_RESET_DONE] [get_bd_pins ila_1/probe2]
-  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins encode_64B_67B/SYSTEM_RESET] [get_bd_pins gearbox_tx/SYSTEM_RESET] [get_bd_pins gt_core_0/TX_RESET] [get_bd_pins scrambler/SYSTEM_RESET] [get_bd_pins tx_interface_0/SYSTEM_RESET]
-  connect_bd_net -net gt_core_0_TX_USR_CLK [get_bd_pins gt_core_0/TX_USR_CLK] [get_bd_pins ila_1/clk] [get_bd_pins vio_1/clk]
-  connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins TX_DATA_IN] [get_bd_pins tx_interface_0/DATA_IN]
-  connect_bd_net -net scrambler_0_HEADER_OUT [get_bd_pins encode_64B_67B/HEADER_IN] [get_bd_pins scrambler/HEADER_OUT]
-  connect_bd_net -net scrambler_DATA_OUT_VALID [get_bd_pins encode_64B_67B/DATA_IN_VALID] [get_bd_pins scrambler/DATA_OUT_VALID]
-  connect_bd_net -net tx_interface_0_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins tx_interface_0/DATA_IN_READY]
-  connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_VALID]
-  connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
-  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins util_vector_logic_0/Res]
+  connect_bd_net -net CORE_RX_DATA [get_bd_pins CORE/RX_DATA] [get_bd_pins STREAM_MANIPULATE/DATA_IN]
+  connect_bd_net -net CORE_TX_USR_CLK [get_bd_pins CORE/TX_USR_CLK] [get_bd_pins TX/TX_USR_CLK]
+  connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins TX/DATA_TO_SEND]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT [get_bd_pins DATA_OUT] [get_bd_pins RX/DATA_OUT]
+  connect_bd_net -net DESCRAMBLER_DATA_OUT_VALID [get_bd_pins DATA_OUT_VALID] [get_bd_pins RX/DATA_OUT_VALID]
+  connect_bd_net -net DESCRAMBLER_HEADER_OUT_ILA [get_bd_pins HEADER_OUT] [get_bd_pins RX/HEADER_OUT]
+  connect_bd_net -net DRP_CLK_IN [get_bd_pins DRP_CLK_IN] [get_bd_pins CORE/DRP_CLK_IN]
+  connect_bd_net -net Net1 [get_bd_pins TX_USR_CLK2] [get_bd_pins CORE/TX_USR_CLK2] [get_bd_pins TX/TX_USR_CLK2]
+  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins CORE/Q3_CLK0_GTREFCLK_PAD_N_IN]
+  connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_pins Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins CORE/Q3_CLK0_GTREFCLK_PAD_P_IN]
+  connect_bd_net -net RXN_IN_1 [get_bd_pins RXN_IN] [get_bd_pins CORE/RXN_IN]
+  connect_bd_net -net RXP_IN_1 [get_bd_pins RXP_IN] [get_bd_pins CORE/RXP_IN]
+  connect_bd_net -net TRACK_DATA [get_bd_pins TRACK_DATA] [get_bd_pins CORE/TRACK_DATA]
+  connect_bd_net -net TX_DATA_1 [get_bd_pins CORE/TX_DATA] [get_bd_pins TX/DATA_OUT]
+  connect_bd_net -net TX_DATA_IN_1 [get_bd_pins DATA_IN] [get_bd_pins TX/DATA_IN]
+  connect_bd_net -net TX_DATA_IN_READY [get_bd_pins DATA_IN_READY] [get_bd_pins TX/DATA_IN_READY]
+  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins RX_SYSTEM_RESET] [get_bd_pins CORE/RX_SYSTEM_RESET] [get_bd_pins RX/RX_SYSTEM_RESET]
+  connect_bd_net -net gt_core_0_RX_USR_CLK [get_bd_pins RX_USR_CLK] [get_bd_pins CORE/RX_USR_CLK] [get_bd_pins RX/RX_USR_CLK] [get_bd_pins STREAM_MANIPULATE/RX_USR_CLK]
+  connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins RX_USR_CLK2] [get_bd_pins CORE/RX_USR_CLK2] [get_bd_pins RX/RX_USR_CLK2] [get_bd_pins STREAM_MANIPULATE/RX_USR_CLK2]
+  connect_bd_net -net gt_core_0_TXN_OUT [get_bd_pins TXN_OUT] [get_bd_pins CORE/TXN_OUT]
+  connect_bd_net -net gt_core_0_TXP_OUT [get_bd_pins TXP_OUT] [get_bd_pins CORE/TXP_OUT]
+  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins TX_SYSTEM_RESET] [get_bd_pins CORE/TX_SYSTEM_RESET] [get_bd_pins TX/TX_SYSTEM_RESET]
+  connect_bd_net -net stream_manipulator_DATA_OUT [get_bd_pins RX/DATA_IN] [get_bd_pins STREAM_MANIPULATE/DATA_OUT]
 
   # Restore current instance
   current_bd_instance $oldCurInst
@@ -503,28 +768,36 @@ proc create_root_design { parentCell } {
   # Create instance: interlaken
   create_hier_cell_interlaken [current_bd_instance .] interlaken
 
+  # Create instance: vio_0, and set properties
+  set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
+  set_property -dict [ list \
+   CONFIG.C_NUM_PROBE_IN {2} \
+   CONFIG.C_NUM_PROBE_OUT {0} \
+ ] $vio_0
+
   # Create port connections
   connect_bd_net -net DRP_CLK_IN [get_bd_pins clk_wiz/DRP_CLK_IN] [get_bd_pins interlaken/DRP_CLK_IN]
   connect_bd_net -net DRP_CLK_IN_N_1 [get_bd_ports DRP_CLK_IN_N] [get_bd_pins clk_wiz/clk_in1_n]
   connect_bd_net -net DRP_CLK_IN_P_1 [get_bd_ports DRP_CLK_IN_P] [get_bd_pins clk_wiz/clk_in1_p]
+  connect_bd_net -net ERROR_COUNT_OUT [get_bd_pins frame_check/ERROR_COUNT_OUT] [get_bd_pins vio_0/probe_in0]
   connect_bd_net -net Net1 [get_bd_pins frame_gen/USER_CLK] [get_bd_pins interlaken/TX_USR_CLK2]
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_N_IN_1 [get_bd_ports Q3_CLK0_GTREFCLK_PAD_N_IN] [get_bd_pins interlaken/Q3_CLK0_GTREFCLK_PAD_N_IN]
   connect_bd_net -net Q3_CLK0_GTREFCLK_PAD_P_IN_1 [get_bd_ports Q3_CLK0_GTREFCLK_PAD_P_IN] [get_bd_pins interlaken/Q3_CLK0_GTREFCLK_PAD_P_IN]
   connect_bd_net -net RXN_IN_1 [get_bd_ports RXN_IN] [get_bd_pins interlaken/RXN_IN]
   connect_bd_net -net RXP_IN_1 [get_bd_ports RXP_IN] [get_bd_pins interlaken/RXP_IN]
-  connect_bd_net -net descrambler_UNSCRAMBLED_DATA_OUT [get_bd_pins frame_check/RX_DATA_IN] [get_bd_pins interlaken/RX_DATA_OUT]
-  connect_bd_net -net frame_check_ERROR_COUNT_OUT [get_bd_pins frame_check/ERROR_COUNT_OUT] [get_bd_pins interlaken/DEBUG_ERROR_COUNT]
+  connect_bd_net -net TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins frame_check/TRACK_DATA_OUT] [get_bd_pins interlaken/TRACK_DATA] [get_bd_pins vio_0/probe_in1]
+  connect_bd_net -net descrambler_UNSCRAMBLED_DATA_OUT [get_bd_pins frame_check/RX_DATA_IN] [get_bd_pins interlaken/DATA_OUT]
+  connect_bd_net -net frame_gen_TX_DATA_OUT [get_bd_pins frame_gen/TX_DATA_OUT] [get_bd_pins interlaken/DATA_IN]
   connect_bd_net -net frame_gen_TX_DATA_TO_SEND [get_bd_pins frame_gen/TX_DATA_TO_SEND] [get_bd_pins interlaken/DATA_TO_SEND]
-  connect_bd_net -net gt_core_0_RX_SYSTEM_RESET [get_bd_pins frame_check/SYSTEM_RESET] [get_bd_pins interlaken/RX_SYSTEM_RESET]
   connect_bd_net -net gt_core_0_RX_USR_CLK2 [get_bd_pins frame_check/USER_CLK] [get_bd_pins interlaken/RX_USR_CLK2]
   connect_bd_net -net gt_core_0_TXN_OUT [get_bd_ports TXN_OUT] [get_bd_pins interlaken/TXN_OUT]
   connect_bd_net -net gt_core_0_TXP_OUT [get_bd_ports TXP_OUT] [get_bd_pins interlaken/TXP_OUT]
-  connect_bd_net -net gt_core_0_TX_SYSTEM_RESET [get_bd_pins frame_gen/SYSTEM_RESET] [get_bd_pins interlaken/TX_SYSTEM_RESET]
-  connect_bd_net -net gt_frame_check_0_TRACK_DATA_OUT [get_bd_ports TRACK_DATA_OUT] [get_bd_pins frame_check/TRACK_DATA_OUT] [get_bd_pins interlaken/TRACK_DATA]
-  connect_bd_net -net gt_frame_gen_0_TX_DATA_OUT [get_bd_pins frame_gen/TX_DATA_OUT] [get_bd_pins interlaken/TX_DATA_IN]
   connect_bd_net -net interlaken_DATA_IN_READY [get_bd_pins frame_gen/DATA_IN_READY] [get_bd_pins interlaken/DATA_IN_READY]
   connect_bd_net -net interlaken_DATA_OUT_VALID [get_bd_pins frame_check/DATA_IN_VALID] [get_bd_pins interlaken/DATA_OUT_VALID]
   connect_bd_net -net interlaken_HEADER_OUT [get_bd_pins frame_check/RX_HEADER_IN] [get_bd_pins interlaken/HEADER_OUT]
+  connect_bd_net -net interlaken_RX_SYSTEM_RESET [get_bd_pins frame_check/SYSTEM_RESET] [get_bd_pins interlaken/RX_SYSTEM_RESET]
+  connect_bd_net -net interlaken_RX_USR_CLK [get_bd_pins interlaken/RX_USR_CLK] [get_bd_pins vio_0/clk]
+  connect_bd_net -net interlaken_TX_SYSTEM_RESET [get_bd_pins frame_gen/SYSTEM_RESET] [get_bd_pins interlaken/TX_SYSTEM_RESET]
 
   # Create address segments
 
