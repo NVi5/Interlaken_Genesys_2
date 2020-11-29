@@ -47,9 +47,6 @@ module tx_interface #
     localparam CONTROL_LEN = 2;
     localparam CLOCK_OFFSET = 2;
     reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr;
-    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r;
-    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r2;
-    reg     [$clog2(META_FRAME_LEN)-1:0]        frame_ctr_r3;
     reg     [66:0]                              schedule;
     reg                                         send_payload;
 
@@ -69,25 +66,16 @@ always @(posedge USER_CLK)
     if (SYSTEM_RESET)
     begin
         frame_ctr       <= `DLY     'h0;
-        frame_ctr_r     <= `DLY     'h0;
-        frame_ctr_r2    <= `DLY     'h0;
-        frame_ctr_r3    <= `DLY     'h0;
     end
     else if (schedule[60])
     begin
         if (frame_ctr == (META_FRAME_LEN - 1))
         begin
             frame_ctr       <= `DLY     'h0;
-            frame_ctr_r     <= `DLY     'h0;
-            frame_ctr_r2    <= `DLY     'h0;
-            frame_ctr_r3    <= `DLY     'h0;
         end
         else
         begin
             frame_ctr       <= `DLY     frame_ctr + 1'b1;
-            frame_ctr_r     <= `DLY     frame_ctr;
-            frame_ctr_r2    <= `DLY     frame_ctr_r;
-            frame_ctr_r3    <= `DLY     frame_ctr_r2;
         end
     end
 
@@ -106,6 +94,7 @@ always @(posedge USER_CLK)
     begin
                         {HEADER_OUT, DATA_OUT}  <=  `DLY    {66{1'b0}};
     end
+
 always @(posedge USER_CLK)
     if (schedule[61])
         if (frame_ctr < 2)

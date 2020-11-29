@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="267193291000fs"></ZoomStartTime>
-      <ZoomEndTime time="267457891001fs"></ZoomEndTime>
-      <Cursor1Time time="267863791000fs"></Cursor1Time>
+      <ZoomStartTime time="649586619333fs"></ZoomStartTime>
+      <ZoomEndTime time="649852019334fs"></ZoomEndTime>
+      <Cursor1Time time="652527786000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="194"></NameColumnWidth>
-      <ValueColumnWidth column_width="81"></ValueColumnWidth>
+      <ValueColumnWidth column_width="77"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
    <wvobject fp_name="group82" type="group">
@@ -177,7 +177,6 @@
    <wvobject fp_name="group86" type="group">
       <obj_property name="label">Frame Checker</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/frame_check/inst/rx_data_r_track" type="array">
          <obj_property name="ElementShortName">rx_data_r_track[63:0]</obj_property>
          <obj_property name="ObjectShortName">rx_data_r_track[63:0]</obj_property>
@@ -295,13 +294,17 @@
          <obj_property name="ElementShortName">DATA_IN[63:0]</obj_property>
          <obj_property name="ObjectShortName">DATA_IN[63:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/DATA_OUT" type="array">
-         <obj_property name="ElementShortName">DATA_OUT[63:0]</obj_property>
-         <obj_property name="ObjectShortName">DATA_OUT[63:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/DATA_IN_READY" type="logic">
          <obj_property name="ElementShortName">DATA_IN_READY</obj_property>
          <obj_property name="ObjectShortName">DATA_IN_READY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/schedule[61]" type="logic">
+         <obj_property name="ElementShortName">[61]</obj_property>
+         <obj_property name="ObjectShortName">[61]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/DATA_OUT" type="array">
+         <obj_property name="ElementShortName">DATA_OUT[63:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[63:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/gtwizard_0_TB/main_wrapper_i/main_i/interlaken/tx_interface_0/inst/DATA_VALID" type="logic">
          <obj_property name="ElementShortName">DATA_VALID</obj_property>

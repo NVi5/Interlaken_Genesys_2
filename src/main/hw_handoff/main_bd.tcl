@@ -177,7 +177,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   create_bd_pin -dir O -from 63 -to 0 RX_DATA_OUT
   create_bd_pin -dir O -from 0 -to 0 -type rst RX_SYSTEM_RESET
   create_bd_pin -dir O -type clk RX_USR_CLK2
-  create_bd_pin -dir I -from 0 -to 0 TRACK_DATA
+  create_bd_pin -dir I TRACK_DATA
   create_bd_pin -dir O TXN_OUT
   create_bd_pin -dir O TXP_OUT
   create_bd_pin -dir I -from 63 -to 0 TX_DATA_IN
@@ -361,7 +361,6 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   # Create port connections
   connect_bd_net -net CANDIDATE [get_bd_pins decode_64B_67B/CANDIDATE] [get_bd_pins ila_0/probe4] [get_bd_pins vio_2/probe_in2]
   connect_bd_net -net DATA_TO_SEND_1 [get_bd_pins DATA_TO_SEND] [get_bd_pins tx_interface_0/DATA_TO_SEND]
-  connect_bd_net -net DATA_VALID [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net DEBUG_ERROR_COUNT [get_bd_pins DEBUG_ERROR_COUNT] [get_bd_pins ila_0/probe2]
   connect_bd_net -net DECODER_DATA_OUT [get_bd_pins decode_64B_67B/DATA_OUT] [get_bd_pins descrambler/DATA_IN]
   connect_bd_net -net DECODER_DATA_OUT_VALID [get_bd_pins decode_64B_67B/DATA_OUT_VALID] [get_bd_pins descrambler/DATA_IN_VALID]
@@ -410,6 +409,7 @@ proc create_hier_cell_interlaken { parentCell nameHier } {
   connect_bd_net -net tx_interface_0_DATA_VALID [get_bd_pins scrambler/DATA_IN_VALID] [get_bd_pins tx_interface_0/DATA_VALID]
   connect_bd_net -net tx_interface_0_GEARBOX_VALID [get_bd_pins gearbox_tx/DATA_IN_VALID] [get_bd_pins tx_interface_0/GEARBOX_VALID]
   connect_bd_net -net tx_interface_0_HEADER_OUT [get_bd_pins scrambler/HEADER_IN] [get_bd_pins tx_interface_0/HEADER_OUT]
+  connect_bd_net -net util_vector_logic_0_Res [get_bd_pins gt_core_0/DATA_VALID] [get_bd_pins util_vector_logic_0/Res]
 
   # Restore current instance
   current_bd_instance $oldCurInst

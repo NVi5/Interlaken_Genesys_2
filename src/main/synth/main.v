@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-//Date        : Sat Nov 28 19:58:02 2020
+//Date        : Sat Nov 28 21:09:53 2020
 //Host        : RYZEN-PC running 64-bit major release  (build 9200)
 //Command     : generate_target main.bd
 //Design      : main
@@ -42,7 +42,7 @@ module interlaken_imp_1RYIMTC
   output [63:0]RX_DATA_OUT;
   output [0:0]RX_SYSTEM_RESET;
   output RX_USR_CLK2;
-  input [0:0]TRACK_DATA;
+  input TRACK_DATA;
   output TXN_OUT;
   output TXP_OUT;
   input [63:0]TX_DATA_IN;
@@ -51,7 +51,6 @@ module interlaken_imp_1RYIMTC
 
   wire [6:0]CANDIDATE;
   wire DATA_TO_SEND_1;
-  wire [0:0]DATA_VALID;
   wire [7:0]DEBUG_ERROR_COUNT;
   wire [63:0]DECODER_DATA_OUT;
   wire DECODER_DATA_OUT_VALID;
@@ -79,7 +78,7 @@ module interlaken_imp_1RYIMTC
   wire RX_RESET_DONE;
   wire [63:0]SCRAMBLED_DATA_OUT;
   wire [0:0]SOFT_RESET;
-  wire [0:0]TRACK_DATA;
+  wire TRACK_DATA;
   wire [63:0]TX_INTERFACE_DATA_OUT;
   wire [1:0]decode_64B_67B_HEADER_OUT;
   wire decode_64B_67B_LOCKED;
@@ -100,6 +99,7 @@ module interlaken_imp_1RYIMTC
   wire tx_interface_0_DATA_VALID;
   wire tx_interface_0_GEARBOX_VALID;
   wire [1:0]tx_interface_0_HEADER_OUT;
+  wire [0:0]util_vector_logic_0_Res;
 
   assign DATA_IN_READY = tx_interface_0_DATA_IN_READY;
   assign DATA_OUT_VALID = DESCRAMBLER_DATA_OUT_VALID;
@@ -160,7 +160,7 @@ module interlaken_imp_1RYIMTC
         .SYSTEM_RESET(gt_core_0_TX_SYSTEM_RESET),
         .USER_CLK(Net1));
   main_gt_core_0_0 gt_core_0
-       (.DATA_VALID(DATA_VALID),
+       (.DATA_VALID(util_vector_logic_0_Res),
         .DRP_CLK_IN(DRP_CLK_IN),
         .Q3_CLK0_GTREFCLK_PAD_N_IN(Q3_CLK0_GTREFCLK_PAD_N_IN_1),
         .Q3_CLK0_GTREFCLK_PAD_P_IN(Q3_CLK0_GTREFCLK_PAD_P_IN_1),
@@ -224,7 +224,7 @@ module interlaken_imp_1RYIMTC
   main_util_vector_logic_0_0 util_vector_logic_0
        (.Op1(TRACK_DATA),
         .Op2(OVERRIDE_DATA_VALID),
-        .Res(DATA_VALID));
+        .Res(util_vector_logic_0_Res));
   main_vio_0_0 vio_0
        (.clk(DRP_CLK_IN),
         .probe_out0(SOFT_RESET),
