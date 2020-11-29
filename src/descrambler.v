@@ -196,11 +196,16 @@ module descrambler #
     end
 
     always @(posedge USER_CLK)
-        if (DATA_IN_VALID)
-            HEADER_OUT <= `DLY  HEADER_IN;
-
-    always @(posedge USER_CLK)
-        DATA_OUT_VALID <= state[2] && DATA_IN_VALID;
+        if (SYSTEM_RESET)
+        begin
+            HEADER_OUT           <= `DLY  2'b00;
+            DATA_OUT_VALID       <= `DLY  1'b0;
+        end
+        else
+        begin
+            HEADER_OUT           <= `DLY  HEADER_IN;
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state[2];
+        end
 
     assign LOCKED = state[2];
 endmodule

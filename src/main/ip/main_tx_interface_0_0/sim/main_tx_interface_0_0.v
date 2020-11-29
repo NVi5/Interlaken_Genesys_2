@@ -47,56 +47,50 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:descrambler:1.0
+// IP VLNV: xilinx.com:module_ref:tx_interface:1.0
 // IP Revision: 1
 
-(* X_CORE_INFO = "descrambler,Vivado 2018.2" *)
-(* CHECK_LICENSE_TYPE = "main_descrambler_0_0,descrambler,{}" *)
-(* CORE_GENERATION_INFO = "main_descrambler_0_0,descrambler,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=descrambler,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,RX_DATA_WIDTH=64,SYNC_WORD=0x78F678F678F678F6,META_FRAME_LEN=16}" *)
+`timescale 1ns/1ps
+
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module main_descrambler_0_0 (
+module main_tx_interface_0_0 (
   DATA_IN,
   DATA_OUT,
-  HEADER_IN,
   HEADER_OUT,
-  DATA_IN_VALID,
-  DATA_OUT_VALID,
-  LOCKED,
+  DATA_TO_SEND,
+  DATA_IN_READY,
+  DATA_VALID,
+  GEARBOX_VALID,
   USER_CLK,
-  SYSTEM_RESET,
-  PASSTHROUGH
+  SYSTEM_RESET
 );
 
 input wire [63 : 0] DATA_IN;
 output wire [63 : 0] DATA_OUT;
-input wire [1 : 0] HEADER_IN;
 output wire [1 : 0] HEADER_OUT;
-input wire DATA_IN_VALID;
-output wire DATA_OUT_VALID;
-output wire LOCKED;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_RX_USR_CLK2" *)
+input wire DATA_TO_SEND;
+output wire DATA_IN_READY;
+output wire DATA_VALID;
+output wire GEARBOX_VALID;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME USER_CLK, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN main_gt_core_0_0_TX_USR_CLK2" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 USER_CLK CLK" *)
 input wire USER_CLK;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SYSTEM_RESET, POLARITY ACTIVE_LOW" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 SYSTEM_RESET RST" *)
 input wire SYSTEM_RESET;
-input wire PASSTHROUGH;
 
-  descrambler #(
-    .RX_DATA_WIDTH(64),
-    .SYNC_WORD(64'H78F678F678F678F6),
+  tx_interface #(
     .META_FRAME_LEN(16)
   ) inst (
     .DATA_IN(DATA_IN),
     .DATA_OUT(DATA_OUT),
-    .HEADER_IN(HEADER_IN),
     .HEADER_OUT(HEADER_OUT),
-    .DATA_IN_VALID(DATA_IN_VALID),
-    .DATA_OUT_VALID(DATA_OUT_VALID),
-    .LOCKED(LOCKED),
+    .DATA_TO_SEND(DATA_TO_SEND),
+    .DATA_IN_READY(DATA_IN_READY),
+    .DATA_VALID(DATA_VALID),
+    .GEARBOX_VALID(GEARBOX_VALID),
     .USER_CLK(USER_CLK),
-    .SYSTEM_RESET(SYSTEM_RESET),
-    .PASSTHROUGH(PASSTHROUGH)
+    .SYSTEM_RESET(SYSTEM_RESET)
   );
 endmodule

@@ -80,6 +80,11 @@ module encode_64B_67B(
     end
 
     always @(posedge USER_CLK)
+        if (SYSTEM_RESET)
+        begin
+            DATA_OUT_VALID       <= `DLY  1'b0;
+        end
+        else
         begin
             DATA_OUT_VALID       <= `DLY  DATA_IN_VALID;
         end

@@ -36,7 +36,6 @@ module tx_interface #
     input  wire          DATA_TO_SEND,
     output wire          DATA_IN_READY,
     output wire          DATA_VALID,
-    output wire          GEARBOX_VALID,
 
     // System Interface
     input  wire          USER_CLK,
@@ -67,7 +66,7 @@ always @(posedge USER_CLK)
     begin
         frame_ctr       <= `DLY     'h0;
     end
-    else if (schedule[60])
+    else if (schedule[62])
     begin
         if (frame_ctr == (META_FRAME_LEN - 1))
         begin
@@ -80,7 +79,7 @@ always @(posedge USER_CLK)
     end
 
 always @(posedge USER_CLK)
-    if (schedule[63])
+    if (schedule[65])
         case(frame_ctr)
             0:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h78f678f678f678f6};
             1:          {HEADER_OUT, DATA_OUT}  <=  `DLY    {2'b10, 64'h2800000000000000};
@@ -96,14 +95,13 @@ always @(posedge USER_CLK)
     end
 
 always @(posedge USER_CLK)
-    if (schedule[61])
+    if (schedule[63])
         if (frame_ctr < 2)
                 send_payload  <=  `DLY   1'b0;
         else
                 send_payload  <=  `DLY   1'b1;
 
-assign DATA_IN_READY = schedule[61] && send_payload;
-assign DATA_VALID    = schedule[64];
-assign GEARBOX_VALID = schedule[66];
+assign DATA_IN_READY = schedule[63] && send_payload;
+assign DATA_VALID    = schedule[66];
 
 endmodule

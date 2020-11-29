@@ -140,7 +140,14 @@ module decode_64B_67B(
         rx_aligned = rx_data_common >> candidate;
 
     always @(posedge USER_CLK)
-        DATA_OUT_VALID <= state && DATA_IN_VALID;
+        if (SYSTEM_RESET)
+        begin
+            DATA_OUT_VALID       <= `DLY  1'b0;
+        end
+        else
+        begin
+            DATA_OUT_VALID       <= `DLY  DATA_IN_VALID && state;
+        end
 
     assign  LOCKED = state;
     assign  CANDIDATE = candidate;
