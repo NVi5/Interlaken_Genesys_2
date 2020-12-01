@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "scrambler,Vivado 2018.2" *)
 (* CHECK_LICENSE_TYPE = "main_scrambler_0_0,scrambler,{}" *)
-(* CORE_GENERATION_INFO = "main_scrambler_0_0,scrambler,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=scrambler,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,TX_DATA_WIDTH=64,SYNC_WORD=0x78F678F678F678F6}" *)
+(* CORE_GENERATION_INFO = "main_scrambler_0_0,scrambler,{x_ipProduct=Vivado 2018.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=scrambler,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,TX_DATA_WIDTH=64,SYNC_WORD=0x78F678F678F678F6,STATE_WORD=0x2800000000000000}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module main_scrambler_0_0 (
@@ -83,7 +83,8 @@ input wire PASSTHROUGH;
 
   scrambler #(
     .TX_DATA_WIDTH(64),
-    .SYNC_WORD(64'H78F678F678F678F6)
+    .SYNC_WORD(64'H78F678F678F678F6),
+    .STATE_WORD(64'H2800000000000000)
   ) inst (
     .DATA_IN(DATA_IN),
     .DATA_OUT(DATA_OUT),

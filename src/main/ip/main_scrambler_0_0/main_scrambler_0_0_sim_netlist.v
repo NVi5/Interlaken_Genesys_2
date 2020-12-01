@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-// Date        : Sun Nov 29 22:37:16 2020
+// Date        : Tue Dec  1 22:38:16 2020
 // Host        : RYZEN-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               D:/Electronics/Interlaken/Vivado/Interlaken_Genesys_2/src/main/ip/main_scrambler_0_0/main_scrambler_0_0_sim_netlist.v
@@ -82,8 +82,9 @@ module main_scrambler_0_0_scrambler
   wire DATA_IN_VALID;
   wire [63:0]DATA_OUT;
   wire DATA_OUT0;
+  wire DATA_OUT12_out;
   wire DATA_OUT1__0;
-  wire DATA_OUT2;
+  wire DATA_OUT20_in;
   wire DATA_OUT2101_out;
   wire DATA_OUT2105_out;
   wire DATA_OUT2109_out;
@@ -111,6 +112,7 @@ module main_scrambler_0_0_scrambler
   wire DATA_OUT2189_out;
   wire DATA_OUT2193_out;
   wire DATA_OUT2197_out;
+  wire DATA_OUT21_in;
   wire DATA_OUT2201_out;
   wire DATA_OUT2205_out;
   wire DATA_OUT2209_out;
@@ -132,7 +134,6 @@ module main_scrambler_0_0_scrambler
   wire DATA_OUT241_out;
   wire DATA_OUT245_out;
   wire DATA_OUT249_out;
-  wire DATA_OUT24_in;
   wire DATA_OUT253_out;
   wire DATA_OUT257_out;
   wire DATA_OUT25_out;
@@ -147,6 +148,49 @@ module main_scrambler_0_0_scrambler
   wire DATA_OUT293_out;
   wire DATA_OUT297_out;
   wire DATA_OUT29_out;
+  wire DATA_OUT2__21_carry__0_i_1_n_0;
+  wire DATA_OUT2__21_carry__0_i_2_n_0;
+  wire DATA_OUT2__21_carry__0_i_3_n_0;
+  wire DATA_OUT2__21_carry__0_i_4_n_0;
+  wire DATA_OUT2__21_carry__0_n_0;
+  wire DATA_OUT2__21_carry__0_n_1;
+  wire DATA_OUT2__21_carry__0_n_2;
+  wire DATA_OUT2__21_carry__0_n_3;
+  wire DATA_OUT2__21_carry__1_i_1_n_0;
+  wire DATA_OUT2__21_carry__1_i_2_n_0;
+  wire DATA_OUT2__21_carry__1_i_3_n_0;
+  wire DATA_OUT2__21_carry__1_i_4_n_0;
+  wire DATA_OUT2__21_carry__1_n_0;
+  wire DATA_OUT2__21_carry__1_n_1;
+  wire DATA_OUT2__21_carry__1_n_2;
+  wire DATA_OUT2__21_carry__1_n_3;
+  wire DATA_OUT2__21_carry__2_i_1_n_0;
+  wire DATA_OUT2__21_carry__2_i_2_n_0;
+  wire DATA_OUT2__21_carry__2_i_3_n_0;
+  wire DATA_OUT2__21_carry__2_i_4_n_0;
+  wire DATA_OUT2__21_carry__2_n_0;
+  wire DATA_OUT2__21_carry__2_n_1;
+  wire DATA_OUT2__21_carry__2_n_2;
+  wire DATA_OUT2__21_carry__2_n_3;
+  wire DATA_OUT2__21_carry__3_i_1_n_0;
+  wire DATA_OUT2__21_carry__3_i_2_n_0;
+  wire DATA_OUT2__21_carry__3_i_3_n_0;
+  wire DATA_OUT2__21_carry__3_i_4_n_0;
+  wire DATA_OUT2__21_carry__3_n_0;
+  wire DATA_OUT2__21_carry__3_n_1;
+  wire DATA_OUT2__21_carry__3_n_2;
+  wire DATA_OUT2__21_carry__3_n_3;
+  wire DATA_OUT2__21_carry__4_i_1_n_0;
+  wire DATA_OUT2__21_carry__4_i_2_n_0;
+  wire DATA_OUT2__21_carry__4_n_3;
+  wire DATA_OUT2__21_carry_i_1_n_0;
+  wire DATA_OUT2__21_carry_i_2_n_0;
+  wire DATA_OUT2__21_carry_i_3_n_0;
+  wire DATA_OUT2__21_carry_i_4_n_0;
+  wire DATA_OUT2__21_carry_n_0;
+  wire DATA_OUT2__21_carry_n_1;
+  wire DATA_OUT2__21_carry_n_2;
+  wire DATA_OUT2__21_carry_n_3;
   wire DATA_OUT2_carry__0_i_1_n_0;
   wire DATA_OUT2_carry__0_i_2_n_0;
   wire DATA_OUT2_carry__0_i_3_n_0;
@@ -203,9 +247,15 @@ module main_scrambler_0_0_scrambler
   wire [57:0]p_0_in;
   wire [63:0]p_1_in;
   wire scrambler;
+  wire \scrambler[1]_i_1_n_0 ;
   wire \scrambler[57]_i_1_n_0 ;
-  wire \state[0]_i_1_n_0 ;
-  wire \state_reg_n_0_[0] ;
+  wire [3:0]NLW_DATA_OUT2__21_carry_O_UNCONNECTED;
+  wire [3:0]NLW_DATA_OUT2__21_carry__0_O_UNCONNECTED;
+  wire [3:0]NLW_DATA_OUT2__21_carry__1_O_UNCONNECTED;
+  wire [3:0]NLW_DATA_OUT2__21_carry__2_O_UNCONNECTED;
+  wire [3:0]NLW_DATA_OUT2__21_carry__3_O_UNCONNECTED;
+  wire [3:2]NLW_DATA_OUT2__21_carry__4_CO_UNCONNECTED;
+  wire [3:0]NLW_DATA_OUT2__21_carry__4_O_UNCONNECTED;
   wire [3:0]NLW_DATA_OUT2_carry_O_UNCONNECTED;
   wire [3:0]NLW_DATA_OUT2_carry__0_O_UNCONNECTED;
   wire [3:0]NLW_DATA_OUT2_carry__1_O_UNCONNECTED;
@@ -214,6 +264,200 @@ module main_scrambler_0_0_scrambler
   wire [3:2]NLW_DATA_OUT2_carry__4_CO_UNCONNECTED;
   wire [3:0]NLW_DATA_OUT2_carry__4_O_UNCONNECTED;
 
+  CARRY4 DATA_OUT2__21_carry
+       (.CI(1'b0),
+        .CO({DATA_OUT2__21_carry_n_0,DATA_OUT2__21_carry_n_1,DATA_OUT2__21_carry_n_2,DATA_OUT2__21_carry_n_3}),
+        .CYINIT(1'b1),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry_O_UNCONNECTED[3:0]),
+        .S({DATA_OUT2__21_carry_i_1_n_0,DATA_OUT2__21_carry_i_2_n_0,DATA_OUT2__21_carry_i_3_n_0,DATA_OUT2__21_carry_i_4_n_0}));
+  CARRY4 DATA_OUT2__21_carry__0
+       (.CI(DATA_OUT2__21_carry_n_0),
+        .CO({DATA_OUT2__21_carry__0_n_0,DATA_OUT2__21_carry__0_n_1,DATA_OUT2__21_carry__0_n_2,DATA_OUT2__21_carry__0_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry__0_O_UNCONNECTED[3:0]),
+        .S({DATA_OUT2__21_carry__0_i_1_n_0,DATA_OUT2__21_carry__0_i_2_n_0,DATA_OUT2__21_carry__0_i_3_n_0,DATA_OUT2__21_carry__0_i_4_n_0}));
+  LUT3 #(
+    .INIT(8'h80)) 
+    DATA_OUT2__21_carry__0_i_1
+       (.I0(DATA_IN[21]),
+        .I1(DATA_IN[23]),
+        .I2(DATA_IN[22]),
+        .O(DATA_OUT2__21_carry__0_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h20)) 
+    DATA_OUT2__21_carry__0_i_2
+       (.I0(DATA_IN[18]),
+        .I1(DATA_IN[19]),
+        .I2(DATA_IN[20]),
+        .O(DATA_OUT2__21_carry__0_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h04)) 
+    DATA_OUT2__21_carry__0_i_3
+       (.I0(DATA_IN[16]),
+        .I1(DATA_IN[17]),
+        .I2(DATA_IN[15]),
+        .O(DATA_OUT2__21_carry__0_i_3_n_0));
+  LUT3 #(
+    .INIT(8'h80)) 
+    DATA_OUT2__21_carry__0_i_4
+       (.I0(DATA_IN[12]),
+        .I1(DATA_IN[14]),
+        .I2(DATA_IN[13]),
+        .O(DATA_OUT2__21_carry__0_i_4_n_0));
+  CARRY4 DATA_OUT2__21_carry__1
+       (.CI(DATA_OUT2__21_carry__0_n_0),
+        .CO({DATA_OUT2__21_carry__1_n_0,DATA_OUT2__21_carry__1_n_1,DATA_OUT2__21_carry__1_n_2,DATA_OUT2__21_carry__1_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry__1_O_UNCONNECTED[3:0]),
+        .S({DATA_OUT2__21_carry__1_i_1_n_0,DATA_OUT2__21_carry__1_i_2_n_0,DATA_OUT2__21_carry__1_i_3_n_0,DATA_OUT2__21_carry__1_i_4_n_0}));
+  LUT3 #(
+    .INIT(8'h20)) 
+    DATA_OUT2__21_carry__1_i_1
+       (.I0(DATA_IN[33]),
+        .I1(DATA_IN[35]),
+        .I2(DATA_IN[34]),
+        .O(DATA_OUT2__21_carry__1_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h02)) 
+    DATA_OUT2__21_carry__1_i_2
+       (.I0(DATA_IN[30]),
+        .I1(DATA_IN[32]),
+        .I2(DATA_IN[31]),
+        .O(DATA_OUT2__21_carry__1_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h80)) 
+    DATA_OUT2__21_carry__1_i_3
+       (.I0(DATA_IN[27]),
+        .I1(DATA_IN[29]),
+        .I2(DATA_IN[28]),
+        .O(DATA_OUT2__21_carry__1_i_3_n_0));
+  LUT3 #(
+    .INIT(8'h01)) 
+    DATA_OUT2__21_carry__1_i_4
+       (.I0(DATA_IN[26]),
+        .I1(DATA_IN[25]),
+        .I2(DATA_IN[24]),
+        .O(DATA_OUT2__21_carry__1_i_4_n_0));
+  CARRY4 DATA_OUT2__21_carry__2
+       (.CI(DATA_OUT2__21_carry__1_n_0),
+        .CO({DATA_OUT2__21_carry__2_n_0,DATA_OUT2__21_carry__2_n_1,DATA_OUT2__21_carry__2_n_2,DATA_OUT2__21_carry__2_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry__2_O_UNCONNECTED[3:0]),
+        .S({DATA_OUT2__21_carry__2_i_1_n_0,DATA_OUT2__21_carry__2_i_2_n_0,DATA_OUT2__21_carry__2_i_3_n_0,DATA_OUT2__21_carry__2_i_4_n_0}));
+  LUT3 #(
+    .INIT(8'h20)) 
+    DATA_OUT2__21_carry__2_i_1
+       (.I0(DATA_IN[45]),
+        .I1(DATA_IN[47]),
+        .I2(DATA_IN[46]),
+        .O(DATA_OUT2__21_carry__2_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    DATA_OUT2__21_carry__2_i_2
+       (.I0(DATA_IN[44]),
+        .I1(DATA_IN[43]),
+        .I2(DATA_IN[42]),
+        .O(DATA_OUT2__21_carry__2_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h02)) 
+    DATA_OUT2__21_carry__2_i_3
+       (.I0(DATA_IN[39]),
+        .I1(DATA_IN[41]),
+        .I2(DATA_IN[40]),
+        .O(DATA_OUT2__21_carry__2_i_3_n_0));
+  LUT3 #(
+    .INIT(8'h80)) 
+    DATA_OUT2__21_carry__2_i_4
+       (.I0(DATA_IN[36]),
+        .I1(DATA_IN[38]),
+        .I2(DATA_IN[37]),
+        .O(DATA_OUT2__21_carry__2_i_4_n_0));
+  CARRY4 DATA_OUT2__21_carry__3
+       (.CI(DATA_OUT2__21_carry__2_n_0),
+        .CO({DATA_OUT2__21_carry__3_n_0,DATA_OUT2__21_carry__3_n_1,DATA_OUT2__21_carry__3_n_2,DATA_OUT2__21_carry__3_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry__3_O_UNCONNECTED[3:0]),
+        .S({DATA_OUT2__21_carry__3_i_1_n_0,DATA_OUT2__21_carry__3_i_2_n_0,DATA_OUT2__21_carry__3_i_3_n_0,DATA_OUT2__21_carry__3_i_4_n_0}));
+  LUT3 #(
+    .INIT(8'h04)) 
+    DATA_OUT2__21_carry__3_i_1
+       (.I0(DATA_IN[58]),
+        .I1(DATA_IN[59]),
+        .I2(DATA_IN[57]),
+        .O(DATA_OUT2__21_carry__3_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h20)) 
+    DATA_OUT2__21_carry__3_i_2
+       (.I0(DATA_IN[54]),
+        .I1(DATA_IN[56]),
+        .I2(DATA_IN[55]),
+        .O(DATA_OUT2__21_carry__3_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    DATA_OUT2__21_carry__3_i_3
+       (.I0(DATA_IN[53]),
+        .I1(DATA_IN[52]),
+        .I2(DATA_IN[51]),
+        .O(DATA_OUT2__21_carry__3_i_3_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    DATA_OUT2__21_carry__3_i_4
+       (.I0(DATA_IN[50]),
+        .I1(DATA_IN[49]),
+        .I2(DATA_IN[48]),
+        .O(DATA_OUT2__21_carry__3_i_4_n_0));
+  CARRY4 DATA_OUT2__21_carry__4
+       (.CI(DATA_OUT2__21_carry__3_n_0),
+        .CO({NLW_DATA_OUT2__21_carry__4_CO_UNCONNECTED[3:2],DATA_OUT21_in,DATA_OUT2__21_carry__4_n_3}),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(NLW_DATA_OUT2__21_carry__4_O_UNCONNECTED[3:0]),
+        .S({1'b0,1'b0,DATA_OUT2__21_carry__4_i_1_n_0,DATA_OUT2__21_carry__4_i_2_n_0}));
+  LUT1 #(
+    .INIT(2'h1)) 
+    DATA_OUT2__21_carry__4_i_1
+       (.I0(DATA_IN[63]),
+        .O(DATA_OUT2__21_carry__4_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h80)) 
+    DATA_OUT2__21_carry__4_i_2
+       (.I0(DATA_IN[60]),
+        .I1(DATA_IN[62]),
+        .I2(DATA_IN[61]),
+        .O(DATA_OUT2__21_carry__4_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h04)) 
+    DATA_OUT2__21_carry_i_1
+       (.I0(DATA_IN[10]),
+        .I1(DATA_IN[11]),
+        .I2(DATA_IN[9]),
+        .O(DATA_OUT2__21_carry_i_1_n_0));
+  LUT3 #(
+    .INIT(8'h20)) 
+    DATA_OUT2__21_carry_i_2
+       (.I0(DATA_IN[6]),
+        .I1(DATA_IN[8]),
+        .I2(DATA_IN[7]),
+        .O(DATA_OUT2__21_carry_i_2_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    DATA_OUT2__21_carry_i_3
+       (.I0(DATA_IN[5]),
+        .I1(DATA_IN[4]),
+        .I2(DATA_IN[3]),
+        .O(DATA_OUT2__21_carry_i_3_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    DATA_OUT2__21_carry_i_4
+       (.I0(DATA_IN[2]),
+        .I1(DATA_IN[1]),
+        .I2(DATA_IN[0]),
+        .O(DATA_OUT2__21_carry_i_4_n_0));
   CARRY4 DATA_OUT2_carry
        (.CI(1'b0),
         .CO({DATA_OUT2_carry_n_0,DATA_OUT2_carry_n_1,DATA_OUT2_carry_n_2,DATA_OUT2_carry_n_3}),
@@ -229,32 +473,32 @@ module main_scrambler_0_0_scrambler
         .O(NLW_DATA_OUT2_carry__0_O_UNCONNECTED[3:0]),
         .S({DATA_OUT2_carry__0_i_1_n_0,DATA_OUT2_carry__0_i_2_n_0,DATA_OUT2_carry__0_i_3_n_0,DATA_OUT2_carry__0_i_4_n_0}));
   LUT3 #(
-    .INIT(8'h80)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__0_i_1
-       (.I0(DATA_IN[21]),
-        .I1(DATA_IN[23]),
-        .I2(DATA_IN[22]),
+       (.I0(DATA_IN[23]),
+        .I1(DATA_IN[22]),
+        .I2(DATA_IN[21]),
         .O(DATA_OUT2_carry__0_i_1_n_0));
   LUT3 #(
-    .INIT(8'h20)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__0_i_2
-       (.I0(DATA_IN[18]),
+       (.I0(DATA_IN[20]),
         .I1(DATA_IN[19]),
-        .I2(DATA_IN[20]),
+        .I2(DATA_IN[18]),
         .O(DATA_OUT2_carry__0_i_2_n_0));
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__0_i_3
-       (.I0(DATA_IN[16]),
-        .I1(DATA_IN[17]),
+       (.I0(DATA_IN[17]),
+        .I1(DATA_IN[16]),
         .I2(DATA_IN[15]),
         .O(DATA_OUT2_carry__0_i_3_n_0));
   LUT3 #(
-    .INIT(8'h80)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__0_i_4
-       (.I0(DATA_IN[12]),
-        .I1(DATA_IN[14]),
-        .I2(DATA_IN[13]),
+       (.I0(DATA_IN[14]),
+        .I1(DATA_IN[13]),
+        .I2(DATA_IN[12]),
         .O(DATA_OUT2_carry__0_i_4_n_0));
   CARRY4 DATA_OUT2_carry__1
        (.CI(DATA_OUT2_carry__0_n_0),
@@ -264,25 +508,25 @@ module main_scrambler_0_0_scrambler
         .O(NLW_DATA_OUT2_carry__1_O_UNCONNECTED[3:0]),
         .S({DATA_OUT2_carry__1_i_1_n_0,DATA_OUT2_carry__1_i_2_n_0,DATA_OUT2_carry__1_i_3_n_0,DATA_OUT2_carry__1_i_4_n_0}));
   LUT3 #(
-    .INIT(8'h20)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__1_i_1
-       (.I0(DATA_IN[33]),
-        .I1(DATA_IN[35]),
-        .I2(DATA_IN[34]),
+       (.I0(DATA_IN[35]),
+        .I1(DATA_IN[34]),
+        .I2(DATA_IN[33]),
         .O(DATA_OUT2_carry__1_i_1_n_0));
   LUT3 #(
-    .INIT(8'h02)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__1_i_2
-       (.I0(DATA_IN[30]),
-        .I1(DATA_IN[32]),
-        .I2(DATA_IN[31]),
+       (.I0(DATA_IN[32]),
+        .I1(DATA_IN[31]),
+        .I2(DATA_IN[30]),
         .O(DATA_OUT2_carry__1_i_2_n_0));
   LUT3 #(
-    .INIT(8'h80)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__1_i_3
-       (.I0(DATA_IN[27]),
-        .I1(DATA_IN[29]),
-        .I2(DATA_IN[28]),
+       (.I0(DATA_IN[29]),
+        .I1(DATA_IN[28]),
+        .I2(DATA_IN[27]),
         .O(DATA_OUT2_carry__1_i_3_n_0));
   LUT3 #(
     .INIT(8'h01)) 
@@ -299,32 +543,32 @@ module main_scrambler_0_0_scrambler
         .O(NLW_DATA_OUT2_carry__2_O_UNCONNECTED[3:0]),
         .S({DATA_OUT2_carry__2_i_1_n_0,DATA_OUT2_carry__2_i_2_n_0,DATA_OUT2_carry__2_i_3_n_0,DATA_OUT2_carry__2_i_4_n_0}));
   LUT3 #(
-    .INIT(8'h20)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__2_i_1
-       (.I0(DATA_IN[45]),
-        .I1(DATA_IN[47]),
-        .I2(DATA_IN[46]),
+       (.I0(DATA_IN[47]),
+        .I1(DATA_IN[46]),
+        .I2(DATA_IN[45]),
         .O(DATA_OUT2_carry__2_i_1_n_0));
   LUT3 #(
-    .INIT(8'h08)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__2_i_2
        (.I0(DATA_IN[44]),
         .I1(DATA_IN[43]),
         .I2(DATA_IN[42]),
         .O(DATA_OUT2_carry__2_i_2_n_0));
   LUT3 #(
-    .INIT(8'h02)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__2_i_3
-       (.I0(DATA_IN[39]),
-        .I1(DATA_IN[41]),
-        .I2(DATA_IN[40]),
+       (.I0(DATA_IN[41]),
+        .I1(DATA_IN[40]),
+        .I2(DATA_IN[39]),
         .O(DATA_OUT2_carry__2_i_3_n_0));
   LUT3 #(
-    .INIT(8'h80)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__2_i_4
-       (.I0(DATA_IN[36]),
-        .I1(DATA_IN[38]),
-        .I2(DATA_IN[37]),
+       (.I0(DATA_IN[38]),
+        .I1(DATA_IN[37]),
+        .I2(DATA_IN[36]),
         .O(DATA_OUT2_carry__2_i_4_n_0));
   CARRY4 DATA_OUT2_carry__3
        (.CI(DATA_OUT2_carry__2_n_0),
@@ -341,21 +585,21 @@ module main_scrambler_0_0_scrambler
         .I2(DATA_IN[57]),
         .O(DATA_OUT2_carry__3_i_1_n_0));
   LUT3 #(
-    .INIT(8'h20)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__3_i_2
-       (.I0(DATA_IN[54]),
-        .I1(DATA_IN[56]),
-        .I2(DATA_IN[55]),
+       (.I0(DATA_IN[56]),
+        .I1(DATA_IN[55]),
+        .I2(DATA_IN[54]),
         .O(DATA_OUT2_carry__3_i_2_n_0));
   LUT3 #(
-    .INIT(8'h08)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__3_i_3
        (.I0(DATA_IN[53]),
         .I1(DATA_IN[52]),
         .I2(DATA_IN[51]),
         .O(DATA_OUT2_carry__3_i_3_n_0));
   LUT3 #(
-    .INIT(8'h08)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry__3_i_4
        (.I0(DATA_IN[50]),
         .I1(DATA_IN[49]),
@@ -363,7 +607,7 @@ module main_scrambler_0_0_scrambler
         .O(DATA_OUT2_carry__3_i_4_n_0));
   CARRY4 DATA_OUT2_carry__4
        (.CI(DATA_OUT2_carry__3_n_0),
-        .CO({NLW_DATA_OUT2_carry__4_CO_UNCONNECTED[3:2],DATA_OUT24_in,DATA_OUT2_carry__4_n_3}),
+        .CO({NLW_DATA_OUT2_carry__4_CO_UNCONNECTED[3:2],DATA_OUT20_in,DATA_OUT2_carry__4_n_3}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(NLW_DATA_OUT2_carry__4_O_UNCONNECTED[3:0]),
@@ -374,51 +618,51 @@ module main_scrambler_0_0_scrambler
        (.I0(DATA_IN[63]),
         .O(DATA_OUT2_carry__4_i_1_n_0));
   LUT3 #(
-    .INIT(8'h80)) 
+    .INIT(8'h04)) 
     DATA_OUT2_carry__4_i_2
-       (.I0(DATA_IN[60]),
-        .I1(DATA_IN[62]),
-        .I2(DATA_IN[61]),
+       (.I0(DATA_IN[62]),
+        .I1(DATA_IN[61]),
+        .I2(DATA_IN[60]),
         .O(DATA_OUT2_carry__4_i_2_n_0));
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry_i_1
-       (.I0(DATA_IN[10]),
-        .I1(DATA_IN[11]),
+       (.I0(DATA_IN[11]),
+        .I1(DATA_IN[10]),
         .I2(DATA_IN[9]),
         .O(DATA_OUT2_carry_i_1_n_0));
   LUT3 #(
-    .INIT(8'h20)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry_i_2
-       (.I0(DATA_IN[6]),
-        .I1(DATA_IN[8]),
-        .I2(DATA_IN[7]),
+       (.I0(DATA_IN[8]),
+        .I1(DATA_IN[7]),
+        .I2(DATA_IN[6]),
         .O(DATA_OUT2_carry_i_2_n_0));
   LUT3 #(
-    .INIT(8'h08)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry_i_3
        (.I0(DATA_IN[5]),
         .I1(DATA_IN[4]),
         .I2(DATA_IN[3]),
         .O(DATA_OUT2_carry_i_3_n_0));
   LUT3 #(
-    .INIT(8'h08)) 
+    .INIT(8'h01)) 
     DATA_OUT2_carry_i_4
        (.I0(DATA_IN[2]),
         .I1(DATA_IN[1]),
         .I2(DATA_IN[0]),
         .O(DATA_OUT2_carry_i_4_n_0));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[0]_i_1 
        (.I0(DATA_IN[0]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[0]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2248_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2248_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[0]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \DATA_OUT[0]_i_2 
@@ -427,114 +671,114 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[57]),
         .O(DATA_OUT2248_out));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[10]_i_1 
        (.I0(DATA_IN[10]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[10]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2209_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2209_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[10]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[10]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[11]_i_1 
        (.I0(DATA_IN[11]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[11]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2205_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2205_out),
+        .I5(p_0_in[11]),
         .O(p_1_in[11]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[12]_i_1 
        (.I0(DATA_IN[12]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[12]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2201_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2201_out),
+        .I5(p_0_in[12]),
         .O(p_1_in[12]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[13]_i_1 
        (.I0(DATA_IN[13]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[13]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2197_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2197_out),
+        .I5(p_0_in[13]),
         .O(p_1_in[13]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[14]_i_1 
        (.I0(DATA_IN[14]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[14]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2193_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2193_out),
+        .I5(p_0_in[14]),
         .O(p_1_in[14]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[15]_i_1 
        (.I0(DATA_IN[15]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[15]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2189_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2189_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[15]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[15]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[16]_i_1 
        (.I0(DATA_IN[16]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[16]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2185_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2185_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[16]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[16]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[17]_i_1 
        (.I0(DATA_IN[17]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[17]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2181_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2181_out),
+        .I5(p_0_in[17]),
         .O(p_1_in[17]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[18]_i_1 
        (.I0(DATA_IN[18]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[18]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2177_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2177_out),
+        .I5(p_0_in[18]),
         .O(p_1_in[18]));
   LUT6 #(
-    .INIT(64'hEE44AA00FE45AB10)) 
+    .INIT(64'hA0A0A0A0F5A0E1B4)) 
     \DATA_OUT[19]_i_1 
        (.I0(\scrambler[57]_i_1_n_0 ),
-        .I1(\state_reg_n_0_[0] ),
-        .I2(p_0_in[38]),
-        .I3(DATA_IN[19]),
-        .I4(p_0_in[19]),
-        .I5(DATA_OUT1__0),
+        .I1(p_0_in[38]),
+        .I2(DATA_IN[19]),
+        .I3(p_0_in[19]),
+        .I4(DATA_OUT1__0),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[19]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[1]_i_1 
        (.I0(DATA_IN[1]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[1]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2245_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2245_out),
+        .I5(p_0_in[1]),
         .O(p_1_in[1]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
@@ -545,114 +789,114 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[56]),
         .O(DATA_OUT2245_out));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[20]_i_1 
        (.I0(DATA_IN[20]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[20]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2169_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2169_out),
+        .I5(p_0_in[20]),
         .O(p_1_in[20]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[21]_i_1 
        (.I0(DATA_IN[21]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[21]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2165_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2165_out),
+        .I5(p_0_in[21]),
         .O(p_1_in[21]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[22]_i_1 
        (.I0(DATA_IN[22]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[22]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2161_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2161_out),
+        .I5(p_0_in[22]),
         .O(p_1_in[22]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[23]_i_1 
        (.I0(DATA_IN[23]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[23]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2157_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2157_out),
+        .I5(p_0_in[23]),
         .O(p_1_in[23]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[24]_i_1 
        (.I0(DATA_IN[24]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[24]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2153_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2153_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[24]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[24]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[25]_i_1 
        (.I0(DATA_IN[25]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[25]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2149_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2149_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[25]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[25]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[26]_i_1 
        (.I0(DATA_IN[26]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[26]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2145_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2145_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[26]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[26]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[27]_i_1 
        (.I0(DATA_IN[27]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[27]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2141_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2141_out),
+        .I5(p_0_in[27]),
         .O(p_1_in[27]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[28]_i_1 
        (.I0(DATA_IN[28]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[28]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2137_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2137_out),
+        .I5(p_0_in[28]),
         .O(p_1_in[28]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[29]_i_1 
        (.I0(DATA_IN[29]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[29]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2133_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2133_out),
+        .I5(p_0_in[29]),
         .O(p_1_in[29]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[2]_i_1 
        (.I0(DATA_IN[2]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[2]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2241_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2241_out),
+        .I5(p_0_in[2]),
         .O(p_1_in[2]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
@@ -663,114 +907,114 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[55]),
         .O(DATA_OUT2241_out));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[30]_i_1 
        (.I0(DATA_IN[30]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[30]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2129_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2129_out),
+        .I5(p_0_in[30]),
         .O(p_1_in[30]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[31]_i_1 
        (.I0(DATA_IN[31]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[31]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2125_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2125_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[31]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[31]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[32]_i_1 
        (.I0(DATA_IN[32]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[32]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2121_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2121_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[32]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[32]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[33]_i_1 
        (.I0(DATA_IN[33]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[33]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2117_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2117_out),
+        .I5(p_0_in[33]),
         .O(p_1_in[33]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[34]_i_1 
        (.I0(DATA_IN[34]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[34]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2113_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2113_out),
+        .I5(p_0_in[34]),
         .O(p_1_in[34]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[35]_i_1 
        (.I0(DATA_IN[35]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[35]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2109_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2109_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[35]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[35]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[36]_i_1 
        (.I0(DATA_IN[36]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[36]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2105_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2105_out),
+        .I5(p_0_in[36]),
         .O(p_1_in[36]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[37]_i_1 
        (.I0(DATA_IN[37]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[37]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2101_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2101_out),
+        .I5(p_0_in[37]),
         .O(p_1_in[37]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[38]_i_1 
        (.I0(DATA_IN[38]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[38]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT297_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT297_out),
+        .I5(p_0_in[38]),
         .O(p_1_in[38]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[39]_i_1 
        (.I0(DATA_IN[39]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[39]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT293_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT293_out),
+        .I5(p_0_in[39]),
         .O(p_1_in[39]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[3]_i_1 
        (.I0(DATA_IN[3]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[3]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2237_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2237_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[3]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[3]));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
@@ -781,116 +1025,116 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[54]),
         .O(DATA_OUT2237_out));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[40]_i_1 
        (.I0(DATA_IN[40]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[40]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT289_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT289_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[40]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[40]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[41]_i_1 
        (.I0(DATA_IN[41]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[41]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT285_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT285_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[41]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[41]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[42]_i_1 
        (.I0(DATA_IN[42]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[42]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT281_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT281_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[42]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[42]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[43]_i_1 
        (.I0(DATA_IN[43]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[43]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT277_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT277_out),
+        .I5(p_0_in[43]),
         .O(p_1_in[43]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[44]_i_1 
        (.I0(DATA_IN[44]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[44]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT273_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT273_out),
+        .I5(p_0_in[44]),
         .O(p_1_in[44]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[45]_i_1 
        (.I0(DATA_IN[45]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[45]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT269_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT269_out),
+        .I5(p_0_in[45]),
         .O(p_1_in[45]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[46]_i_1 
        (.I0(DATA_IN[46]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[46]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT265_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT265_out),
+        .I5(p_0_in[46]),
         .O(p_1_in[46]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[47]_i_1 
        (.I0(DATA_IN[47]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[47]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT261_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT261_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[47]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[47]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[48]_i_1 
        (.I0(DATA_IN[48]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[48]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT257_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT257_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[48]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[48]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[49]_i_1 
        (.I0(DATA_IN[49]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[49]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT253_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT253_out),
+        .I5(p_0_in[49]),
         .O(p_1_in[49]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[4]_i_1 
        (.I0(DATA_IN[4]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[4]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2233_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2233_out),
+        .I5(p_0_in[4]),
         .O(p_1_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \DATA_OUT[4]_i_2 
@@ -899,84 +1143,84 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[53]),
         .O(DATA_OUT2233_out));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[50]_i_1 
        (.I0(DATA_IN[50]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[50]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT249_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT249_out),
+        .I5(p_0_in[50]),
         .O(p_1_in[50]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[51]_i_1 
        (.I0(DATA_IN[51]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[51]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT245_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT245_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[51]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[51]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[52]_i_1 
        (.I0(DATA_IN[52]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[52]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT241_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT241_out),
+        .I5(p_0_in[52]),
         .O(p_1_in[52]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[53]_i_1 
        (.I0(DATA_IN[53]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[53]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT237_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT237_out),
+        .I5(p_0_in[53]),
         .O(p_1_in[53]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[54]_i_1 
        (.I0(DATA_IN[54]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[54]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT233_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT233_out),
+        .I5(p_0_in[54]),
         .O(p_1_in[54]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[55]_i_1 
        (.I0(DATA_IN[55]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[55]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT229_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT229_out),
+        .I5(p_0_in[55]),
         .O(p_1_in[55]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[56]_i_1 
        (.I0(DATA_IN[56]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[56]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT225_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT225_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[56]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[56]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[57]_i_1 
        (.I0(DATA_IN[57]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[57]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT221_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT221_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[57]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[57]));
   LUT6 #(
     .INIT(64'hA8A8A8A8A8ABA8A8)) 
@@ -986,7 +1230,7 @@ module main_scrambler_0_0_scrambler
         .I2(SYSTEM_RESET),
         .I3(DATA_OUT1__0),
         .I4(DATA_OUT217_out),
-        .I5(\state_reg_n_0_[0] ),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[58]));
   LUT6 #(
     .INIT(64'hABABABABABABABA8)) 
@@ -994,21 +1238,21 @@ module main_scrambler_0_0_scrambler
        (.I0(DATA_IN[59]),
         .I1(PASSTHROUGH),
         .I2(SYSTEM_RESET),
-        .I3(\state_reg_n_0_[0] ),
+        .I3(DATA_OUT12_out),
         .I4(DATA_OUT213_out),
         .I5(DATA_OUT1__0),
         .O(p_1_in[59]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[5]_i_1 
        (.I0(DATA_IN[5]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[5]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2229_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2229_out),
+        .I5(p_0_in[5]),
         .O(p_1_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \DATA_OUT[5]_i_2 
@@ -1017,14 +1261,14 @@ module main_scrambler_0_0_scrambler
         .I2(p_0_in[52]),
         .O(DATA_OUT2229_out));
   LUT6 #(
-    .INIT(64'hA8A8A8A8ABABABA8)) 
+    .INIT(64'hABA8ABABABA8ABA8)) 
     \DATA_OUT[60]_i_1 
        (.I0(DATA_IN[60]),
         .I1(PASSTHROUGH),
         .I2(SYSTEM_RESET),
-        .I3(DATA_OUT29_out),
+        .I3(DATA_OUT12_out),
         .I4(DATA_OUT1__0),
-        .I5(\state_reg_n_0_[0] ),
+        .I5(DATA_OUT29_out),
         .O(p_1_in[60]));
   LUT6 #(
     .INIT(64'hABABABABABABABA8)) 
@@ -1032,19 +1276,19 @@ module main_scrambler_0_0_scrambler
        (.I0(DATA_IN[61]),
         .I1(PASSTHROUGH),
         .I2(SYSTEM_RESET),
-        .I3(\state_reg_n_0_[0] ),
+        .I3(DATA_OUT12_out),
         .I4(DATA_OUT25_out),
         .I5(DATA_OUT1__0),
         .O(p_1_in[61]));
   LUT6 #(
-    .INIT(64'hA8A8A8A8ABABABA8)) 
+    .INIT(64'hABA8ABABABA8ABA8)) 
     \DATA_OUT[62]_i_1 
        (.I0(DATA_IN[62]),
         .I1(PASSTHROUGH),
         .I2(SYSTEM_RESET),
-        .I3(DATA_OUT2),
+        .I3(DATA_OUT12_out),
         .I4(DATA_OUT1__0),
-        .I5(\state_reg_n_0_[0] ),
+        .I5(\scrambler[1]_i_1_n_0 ),
         .O(p_1_in[62]));
   LUT3 #(
     .INIT(8'hFE)) 
@@ -1061,54 +1305,61 @@ module main_scrambler_0_0_scrambler
         .I2(SYSTEM_RESET),
         .I3(DATA_OUT1__0),
         .I4(DATA_OUT0),
-        .I5(\state_reg_n_0_[0] ),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[63]));
   LUT3 #(
     .INIT(8'h20)) 
     \DATA_OUT[63]_i_3 
-       (.I0(DATA_OUT24_in),
+       (.I0(DATA_OUT20_in),
         .I1(HEADER_IN[0]),
         .I2(HEADER_IN[1]),
         .O(DATA_OUT1__0));
+  LUT3 #(
+    .INIT(8'h20)) 
+    \DATA_OUT[63]_i_4 
+       (.I0(DATA_OUT21_in),
+        .I1(HEADER_IN[0]),
+        .I2(HEADER_IN[1]),
+        .O(DATA_OUT12_out));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[6]_i_1 
        (.I0(DATA_IN[6]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[6]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2225_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2225_out),
+        .I5(p_0_in[6]),
         .O(p_1_in[6]));
   LUT6 #(
-    .INIT(64'hB8BBB8BBB8BBB888)) 
+    .INIT(64'hBBBBBBB8B8B8BBB8)) 
     \DATA_OUT[7]_i_1 
        (.I0(DATA_IN[7]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[7]),
-        .I3(\state_reg_n_0_[0] ),
+        .I2(DATA_OUT12_out),
+        .I3(DATA_OUT2221_out),
         .I4(DATA_OUT1__0),
-        .I5(DATA_OUT2221_out),
+        .I5(p_0_in[7]),
         .O(p_1_in[7]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[8]_i_1 
        (.I0(DATA_IN[8]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[8]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2217_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2217_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[8]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[8]));
   LUT6 #(
-    .INIT(64'hB888B888B8BBB888)) 
+    .INIT(64'h88888888BBB888B8)) 
     \DATA_OUT[9]_i_1 
        (.I0(DATA_IN[9]),
         .I1(\scrambler[57]_i_1_n_0 ),
-        .I2(p_0_in[9]),
-        .I3(\state_reg_n_0_[0] ),
-        .I4(DATA_OUT2213_out),
-        .I5(DATA_OUT1__0),
+        .I2(DATA_OUT2213_out),
+        .I3(DATA_OUT1__0),
+        .I4(p_0_in[9]),
+        .I5(DATA_OUT12_out),
         .O(p_1_in[9]));
   LUT2 #(
     .INIT(4'h2)) 
@@ -1541,7 +1792,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[5]),
         .I4(p_0_in[52]),
         .O(DATA_OUT0));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[10]_i_1 
@@ -1551,7 +1802,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[53]),
         .I4(p_0_in[4]),
         .O(DATA_OUT237_out));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[11]_i_1 
@@ -1571,7 +1822,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[51]),
         .I4(p_0_in[6]),
         .O(DATA_OUT245_out));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[13]_i_1 
@@ -1581,7 +1832,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[50]),
         .I4(p_0_in[7]),
         .O(DATA_OUT249_out));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[14]_i_1 
@@ -1591,7 +1842,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[49]),
         .I4(p_0_in[8]),
         .O(DATA_OUT253_out));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[15]_i_1 
@@ -1601,7 +1852,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[48]),
         .I4(p_0_in[9]),
         .O(DATA_OUT257_out));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[16]_i_1 
@@ -1611,7 +1862,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[47]),
         .I4(p_0_in[10]),
         .O(DATA_OUT261_out));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[17]_i_1 
@@ -1621,7 +1872,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[46]),
         .I4(p_0_in[11]),
         .O(DATA_OUT265_out));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[18]_i_1 
@@ -1631,7 +1882,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[45]),
         .I4(p_0_in[12]),
         .O(DATA_OUT269_out));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[19]_i_1 
@@ -1649,8 +1900,8 @@ module main_scrambler_0_0_scrambler
         .I2(DATA_IN[62]),
         .I3(DATA_IN[4]),
         .I4(p_0_in[53]),
-        .O(DATA_OUT2));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+        .O(\scrambler[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[20]_i_1 
@@ -1690,7 +1941,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[40]),
         .I4(p_0_in[17]),
         .O(DATA_OUT289_out));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[24]_i_1 
@@ -1860,7 +2111,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[19]),
         .I2(p_0_in[38]),
         .O(DATA_OUT2173_out));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[45]_i_1 
@@ -1868,7 +2119,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[18]),
         .I2(p_0_in[39]),
         .O(DATA_OUT2177_out));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[46]_i_1 
@@ -1876,7 +2127,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[17]),
         .I2(p_0_in[40]),
         .O(DATA_OUT2181_out));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[47]_i_1 
@@ -1884,7 +2135,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[16]),
         .I2(p_0_in[41]),
         .O(DATA_OUT2185_out));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[48]_i_1 
@@ -1892,7 +2143,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[15]),
         .I2(p_0_in[42]),
         .O(DATA_OUT2189_out));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[49]_i_1 
@@ -1909,7 +2160,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[1]),
         .I4(p_0_in[56]),
         .O(DATA_OUT213_out));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[50]_i_1 
@@ -1925,7 +2176,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[12]),
         .I2(p_0_in[45]),
         .O(DATA_OUT2201_out));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[52]_i_1 
@@ -1933,7 +2184,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[11]),
         .I2(p_0_in[46]),
         .O(DATA_OUT2205_out));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[53]_i_1 
@@ -1941,7 +2192,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[10]),
         .I2(p_0_in[47]),
         .O(DATA_OUT2209_out));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[54]_i_1 
@@ -1949,7 +2200,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[9]),
         .I2(p_0_in[48]),
         .O(DATA_OUT2213_out));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[55]_i_1 
@@ -1957,7 +2208,7 @@ module main_scrambler_0_0_scrambler
         .I1(DATA_IN[8]),
         .I2(p_0_in[49]),
         .O(DATA_OUT2217_out));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[56]_i_1 
@@ -1972,15 +2223,15 @@ module main_scrambler_0_0_scrambler
         .I1(SYSTEM_RESET),
         .O(\scrambler[57]_i_1_n_0 ));
   LUT5 #(
-    .INIT(32'h22022222)) 
+    .INIT(32'hA0AAA2AA)) 
     \scrambler[57]_i_2 
        (.I0(DATA_IN_VALID),
-        .I1(\state_reg_n_0_[0] ),
-        .I2(HEADER_IN[1]),
-        .I3(HEADER_IN[0]),
-        .I4(DATA_OUT24_in),
+        .I1(DATA_OUT20_in),
+        .I2(HEADER_IN[0]),
+        .I3(HEADER_IN[1]),
+        .I4(DATA_OUT21_in),
         .O(scrambler));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \scrambler[57]_i_3 
@@ -1997,7 +2248,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[0]),
         .I4(p_0_in[57]),
         .O(DATA_OUT217_out));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[6]_i_1 
@@ -2007,7 +2258,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[57]),
         .I4(p_0_in[0]),
         .O(DATA_OUT221_out));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[7]_i_1 
@@ -2017,7 +2268,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[56]),
         .I4(p_0_in[1]),
         .O(DATA_OUT225_out));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[8]_i_1 
@@ -2027,7 +2278,7 @@ module main_scrambler_0_0_scrambler
         .I3(DATA_IN[55]),
         .I4(p_0_in[2]),
         .O(DATA_OUT229_out));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT5 #(
     .INIT(32'h96696996)) 
     \scrambler[9]_i_1 
@@ -2106,7 +2357,7 @@ module main_scrambler_0_0_scrambler
   FDSE \scrambler_reg[1] 
        (.C(USER_CLK),
         .CE(scrambler),
-        .D(DATA_OUT2),
+        .D(\scrambler[1]_i_1_n_0 ),
         .Q(p_0_in[1]),
         .S(\scrambler[57]_i_1_n_0 ));
   FDSE \scrambler_reg[20] 
@@ -2385,22 +2636,6 @@ module main_scrambler_0_0_scrambler
         .D(DATA_OUT233_out),
         .Q(p_0_in[9]),
         .S(\scrambler[57]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h000000000400AAAA)) 
-    \state[0]_i_1 
-       (.I0(\state_reg_n_0_[0] ),
-        .I1(HEADER_IN[1]),
-        .I2(HEADER_IN[0]),
-        .I3(DATA_OUT24_in),
-        .I4(DATA_IN_VALID),
-        .I5(\scrambler[57]_i_1_n_0 ),
-        .O(\state[0]_i_1_n_0 ));
-  FDRE \state_reg[0] 
-       (.C(USER_CLK),
-        .CE(1'b1),
-        .D(\state[0]_i_1_n_0 ),
-        .Q(\state_reg_n_0_[0] ),
-        .R(1'b0));
 endmodule
 `ifndef GLBL
 `define GLBL

@@ -26,7 +26,8 @@
 module scrambler #
 (
     parameter TX_DATA_WIDTH = 64,
-    parameter SYNC_WORD     = 64'h78f678f678f678f6
+    parameter SYNC_WORD     = 64'h78f678f678f678f6,
+    parameter STATE_WORD    = 64'h2800000000000000
 )
 (
     // User Interface
@@ -45,10 +46,6 @@ module scrambler #
 );
 
 //***************************Declarations********************
-    localparam
-    STATE_IDLE   = 1'b0,
-    STATE_SYNC   = 1'b1;
-
     integer                        i;
     reg     [57:0]                 poly;
     reg     [(TX_DATA_WIDTH-1):0]  scrambled_data_i;
@@ -78,23 +75,20 @@ module scrambler #
         begin
             DATA_OUT <= `DLY  DATA_IN;
             scrambler          <= `DLY  {58{1'b1}};
-            state              <= `DLY  STATE_IDLE;
         end
         else if (DATA_IN_VALID)
         begin
-            if(state == STATE_SYNC)
+            if(DATA_IN == SYNC_WORD && HEADER_IN == 2'b10)
             begin
-                DATA_OUT <= `DLY  {6'b001010 , scrambler[57:0]};
-                state              <= `DLY  STATE_IDLE;
+                DATA_OUT    <= `DLY  DATA_IN;
             end
-            else if(DATA_IN == SYNC_WORD && HEADER_IN == 2'b10)
+            else if(DATA_IN == STATE_WORD && HEADER_IN == 2'b10)
             begin
-                DATA_OUT <= `DLY  DATA_IN;
-                state              <= `DLY  STATE_SYNC;
+                DATA_OUT    <= `DLY  {6'b001010 , scrambler[57:0]};
             end
             else begin
-                DATA_OUT <= `DLY  tempData;
-                scrambler          <= `DLY  poly;
+                DATA_OUT    <= `DLY  tempData;
+                scrambler   <= `DLY  poly;
             end
         end
     end

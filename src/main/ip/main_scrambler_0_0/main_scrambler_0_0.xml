@@ -106,7 +106,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:ebcd44e4</spirit:value>
+            <spirit:value>8:1d00366e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -122,11 +122,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 29 21:36:24 UTC 2020</spirit:value>
+            <spirit:value>Tue Dec 01 21:37:36 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:ebcd44e4</spirit:value>
+            <spirit:value>8:1d00366e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -138,7 +138,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9fb5e1b3</spirit:value>
+            <spirit:value>8:80f95ed1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -154,11 +154,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 29 21:36:24 UTC 2020</spirit:value>
+            <spirit:value>Tue Dec 01 21:37:36 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9fb5e1b3</spirit:value>
+            <spirit:value>8:80f95ed1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -172,11 +172,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sun Nov 29 21:37:16 UTC 2020</spirit:value>
+            <spirit:value>Tue Dec 01 21:38:16 UTC 2020</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:ebcd44e4</spirit:value>
+            <spirit:value>8:1d00366e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -327,6 +327,11 @@
         <spirit:displayName>Sync Word</spirit:displayName>
         <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.SYNC_WORD" spirit:bitStringLength="64">0x78F678F678F678F6</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="std_logic_vector">
+        <spirit:name>STATE_WORD</spirit:name>
+        <spirit:displayName>State Word</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.STATE_WORD" spirit:bitStringLength="64">0x2800000000000000</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
@@ -394,6 +399,11 @@
       <spirit:name>SYNC_WORD</spirit:name>
       <spirit:displayName>Sync Word</spirit:displayName>
       <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.SYNC_WORD" spirit:bitStringLength="64">0x78F678F678F678F6</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>STATE_WORD</spirit:name>
+      <spirit:displayName>State Word</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.STATE_WORD" spirit:bitStringLength="64">0x2800000000000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
