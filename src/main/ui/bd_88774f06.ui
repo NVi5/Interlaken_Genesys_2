@@ -1,0 +1,20 @@
+{
+   ExpandedHierarchyInLayout: "",
+   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 non-TLS
+#  -string -flagsOSRD
+preplace port RX_USR_CLK -pg 1 -y 90 -defaultsOSRD
+preplace port RX_USR_CLK2 -pg 1 -y 160 -defaultsOSRD
+preplace portBus DATA_OUT -pg 1 -y 90 -defaultsOSRD
+preplace portBus DATA_IN -pg 1 -y 20 -defaultsOSRD
+preplace inst vio_0 -pg 1 -lvl 1 -y 90 -defaultsOSRD
+preplace inst stream_manipulator -pg 1 -lvl 2 -y 90 -defaultsOSRD
+preplace netloc OFFSET 1 1 1 N
+preplace netloc stream_manipulator_DATA_OUT 1 2 1 N
+preplace netloc CORE_RX_DATA 1 0 2 NJ 20 230J
+preplace netloc MASK 1 1 1 N
+preplace netloc gt_core_0_RX_USR_CLK2 1 0 2 NJ 160 230J
+preplace netloc RX_USR_CLK_1 1 0 1 NJ
+levelinfo -pg 1 0 130 390 560 -top 0 -bot 180
+",
+}
+
