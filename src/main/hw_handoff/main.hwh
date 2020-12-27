@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Dec  1 22:37:36 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Dec 27 21:22:40 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="main" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -789,10 +789,10 @@
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TX_USR_CLK2" SIGIS="clk" SIGNAME="interlaken_CORE_gt_core_0_TX_USR_CLK2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_gen" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_TX_encode_64B_67B" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_TX_tx_interface_0" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_TX_gearbox_tx" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_TX_scrambler" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_TX_gearbox_tx" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_TX_encode_64B_67B" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="RX_USR_CLK" SIGIS="clk" SIGNAME="interlaken_CORE_gt_core_0_RX_USR_CLK">
@@ -808,8 +808,8 @@
             <CONNECTION INSTANCE="frame_check" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_RX_rx_interface" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_RX_decode_64B_67B" PORT="USER_CLK"/>
-            <CONNECTION INSTANCE="interlaken_RX_descrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_RX_gearbox_rx" PORT="USER_CLK"/>
+            <CONNECTION INSTANCE="interlaken_RX_descrambler" PORT="USER_CLK"/>
             <CONNECTION INSTANCE="interlaken_STREAM_MANIPULATE_stream_manipulator" PORT="USER_CLK"/>
           </CONNECTIONS>
         </PORT>
@@ -821,11 +821,11 @@
         <PORT DIR="O" NAME="TX_RESET" SIGIS="rst" SIGNAME="interlaken_CORE_gt_core_0_TX_RESET">
           <CONNECTIONS>
             <CONNECTION INSTANCE="frame_gen" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="interlaken_TX_encode_64B_67B" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="interlaken_TX_ila_1" PORT="probe2"/>
             <CONNECTION INSTANCE="interlaken_TX_tx_interface_0" PORT="SYSTEM_RESET"/>
-            <CONNECTION INSTANCE="interlaken_TX_gearbox_tx" PORT="SYSTEM_RESET"/>
             <CONNECTION INSTANCE="interlaken_TX_scrambler" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_TX_gearbox_tx" PORT="SYSTEM_RESET"/>
+            <CONNECTION INSTANCE="interlaken_TX_encode_64B_67B" PORT="SYSTEM_RESET"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="RX_RESET" SIGIS="rst" SIGNAME="interlaken_CORE_gt_core_0_RX_RESET">

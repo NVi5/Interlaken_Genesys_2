@@ -117,7 +117,7 @@ module descrambler #
                 STATE_SYNC_WORD:
                     if (DATA_IN == SYNC_WORD)
                     begin
-                        if (good_sync_ctr == 2'd3)
+                        if (good_sync_ctr == 2'd2)
                         begin
                             good_sync_ctr   <= `DLY     3'd0;
                             state           <= `DLY     STATE_ADVANCE;
@@ -161,7 +161,7 @@ module descrambler #
                             state           <= `DLY     STATE_LOCKED_SYNC_STATE;
                         end
                         else begin
-                            if (bad_sync_ctr == 3'd4)
+                            if (bad_sync_ctr == 3'd3)
                             begin
                                 state           <= `DLY     STATE_RESET;
                             end
@@ -180,7 +180,7 @@ module descrambler #
                             state           <= `DLY     STATE_LOCKED_WAIT_FOR_WORD;
                         end
                         else begin
-                            if (mismatch_ctr == 2'd3)
+                            if (mismatch_ctr == 2'd2)
                             begin
                                 state           <= `DLY     STATE_RESET;
                             end

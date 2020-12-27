@@ -53,7 +53,7 @@ module encode_64B_67B(
         begin
             temp = temp + DATA_IN[i];
         end
-        word_disparity = temp - 64;
+        word_disparity = (temp<<1) - 64;
     end
 
 //*********************************Main Body of Code**********************************
@@ -69,11 +69,11 @@ module encode_64B_67B(
         begin
             if ((disparity >= 0 && word_disparity >= 0) || ((disparity < 0 && word_disparity < 0)))     // Same sign
             begin
-                disparity = disparity - word_disparity;
+                disparity = disparity - word_disparity + 1;
                 DATA_OUT <= `DLY  {1'b1, HEADER_IN[1:0], ~DATA_IN[63:0]};
             end
             else begin
-                disparity = disparity + word_disparity;
+                disparity = disparity + word_disparity - 1;
                 DATA_OUT <= `DLY  {1'b0, HEADER_IN[1:0], DATA_IN[63:0]};
             end
         end
